@@ -15,7 +15,7 @@
 
             $password = password_hash($user->Password, PASSWORD_DEFAULT, $options);
 
-            $conn= new PDO("mysql:host=localhost;dbname=studentimdis","root","");
+            $conn= Db::getInstance();
 
 
         }
