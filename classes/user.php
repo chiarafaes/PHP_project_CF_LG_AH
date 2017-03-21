@@ -39,7 +39,7 @@ class User{
 
     public function Save(){
         //connectie maken (PDO) -> geen mysqli, PDO kan voor meerder data banken
-        $conn= new PDO("mysql:host=localhost;dbname=studentimdis","root","");
+        $conn= Db::getInstance();
 
         //query schrijven
         $statement = $conn->prepare("INSERT INTO Users (Fullname,Username,Mail) VALUES (:Fullname,:Username,:Mail)");
