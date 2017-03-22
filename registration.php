@@ -31,8 +31,8 @@
         if ($res=="succes") {
             // sessie aanmaken indien registratie ok & redirect naar loggedin.php
             session_start();
-            $_SESSION['email'] =$_POST["email"];
-            header('Location: loggedin.php');
+            $_SESSION['email'] = $_POST["email"];
+            header('Location:loggedin.php');
 
         } else {
             //op de registarie pagina blijven wanneer de registratie niet gelukt is
