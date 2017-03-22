@@ -1,31 +1,43 @@
 <?php
+//vervangt includes, deze functie moet slechts 1 keer geschreven worden
     spl_autoload_register(function ($class){
         include_once ("classes/".$class.".php");
-    }); //vervangt includes
+    });
 
-
+// als er gesubmit is gaan we velden uitlezen
     if(!empty($_POST)){
         try{
             $options = [
                 'cost'=> 12
             ];
 
+            //lezen velden uit en steken dit in de waarden van de class user
             $user = new user();
             $user->Fullname = $_POST["fullname"];
             $user->Username = $_POST["username"];
             $user->Mail = $_POST["email"];
             $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options); 
-
-
-
+            $res = "succes";
 //            $password = password_hash($user->Password, PASSWORD_DEFAULT, $options);
 
+            //maken connectie met de database door verwijzing naar de "klasse" DB
             $conn= Db::getInstance();
-
 
         }
         catch (PDOException $e){
             $error= $e->getMessage();
+        }
+
+        if ($res=="succes") {
+            // sessie aanmaken indien registratie ok & redirect naar loggedin.php
+            session_start();
+            $_SESSION['email'] =$_POST["email"];
+            header('Location: loggedin.php');
+
+        } else {
+            //op de registarie pagina blijven wanneer de registratie niet gelukt is
+            header('Location: registration.php');
+
         }
     }
 

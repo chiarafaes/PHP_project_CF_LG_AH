@@ -62,8 +62,9 @@ class user{
         //query executen
         $res = $statement->execute();
 
-        //gelukt of niet?
-        return($res);
+        //true or false?
+        return ($res);
+
 
     }
 
