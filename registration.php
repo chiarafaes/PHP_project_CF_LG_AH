@@ -1,20 +1,22 @@
 <?php
     spl_autoload_register(function ($class){
-    include_once ("classes/" . $class);
+        include_once ("classes/".$class.".php");
     }); //vervangt includes
 
 
     if(!empty($_POST)){
         try{
-            $user = new User();
+            $options = [
+                'cost'=> 12
+            ];
+
+            $user = new user();
             $user->Fullname = $_POST["fullname"];
             $user->Username = $_POST["username"];
             $user->Mail = $_POST["email"];
             $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options); 
 
-            $options = [
-                'cost'=> 12
-            ];
+
 
 //            $password = password_hash($user->Password, PASSWORD_DEFAULT, $options);
 
