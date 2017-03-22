@@ -69,7 +69,7 @@ class user{
 
     public function __toString()
     {
-        $output = "<p>".$this->m_sFullname. " ".$this->m_sUsername."</p>";
+        $output = "<p>".$this->m_sFullname." ".$this->m_sUsername."</p>";
         $output .= "<p>".$this->m_sMail."</p>";
 
         return ($output);
