@@ -3,20 +3,25 @@ class User{
     private $m_sFullname;
     private $m_sUsername;
     private $m_sMail;
+    private $m_sPassword;
 
 
     public function __set($p_sProporty,$p_vValue){
         switch ($p_sProporty){
             case "Fullname":
-                $this->m_sFirstname = $p_vValue;
+                $this->m_sFullname = $p_vValue;
                 break;
 
             case "Username":
-                $this->m_sLastname  = $p_vValue;
+                $this->m_sUsername  = $p_vValue;
                 break;
 
             case "Mail":
-                $this->m_iAge  = $p_vValue;
+                $this->m_sMail  = $p_vValue;
+                break;
+                
+            case "Password":
+                $this->m_sPassword  = $p_vValue;
                 break;
         }
     }
@@ -25,13 +30,17 @@ class User{
         switch ($p_sProporty)
         {
             case "Fullname":
-                return $this->m_sFirstname;
+                return $this->m_sFullname;
                 break;
             case "Username":
-                return $this->m_sLastname;
+                return $this->m_sUsername;
                 break;
             case "Mail":
-                return $this->m_iAge;
+                return $this->m_sMail;
+                break;
+                
+           case "Password":
+                return $this->m_sPassword;
                 break;
 
         }
@@ -42,10 +51,11 @@ class User{
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Users (Fullname,Username,Mail) VALUES (:Fullname,:Username,:Mail)");
-        $statement->bindValue(":Fullname",$this->m_sFirstname);
-        $statement->bindValue(":Username",$this->m_sLastname);
-        $statement->bindValue(":Mail",$this->m_iAge);
+        $statement = $conn->prepare("INSERT INTO Users (Fullname,Username,Mail,Password) VALUES (:Fullname,:Username,:Mail, :Password)");
+        $statement->bindValue(":Fullname",$this->m_sFullname);
+        $statement->bindValue(":Username",$this->m_sUsername);
+        $statement->bindValue(":Mail",$this->m_sMail);
+        $statement->bindValue(":Password",$this->m_sPassword);
 
 
 
