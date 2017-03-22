@@ -1,5 +1,8 @@
 <?php
-    include_once ("classes/user.php");
+    spl_autoload_register(function ($class){
+    include_once ("classes/" . $class . ".class.php");
+    }); //vervangt includes
+
 
     if(!empty($_POST)){
         try{
