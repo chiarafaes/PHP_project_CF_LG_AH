@@ -57,10 +57,10 @@
         <form method="post" name="loggin" action="#" id="loggin">
 
             <fieldset>
-                <input id="fullname" name="fullname" type="fullname" placeholder="fullname">
+                <input id="fullname" name="fullname" placeholder="fullname">
             </fieldset>
             <fieldset>
-                <input id="username" name="username" type="username" placeholder="username">
+                <input id="username" name="username" placeholder="username">
             </fieldset>
             <fieldset>
                 <input id="email" name="email" type="text" placeholder="email">
