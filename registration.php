@@ -24,22 +24,24 @@
             //maken connectie met de database door verwijzing naar de "klasse" DB
             $conn= Db::getInstance();
 
+  /*          if ($res = "succes") {
+                // sessie aanmaken indien registratie ok & redirect naar loggedin.php
+                session_start();
+               // $_SESSION['email'] = $_POST["email"];
+                header('Location:loggedin.php');
+                echo "$res";
+
+            } else {
+                //op de registarie pagina blijven wanneer de registratie niet gelukt is
+                header('Location:registration.php');
+            }
+  */
         }
         catch (PDOException $e){
             $error= $e->getMessage();
         }
 
-        if ($res=="succes") {
-            // sessie aanmaken indien registratie ok & redirect naar loggedin.php
-            session_start();
-            $_SESSION['email'] = $_POST["email"];
-            header('Location:loggedin.php');
 
-        } else {
-            //op de registarie pagina blijven wanneer de registratie niet gelukt is
-            header('Location: registration.php');
-
-        }
     }
 
 
