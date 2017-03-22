@@ -7,13 +7,13 @@
             $user->Fullname = $_POST["fullname"];
             $user->Username = $_POST["username"];
             $user->Mail = $_POST["email"];
-            $user->Password = $_POST["password"];
+            $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options); 
 
             $options = [
                 'cost'=> 12
             ];
 
-            $password = password_hash($user->Password, PASSWORD_DEFAULT, $options);
+//            $password = password_hash($user->Password, PASSWORD_DEFAULT, $options);
 
             $conn= Db::getInstance();
 
