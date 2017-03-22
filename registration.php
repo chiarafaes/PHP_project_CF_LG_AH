@@ -16,7 +16,8 @@
             $user->Fullname = $_POST["fullname"];
             $user->Username = $_POST["username"];
             $user->Mail = $_POST["email"];
-            $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options); 
+            $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
+            $user->Save();
             $res = "succes";
 //            $password = password_hash($user->Password, PASSWORD_DEFAULT, $options);
 
@@ -53,7 +54,7 @@
 </head>
 <body>
     <section>
-        <h1>Welcome to #####</h1>
+        <h1>Welcome to inspir8</h1>
         <form method="post" name="loggin" action="#" id="loggin">
 
             <fieldset>

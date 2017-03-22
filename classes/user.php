@@ -5,7 +5,6 @@ class user{
     private $m_sMail;
     private $m_sPassword;
 
-
     public function __set($p_sProporty,$p_vValue){
         switch ($p_sProporty){
             case "Fullname":
@@ -57,15 +56,11 @@ class user{
         $statement->bindValue(":Mail",$this->m_sMail);
         $statement->bindValue(":Password",$this->m_sPassword);
 
-
-
         //query executen
         $res = $statement->execute();
 
         //true or false?
         return ($res);
-
-
     }
 
     public function __toString()
@@ -75,8 +70,6 @@ class user{
 
         return ($output);
     }
-
-
 }
 ?>
 
