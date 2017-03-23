@@ -5,8 +5,8 @@ class user{
     private $m_sMail;
     private $m_sPassword;
 
-    public function __set($p_sProporty,$p_vValue){
-        switch ($p_sProporty){
+    public function __set($p_sProperty,$p_vValue){
+        switch ($p_sProperty){
             case "Fullname":
                 $this->m_sFullname = $p_vValue;
                 break;
@@ -25,8 +25,8 @@ class user{
         }
     }
 
-    public function __get($p_sProporty){
-        switch ($p_sProporty)
+    public function __get($p_sProperty){
+        switch ($p_sProperty)
         {
             case "Fullname":
                 return $this->m_sFullname;
@@ -37,11 +37,9 @@ class user{
             case "Mail":
                 return $this->m_sMail;
                 break;
-                
            case "Password":
                 return $this->m_sPassword;
                 break;
-
         }
     }
 
