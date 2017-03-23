@@ -18,6 +18,8 @@
             $user->Mail = $_POST["email"];
             $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
             $res = "succes";
+            $MinimumLength = 6;
+
             // error handling voor lege velden
             if(empty($user->Fullname = $_POST["fullname"])){
                 $error = "Field 'Fullname' can not be empty.";
@@ -31,20 +33,38 @@
             elseif (empty($user->Password = $_POST['password'])){
                 $error = "Field 'Password' can not be empty.";
             }
+            elseif (strlen($user->Password) < $MinimumLength){
+                $error = "Your password has to contain more than 6 characters.";
+            }
+
 
             //maken connectie met de database door verwijzing naar de "klasse" DB
             $conn= Db::getInstance();
 
+            // checken of er een error is door de lege velden
             if (!isset($error)) {
-                if ($res != false) {
-                    // OK
-                    $succes = "Welcome, u are registered";
-                    $user->Save();
-                    header("location:topics.php");
-                } else {
-                    // Niet OK
-                    $fail = "Oops, something went wrong! Try again!";
-                    header("location:registration.php");
+                // als er geen error is , zoek dan het mailadres op
+                $statement = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
+                $statement->bindValue(":mail", $user->Mail);
+
+                //als het mailadres bestaat geef melding dat de mail reeds in gebruik is en niet save
+                if ($statement->execute() && $statement->rowCount() != 0) {
+                    $resultaat = $statement->fetch(PDO::FETCH_ASSOC);
+                    $error = "Mail is already used";
+                    $res = false;
+                }else{
+                    // doorsturen naar topics
+                    if ($res != false) {
+                        // OK
+                        $succes = "Welcome, u are registered";
+                        $user->Save();
+                        header("location:topics.php");
+
+                    } else {
+                        // Niet OK
+                        $fail = "Oops, something went wrong! Try again!";
+                        header("location:registration.php");
+                    }
                 }
             }
         }
