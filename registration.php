@@ -41,11 +41,7 @@
         catch (PDOException $e){
             $error= $e->getMessage();
         }
-
-
     }
-
-
 ?><!doctype html>
 <html lang="en">
 <head>
