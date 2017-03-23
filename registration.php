@@ -24,6 +24,7 @@
             //maken connectie met de database door verwijzing naar de "klasse" DB
             $conn= Db::getInstance();
 
+
   /*          if ($res = "succes") {
                 // sessie aanmaken indien registratie ok & redirect naar loggedin.php
                 session_start();
@@ -60,7 +61,8 @@
         <form method="post" name="loggin" action="#" id="loggin">
 
             <fieldset>
-                <input id="fullname" name="fullname" placeholder="fullname">
+                <input
+                        id="fullname" name="fullname" placeholder="fullname">
             </fieldset>
             <fieldset>
                 <input id="username" name="username" placeholder="username">
