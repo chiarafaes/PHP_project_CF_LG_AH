@@ -7,35 +7,44 @@
         try{
             // gegevens opslaan
             $user = new user();
-            $user->Mail = $_POST['email'];
-            $user->Password = $_POST['password'];
 
-            // query doen naar db om bcrypt wachtwoord terug te krijgen en te verifyen
-            $conn= Db::getInstance();
-            $statement = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
-            $statement->bindValue(":mail", $user->Mail);
+            // error handling voor lege velden
+            if(empty($user->Mail = $_POST['email'])){
+                $error = "Field 'username' can not be empty.";
+            } elseif (empty($user->Password = $_POST['password'])){
+                $error = "Field 'password' can not be empty.";
+            }
 
-            if($statement->execute() && $statement->rowCount() != 0) {
-                $res = $statement->fetch(PDO::FETCH_ASSOC);
+            // enkel code doen indien alle velden ingevuld zijn
+            if (!isset($error)) {
 
-                // hier gaan we het opgeslagen wachtwoord vergelijken met het ingegeven wachtwoord
-               if(password_verify($user->Password, $res['Password'])){
-                   // correct dus we starten de session
-                   session_start();
+                // query doen naar db om bcrypt wachtwoord terug te krijgen en te verifyen
+                $conn = Db::getInstance();
+                $statement = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
+                $statement->bindValue(":mail", $user->Mail);
 
-                   // we maken session vars aan voor later
-                   $_SESSION['email'] = $user->Mail;
-                   $_SESSION['username'] = $res['Username'];
-                   $_SESSION['fullname'] = $res['Fullname'];
+                if ($statement->execute() && $statement->rowCount() != 0) {
+                    $res = $statement->fetch(PDO::FETCH_ASSOC);
 
-                   // we sturen de user door
-                   header('location:loggedin.php');
-               } else{
-                   $error = 'Password does not match. Please try again';
-               }
+                    // hier gaan we het opgeslagen wachtwoord vergelijken met het ingegeven wachtwoord
+                    if (password_verify($user->Password, $res['Password'])) {
+                        // correct dus we starten de session
+                        session_start();
 
-            } else {
-                $error = "User does not exist in database. Please register first.";
+                        // we maken session vars aan voor later
+                        $_SESSION['email'] = $user->Mail;
+                        $_SESSION['username'] = $res['Username'];
+                        $_SESSION['fullname'] = $res['Fullname'];
+
+                        // we sturen de user door
+                        header('location:loggedin.php');
+                    } else {
+                        $error = 'Password does not match. Please try again';
+                    }
+
+                } else {
+                    $error = "User does not exist in database. Please register first.";
+                }
             }
 
             // Normaal gezien gaan we niet zeggen of het wachtwoord of de username fout is.
