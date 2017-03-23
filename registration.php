@@ -73,7 +73,7 @@
             </fieldset>
 
             <fieldset>
-                <input type="submit" name='submit' value="registrate" />
+                <input type="submit" name='submit' value="register" />
             </fieldset>
 
         </form>
