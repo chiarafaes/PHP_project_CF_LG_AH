@@ -34,7 +34,7 @@
                 $error = "Field 'Password' can not be empty.";
             }
             elseif (strlen($user->Password) < $MinimumLength){
-                $error = "Your password has to contain more than 6 characters.";
+                $error = "Your password has to be at least 6 characters long.";
             }
 
 
@@ -56,7 +56,7 @@
                     // doorsturen naar topics
                     if ($res != false) {
                         // OK
-                        $succes = "Welcome, u are registered";
+                        $succes = "Welcome, you are registered";
                         $user->Save();
                         header("location:topics.php");
 
