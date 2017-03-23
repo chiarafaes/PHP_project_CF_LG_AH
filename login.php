@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
 
-
-=======
     spl_autoload_register(function ($class){
         include_once ("classes/".$class.".php");
     });
@@ -59,7 +56,6 @@
             $error = $e->getMessage();
         }
     }
->>>>>>> origin/master
 
 ?><!DOCTYPE html>
 <html lang="en">
