@@ -59,6 +59,7 @@ class user{
 
         //true or false?
         return ($res);
+
     }
 
     public function __toString()

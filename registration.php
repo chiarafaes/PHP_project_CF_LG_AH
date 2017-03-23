@@ -17,26 +17,36 @@
             $user->Username = $_POST["username"];
             $user->Mail = $_POST["email"];
             $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
-            $user->Save();
             $res = "succes";
-//            $password = password_hash($user->Password, PASSWORD_DEFAULT, $options);
+            // error handling voor lege velden
+            if(empty($user->Fullname = $_POST["fullname"])){
+                $error = "Field 'Fullname' can not be empty.";
+            }
+            elseif (empty($user->Username = $_POST["username"])){
+                $error = "Field 'Username' can not be empty.";
+            }
+            elseif (empty($user->Mail = $_POST["email"])){
+                $error = "Field 'Mail' can not be empty.";
+            }
+            elseif (empty($user->Password = $_POST['password'])){
+                $error = "Field 'Password' can not be empty.";
+            }
 
             //maken connectie met de database door verwijzing naar de "klasse" DB
             $conn= Db::getInstance();
 
-
-  /*          if ($res = "succes") {
-                // sessie aanmaken indien registratie ok & redirect naar loggedin.php
-                session_start();
-               // $_SESSION['email'] = $_POST["email"];
-                header('Location:loggedin.php');
-                echo "$res";
-
-            } else {
-                //op de registarie pagina blijven wanneer de registratie niet gelukt is
-                header('Location:registration.php');
+            if (!isset($error)) {
+                if ($res != false) {
+                    // OK
+                    $succes = "Welcome, u are registered";
+                    $user->Save();
+                    header("location:topics.php");
+                } else {
+                    // Niet OK
+                    $fail = "Oops, something went wrong! Try again!";
+                    header("location:registration.php");
+                }
             }
-  */
         }
         catch (PDOException $e){
             $error= $e->getMessage();
@@ -54,6 +64,14 @@
 <body>
     <section>
         <h1>Welcome to inspir8</h1>
+
+        <div>
+            <?php if (isset($error)):?>
+                <div class="error">
+                    <?php echo $error; ?>
+                </div>
+            <?php endif; ?>
+        </div>
         <form method="post" name="loggin" action="#" id="loggin">
 
             <fieldset>
