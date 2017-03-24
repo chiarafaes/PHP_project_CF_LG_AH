@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $error = '';
 
     spl_autoload_register(function ($class){
         include_once ("classes/".$class.".php");
@@ -30,14 +31,20 @@
                     }
                 }
 
-                // we gaan per topic een query doen
-                foreach ($topics as $topic){
-                    $insert = $conn->prepare("INSERT INTO users_topics (fk_users, fk_topics) VALUES (:user, :topic)");
-                    $insert->bindValue(":user", $user);
-                    $insert->bindValue(":topic", $topic);
-                    if($insert->execute()){
-                        $succes = "Your topics have been saved";
+                if (count($topics)>= 5) {
+
+                    // we gaan per topic een query doen
+                    foreach ($topics as $topic) {
+                        $insert = $conn->prepare("INSERT INTO users_topics (fk_users, fk_topics) VALUES (:user, :topic)");
+                        $insert->bindValue(":user", $user);
+                        $insert->bindValue(":topic", $topic);
+                        if ($insert->execute()) {
+                            $succes = "Your topics have been saved";
+                        }
+
                     }
+                } else {
+                    $error = "You need to pick at least 5 topics to continue.";
                 }
             }
 
@@ -63,6 +70,9 @@
     <h1>Thanks for joining us! Let's get you started.</h1>
     <h2>First, choose 5 topics you're interested in.</h2>
 
+    <?php if(!empty($error)):?>
+        <div class="error"><?php echo $error; ?></div>
+    <?php endif; ?>
     <form id="topics" action="" method="post">
         <fieldset>
             <?php while($res = $statement->fetch(PDO::FETCH_ASSOC)): ?>
