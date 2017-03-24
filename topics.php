@@ -14,6 +14,7 @@
             $conn = Db::getInstance();
 
             // alle topics inladen
+            // TODO: Query aanpassen naar inner join zodat topics van user kunnen worden vergeleken
             $statement = $conn->prepare("SELECT * FROM topics");
             $statement->execute();
 
@@ -29,6 +30,7 @@
                     }
                 }
 
+                // we gaan per topic een query doen
                 foreach ($topics as $topic){
                     $insert = $conn->prepare("INSERT INTO users_topics (fk_users, fk_topics) VALUES (:user, :topic)");
                     $insert->bindValue(":user", $user);
@@ -40,7 +42,7 @@
             }
 
         } else {
-            echo "feckoff";
+            header('location:login.php');
         }
     } catch (PDOException $e){
         $error = $e->getMessage();
@@ -65,16 +67,43 @@
         <fieldset>
             <?php while($res = $statement->fetch(PDO::FETCH_ASSOC)): ?>
                 <label for="<?php echo $res['name'];?>"><?php echo $res['name'];?></label>
-                <input id="<?php echo $res['name'];?>" name="<?php echo $res['name'];?>" type="checkbox" value="<?php echo $res['id'];?>">
+                <input class="topicInput" id="<?php echo $res['name'];?>" name="<?php echo $res['name'];?>" type="checkbox" value="<?php echo $res['id'];?>">
             <?php endwhile; ?>
         </fieldset>
-        <fieldset><button type="submit">Save topics</button></fieldset>
+        <fieldset><button id="submit" disabled type="submit">Save topics</button></fieldset>
         <fieldset>
             <h3>Or search for specific topics:</h3>
             <label for="search">Search</label>
             <input id="search" name="search" type="text">
         </fieldset>
+        <script>
+            window.onload = function () {
+                var form = document.getElementById('topics');
+                var topics =  document.getElementsByClassName('topicInput');
+                var btn = document.getElementById('submit');
+                var requiredAmmount = 5;
+                var ammountChecked = 0;
 
+                // we gaan zien of we vijf (requiredAmmount) veldjes hebben aangeduid
+                // anders is submit button niet actief
+                form.addEventListener('change',function () {
+                    for (i = 0; i<topics.length; i++){
+                        if (topics[i].checked){
+                            ammountChecked += 1;
+                            if (ammountChecked == requiredAmmount){
+                                btn.disabled = false;
+                            } else{
+                                btn.disabled = true;
+                            }
+                        }
+                    };
+
+                    // resetten van de counter
+                    ammountChecked = 0;
+                })
+
+            }
+        </script>
 
     </form>
 </body>
