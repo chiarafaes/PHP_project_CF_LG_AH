@@ -59,6 +59,12 @@
                         $succes = "Welcome, you are registered";
                         $user->Save();
                         header("location:topics.php");
+                        session_start();
+
+                        // we maken session vars aan voor later
+                        $_SESSION['email'] = $user->Mail;
+                        $_SESSION['username'] = $user->Username;
+                        $_SESSION['fullname'] = $user->Fullname;
 
                     } else {
                         // Niet OK

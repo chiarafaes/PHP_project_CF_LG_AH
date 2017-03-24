@@ -2,14 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Playlist</title>
-
+    <title>Welcome - Inspir8</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-
     <link rel="stylesheet" href="css/style.css" />
-
-
-
 </head>
 
 <body>
