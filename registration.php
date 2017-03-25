@@ -85,11 +85,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registration</title>
+    <title>Imd-terest - registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/registration.css" />
 </head>
 <body>
-    <section>
-        <h1>Welcome to inspir8</h1>
+
+    <section class="left">
+        <img src="img/logo.png"/>
+        <h1>IMD'terest</h1>
+
+    </section>
+
+
+    <section class="right">
+        <h2>Sign up to discover</h2> </br>
+        <h2>IMD'terest</h2>
 
         <div>
             <?php if (isset($error)):?>
@@ -101,24 +114,32 @@
         <form method="post" name="loggin" action="#" id="loggin">
 
             <fieldset>
-                <input
-                        id="fullname" name="fullname" placeholder="fullname">
-            </fieldset>
-            <fieldset>
-                <input id="username" name="username" placeholder="username">
-            </fieldset>
-            <fieldset>
-                <input id="email" name="email" type="text" placeholder="email">
-            </fieldset>
-            <fieldset>
-                <input id="password" name="password" type="password" placeholder="Password">
+                <label>Fullname</label>
+                <input id="fullname" name="fullname" type="text" placeholder="fullname">
             </fieldset>
 
             <fieldset>
-                <input type="submit" name='submit' value="register" />
+                <label>Username</label>
+                <input id="username" name="username" type="text" placeholder="username">
+            </fieldset>
+
+            <fieldset>
+                <label>Email</label>
+                <input id="email" name="email" type="text" placeholder="email">
+            </fieldset>
+
+            <fieldset>
+                <label>Password</label>
+                <input id="password" name="password" type="password" placeholder="password">
+            </fieldset>
+
+            <fieldset>
+                <input type="submit" name='submit' value="Sign up" />
             </fieldset>
 
         </form>
     </section>
+
+
 </body>
 </html>
