@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    overflow:auto;
+    background-color: #e6e6e6;
+}
+
+.wrap{
+    width: 80%;
+    margin: auto;
+}
+header{
+    height: 80px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+header img{
+    height: 40px;
+    border: #10a6ad solid 1px;
+    border-radius: 100%;
+    margin: 20px 5px 20px 5px;
+    float: left;
+}
+
+.search{
+    border: #e6e6e6 solid 1px;
+    margin: auto;
+    width: 200px;
+}
+#search{
+    width: 80%;
+}
+.iconen{
+    display: flex;
+    flex-direction: row;
+}
+.functions{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    margin: auto;
+}
+.icon{
+    padding: 0.2em;
+    height: 15px;
+    font-size: 1.2rem;
+}
+
+
+.sideBar {
+    float: left;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25%;
+    height: 70vh;
+    background-color: #FCFDFD;
+
+}
+
+.sideBar__item {
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #10a6ad;
+    font-size: 14px;
+    border: #c4c4c4 solid 1px;
+    border-collapse: collapse;
+}
+
+.sideBar__item.is-side-bar-item-selected {
+    background-color: #EEF3F5;
+}
+
+.right{
+    margin-top: 10px;
+    float: right;
+    width: 72%;
+    height: 70vh;
+    background-color: #FCFDFD;
+}
+
+.right h2{
+    font-size: 40px;
+    color: #10a6ad;
+    font-weight: 300;
+    text-align: center;
+    margin-top:-10px;
+}
+
+
+
+
+
+
+
+
+
+
