@@ -11,7 +11,7 @@
 
             // error handling voor lege velden
             if(empty($user->Mail = $_POST['email'])){
-                $error = "Field 'username' can not be empty.";
+                $error = "Field 'email' can not be empty.";
             } elseif (empty($user->Password = $_POST['password'])){
                 $error = "Field 'password' can not be empty.";
             }
@@ -40,7 +40,7 @@
                         // we sturen de user door
                         header('location:loggedin.php');
                     } else {
-                        $error = 'Password does not match. Please try again';
+                        $error = 'Password does not match. Please try again.';
                     }
 
                 } else {
@@ -64,11 +64,22 @@
     <title>Imd'terest - login</title>
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/registration.css" />
+
+    <style>
+
+        .error {
+
+            color: #dd6b47;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+    </style>
 </head>
 <body>
 
 <section class="left">
-    <img src="img/logo.png"/>
+    <a href="index.php"><img src="img/logo.png"/></a>
     <h1>IMD'terest</h1>
 </section>
 
