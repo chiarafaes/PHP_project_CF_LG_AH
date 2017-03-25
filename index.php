@@ -28,5 +28,9 @@
 
    </div>
 
+   <footer>
+       <p>&copy; All rights reserved Larissa Goethals - Chiara Faes - Alex-Xavier Hermans</p>
+   </footer>
+
 </body>
 </html>
