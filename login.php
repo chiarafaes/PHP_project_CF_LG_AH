@@ -61,32 +61,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to INSPIR8</title>
+    <title>Imd'terest - login</title>
     <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/registration.css" />
 </head>
 <body>
-    <div class="box">
+
+<section class="left">
+    <img src="img/logo.png"/>
+    <h1>IMD'terest</h1>
+</section>
+
+
+
+<section class="right">
+
+    <h2>Welcome back</h2> </br>
+    <h2>Sign in to continue</h2>
+
         <?php if (isset($error)):?>
             <div class="error">
                 <?php echo $error; ?>
             </div>
         <?php endif; ?>
+
         <form action="" method="post" id="login">
         
-           <div class="form-group">
-                <label for="email">email </label>
-                <input name="email" id="email" type="email" />
-            </div>
-  
-            <div class="form-group">
+           <fieldset>
+                <label for="email">Email</label>
+                <input name="email" id="email" type="email" placeholder="email" />
+           </fieldset>
+
+            <fieldset>
                 <label for="password">Password</label>
-                <input name="password" id="password" type="password" /> 
-            </div>
+                <input name="password" id="password" type="password" placeholder="password"/>
+            </fieldset>
   
-            <div class="form-group">
+            <fieldset>
                 <button type="submit">Login</button>
-            </div>
+            </fieldset>
         </form> 
-    </div>
+    </section>
+
 </body>
 </html>
