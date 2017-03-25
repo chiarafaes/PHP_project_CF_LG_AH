@@ -6,17 +6,9 @@
 html
 {
     font-family: 'Roboto', sans-serif;
-    height: 100%;
-    width: 100%;
-}
-
-/* ------------------INDEX.PHP -------------------- */
-
-body{
-
-    background-image: url("../img/background_index.jpg");
-    width: 100%;
-    background-position: center center;
-
 
 }
+
+/* Default css, waar header, footer en alle terugkerende elementen kunnen vormgegeven worden
+
+ */
