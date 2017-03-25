@@ -13,10 +13,7 @@
 
             //lezen velden uit en steken dit in de waarden van de class user
             $user = new user();
-            $user->Fullname = $_POST["fullname"];
-            $user->Username = $_POST["username"];
-            $user->Mail = $_POST["email"];
-            $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
+
             $res = "succes";
             $MinimumLength = 6;
 
@@ -36,6 +33,11 @@
             elseif (strlen($user->Password) < $MinimumLength){
                 $error = "Your password has to be at least 6 characters long.";
             }
+
+            $user->Fullname = $_POST["fullname"];
+            $user->Username = $_POST["username"];
+            $user->Mail = $_POST["email"];
+            $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
 
 
             //maken connectie met de database door verwijzing naar de "klasse" DB
