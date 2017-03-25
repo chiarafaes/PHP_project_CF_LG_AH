@@ -5,7 +5,6 @@
  * Date: 25/03/2017
  * Time: 22:14
  */
-<?php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
