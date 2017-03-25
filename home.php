@@ -61,13 +61,41 @@
             <div class="profilepicture">
                 <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg">
                 <div class="changepicture">
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <form name="upload" id="upload" action="upload.php" method="post" enctype="multipart/form-data">
                         <label>Profile photo</label>
+                        <div class="picgroup">
                         <input type="file" name="fileToUpload" id="fileToUpload">
                         <input type="submit" value="Upload photo" name="uploadphoto">
+                        </div>
                     </form>
                 </div>
             </div>
+            <form name="changeprofile" id="changeprofile" action="#" method="post">
+                <fieldset>
+                    <label>Fullname</label>
+                    <input id="fullname" name="fullname" type="text" placeholder="fullname"/>
+                </fieldset>
+
+                <fieldset>
+                    <label>Username</label>
+                    <input id="username" name="username" type="text" placeholder="username"/>
+                </fieldset>
+
+                <fieldset>
+                    <label>Email</label>
+                    <input id="email" name="email" type="text" placeholder="email"/>
+                </fieldset>
+
+                <fieldset>
+                    <label>Password</label>
+                    <input id="password" name="password" type="password" placeholder="password"/>
+                </fieldset>
+
+                <fieldset>
+                    <input type="submit" name='submit' value="Save changes" />
+                </fieldset>
+            </form>
+
         </div>
     </div>
 </div>
