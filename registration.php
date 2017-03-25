@@ -28,7 +28,7 @@
                 $error = "Field 'Username' can not be empty.";
             }
             elseif (empty($user->Mail = $_POST["email"])){
-                $error = "Field 'Mail' can not be empty.";
+                $error = "Field 'Email' can not be empty.";
             }
             elseif (empty($user->Password = $_POST['password'])){
                 $error = "Field 'Password' can not be empty.";
@@ -106,7 +106,7 @@
 <body>
 
     <section class="left">
-        <img src="img/logo.png"/>
+        <a href="index.php"><img src="img/logo.png"/></a>
         <h1>IMD'terest</h1>
 
     </section>
