@@ -48,9 +48,14 @@ body{
     margin-top:-10px;
 }
 
-#loggin, #login{
+#loggin {
     margin-top: 40px;
 }
+
+#login {
+    margin-top: 90px;
+}
+
 
 #loggin input[type=text], #loggin input[type=password], #login input[type=text], #login input[type=email], #login input[type=password]{
     border: none;
@@ -77,6 +82,7 @@ body{
 
 #loggin fieldset, #login fieldset {
     border: none;
+
 }
 
 #loggin input[type=submit], #login button[type=submit] {
