@@ -54,7 +54,21 @@
     </div>
 
     <div class="right">
-
+        <div class="pagename">
+            <p>hier komt de naam uit de kolom</p>
+        </div>
+        <div class="profile">
+            <div class="profilepicture">
+                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg">
+                <div class="changepicture">
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <label>Profile photo</label>
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <input type="submit" value="Upload photo" name="uploadphoto">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
