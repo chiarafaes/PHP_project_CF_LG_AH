@@ -90,6 +90,18 @@
 
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/registration.css" />
+
+    <style>
+
+        .error {
+
+            color: #dd6b47;
+            font-size: 14px;
+            font-weight: 300;
+            margin-left: 10px;
+        }
+
+    </style>
 </head>
 <body>
 
