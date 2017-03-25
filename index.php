@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome - Inspir8</title>
+    <title>Imd'terest</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-    <link rel="stylesheet" href="css/default.css" />
 
+    <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/index.css" />
 
 </head>
 
 <body>
 
-   <div class="container"></div>
+   <div class="container">
 
         <div class="logo">
             <img src="img/logo.png" alt="logo"/>
