@@ -120,10 +120,27 @@ var_dump($mergedTopics);
     <title>Choose your topics - Inspir8</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/topics.css" />
+
+
+    <style>
+        .error {
+
+            color: #dd6b47;
+            font-size: 14px;
+            font-weight: 300;
+            margin-left: 15px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Thanks for joining us! Let's get you started.</h1>
+<div class="box_topics">
+    <h1>Thanks for joining us! </br>Let's get you started.</h1>
     <h2>First, choose 5 topics you're interested in.</h2>
+
+    <fieldset class="search">
+        <input id="search" name="search" type="text" placeholder="search for any topic">
+    </fieldset>
 
     <?php if(!empty($error)):?>
         <div class="error"><?php echo $error; ?></div>
@@ -139,11 +156,8 @@ var_dump($mergedTopics);
                 }?> class="topicInput" id="<?php echo $res['name'];?>" name="<?php echo $res['name'];?>" type="checkbox" value="<?php echo $res['id'];?>"><br>
             <?php endwhile; ?>
         </fieldset>
-        <fieldset><button id="submit" disabled type="submit">Save topics</button></fieldset>
         <fieldset>
-            <h3>Or search for specific topics:</h3>
-            <label for="search">Search</label>
-            <input id="search" name="search" type="text">
+            <button id="submit" disabled type="submit">Save topics</button>
         </fieldset>
         <script>
             window.onload = function () {
@@ -175,5 +189,6 @@ var_dump($mergedTopics);
         </script>
 
     </form>
+</div>
 </body>
 </html>
