@@ -64,7 +64,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Choose your topics - Inspir8</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/default.css" />
 </head>
 <body>
     <h1>Thanks for joining us! Let's get you started.</h1>

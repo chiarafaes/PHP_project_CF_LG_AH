@@ -62,7 +62,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to INSPIR8</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/default.css" />
 </head>
 <body>
     <div class="box">
