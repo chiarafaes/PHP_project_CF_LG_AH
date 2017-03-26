@@ -6,12 +6,17 @@
 body{
     width: 100%;
     overflow:auto;
-    background-color: #e6e6e6;
+    background-color: #efefef;
 }
 
 .wrap{
-    width: 80%;
+    width: 90%;
     margin: auto;
+    padding-top: 20px;
+}
+
+.wrap header{
+    width: 100%;
 }
 header{
     height: 80px;
@@ -20,19 +25,29 @@ header{
     flex-direction: row;
 }
 
+header a img{
+    height: 60px;
+    border: #10a6ad solid 1px;
+    border-radius: 100%;
+    margin: 10px 15px 0px 15px;
+    float: left;
+}
+
 header img{
     height: 40px;
     border: #10a6ad solid 1px;
     border-radius: 100%;
-    margin: 20px 5px 20px 5px;
+    margin: 20px 15px 20px 15px;
     float: left;
 }
 
 .search{
     border: #e6e6e6 solid 1px;
+    border-radius: 5px;
     margin: auto;
-    width: 200px;
+    width: 500px;
 }
+
 #search{
     width: 80%;
 }
@@ -65,36 +80,78 @@ header img{
 
 }
 
+fieldset{
+    border:none;
+}
+
+
 .sideBar__item {
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 15px 10px;
     color: #10a6ad;
-    font-size: 14px;
-    border: #c4c4c4 solid 1px;
+    font-size: 16px;
+    border-bottom: #d3d3d3 solid 1.5px;
     border-collapse: collapse;
+    letter-spacing: 1px;
+}
+
+.sideBar__item_{
+    cursor: pointer;
+    padding: 15px 10px;
+    color: #10a6ad;
+    font-size: 16px;
+    border-top: #d3d3d3 solid 1.5px;
+    border-collapse: collapse;
+    letter-spacing: 1px;
+
+}
+
+.sideBar__item_2{
+    cursor: pointer;
+    padding: 15px 10px;
+    color: #10a6ad;
+    font-size: 16px;
+    border-collapse: collapse;
+    letter-spacing: 1px;
+
+}
+
+.sideBar__item:hover, .sideBar__item_:hover, .sideBar__item_2:hover{
+    color: #0d747c;
 }
 
 .sideBar__item.is-side-bar-item-selected {
-    background-color: #EEF3F5;
+    color: #0d747c;
+
+}
+
+.sideBar__section{
+    border: none;
 }
 
 .right{
     margin-top: 10px;
     float: right;
     width: 72%;
-    height: 70vh;
+    height: auto;
     background-color: #FCFDFD;
 }
 
-.right h2{
-    font-size: 40px;
-    color: #10a6ad;
-    font-weight: 300;
-    text-align: center;
-    margin-top:-10px;
+
+
+#pagename{
+ color:#666666;
+    font-size: 25px;
+    font-weight: 400;
+    text-align: left;
+    margin-top:20px;
+    margin-left: 20px;
+    letter-spacing: 1px;
 }
+
+
 .profile{
-    margin-top:20px ;
+    margin-top:30px ;
 }
 .profilepicture{
     display: flex;
@@ -104,23 +161,28 @@ header img{
     color: #10a6ad;
 }
 .profilepicture img{
-    width: 50px;
-    height: 50px;
-    margin: auto;
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-right: 0;
 }
 
 .changepicture{
-    margin: auto;
+    margin-left: 60px;
 }
 .picgroup{
     display: flex;
     flex-direction: column;
 }
 #upload input[type=file]{
-    border: 2px solid #10a6ad;
-    width: 200px;
+    border: 1px solid #c4c4c4;
+    width: 300px;
     outline: none;
-    padding: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 14px;
     font-weight: 300;
     color: #666666;
@@ -129,10 +191,12 @@ header img{
 #upload input[type=submit] {
     background-color: #10a6ad;
     color: white;
+    width: 130px;
+    border:none;
     border-radius: 5px;
     padding: 10px 10px 10px 10px;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 #changeprofile{
@@ -140,14 +204,16 @@ header img{
 }
 #changeprofile input[type=text], #changeprofile input[type=password]{
     border: none;
-    border-bottom: 2px solid #10a6ad;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 2px solid #c4c4c4;
+    color: #666666;
     width: 250px;
     outline: none;
-    padding: 0px;
+    padding: 10px;
     display: block;
     font-size: 14px;
     font-weight: 300;
-    color: #666666;
     padding-bottom: 5px;
 }
 
@@ -157,6 +223,7 @@ header img{
     font-size: 20px;
     color: #10a6ad;
 }
+
 
 #changeprofile fieldset{
     border: none;
@@ -174,15 +241,20 @@ header img{
     text-transform: uppercase;
     border: 0;
     border: 2px solid #10a6ad;
+    margin-bottom: 10px;
+
 }
 
-#changeprofile input[type=submit]:hover {
+#changeprofile button:hover {
     background-color:white;
     border: 2px solid #10a6ad;
     color: #10a6ad;
+    font-weight: 400;
 
 
 }
+
+
 
 
 

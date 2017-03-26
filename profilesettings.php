@@ -91,16 +91,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/profilesettings.css">
     <script src="js/pagename.js"></script>
     <title>Home</title>
 
 </head>
 <body>
-<div class="wrap">
-    <header>
+<header>
         <div class="logo">
-            <img src="img/logo.png" alt="logo"/>
+            <a href="home.php"><img src="img/logo.png" alt="logo"/></a>
+
         </div>
 
         <div class="search">
@@ -122,23 +122,22 @@
         </div>
 
     </header>
-
+<div class="wrap">
     <div class="sideBar">
         <div class="sideBar__section">
             <div class="sideBar__item is-side-bar-item-selected">Profile ></div>
             <div class="sideBar__item">Privacy ></div>
             <div class="sideBar__item">Conditions ></div>
             <div class="sideBar__item">Contact ></div>
-            <div class="sideBar__item">Help ></div>
+            <div class="sideBar__item_2">Help ></div>
         </div>
         <div class="sideBar__section">
-            <div class="sideBar__item">Legal ></div>
+            <div class="sideBar__item_">Legal ></div>
         </div>
     </div>
 
     <div class="right">
         <div id="pagename">
-            <p>&nbsp;</p>
         </div>
         <div class="profile">
             <div class="profilepicture">
@@ -185,6 +184,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>
