@@ -92,6 +92,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/home.css">
+    <script src="js/pagename.js"></script>
     <title>Home</title>
 
 </head>
@@ -136,8 +137,8 @@
     </div>
 
     <div class="right">
-        <div class="pagename">
-            <p>hier komt de naam uit de kolom</p>
+        <div id="pagename">
+            <p>&nbsp;</p>
         </div>
         <div class="profile">
             <div class="profilepicture">
