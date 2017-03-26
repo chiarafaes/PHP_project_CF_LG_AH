@@ -163,7 +163,7 @@ header img{
 
 }
 
-#changeprofile input[type=submit] {
+#changeprofile button {
     background-color: #10a6ad;
     color: white;
     border-radius: 5px;
