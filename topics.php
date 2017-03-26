@@ -79,6 +79,7 @@
                         $query->bindValue(":topic", $topic);
                         if ($query->execute()) {
                             $succes = "Your topics have been saved";
+                            header('location:home.php');
                         }
                     }
                 } else {
@@ -104,11 +105,11 @@
     } catch (PDOException $e){
         $error = $e->getMessage();
     }
-var_dump($insertTopics);
-echo '<br>';
-var_dump($userTopics);
-echo '<br>';
-var_dump($mergedTopics);
+//var_dump($insertTopics);
+//echo '<br>';
+//var_dump($userTopics);
+//echo '<br>';
+//var_dump($mergedTopics);
 
 ?><!doctype html>
 <html lang="en">

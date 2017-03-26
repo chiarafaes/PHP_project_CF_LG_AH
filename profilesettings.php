@@ -1,77 +1,84 @@
 <?php
-session_start();
-$error = '';
+    session_start();
+    $feedback = '';
 
-//vervangt includes, deze functie moet slechts 1 keer geschreven worden
-spl_autoload_register(function ($class){
-    include_once ("classes/".$class.".php");
-});
+    //vervangt includes, deze functie moet slechts 1 keer geschreven worden
+    spl_autoload_register(function ($class){
+        include_once ("classes/".$class.".php");
+    });
 
-// eerst de usergegevens gaan halen uit db
-$user = new user();
-$user->Mail = $_SESSION['email'];
+    // eerst de usergegevens gaan halen uit db
+    $user = new user();
+    $user->Mail = $_SESSION['email'];
 
-$conn = Db::getInstance();
+    $conn = Db::getInstance();
 
-$retrieveQuery = $conn->prepare("SELECT * FROM users WHERE Mail = :user");
-$retrieveQuery->bindValue(':user', $user->Mail);
+    $retrieveQuery = $conn->prepare("SELECT * FROM users WHERE Mail = :user");
+    $retrieveQuery->bindValue(':user', $user->Mail);
 
-if($retrieveQuery->execute()){
-    $res = $retrieveQuery->fetch(PDO::FETCH_ASSOC);
-    $user->Fullname = $res['Fullname'];
-    $user->Username = $res['Username'];
-
-
-} else {
-    $error = "failed";
-    echo $error;
-}
-
-//Enkel bij post iets doen
-if(!empty($_POST)){
-    try{
-
-        // we checken of er gezocht wordt of niet. Search krijgt voorang op update van userprofile
-        if(isset($_POST['search'])){
-            echo "er is gezocht";
-            // TODO: Search integereren
-        } else {
-            echo "er is geupdate";
-
-            //nieuwe input user aanmaken
-            $userNew = new user();
-            $options = [
-                'cost' => 12
-            ];
-            $MinimumLength = 6;
-
-            // We zien of alle velden zijn ingevuld en vullen alles reeds correct in voor de update
-            if(empty($userNew->Fullname = $_POST["fullname"])){
-                $error = "Field 'Fullname' can not be empty.";
-            }
-            elseif (empty($userNew->Username = $_POST["username"])){
-                $error = "Field 'Username' can not be empty.";
-            }
-            elseif (empty($userNew->Mail = $_POST["email"])){
-                $error = "Field 'Email' can not be empty.";
-            }
-            elseif (empty($userNew->Password = $_POST['password'])){
-                $error = "Field 'Password' can not be empty.";
-            }
-            elseif (strlen($userNew->Password) < $MinimumLength){
-                $error = "Your password has to be at least 6 characters long.";
-            }
-
-            // Wachtwoord encrypten
-            $userNew->Password = password_hash($userNew->Password, PASSWORD_DEFAULT, $options);
-
-
-        }
-
-    } catch (PDOException $e){
-        $error = $e->getMessage();
+    if($retrieveQuery->execute()){
+        $res = $retrieveQuery->fetch(PDO::FETCH_ASSOC);
+        $user->Fullname = $res['Fullname'];
+        $user->Username = $res['Username'];
+    } else {
+        $feedback = "Failed to get user-data from database. Please reload to try again.";
     }
-}
+
+    //Enkel bij post iets doen
+    if(!empty($_POST)){
+        try{
+
+            // we checken of er gezocht wordt of niet. Search krijgt voorang op update van userprofile
+            if(isset($_POST['search'])){
+                // TODO: Search integereren
+            } else {
+                //nieuwe input user aanmaken
+                $userNew = new user();
+                $options = [
+                    'cost' => 12
+                ];
+                $MinimumLength = 6;
+
+                // We zien of alle velden zijn ingevuld en vullen alles reeds correct in voor de update
+                if(empty($userNew->Fullname = $_POST["fullname"])){
+                    $feedback = "Field 'Fullname' can not be empty.";
+                }
+                elseif (empty($userNew->Username = $_POST["username"])){
+                    $feedback = "Field 'Username' can not be empty.";
+                }
+                elseif (empty($userNew->Password = $_POST['password'])){
+                    $feedback = "Field 'Password' can not be empty.";
+                }
+                elseif (strlen($userNew->Password) < $MinimumLength){
+                    $feedback = "Your password has to be at least 6 characters long.";
+                }
+
+                // enkel indien er geen fouten waren met het formulier gaan we door
+                if(empty($feedback)){
+
+                    // Wachtwoord encrypten
+                    $userNew->Password = password_hash($userNew->Password, PASSWORD_DEFAULT, $options);
+
+                    $updateQuery = $conn->prepare("UPDATE users SET Fullname=:fullname, Username=:username, Password=:password WHERE Mail=:user");
+                    $updateQuery->bindValue(':fullname', $userNew->Fullname);
+                    $updateQuery->bindValue(':username', $userNew->Username);
+                    $updateQuery->bindValue(':password', $userNew->Password);
+                    $updateQuery->bindValue(':user', $user->Mail);
+
+                    if ($updateQuery->execute()) {
+                        // als de update gelukt is dan gaan we de originele user vars overschrijven met de nieuwe vars
+                        $user->Fullname = $userNew->Fullname;
+                        $user->Username = $userNew->Username;
+                        $feedback = 'Your profile has been updated!';
+                    } else {
+                        $feedback = 'Failed to save profile changes. Please try again.';
+                    }
+                }
+            }
+        } catch (PDOException $e){
+            $feedback = $e->getMessage();
+        }
+    }
 
 ?><!doctype html>
 <html lang="en">
@@ -145,6 +152,9 @@ if(!empty($_POST)){
                     </form>
                 </div>
             </div>
+            <?php if(!empty($feedback)):?>
+                <div class="feedback"><?php echo $feedback;?></div>
+            <?php endif; ?>
             <form name="changeprofile" id="changeprofile" action="#" method="post">
                 <fieldset>
                     <label>Fullname</label>
@@ -158,7 +168,7 @@ if(!empty($_POST)){
 
                 <fieldset>
                     <label>Email</label>
-                    <input id="email" name="email" type="text" placeholder="email" value="<?php echo $user->Mail; ?>"/>
+                    <input disabled id="email" name="email" type="text" placeholder="email" value="<?php echo $user->Mail; ?>"/>
                 </fieldset>
 
                 <fieldset>
@@ -167,7 +177,6 @@ if(!empty($_POST)){
                 </fieldset>
 
                 <fieldset>
-                    <!--                    <input type="submit" name='submit' value="Save changes" />-->
                     <button type="submit">Save changes</button>
                 </fieldset>
             </form>
