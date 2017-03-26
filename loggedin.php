@@ -28,13 +28,13 @@ else {
             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg" alt="avatar" />
         </div>
 
-        <h1>Welcome back <?php echo $_SESSION['username']; ?></h1>
+        <h1>Welcome back, <?php echo $_SESSION['username']; ?></h1>
         <p>Hier komt nog iets</p>
 
             <form action="home.php" action="post" class="home" id="loggedin">
                     <input name="continue" type="submit" value="Continue" />
             </form>
-            <form action="logout.php" action="post" class="logout" id="loggedin">
+            <form action="logout.php" action="post" class="logout" id="logout">
                     <input name="logout" type="submit" value="Logout of account" />
              </form>
 
