@@ -50,4 +50,21 @@
                 unlink($res['avatar']);
             }
         }
+
+        public static function showAvatar(){
+            $user = new user();
+            $user->Mail = $_SESSION['email'];
+
+
+
+            $conn = Db::getInstance();
+
+            $retrieveQuery = $conn->prepare("SELECT avatar FROM users WHERE Mail = :user");
+            $retrieveQuery->bindValue(':user', $user->Mail);
+
+            if($retrieveQuery->execute()) {
+                $res = $retrieveQuery->fetch(PDO::FETCH_ASSOC);
+                return $res['avatar'];
+            }
+        }
     }

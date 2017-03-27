@@ -93,7 +93,7 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/profilesettings.css">
     <script src="js/pagename.js"></script>
-    <title>Home</title>
+    <title>IMD'terest - <?php echo $user->Username; ?> </title>
 
 </head>
 <body>
@@ -117,7 +117,7 @@
                 <div class="icon"> <a href="#" class="fa fa-bell-o"></a> </div>
             </div>
             <div class="avatar">
-                <img src="<?php echo $res['avatar']?>">
+                <a href="profilesettings.php"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
             </div>
         </div>
 
