@@ -117,7 +117,7 @@
                 <div class="icon"> <a href="#" class="fa fa-bell-o"></a> </div>
             </div>
             <div class="avatar">
-                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg">
+                <img src="<?php echo $res['avatar']?>">
             </div>
         </div>
 
@@ -141,11 +141,13 @@
         </div>
         <div class="profile">
             <div class="profilepicture">
-                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg">
+                <img src="<?php echo $res['avatar']?>" alt="profile picture">
                 <div class="changepicture">
                     <form name="upload" id="upload" action="upload.php" method="post" enctype="multipart/form-data">
                         <label>Profile photo</label>
                         <div class="picgroup">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                            <input type="hidden" name="img_type" value="avatar" />
                             <input type="file" name="fileToUpload" id="fileToUpload">
                             <input type="submit" value="Upload photo" name="uploadphoto">
                         </div>

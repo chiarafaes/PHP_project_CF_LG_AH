@@ -38,6 +38,8 @@
             $user->Username = $_POST["username"];
             $user->Mail = $_POST["email"];
             $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
+            // we maken een standaard avatar voor nieuwe profielen
+            $user->Avatar = "https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg";
 
 
             //maken connectie met de database door verwijzing naar de "klasse" DB

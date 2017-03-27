@@ -5,8 +5,16 @@
  * Date: 25/03/2017
  * Time: 22:14
  */
+
+session_start();
+
+//vervangt includes, deze functie moet slechts 1 keer geschreven worden
+spl_autoload_register(function ($class){
+    include_once ("classes/".$class.".php");
+});
+
 $target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir . $_SESSION['email'] . "_" . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -20,13 +28,13 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
+//    // Check if file already exists
+//    if (file_exists($target_file)) {
+//        echo "Sorry, file already exists.";
+//        $uploadOk = 0;
+//    }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 300000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -42,7 +50,16 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+
+        // hier gaan we zien van waar er geupload wordt om te zien welke statische functie we moeten oproepen
+        switch ($_POST['img_type']){
+            case "avatar":
+                $avatar = new Avatar();
+                $avatar->file = $target_file;
+                $avatar->deleteOldAvatar();
+                $avatar->saveAvatar();
+            break;
+        }
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

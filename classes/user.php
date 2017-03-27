@@ -4,6 +4,7 @@ class user{
     private $m_sUsername;
     private $m_sMail;
     private $m_sPassword;
+    private $m_sAvatar;
 
     public function __set($p_sProperty,$p_vValue){
         switch ($p_sProperty){
@@ -22,6 +23,10 @@ class user{
             case "Password":
                 $this->m_sPassword  = $p_vValue;
                 break;
+
+            case "Avatar":
+                $this->m_sAvatar = $p_vValue;
+            break;
         }
     }
 
@@ -30,16 +35,23 @@ class user{
         {
             case "Fullname":
                 return $this->m_sFullname;
-                break;
+            break;
+
             case "Username":
                 return $this->m_sUsername;
-                break;
+            break;
+
             case "Mail":
                 return $this->m_sMail;
-                break;
+            break;
+
            case "Password":
                 return $this->m_sPassword;
-                break;
+            break;
+
+            case "Avatar":
+                return $this->m_sAvatar;
+            break;
         }
     }
 
