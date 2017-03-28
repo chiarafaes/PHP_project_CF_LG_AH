@@ -132,7 +132,9 @@
             <div class="sideBar__item_2">Help ></div>
         </div>
         <div class="sideBar__section">
-            <div class="sideBar__item_">Legal ></div>
+            <div class="sideBar__item_">
+                <a href="logout.php" class="item_logout">Logout</a>
+            </div>
         </div>
     </div>
 
