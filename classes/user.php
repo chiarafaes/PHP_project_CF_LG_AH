@@ -60,11 +60,12 @@ class user{
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Users (Fullname,Username,Mail,Password) VALUES (:Fullname,:Username,:Mail,:Password)");
+        $statement = $conn->prepare("INSERT INTO Users (Fullname,Username,Mail,Password, Avatar) VALUES (:Fullname,:Username,:Mail,:Password, :Avatar)");
         $statement->bindValue(":Fullname",$this->m_sFullname);
         $statement->bindValue(":Username",$this->m_sUsername);
         $statement->bindValue(":Mail",$this->m_sMail);
         $statement->bindValue(":Password",$this->m_sPassword);
+        $statement->bindValue(":Avatar", $this->m_sAvatar);
 
         //query executen
         $res = $statement->execute();
