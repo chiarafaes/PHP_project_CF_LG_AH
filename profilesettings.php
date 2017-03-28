@@ -148,7 +148,7 @@
                     <form name="upload" id="upload" action="upload.php" method="post" enctype="multipart/form-data">
                         <label>Profile photo</label>
                         <div class="picgroup">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
                             <input type="hidden" name="img_type" value="avatar" />
                             <input type="file" name="fileToUpload" id="fileToUpload">
                             <input type="submit" value="Upload photo" name="uploadphoto">
