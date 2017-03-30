@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/wall.css">
     <link rel="stylesheet" href="css/profilesettings.css">
     <title>Home</title>
 </head>
@@ -45,8 +46,11 @@
     </div>
 </header>
 
-<h1>Oh no, ...</h1>
-<h2>There doesn't seem to be anything here!</h2>
+<div class="wall">
+    <button onclick="PopupCenter('createpost.php','',800,500)"> post iets </button>
+</div>
+
+<script src="js/popup.js"></script>
 
 </body>
 </html>
