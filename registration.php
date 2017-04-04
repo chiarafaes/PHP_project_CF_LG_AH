@@ -16,16 +16,21 @@
 
             $res = "succes";
             $MinimumLength = 6;
+            // we moeten deze get in een var steken omdat empty() een foutieve result teruggeeft als het een magic get is
+            $email = $user->Mail = $_POST['email'];
 
-            // error handling voor lege velden
+            // error handling voor lege velden en het nakijken voor correct email adress
             if(empty($user->Fullname = $_POST["fullname"])){
                 $error = "Field 'Fullname' can not be empty.";
             }
             elseif (empty($user->Username = $_POST["username"])){
                 $error = "Field 'Username' can not be empty.";
             }
-            elseif (empty($user->Mail = $_POST["email"])){
+            elseif (empty($email)){
                 $error = "Field 'Email' can not be empty.";
+            }
+            elseif (substr_count($email, "@") < 1 || substr_count(substr($email, strpos($email, "@")), ".") < 1){
+                $error = "hallo";
             }
             elseif (empty($user->Password = $_POST['password'])){
                 $error = "Field 'Password' can not be empty.";
