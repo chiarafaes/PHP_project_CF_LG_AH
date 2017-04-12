@@ -273,16 +273,13 @@
 
 </main>
 
-<div id="loadmore">
-    <a href="#" class="btn_loadmore">Load more...</a>
+
+<div class="wall"> 
+    <button onclick="PopupCenter('createpost.php','',800,500)"> post iets </button> 
 </div>
 
-
-
-
-
-<div class="wall">
-    <button onclick="PopupCenter('createpost.php','',800,500)"> post iets </button>
+<div id="loadmore">
+    <a href="#" class="btn_loadmore">Load more...</a>
 </div>
 
 <script src="js/popup.js"></script>
