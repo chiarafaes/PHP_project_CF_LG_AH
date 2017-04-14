@@ -5,6 +5,15 @@
         include_once ("classes/".$class.".php");
     });
 
+    try{
+        $post = new Post();
+
+        $allPosts = $post->getAllPosts();
+
+    } catch (PDOException $e){
+        $error = $e->getMessage();
+    }
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -65,6 +74,7 @@
 
 <main>
     <div id="left" class="main_container">
+        <?php foreach ($allPosts as $post):?>
         <div class="pin">
             <div class="img_holder">
                 <div class="buttons" id="1">
@@ -93,19 +103,19 @@
                     <a href="#" class="btn save">Save</a>
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
-                    <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
+                    <img src="<?php echo $post['picture']; ?>" alt="" >
                 </a>
             </div>
-            <p class="description">Hier komt beschrijving </p>
+            <p class="description"><?php echo $post['description']; ?></p>
             <p class="info"><span>0</span></p>
             <hr>
             <div class="user_info">
                 <img src="#" alt="#">
-                <p>Naam user</p>
+                <p><?php echo $post['username']; ?></p>
                 <p class="categorie">Categorie</p>
             </div>
         </div>
-
+        <?php endforeach;?>
         <div class="pin">
             <div class="img_holder">
                 <div class="buttons" id="1">

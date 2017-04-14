@@ -107,6 +107,18 @@ class Post {
 
     }
 
+    public function getAllPosts(){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM posts");
+
+        if ($statement->execute()){
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
+
     public function __toString()
     {
         $output = "<p>".$this->m_sUserName."</p>";
