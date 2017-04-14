@@ -108,33 +108,6 @@ main{
     z-index: 1;
 }
 
-.inputfile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-
-.inputfile + label {
-    font-size: 18px;
-    font-weight: 400;
-    color: white;
-    background-color: #0F9BAF;
-    display: inline-block;
-    padding: 13px 30px;
-    width: 300px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.inputfile + label:hover {
-    background-color: #0A6970;
-    color: white;
-}
-
-
 /*  ITEMS    */
 #left.main_container {
     padding-left: 35px;
@@ -144,7 +117,7 @@ main{
 }
 .btn {
     border-radius: 5px;
-    display: inline-block;
+    display: block;
     float: right;
     font-weight: 400;
     line-height: 1em;
@@ -178,7 +151,8 @@ a.btn.send {
 }
 
 .btn.like{
-    background-color: white;
+    width: 200px;
+    display: block;
 }
 
 
@@ -186,6 +160,8 @@ a.btn.send {
     background-color: #666666;
     color: white;
 }
+
+
 
 
 .pin {

@@ -1,18 +1,18 @@
 <?php
-    session_start();
+session_start();
 
-    spl_autoload_register(function ($class){
-        include_once ("classes/".$class.".php");
-    });
+spl_autoload_register(function ($class){
+    include_once ("classes/".$class.".php");
+});
 
-    try{
-        $post = new Post();
+try{
+    $post = new Post();
 
-        $allPosts = $post->getAllPosts();
+    $allPosts = $post->getAllPosts();
 
-    } catch (PDOException $e){
-        $error = $e->getMessage();
-    }
+} catch (PDOException $e){
+    $error = $e->getMessage();
+}
 
 ?><!doctype html>
 <html lang="en">
@@ -32,6 +32,8 @@
     <title>Home</title>
 </head>
 <body>
+
+<!-- Default header -->
 <header>
     <div class="logo">
         <a href="home.php"><img src="img/logo.png" alt="logo"/></a>
@@ -58,63 +60,74 @@
 </header>
 
 
-
+<!-- Popup - overlay - add item -->
 <a href="#x" class="overlay" id="add_form"></a>
 <div class="popup_additem">
     <div class="header">
         <a class="close" href="#close">x</a>
         <h2>Add item</h2>
     </div>
-    <form>
-        <input type="file" name="file" id="file" class="inputfile" />
-        <label for="file">Choose a photo</label>
-    </form>
+
+    <div class="btn_createpost">
+        <a onclick="PopupCenter('createpost.php','',800,500)">Create post</a>
+    </div>
 </div>
 
 
+
+<!-- Button add item - rechterkolom -->
+<div id="right" class="additem">
+    <a href="#add_form" id="login_pop">+</a>
+</div>
+
+
+<!-- Overzicht posts-->
 <main>
     <div id="left" class="main_container">
         <?php foreach ($allPosts as $post):?>
-        <div class="pin">
-            <div class="img_holder">
-                <div class="buttons" id="1">
-                    <a href="#" class="btn send">Send</a>
-                    <a href="#" class="btn save">Save</a>
-                    <a href="#" class="btn like">Like</a>
-                </div>
-                <a class="image ajax" href="#" title="photo 1" id="1">
-                    <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
-                </a>
-            </div>
-            <p class="description">Hier komt beschrijving </p>
-            <p class="info"><span>0</span></p>
-            <hr>
-            <div class="user_info">
-                <img src="#" alt="#">
-                <p>Naam user</p>
-                <p class="categorie">Categorie</p>
-            </div>
-        </div>
+            <div class="pin">
+                <div class="img_holder">
+                    <div class="buttons" id="1">
+                        <a href="#" class="btn send">Send</a>
+                        <a href="#" class="btn save">Save</a>
+                        <a href="#" class="btn like">
+                            <img src="img/like_icon.svg" />
+                        </a>
 
-        <div class="pin">
-            <div class="img_holder">
-                <div class="buttons" id="1">
-                    <a href="#" class="btn send">Send</a>
-                    <a href="#" class="btn save">Save</a>
+                    </div>
+                    <a class="image ajax" href="#" title="photo 1" id="1">
+                        <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
+                    </a>
                 </div>
-                <a class="image ajax" href="#" title="photo 1" id="1">
-                    <img src="<?php echo $post['picture']; ?>" alt="" >
-                </a>
+                <p class="description">Hier komt beschrijving </p>
+                <p class="info"><span>0</span></p>
+                <hr>
+                <div class="user_info">
+                    <img src="#" alt="#">
+                    <p>Naam user</p>
+                    <p class="categorie">Categorie</p>
+                </div>
             </div>
-            <p class="description"><?php echo $post['description']; ?></p>
-            <p class="info"><span>0</span></p>
-            <hr>
-            <div class="user_info">
-                <img src="#" alt="#">
-                <p><?php echo $post['username']; ?></p>
-                <p class="categorie">Categorie</p>
+
+            <div class="pin">
+                <div class="img_holder">
+                    <div class="buttons" id="1">
+                        <a href="#" class="btn send">Send</a>
+                        <a href="#" class="btn save">Save</a>
+                    </div>
+                    <a class="image ajax" href="#" title="photo 1" id="1">
+                        <img src="<?php echo $post['picture']; ?>" alt="" >
+                    </a>
+                </div>
+                <p class="description"><?php echo $post['description']; ?></p>
+                <p class="info"><span>0</span></p>
+                <hr>
+                <div class="user_info">
+                    <img src="#" alt="#">
+                    <p><?php echo $post['username']; ?></p>
+                    <p class="categorie">Categorie</p>
+                </div>
             </div>
-        </div>
         <?php endforeach;?>
         <div class="pin">
             <div class="img_holder">
@@ -278,20 +291,13 @@
 
     </div>
 
-    <div id="right" class="additem">
-        <a href="#add_form" id="login_pop">+</a>
-    </div>
-
 </main>
 
-
-<div class="wall"> 
-    <button onclick="PopupCenter('createpost.php','',800,500)"> post iets </button> 
-</div>
-
+<!-- Load more - over hele pagina -->
 <div id="loadmore">
     <a href="#" class="btn_loadmore">Load more...</a>
 </div>
+
 
 <script src="js/popup.js"></script>
 
