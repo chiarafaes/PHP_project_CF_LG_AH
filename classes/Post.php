@@ -1,6 +1,6 @@
 <?php
 class Post {
-    private $m_picture;
+    private $m_sPicture;
     private $m_sDescription;
     private $m_sUserName;
     private $m_iLikes;
@@ -12,15 +12,15 @@ class Post {
      */
     public function getMPicture()
     {
-        return $this->m_picture;
+        return $this->m_sPicture;
     }
 
     /**
      * @param mixed $m_picture
      */
-    public function setMPicture($m_picture)
+    public function setMPicture($m_sPicture)
     {
-        $this->m_picture = $m_picture;
+        $this->m_sPicture = $m_sPicture;
     }
 
     /**
@@ -90,16 +90,14 @@ class Post {
 
     //save naar DB
     public function Save(){
-        //connectie maken (PDO) -> geen mysqli, PDO kan voor meerder data banken
+        //connectie maken (PDO) -> geen mysqli, PDO kan voor meerdere data banken
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Posts (Picture,Description,Username,Likes,AantalComments) VALUES (:Picture,:Description,:Username,:Likes, :AantalComments)");
-        $statement->bindValue(":Picture",$this->m_picture);
+        $statement = $conn->prepare("INSERT INTO Posts (Picture,Description,Username) VALUES (:Picture,:Description,:Username)");
+        $statement->bindValue(":Picture",$this->m_sPicture);
         $statement->bindValue(":Description",$this->m_sDescription);
         $statement->bindValue(":Username",$this->m_sUserName);
-        $statement->bindValue(":Likes",$this->m_iLikes);
-        $statement->bindValue(":AantalComments", $this->m_iAantalComments);
 
         //query executen
         $res = $statement->execute();
