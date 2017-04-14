@@ -70,6 +70,7 @@
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">Like</a>
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >

@@ -161,7 +161,7 @@ main{
     background-color: #0A6970;
 }
 
-a.btn.save {
+a.btn.save{
     text-decoration: none;
     color:white;
     font-size: 16px;
@@ -176,6 +176,11 @@ a.btn.send {
 .btn.send{
     background-color: white;
 }
+
+.btn.like{
+    background-color: white;
+}
+
 
 .btn.send:hover {
     background-color: #666666;
