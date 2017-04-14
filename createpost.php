@@ -1,5 +1,24 @@
 <?php
+    session_start();
 
+    spl_autoload_register(function ($class){
+        include_once ("classes/".$class.".php");
+    });
+
+    if (!empty($_POST)){
+        try{
+            $post = new Post();
+
+            $post->setMPicture($_POST['fileToUpload']);
+            $post->setMSDescription($_POST['Description']);
+            $post->setMSUserName($_SESSION['email']);
+
+            var_dump($post->Save());
+
+        } catch (PDOException $e){
+            $error = $e->getMessage();
+        }
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,7 +35,7 @@
             <label>Profile photo</label>
             <div class="picgroup">
                 <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
-                <input type="hidden" name="img_type" value="avatar" />
+                <input type="hidden" name="img_type" value="post" />
                 <input type="file" name="fileToUpload" id="fileToUpload">
             </div>
         </fieldset>
