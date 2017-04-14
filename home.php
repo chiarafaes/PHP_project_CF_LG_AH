@@ -69,7 +69,7 @@ try{
     </div>
 
     <div class="btn_createpost">
-        <a onclick="PopupCenter('createpost.php','',800,500)">Create post</a>
+        <button class="button" onclick="PopupCenter('createpost.php','',800,500)">Create post</button>
     </div>
 </div>
 
@@ -114,6 +114,10 @@ try{
                     <div class="buttons" id="1">
                         <a href="#" class="btn send">Send</a>
                         <a href="#" class="btn save">Save</a>
+                        <a href="#" class="btn like">
+                            <img src="img/like_icon.svg" />
+                        </a>
+
                     </div>
                     <a class="image ajax" href="#" title="photo 1" id="1">
                         <img src="<?php echo $post['picture']; ?>" alt="" >
@@ -134,6 +138,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -154,6 +162,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -174,6 +186,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -194,6 +210,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -214,6 +234,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -234,6 +258,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -254,6 +282,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -274,6 +306,10 @@ try{
                 <div class="buttons" id="1">
                     <a href="#" class="btn send">Send</a>
                     <a href="#" class="btn save">Save</a>
+                    <a href="#" class="btn like">
+                        <img src="img/like_icon.svg" />
+                    </a>
+
                 </div>
                 <a class="image ajax" href="#" title="photo 1" id="1">
                     <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
@@ -294,6 +330,7 @@ try{
 </main>
 
 <!-- Load more - over hele pagina -->
+
 <div id="loadmore">
     <a href="#" class="btn_loadmore">Load more...</a>
 </div>
