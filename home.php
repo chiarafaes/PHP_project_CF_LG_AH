@@ -63,14 +63,16 @@ try{
 <!-- Popup - overlay - add item -->
 <a href="#x" class="overlay" id="add_form"></a>
 <div class="popup_additem">
-    <div class="header">
-        <a class="close" href="#close">x</a>
-        <h2>Add item</h2>
-    </div>
+    <?php include_once('createpost.php');?>
+    <!--    <div class="header">-->
+    <!--        <a class="close" href="#close">x</a>-->
+    <!--        <h2>Add item</h2>-->
+    <!--    </div>-->
+    <!---->
+    <!--    <div class="btn_createpost">-->
+    <!--        <a onclick="PopupCenter('createpost.php','',800,500)">Create post</a>-->
+    <!--    </div>-->
 
-    <div class="btn_createpost">
-        <button class="button" onclick="PopupCenter('createpost.php','',800,500)">Create post</button>
-    </div>
 </div>
 
 

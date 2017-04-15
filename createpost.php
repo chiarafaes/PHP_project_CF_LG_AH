@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    //session_start(); //
 
     spl_autoload_register(function ($class){
         include_once ("classes/".$class.".php");
@@ -30,21 +30,18 @@
     <title>Create Post</title>
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/home.css" />
-    <style>
-        .picgroup img{
-            max-width:180px;
-        }
 
-    </style>
+
 
 </head>
+<body>
     <form method="post" name="Posten" action="#" id="Posten"/>
-
+    <a class="close" href="#close">x</a>
         <div class="create_uploadphoto">
             <label>Upload photo</label>
                 <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
                 <input type="hidden" name="img_type" value="post" />
-                <img id="target" src="http://placehold.it/250x400" alt="#" />
+                <img id="target" src="http://placehold.it/140x250" alt="#" />
             <input type="file" name="file" id="fileToUpload" class="inputfile" onchange="readURL(this);"/>
             <label for="file">Choose a file</label>
 
@@ -52,9 +49,15 @@
         </div>
 
     <div class="right_column">
+
+        <div class="create_title">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+        </div>
+
         <div class="create_description">
             <label>Description</label>
-            <textarea rows="6" cols="50" name="Description" form="Posten">Enter Description here...</textarea>
+            <textarea rows="10" cols="19" name="Description" form="Posten">Enter Description here...</textarea>
         </div>
 
         <div class="create_btnPost">
