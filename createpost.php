@@ -1,89 +1,66 @@
 <?php
-    //session_start(); //
 
-    spl_autoload_register(function ($class){
-        include_once ("classes/".$class.".php");
-    });
+spl_autoload_register(function ($class){
+    include_once ("classes/".$class.".php");
+});
 
-    if (!empty($_POST)){
-        try{
-            $post = new Post();
+if (!empty($_POST)){
+    try{
+        $post = new Post();
 
-            $post->setMPicture($_POST['fileToUpload']);
-            $post->setMSDescription($_POST['Description']);
-            $post->setMSUserName($_SESSION['email']);
+        $post->setMPicture($_POST['fileToUpload']);
+        $post->setMSDescription($_POST['Description']);
+        $post->setMSUserName($_SESSION['email']);
 
-            var_dump($post->Save());
+        var_dump($post->Save());
 
-        } catch (PDOException $e){
-            $error = $e->getMessage();
-        }
+    } catch (PDOException $e){
+        $error = $e->getMessage();
     }
+}
 ?>
 <!doctype html>
 <html lang="en">
-<link>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Post</title>
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/home.css" />
 
-
-
+    <title>CreatePost</title>
 </head>
 <body>
-    <form method="post" name="Posten" action="#" id="Posten"/>
-    <a class="close" href="#close">x</a>
-        <div class="create_uploadphoto">
-            <label>Upload photo</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
-                <input type="hidden" name="img_type" value="post" />
-                <img id="target" src="http://placehold.it/140x250" alt="#" />
-            <input type="file" name="file" id="fileToUpload" class="inputfile" onchange="readURL(this);"/>
-            <label for="file">Choose a file</label>
+<form method="post" name="Posten" action="#" id="Posten"/>
+<a class="close" href="#close">x</a>
+<div class="create_uploadphoto">
+    <label>Upload photo</label>
+    <div class="picgroup">
+        <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
+        <input type="hidden" name="img_type" value="post" />
+        <img id="target" src="http://placehold.it/180x280" alt="#" />
+        <input type="file" name="fileToUpload" id="fileToUpload" class="inputfile">
+    </div>
+</div>
 
+<div class="right_column">
 
-        </div>
-
-    <div class="right_column">
-
-        <div class="create_title">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title">
-        </div>
-
-        <div class="create_description">
-            <label>Description</label>
-            <textarea rows="10" cols="19" name="Description" form="Posten">Enter Description here...</textarea>
-        </div>
-
-        <div class="create_btnPost">
-            <input type="submit" name='submit' value="Post" />
-        </div>
+    <div class="create_title">
+        <label>Title</label>
+        <input type="text" name="title" />
     </div>
 
-    </form>
 
-    <script>
+    <div class="create_description">
+    <label>Description</label>
+    <textarea rows="10" cols="19" name="Description" form="Posten">Enter Description here...</textarea>
+</div>
 
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#target').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            });
-
-    </script>
-
-
-
+    <div class="create_btnPost">
+    <input type="submit" name='submit' value="Post" />
+    </div>
+</div>
+</form>
 </body>
-
-
 </html>

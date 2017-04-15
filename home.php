@@ -59,7 +59,6 @@ try{
     </div>
 </header>
 
-
 <!-- Popup - overlay - add item -->
 <a href="#x" class="overlay" id="add_form"></a>
 <div class="popup_additem">
