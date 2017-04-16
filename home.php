@@ -1,18 +1,32 @@
 <?php
-session_start();
+    session_start();
 
-spl_autoload_register(function ($class){
-    include_once ("classes/".$class.".php");
-});
+    spl_autoload_register(function ($class){
+        include_once ("classes/".$class.".php");
+    });
 
-try{
-    $post = new Post();
+    // Wordt er gezocht? Doe dan de search
+    if(!empty($_POST['search'])){
+        try{
+            $search_param = $_POST['search'];
 
-    $allPosts = $post->getAllPosts();
+            $search = new Search();
+            $search->setMSSearchParam($search_param);
+            $renderedPosts = $search->Search();
 
-} catch (PDOException $e){
-    $error = $e->getMessage();
-}
+        } catch (PDOException $e){
+            $error = $e->getMessage();
+        }
+    } else {
+        // Als er niet gezocht wordt, dan alle posts inladen
+        try{
+            $post = new Post();
+
+            $renderedPosts = $post->getAllPosts();
+        } catch (PDOException $e){
+            $error = $e->getMessage();
+        }
+    }
 
 ?><!doctype html>
 <html lang="en">
@@ -84,32 +98,12 @@ try{
 
 <!-- Overzicht posts-->
 <main>
+    <?php if(!empty($search_param)):?>
+    <h1>Search results for '<?php echo $search_param; ?>'</h1>
+    <a href="home.php">Clear results</a>
+    <?php endif; ?>
     <div id="left" class="main_container">
-        <?php foreach ($allPosts as $post):?>
-            <div class="pin">
-                <div class="img_holder">
-                    <div class="buttons" id="1">
-                        <a href="#" class="btn send">Send</a>
-                        <a href="#" class="btn save">Save</a>
-                        <a href="#" class="btn like">
-                            <img src="img/like_icon.svg" />
-                        </a>
-
-                    </div>
-                    <a class="image ajax" href="#" title="photo 1" id="1">
-                        <img src="http://webneel.com/daily/sites/default/files/images/daily/01-2014/3-typography.jpg" alt="" >
-                    </a>
-                </div>
-                <p class="description">Hier komt beschrijving </p>
-                <p class="info"><span>0</span></p>
-                <hr>
-                <div class="user_info">
-                    <img src="#" alt="#">
-                    <p>Naam user</p>
-                    <p class="categorie">Categorie</p>
-                </div>
-            </div>
-
+        <?php foreach ($renderedPosts as $post):?>
             <div class="pin">
                 <div class="img_holder">
                     <div class="buttons" id="1">
@@ -124,7 +118,7 @@ try{
                         <img src="<?php echo $post['picture']; ?>" alt="" >
                     </a>
                 </div>
-                <p class="description"><?php echo $post['description']; ?></p>
+                <p class="description"><?php echo $post['title']; ?></p>
                 <p class="info"><span>0</span></p>
                 <hr>
                 <div class="user_info">
