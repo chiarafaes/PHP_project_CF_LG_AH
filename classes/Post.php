@@ -105,6 +105,8 @@ class Post {
         $this->m_iAantalComments = $m_iAantalComments;
     }
 
+
+
     //save naar DB
     public function Save(){
         //connectie maken (PDO) -> geen mysqli, PDO kan voor meerdere data banken
@@ -125,10 +127,12 @@ class Post {
 
     }
 
-    public function getAllPosts(){
+    public static function getPosts($p_iLimit, $p_iOffset){
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM posts ORDER BY postdate DESC LIMIT 20");
+        $statement = $conn->prepare("SELECT * FROM posts ORDER BY postdate DESC LIMIT :limit OFFSET :offset");
+        $statement->bindValue(':limit', (int) trim($p_iLimit), PDO::PARAM_INT);
+        $statement->bindValue(':offset', (int) trim($p_iOffset), PDO::PARAM_INT);
 
         if ($statement->execute()){
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
@@ -136,15 +140,5 @@ class Post {
             return false;
         }
     }
-
-    public function __toString()
-    {
-        $output = "<p>".$this->m_sUserName."</p>";
-        $output .= "<p>".$this->m_sDescription."</p>";
-
-        return ($output);
-    }
-
-
 }
 ?>

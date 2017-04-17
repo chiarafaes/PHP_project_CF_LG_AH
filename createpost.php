@@ -1,17 +1,3 @@
-<?php
-//
-//spl_autoload_register(function ($class){
-//    include_once ("classes/".$class.".php");
-//});
-//
-//if (!empty($_POST)){
-//    try{
-//        // doe iets
-//    } catch (PDOException $e){
-//        $error = $e->getMessage();
-//    }
-//}
-?>
 <!doctype html>
 <html lang="en">
 <head>

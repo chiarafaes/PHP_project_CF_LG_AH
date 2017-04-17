@@ -20,9 +20,7 @@
     } else {
         // Als er niet gezocht wordt, dan alle posts inladen
         try{
-            $post = new Post();
-
-            $renderedPosts = $post->getAllPosts();
+            $renderedPosts = Post::getPosts(5, 0);
         } catch (PDOException $e){
             $error = $e->getMessage();
         }
@@ -44,6 +42,11 @@
 
 
     <title>Home</title>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="js/loadmore.js"></script>
 </head>
 <body>
 
@@ -129,16 +132,18 @@
         <?php endforeach;?>
     </div>
 
+
 </main>
 
 <!-- Load more - over hele pagina -->
 
 <div id="loadmore">
-    <a href="#" class="btn_loadmore">Load more...</a>
+    <a href="#" class="btn_loadmore" id="btn_loadmore">Load more...</a>
 </div>
 
 
 <script src="js/popup.js"></script>
+
 
 </body>
 </html>
