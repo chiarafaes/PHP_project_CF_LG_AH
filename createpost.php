@@ -1,23 +1,16 @@
 <?php
-
-spl_autoload_register(function ($class){
-    include_once ("classes/".$class.".php");
-});
-
-if (!empty($_POST)){
-    try{
-        $post = new Post();
-
-        $post->setMPicture($_POST['fileToUpload']);
-        $post->setMSDescription($_POST['Description']);
-        $post->setMSUserName($_SESSION['email']);
-
-        var_dump($post->Save());
-
-    } catch (PDOException $e){
-        $error = $e->getMessage();
-    }
-}
+//
+//spl_autoload_register(function ($class){
+//    include_once ("classes/".$class.".php");
+//});
+//
+//if (!empty($_POST)){
+//    try{
+//        // doe iets
+//    } catch (PDOException $e){
+//        $error = $e->getMessage();
+//    }
+//}
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,7 +25,7 @@ if (!empty($_POST)){
     <title>CreatePost</title>
 </head>
 <body>
-<form method="post" name="Posten" action="#" id="Posten"/>
+<form method="post" name="Posten" action="upload.php" id="Posten" enctype="multipart/form-data"/>
 <a class="close" href="#close">x</a>
 <div class="create_uploadphoto">
     <label>Upload photo</label>
@@ -54,7 +47,7 @@ if (!empty($_POST)){
 
     <div class="create_description">
     <label>Description</label>
-    <textarea rows="10" cols="19" name="Description" form="Posten">Enter Description here...</textarea>
+    <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
 </div>
 
     <div class="create_btnPost">

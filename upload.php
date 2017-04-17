@@ -8,6 +8,8 @@
 
 session_start();
 
+var_dump($_POST);
+
 //vervangt includes, deze functie moet slechts 1 keer geschreven worden
 spl_autoload_register(function ($class){
     include_once ("classes/".$class.".php");
@@ -28,11 +30,12 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
-//    // Check if file already exists
-//    if (file_exists($target_file)) {
-//        echo "Sorry, file already exists.";
-//        $uploadOk = 0;
-//    }
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 30000000) {
     echo "Sorry, your file is too large.";
@@ -59,9 +62,20 @@ if ($uploadOk == 0) {
                 $avatar->deleteOldAvatar();
                 $avatar->saveAvatar();
             break;
+            case "post":
+                $post = new Post();
+
+                $post->setMPicture($target_file);
+                $post->setMSDescription($_POST['Description']);
+                $post->setMSTitle($_POST['title']);
+                $post->setMSUserName($_SESSION['username']);
+
+                if($post->Save()){
+                    header('location:home.php');
+                }
+            break;
         }
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-?>

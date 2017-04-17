@@ -55,8 +55,6 @@
             $user = new user();
             $user->Mail = $_SESSION['email'];
 
-
-
             $conn = Db::getInstance();
 
             $retrieveQuery = $conn->prepare("SELECT avatar FROM users WHERE Mail = :user");

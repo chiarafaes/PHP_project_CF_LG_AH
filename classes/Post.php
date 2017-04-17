@@ -1,12 +1,29 @@
 <?php
 class Post {
     private $m_sPicture;
+    private $m_sTitle;
     private $m_sDescription;
     private $m_sUserName;
     private $m_iLikes;
     private $m_iAantalComments;
 
     //getters & setters
+    /**
+     * @return mixed
+     */
+    public function getMSTitle()
+    {
+        return $this->m_sTitle;
+    }
+
+    /**
+     * @param mixed $m_sTitle
+     */
+    public function setMSTitle($m_sTitle)
+    {
+        $this->m_sTitle = $m_sTitle;
+    }
+
     /**
      * @return mixed
      */
@@ -94,8 +111,9 @@ class Post {
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Posts (Picture,Description,Username) VALUES (:Picture,:Description,:Username)");
+        $statement = $conn->prepare("INSERT INTO Posts (Picture,Title ,Description,Username) VALUES (:Picture,:Title,:Description,:Username)");
         $statement->bindValue(":Picture",$this->m_sPicture);
+        $statement->bindValue(":Title",$this->m_sTitle);
         $statement->bindValue(":Description",$this->m_sDescription);
         $statement->bindValue(":Username",$this->m_sUserName);
 
@@ -110,7 +128,7 @@ class Post {
     public function getAllPosts(){
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM posts");
+        $statement = $conn->prepare("SELECT * FROM posts ORDER BY postdate DESC LIMIT 20");
 
         if ($statement->execute()){
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
