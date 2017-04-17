@@ -11,8 +11,9 @@ header("content-type:application/json");
 spl_autoload_register(function ($class){
     include_once ("../classes/".$class.".php");
 });
-    $offset = $_POST['offset'];
 
-    echo json_encode(Post::getPosts(5,$offset));
+$offset = $_POST['offset'];
+
+echo json_encode(Post::getPosts(5,$offset));
 
 ?>

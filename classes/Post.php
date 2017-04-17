@@ -1,5 +1,6 @@
 <?php
 class Post {
+    private $m_iID;
     private $m_sPicture;
     private $m_sTitle;
     private $m_sDescription;
@@ -105,6 +106,13 @@ class Post {
         $this->m_iAantalComments = $m_iAantalComments;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMIID()
+    {
+        return $this->m_iID;
+    }
 
 
     //save naar DB
@@ -135,6 +143,19 @@ class Post {
         $statement->bindValue(':offset', (int) trim($p_iOffset), PDO::PARAM_INT);
 
         if ($statement->execute()){
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
+
+    public static function getPostsLikedByUser($p_sUsername){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM users_likes_posts WHERE user = :user');
+        $statement->bindValue(':user', $p_sUsername);
+
+        if($statement->execute()){
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
         } else {
             return false;

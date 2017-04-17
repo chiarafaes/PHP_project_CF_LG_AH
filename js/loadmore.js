@@ -13,7 +13,7 @@ $(document).ready(function () {
             data: {'offset': offset},
             success: function (data) {
                 data.forEach(function (value) {
-                    var post = '<div class="pin">'+
+                    var post = '<div class="pin" id="pinID-'+value.id+'">'+
                         '<div class="img_holder">'+
                         '<div class="buttons" id="1">'+
                         '<a href="#" class="btn send">Send</a>'+

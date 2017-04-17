@@ -21,6 +21,8 @@
         // Als er niet gezocht wordt, dan alle posts inladen
         try{
             $renderedPosts = Post::getPosts(5, 0);
+            $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
+
         } catch (PDOException $e){
             $error = $e->getMessage();
         }
@@ -47,6 +49,9 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script src="js/loadmore.js"></script>
+    <!-- Dit scriptje is het doorgeven van PHP sessions vars in JSON naar jQuery voor de AJAX -->
+    <script> var username = <?php echo json_encode($_SESSION['username'])?></script>
+    <script src="js/like.js"></script>
 </head>
 <body>
 
@@ -106,13 +111,29 @@
     <?php endif; ?>
     <div id="left" class="main_container">
         <?php foreach ($renderedPosts as $post):?>
-            <div class="pin">
+            <div class="pin" id="pinID-<?php echo $post['id']?>">
                 <div class="img_holder">
                     <div class="buttons" id="1">
                         <a href="#" class="btn send">Send</a>
                         <a href="#" class="btn save">Save</a>
                         <a href="#" class="btn like">
-                            <img src="img/like_icon.svg" />
+                           <img src="img/<?php
+                            if(!empty($likedPosts)) {
+                                $isLiked = false;
+                                foreach ($likedPosts as $item) {
+                                    if ($post['id'] == $item['post']) {
+                                        $isLiked = true;
+                                    }
+                                }
+                                if($isLiked){
+                                    echo 'liked_icon.svg';
+                                } else {
+                                    echo 'like_icon.svg';
+                                }
+                            } else {
+                                echo 'like_icon.svg';
+                            }
+                            ?>"/>
                         </a>
 
                     </div>
