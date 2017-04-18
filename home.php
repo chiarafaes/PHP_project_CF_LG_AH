@@ -16,7 +16,7 @@ if(!empty($_POST['search'])){
 } else {
     // Als er niet gezocht wordt, dan alle posts inladen
     try{
-        $renderedPosts = Post::getPosts(5, 0);
+        $renderedPosts = Post::getPosts(10, 0);
         $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
     } catch (PDOException $e){
         $error = $e->getMessage();
@@ -130,7 +130,7 @@ if(!empty($_POST['search'])){
                     </a>
                 </div>
                 <p class="description"><?php echo $post['title']; ?></p>
-                <p class="info"><span>0</span></p>
+                <p class="likes"><span>0</span></p>
                 <hr>
                 <div class="user_info">
                     <img src="#" alt="#">
@@ -152,6 +152,30 @@ if(!empty($_POST['search'])){
 
 
 <script src="js/popup.js"></script>
+
+<script>
+    $(function() {
+
+        var $sidebar   = $("#right"),
+            $window    = $(window),
+            offset     = $sidebar.offset(),
+            topPadding = 60;
+
+        $window.scroll(function() {
+            if ($window.scrollTop() > offset.top) {
+                $sidebar.stop().animate({
+                    marginTop: $window.scrollTop() - offset.top + topPadding
+                });
+            } else {
+                $sidebar.stop().animate({
+                    marginTop: 50
+                });
+            }
+        });
+
+    });
+
+</script>
 
 
 </body>

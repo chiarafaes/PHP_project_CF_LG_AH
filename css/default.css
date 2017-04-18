@@ -21,30 +21,35 @@ body{
 
 header{
     width: 100%;
-}
-header{
-    height: 80px;
+    height: 75px;
     background-color: white;
     display: flex;
     flex-direction: row;
 }
 
 .avatar a img{
-    height: 60px;
+    height: 50px;
     border-radius: 100%;
     margin: 10px 15px 0px 15px;
     float: left;
+    border:none;
 }
 
-header img{
-    height: 40px;
+header .logo img{
+    height: 50px;
     border-radius: 100%;
-    margin: 20px 15px 20px 15px;
+    margin-left: 35px;
     float: left;
 }
 
+.iconen, .avatar{
+    margin-right: 20px;
+}
+
+
 .search{
     margin: auto;
+    border:none;
 
 }
 
@@ -55,12 +60,12 @@ header img{
     border-radius: 5px;
     color: #7F7F7F;
     float: left;
-    font: 12px;
+    font-size: 12px;
     height: 20px;
     margin: 0;
-    padding: 10px;
+    padding: 8px;
     transition: background 0.3s ease-in-out 0s;
-    width: 430px;
+    width: 420px;
 }
 
 #searching input[type=text]{
@@ -73,7 +78,7 @@ header img{
     background: url("../img/search.png") no-repeat scroll center center #0f9baf;
     cursor: pointer;
     border-radius: 5px;
-    height: 40px;
+    height: 38px;
     text-indent: -99999px;
     width: 40px;
     border: 0px solid #fff;
@@ -87,13 +92,13 @@ header img{
 .functions{
     display: flex;
     flex-direction: row;
-    height: 50px;
+    height: 40px;
     margin: auto;
 }
 .icon{
     padding: 0.2em;
-    height: 60px;
-    font-size: 1.9rem;
+    height: 40px;
+    font-size: 1.6rem;
     margin-right: 10px;
 
 }
