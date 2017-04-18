@@ -8,11 +8,10 @@ $(document).ready(function () {
         e.preventDefault();
         offset += 5;
         $.ajax({
-            url: 'ajax/ajax.getlikedposts.php',
+            url: 'ajax/ajax.loadmore.php',
             type: 'post',
             data: {'offset': offset},
             success: function (data) {
-                console.log(likedPosts);
                 data.forEach(function (value) {
                     var post = '<div class="pin" id="pinID-'+value.id+'">'+
                         '<div class="img_holder">'+
@@ -43,14 +42,6 @@ $(document).ready(function () {
             error : function () {
                 alert("oei niet goed");
             }
-        });
-        var likedPosts = [];
-        $.ajax({
-            url: 'ajax/ajax.getlikedposts.php',
-            type: 'post',
-            success: function (data) {
-                likedPosts = data;
-            }
-        });
+        })
     })
 });
