@@ -3,7 +3,9 @@
  */
 $(document).ready(function () {
     // $(document).change(function () {
-        $('.like').on('click', function (e) {
+        $('.main_container' +
+            '' +
+            '').on('click', '.like' ,function (e) {
             e.preventDefault();
             var id = $(this).parent().parent().parent().attr('id').substr(6)
             $.ajax({
