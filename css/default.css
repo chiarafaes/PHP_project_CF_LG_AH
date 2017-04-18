@@ -9,9 +9,15 @@ html
 
 }
 
-/* Default css, waar header, footer en alle terugkerende elementen kunnen vormgegeven worden
+*{
+    margin: 0;
+    padding: 0;
+}
 
- */
+body{
+    width: 100%;
+    overflow:auto;
+}
 
 header{
     width: 100%;
@@ -23,7 +29,7 @@ header{
     flex-direction: row;
 }
 
-header a img{
+.avatar a img{
     height: 60px;
     border-radius: 100%;
     margin: 10px 15px 0px 15px;
@@ -37,7 +43,70 @@ header img{
     float: left;
 }
 
+.search{
+    margin: auto;
 
+}
+
+#searching input{
+    background: none repeat scroll 0 0 #fff;
+    border: #bababa solid 1.5px;
+    border-radius: 5px;
+    border-radius: 5px;
+    color: #7F7F7F;
+    float: left;
+    font: 12px;
+    height: 20px;
+    margin: 0;
+    padding: 10px;
+    transition: background 0.3s ease-in-out 0s;
+    width: 430px;
+}
+
+#searching input[type=text]{
+    font-size: 14px;
+    color: #bababa;
+    font-weight: 300;
+}
+
+#searching button{
+    background: url("../img/search.png") no-repeat scroll center center #0f9baf;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 40px;
+    text-indent: -99999px;
+    width: 40px;
+    border: 0px solid #fff;
+    margin-left: 5px;
+}
+
+.iconen{
+    display: flex;
+    flex-direction: row;
+}
+.functions{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    margin: auto;
+}
+.icon{
+    padding: 0.2em;
+    height: 60px;
+    font-size: 1.9rem;
+    margin-right: 10px;
+
+}
+
+.icon a:hover {
+    color: #0f9baf;
+
+}
+
+.functions a{
+    text-decoration: none;
+    color: #666666;
+}
 
 footer {
     position:fixed;

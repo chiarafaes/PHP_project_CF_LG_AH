@@ -19,7 +19,7 @@
         </div>
 
         <h1>IMD'terest</h1>
-        <h2>Hier komt slagzin</h2>
+        <h2>The best daily design inspiration</h2>
 
         <div class="buttons">
             <a href="login.php" class="login">Login</a>

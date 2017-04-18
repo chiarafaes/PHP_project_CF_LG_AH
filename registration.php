@@ -117,7 +117,7 @@
     <section class="left">
         <a href="index.php"><img src="img/logo.png"/></a>
         <h1>IMD'terest</h1>
-
+        <h3 class="registration_left">The best daily design inspirations</h3>
     </section>
 
 

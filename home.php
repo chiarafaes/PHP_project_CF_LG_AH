@@ -1,32 +1,27 @@
 <?php
-    session_start();
-
-    spl_autoload_register(function ($class){
-        include_once ("classes/".$class.".php");
-    });
-
-    // Wordt er gezocht? Doe dan de search
-    if(!empty($_POST['search'])){
-        try{
-            $search_param = $_POST['search'];
-
-            $search = new Search();
-            $search->setMSSearchParam($search_param);
-            $renderedPosts = $search->Search();
-
-        } catch (PDOException $e){
-            $error = $e->getMessage();
-        }
-    } else {
-        // Als er niet gezocht wordt, dan alle posts inladen
-        try{
-            $renderedPosts = Post::getPosts(5, 0);
-            $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
-
-        } catch (PDOException $e){
-            $error = $e->getMessage();
-        }
+session_start();
+spl_autoload_register(function ($class){
+    include_once ("classes/".$class.".php");
+});
+// Wordt er gezocht? Doe dan de search
+if(!empty($_POST['search'])){
+    try{
+        $search_param = $_POST['search'];
+        $search = new Search();
+        $search->setMSSearchParam($search_param);
+        $renderedPosts = $search->Search();
+    } catch (PDOException $e){
+        $error = $e->getMessage();
     }
+} else {
+    // Als er niet gezocht wordt, dan alle posts inladen
+    try{
+        $renderedPosts = Post::getPosts(5, 0);
+        $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
+    } catch (PDOException $e){
+        $error = $e->getMessage();
+    }
+}
 
 ?><!doctype html>
 <html lang="en">
@@ -64,8 +59,10 @@
 
     <div class="search">
         <form method="post" name="searching" action="#" id="searching" >
-            <input id="search" name="search" type="search" placeholder="search"/>
-            <button class="fa fa-search" aria-hidden="true" id="searchbutton" name="searchbutton" type="submit"></button>
+            <input type="text" name="search" id="search" results=5 value="Search" onblur="if(this.value == '')
+                    { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
+            <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
+
         </form>
     </div>
 
@@ -75,27 +72,18 @@
             <div class="icon"> <a href="#" class="fa fa-comment"></a> </div>
             <div class="icon"> <a href="#" class="fa fa-bell-o"></a> </div>
         </div>
+    </div>
         <div class="avatar">
             <a href="profilesettings.php"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
         </div>
-    </div>
+
 </header>
 
 <!-- Popup - overlay - add item -->
 <a href="#x" class="overlay" id="add_form"></a>
 <div class="popup_additem">
     <?php include_once('createpost.php');?>
-    <!--    <div class="header">-->
-    <!--        <a class="close" href="#close">x</a>-->
-    <!--        <h2>Add item</h2>-->
-    <!--    </div>-->
-    <!---->
-    <!--    <div class="btn_createpost">-->
-    <!--        <a onclick="PopupCenter('createpost.php','',800,500)">Create post</a>-->
-    <!--    </div>-->
 </div>
-
-
 
 <!-- Button add item - rechterkolom -->
 <div id="right" class="additem">
@@ -106,8 +94,8 @@
 <!-- Overzicht posts-->
 <main>
     <?php if(!empty($search_param)):?>
-    <h1>Search results for '<?php echo $search_param; ?>'</h1>
-    <a href="home.php">Clear results</a>
+        <h1>Search results for '<?php echo $search_param; ?>'</h1>
+        <a href="home.php">Clear results</a>
     <?php endif; ?>
     <div id="left" class="main_container">
         <?php foreach ($renderedPosts as $post):?>
@@ -117,7 +105,7 @@
                         <a href="#" class="btn send">Send</a>
                         <a href="#" class="btn save">Save</a>
                         <a href="#" class="btn like">
-                           <img src="img/<?php
+                            <img src="img/<?php
                             if(!empty($likedPosts)) {
                                 $isLiked = false;
                                 foreach ($likedPosts as $item) {

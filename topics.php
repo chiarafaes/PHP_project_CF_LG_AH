@@ -139,27 +139,31 @@
     <h1>Thanks for joining us! </br>Let's get you started.</h1>
     <h2>First, choose 5 topics you're interested in.</h2>
 
-    <fieldset class="search">
-        <input id="search" name="search" type="text" placeholder="search for any topic">
-    </fieldset>
 
     <?php if(!empty($error)):?>
         <div class="error"><?php echo $error; ?></div>
     <?php endif; ?>
     <form id="topics" action="" method="post">
-        <fieldset>
+        <ul>
             <?php while($res = $statement->fetch(PDO::FETCH_ASSOC)): ?>
-                <label for="<?php echo $res['name'];?>"><?php echo $res['name'];?></label>
-                <input <?php foreach($mergedTopics as $key => $value){
+                <li>
+                    <label for="<?php echo $res['name'];?>"><?php echo $res['name'];?>
+
+                    <input <?php foreach($mergedTopics as $key => $value){
                     if ($value == $res['id']){
                         echo 'checked';
                     }
-                }?> class="topicInput" id="<?php echo $res['name'];?>" name="<?php echo $res['name'];?>" type="checkbox" value="<?php echo $res['id'];?>"><br>
+                }?> class="topicInput" id="<?php echo $res['name'];?>" name="<?php echo $res['name'];?>" type="checkbox" value="<?php echo $res['id'];?>">
+
+                    </label>
+                </li>
             <?php endwhile; ?>
-        </fieldset>
+        </ul>
+
         <fieldset>
             <button id="submit" disabled type="submit">Save topics</button>
         </fieldset>
+
         <script>
             window.onload = function () {
                 var form = document.getElementById('topics');
