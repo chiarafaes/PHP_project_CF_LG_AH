@@ -103,7 +103,7 @@ if(!empty($_POST['search'])){
                 <div class="img_holder">
                     <div class="buttons" id="1">
                         <a href="#" class="btn send">Send</a>
-                        <a href="#" class="btn save">Save</a>
+                        <a href="#" class="btn save">Save</a></br>
                         <a href="#" class="btn like">
                             <img src="img/<?php
                             if(!empty($likedPosts)) {
