@@ -12,15 +12,11 @@ body{
 
     /* background-color: #10a6ad; */
 
-    background-image: url("../img/background.jpg");
-
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    background-size:cover;
-    background-position: center, center;
-    background-repeat: repeat, no-repeat;
-    z-index: -1;
+    background: url(../img/background_indexpage.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 img {

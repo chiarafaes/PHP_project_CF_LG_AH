@@ -21,13 +21,7 @@ else {
 
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/loggedin.css" />
-<style>
-    .avatar img{
-        height: 150px;
-        width: auto;
-    }
 
-</style>
 
 </head>
 <body>
@@ -38,7 +32,7 @@ else {
         </div>
 
         <h1>Welcome back, <?php echo $_SESSION['username']; ?></h1>
-        <p>Hier komt nog iets</p>
+        <p>Discover more inspiration!</p>
 
             <form action="home.php" action="post" class="home" id="loggedin">
                     <input type="submit" value="Continue" />

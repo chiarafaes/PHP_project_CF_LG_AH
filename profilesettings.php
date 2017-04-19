@@ -98,30 +98,39 @@
 </head>
 <body>
 <header>
-        <div class="logo">
-            <a href="home.php"><img src="img/logo.png" alt="logo"/></a>
+    <div class="logo">
+        <a href="home.php"><img src="img/logo.png" alt="logo"/></a>
 
+    </div>
+
+    <div class="search">
+        <form method="post" name="searching" action="#" id="searching" >
+            <input type="text" name="search" id="search" results=5 value="Search" onblur="if(this.value == '')
+                    { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
+            <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
+
+        </form>
+    </div>
+
+    <div class="iconen">
+        <div class="icon_1">
+            <a href="#" ></a>
         </div>
 
-        <div class="search">
-            <form method="post" name="searching" action="#" id="searching" >
-                <input id="search" name="search" type="search" placeholder="search"/>
-                <button class="fa fa-search" aria-hidden="true" id="searchbutton" name="searchbutton" type="submit"></button>
-            </form>
+        <div class="icon_2">
+            <a href="#" ></a>
+        </div>
+        <div class="icon_3">
+            <a href="#" ></a>
         </div>
 
-        <div class="iconen">
-            <div class="functions">
-                <div class="icon"> <a href="#" class="fa fa-th-large"></a> </div>
-                <div class="icon"> <a href="#" class="fa fa-comment"></a> </div>
-                <div class="icon"> <a href="#" class="fa fa-bell-o"></a> </div>
-            </div>
-            <div class="avatar">
-                <a href="profilesettings.php"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
-            </div>
-        </div>
+    </div>
 
-    </header>
+    <div class="avatar">
+        <a href="profilesettings.php"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
+    </div>
+
+</header>
 <div class="wrap">
     <div class="sideBar">
         <div class="sideBar__section">

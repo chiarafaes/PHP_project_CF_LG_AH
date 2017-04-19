@@ -14,6 +14,6 @@ spl_autoload_register(function ($class){
 
 $offset = $_POST['offset'];
 
-echo json_encode(Post::getPosts(5,$offset));
+echo json_encode(Post::getPosts(20,$offset)); // moeten er 20 bijkomen (zoals in briefing)
 
 ?>

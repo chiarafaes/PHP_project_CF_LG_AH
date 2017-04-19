@@ -16,7 +16,7 @@ if(!empty($_POST['search'])){
 } else {
     // Als er niet gezocht wordt, dan alle posts inladen
     try{
-        $renderedPosts = Post::getPosts(10, 0);
+        $renderedPosts = Post::getPosts(20, 0); // Veranderd naar 20, want in briefing moet bij load more 20 items bijkomen
         $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
     } catch (PDOException $e){
         $error = $e->getMessage();
@@ -67,15 +67,34 @@ if(!empty($_POST['search'])){
     </div>
 
     <div class="iconen">
-        <div class="functions">
-            <div class="icon"> <a href="#" class="fa fa-th-large"></a> </div>
-            <div class="icon"> <a href="#" class="fa fa-comment"></a> </div>
-            <div class="icon"> <a href="#" class="fa fa-bell-o"></a> </div>
+            <div class="icon_1">
+                <a href="#" ></a>
+            </div>
+
+            <div class="icon_2">
+                <a href="#" ></a>
+            </div>
+            <div class="icon_3">
+                <a href="#" ></a>
+            </div>
+
+    </div>
+
+    <div class="avatar">
+        <a href="profile.php" class="dropbtn"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
+        <div class="dropdown-content">
+            <a href="profile.php">My profile</a>
+            <a href="profile.php">My collections</a>
+            <a href="profile.php">My uploads</a>
+            <hr class="hr_dropdown">
+            <a href="profilesettings.php">Settings</a>
+            <a href="logout.php" class="btn_logout">Logout</a>
         </div>
     </div>
-        <div class="avatar">
-            <a href="profilesettings.php"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
-        </div>
+
+
+
+
 
 </header>
 
