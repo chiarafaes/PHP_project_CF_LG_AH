@@ -147,7 +147,7 @@ if(!empty($_POST['search'])){
                     </a>
                 </div>
                 <p class="description"><?php echo $post['title']; ?></p>
-                <p class="likes"><span>0</span></p>
+                <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                 <hr>
                 <div class="user_info">
                     <img src="#" alt="#">

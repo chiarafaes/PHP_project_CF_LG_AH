@@ -14,10 +14,11 @@
 
     $user = $_SESSION['email'];
     $post = $_POST['post'];
+    $likes = $_POST['likes'];
 
     $conn = Db::getInstance();
 
-    $statement = $conn->prepare('SELECT * FROM users_likes_posts WHERE user = :user AND post = :post');
+    $statement = $conn->prepare('SELECT post, user FROM users_likes_posts WHERE user = :user AND post = :post');
     $statement->bindValue(':user', $user);
     $statement->bindValue(':post', $post);
 
@@ -27,18 +28,33 @@
             $insert->bindValue(':user', $user);
             $insert->bindValue(':post', $post);
 
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+
+            $likes += 1;
+
+
             if ($insert->execute()){
-                echo 'inserted';
+                echo json_encode($likes);
             }
         } else {
             $delete = $conn->prepare('DELETE FROM users_likes_posts WHERE user = :user and post = :post');
             $delete->bindValue(':user', $user);
             $delete->bindValue(':post', $post);
 
+            $likes -= 1;
+
             if ($delete->execute()){
-                echo 'deleted';
+                echo json_encode($likes);
             }
         }
+
+        // nu gaan we de like opslaan in de tabel posts
+        $update = $conn->prepare('UPDATE posts SET likes = :likes WHERE id = :post');
+        $update->bindValue(':likes', $likes);
+        $update->bindValue(':post', $post);
+
+        $update->execute();
+
     } else{
         echo json_encode("niet gelukt");
     }

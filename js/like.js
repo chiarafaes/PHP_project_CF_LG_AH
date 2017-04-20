@@ -7,13 +7,19 @@ $(document).ready(function () {
             '' +
             '').on('click', '.like' ,function (e) {
             e.preventDefault();
-            var id = $(this).parent().parent().parent().attr('id').substr(6)
+            var id = $(this).parent().parent().parent().attr('id').substr(6);
+            var likes = $(this).parent().parent().siblings('.likes').text();
             $.ajax({
                 url: 'ajax/ajax.like.php',
                 type: 'post',
-                data: { 'post': id },
+                data:
+                    {
+                        'post': id,
+                        'likes': likes
+                    },
                 success: function (data) {
-                    console.log('yup')
+                    console.log(data);
+                    $('#pinID-'+id).find('.likes > span').text(data);
                     if($('#pinID-'+id).find('.like > img').attr('src') != 'img/liked_icon.svg'){
                         $('#pinID-'+id).find('.like > img').attr('src', 'img/liked_icon.svg');
                     } else {
@@ -27,4 +33,4 @@ $(document).ready(function () {
             })
         })
    // })
-})
+});

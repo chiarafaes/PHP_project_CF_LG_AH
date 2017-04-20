@@ -29,6 +29,7 @@ $(document).ready(function () {
                                     isLiked = '<img src="img/like_icon.svg" />';
                                 }
                             })
+                            console.log(value);
                             var post = '<div class="pin" id="pinID-'+value.id+'">'+
                                 '<div class="img_holder">'+
                                 '<div class="buttons" id="1">'+
@@ -43,7 +44,7 @@ $(document).ready(function () {
                                 '</a>'+
                                 '</div>'+
                                 '<p class="description">'+value.title+'</p>'+
-                                '<p class="likes"><span>0</span></p>'+
+                                '<p class="likes"><span>'+value.likes+'</span></p>'+
                                 '<hr>'+
                                 '<div class="user_info">'+
                                 '<img src="#" alt="#">'+
