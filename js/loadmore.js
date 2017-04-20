@@ -12,6 +12,16 @@ $(document).ready(function () {
             type: 'post',
             data: {'offset': offset},
             success: function (data) {
+                var likedPosts = [];
+                $.ajax({
+                    url: 'ajax/ajax.getlikedposts.php',
+                    type: 'post',
+                    success: function (data) {
+
+                        likedPosts = data;
+                    }
+                })
+                console.log(likedPosts)
                 data.forEach(function (value) {
                     var post = '<div class="pin" id="pinID-'+value.id+'">'+
                         '<div class="img_holder">'+

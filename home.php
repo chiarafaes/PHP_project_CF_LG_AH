@@ -44,8 +44,6 @@ if(!empty($_POST['search'])){
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script src="js/loadmore.js"></script>
-    <!-- Dit scriptje is het doorgeven van PHP sessions vars in JSON naar jQuery voor de AJAX -->
-    <script> var username = <?php echo json_encode($_SESSION['username'])?></script>
     <script src="js/like.js"></script>
 </head>
 <body>
