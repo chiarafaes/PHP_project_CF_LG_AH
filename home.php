@@ -51,7 +51,7 @@ if(!empty($_POST['search'])){
 <!-- Default header -->
 <header>
     <div class="logo">
-        <a href="home.php"><img src="img/logo.png" alt="logo"/></a>
+        <a href="home.php"><img src="img/logo_header.svg" alt="logo"/></a>
 
     </div>
 
@@ -79,11 +79,11 @@ if(!empty($_POST['search'])){
     </div>
 
     <div class="avatar">
-        <a href="profile.php" class="dropbtn"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
+        <a href="profilepage_user.php" class="dropbtn"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
         <div class="dropdown-content">
-            <a href="profile.php">My profile</a>
-            <a href="profile.php">My collections</a>
-            <a href="profile.php">My uploads</a>
+            <a href="profilepage_user.php">My profile</a>
+            <a href="profilepage_user.php">My collections</a>
+            <a href="profilepage_user.php">My uploads</a>
             <hr class="hr_dropdown">
             <a href="profilesettings.php">Settings</a>
             <a href="logout.php" class="btn_logout">Logout</a>

@@ -15,58 +15,10 @@ body{
     padding-top: 20px;
 }
 
-.wrap header{
+.wrap header {
     width: 100%;
-}
-header{
-    height: 80px;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-}
 
-header a img{
-    height: 60px;
-    border: #10a6ad solid 1px;
-    border-radius: 100%;
-    margin: 10px 15px 0px 15px;
-    float: left;
 }
-
-header img{
-    height: 40px;
-    border: #10a6ad solid 1px;
-    border-radius: 100%;
-    margin: 20px 15px 20px 15px;
-    float: left;
-}
-
-.search{
-    border: #e6e6e6 solid 1px;
-    border-radius: 5px;
-    margin: auto;
-    width: 500px;
-}
-
-#search{
-    width: 80%;
-}
-.iconen{
-    display: flex;
-    flex-direction: row;
-}
-.functions{
-    display: flex;
-    flex-direction: row;
-    height: 20px;
-    margin: auto;
-}
-.icon{
-    padding: 0.2em;
-    height: 15px;
-    font-size: 1.2rem;
-}
-
 
 .sideBar {
     float: left;
@@ -90,9 +42,10 @@ fieldset{
     padding: 15px 10px;
     color: #10a6ad;
     font-size: 16px;
+    font-weight: 400;
     border-bottom: #d3d3d3 solid 1.5px;
     border-collapse: collapse;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .sideBar__item_{
@@ -100,7 +53,7 @@ fieldset{
     padding: 15px 10px;
     color: #10a6ad;
     font-size: 16px;
-    border-top: #d3d3d3 solid 1.5px;
+    margin-bottom: 10px;
     border-collapse: collapse;
     letter-spacing: 1px;
 
@@ -254,6 +207,22 @@ fieldset{
 
 
 }
+
+
+.sideBar__item_ a{
+    text-decoration:none;
+    background-color: #0F9BAF;
+    padding: 10px;
+    color:white;
+    border-radius: 5px;
+    font-weight: 400;
+}
+
+
+.sideBar__item_ a:hover{
+    background-color: #0A6970;
+}
+
 
 
 

@@ -20,8 +20,7 @@ body{
 }
 
 header{
-    width: 100%;
-    height: 75px;
+    height: 80px;
     background-color: white;
     display: flex;
     flex-direction: row;
@@ -36,9 +35,20 @@ header{
 }
 
 header .logo img{
-    height: 50px;
-    border-radius: 100%;
+    height: 60px;
     margin-left: 35px;
+    float: left;
+}
+
+header a img{
+    height: 60px;
+    margin: 10px 15px 0px 15px;
+    float: left;
+}
+
+header img{
+    height: 40px;
+    margin: 20px 15px 20px 15px;
     float: left;
 }
 
@@ -110,11 +120,18 @@ header .logo img{
 
 
 .search{
+    border: none;
+    border-radius: 5px;
     margin: auto;
-    border:none;
-    margin-left: 350px;
+    width: 500px;
 
 }
+
+#search{
+    width: 430px;
+    border: #e6e6e6 solid 1px;
+}
+
 
 #searching input{
     background: none repeat scroll 0 0 #fff;
@@ -128,7 +145,6 @@ header .logo img{
     margin: 0;
     padding: 8px;
     transition: background 0.3s ease-in-out 0s;
-    width: 420px;
 }
 
 #searching input[type=text]{
@@ -150,6 +166,8 @@ header .logo img{
 
 .iconen{
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 .icon_1{
@@ -224,6 +242,18 @@ header .logo img{
 
 }
 
+.functions{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    margin: auto;
+}
+.icon{
+    padding: 0.2em;
+    height: 15px;
+    font-size: 1.2rem;
+}
+
 footer {
     position:fixed;
     bottom:0;
@@ -234,3 +264,13 @@ footer {
     color: #666666;
     font-size: 10px;
 }
+
+
+
+
+
+
+
+
+
+

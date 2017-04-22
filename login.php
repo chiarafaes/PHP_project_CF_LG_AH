@@ -44,7 +44,7 @@
                     }
 
                 } else {
-                    $error = "User does not exist in database. Please register first.";
+                    $error = "User does not exist in database. Please register first." . "</br>" . "<a href='registration.php'>Sign up here</a>";
                 }
             }
 
@@ -69,9 +69,18 @@
 
         .error {
 
+            margin-top: 15px;
             color: #dd6b47;
             font-size: 14px;
             font-weight: 300;
+        }
+
+        .error a{
+            color: #dd6b47;
+            font-size: 14px;
+            font-weight: 300;
+            padding-top: 10px;
+
         }
 
     </style>
@@ -79,9 +88,8 @@
 <body>
 
 <section class="left">
-    <a href="index.php"><img src="img/logo.png"/></a>
-    <h1>IMD'terest</h1>
-    <h3>The best daily design inspirations</h3>
+    <a href="index.php"><img src="img/logo_icon.svg"/></a>
+    <img src="img/logo_naam.png" class="login_name"/>
 </section>
 
 

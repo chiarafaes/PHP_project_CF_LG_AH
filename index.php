@@ -15,11 +15,12 @@
    <div class="container">
 
         <div class="logo">
-            <img src="img/logo.png" alt="logo"/>
+            <img src="img/logo_icon.svg" alt="logo"/>
         </div>
 
-        <h1>IMD'terest</h1>
-        <h2>The best daily design inspiration</h2>
+       <div class="logo_naam">
+       <img src="img/logo_naam.png" alt="logo"/>
+       </div>
 
         <div class="buttons">
             <a href="login.php" class="login">Login</a>

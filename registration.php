@@ -115,9 +115,8 @@
 <body>
 
     <section class="left">
-        <a href="index.php"><img src="img/logo.png"/></a>
-        <h1>IMD'terest</h1>
-        <h3 class="registration_left">The best daily design inspirations</h3>
+        <a href="index.php"><img src="img/logo_icon.svg"/></a>
+        <img src="img/logo_naam.png" class="login_name"/>
     </section>
 
 

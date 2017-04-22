@@ -15,12 +15,20 @@ body{
     bottom: 0;
     width: 400px;
     background-color: #10a6ad;
-    background: url("../img/index_side.jpg") no-repeat center center;
+    /* background: url("../img/index_side.jpg") center center; */
 }
+
 
 .left img{
     margin-left: 120px;
     margin-top: 120px;
+    width: 150px;
+}
+
+.left .login_name{
+    width: 300px;
+    margin-left: 30px;
+    margin-top: 10px;
 }
 
 .left h1{

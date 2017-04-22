@@ -1,0 +1,82 @@
+html{
+    background-color:#f4f4f4;
+}
+
+#main{
+    padding-top: 50px;
+}
+
+
+#profile_left{
+    float:left;
+    width: 20%;
+}
+
+#profile_right{
+    float:right;
+    width: 75%;
+
+}
+#profile_right #header_info{
+    clear:both;
+}
+
+
+.collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following{
+    background-color:white;
+    padding: 10px;
+}
+
+.collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following{
+    float:left;
+    display:block;
+
+
+}
+.collections_boards_{
+    column-count: 2;
+    column-gap: 50px;
+
+}
+
+.board {
+    background-color: white;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+    height: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+}
+
+#collections_boards{
+    clear:both;
+    padding-top: 20px;
+    width: 1030px;
+
+}
+
+.profile_user_info, .create_collection{
+    background: white;
+    display:block;
+    margin-left: 35px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+}
+
+.profile_user_info{
+    margin-bottom: 30px;
+}
+
+.collection_images .img_1{
+    width: 100px;
+}
+
+.collection_images .img_2, .collection_images .img_3{
+    float:right;
+    width: 100px;
+}
+
