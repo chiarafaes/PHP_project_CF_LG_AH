@@ -18,7 +18,6 @@ $(document).ready(function () {
                         'likes': likes
                     },
                 success: function (data) {
-                    console.log(data);
                     $('#pinID-'+id).find('.likes > span').text(data);
                     if($('#pinID-'+id).find('.like > img').attr('src') != 'img/liked_icon.svg'){
                         $('#pinID-'+id).find('.like > img').attr('src', 'img/liked_icon.svg');

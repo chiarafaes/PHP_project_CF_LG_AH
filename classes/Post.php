@@ -138,7 +138,7 @@ class Post {
     public static function getPosts($p_iLimit, $p_iOffset){
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM posts ORDER BY postdate DESC LIMIT :limit OFFSET :offset");
+        $statement = $conn->prepare("SELECT posts.*, users.avatar FROM posts LEFT JOIN users on users.username  = posts.username ORDER BY postdate DESC LIMIT :limit OFFSET :offset");
         $statement->bindValue(':limit', (int) trim($p_iLimit), PDO::PARAM_INT);
         $statement->bindValue(':offset', (int) trim($p_iOffset), PDO::PARAM_INT);
 

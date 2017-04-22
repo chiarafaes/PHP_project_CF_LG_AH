@@ -19,8 +19,6 @@ $(document).ready(function () {
                     type: 'post',
                     data: {'offset': offset},
                     success: function (data) {
-                        console.log(likedPosts)
-                        // console.log(likedPosts);
                         data.forEach(function (value) {
                             $.each(likedPosts, function (index, likedValue) {
                                 if (value.id == likedValue.post){
@@ -29,7 +27,6 @@ $(document).ready(function () {
                                     isLiked = '<img src="img/like_icon.svg" />';
                                 }
                             })
-                            console.log(value);
                             var post = '<div class="pin" id="pinID-'+value.id+'">'+
                                 '<div class="img_holder">'+
                                 '<div class="buttons" id="1">'+
@@ -47,15 +44,13 @@ $(document).ready(function () {
                                 '<p class="likes"><span>'+value.likes+'</span></p>'+
                                 '<hr>'+
                                 '<div class="user_info">'+
-                                '<img src="#" alt="#">'+
+                                '<img src="'+value.avatar+'" alt="#">'+
                                 '<p>'+value.username+'</p>'+
                                 '<p class="categorie">Categorie</p>'+
                                 '</div>'+
                                 '</div>';
 
                             $('#left').append(post);
-
-                            console.log(isLiked)
                         })
                     },
                     error : function () {
