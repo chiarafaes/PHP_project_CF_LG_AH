@@ -55,6 +55,8 @@ spl_autoload_register(function ($class){
     <div class="avatar">
         <a href="profilepage_user.php" class="dropbtn"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
         <div class="dropdown-content">
+            <a href="discoverUsers.php">Discover users</a>
+            <hr class="hr_dropdown">
             <a href="profilepage_user.php">My profile</a>
             <a href="profilepage_user.php">My collections</a>
             <a href="profilepage_user.php">My uploads</a>

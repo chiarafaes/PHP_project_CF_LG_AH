@@ -7,27 +7,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="css/default.css" />
-    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/profilepage.css" />
 
     <title>Create collection</title>
 </head>
 <body>
+<form method="post" name="create" action="board.php" id="create" />
 <a class="close" href="#close">x</a>
 
 
-    <div class="createcollection_title">
+    <div class="collection_title">
         <label>Name</label>
-        <input type="text" name="title" placeholder="Give your collection a name"/>
+        <input type="text" name="name" placeholder="Give your collection a name"/>
     </div>
 
 
-    <div class="private">
+    <div class="toggleSwitch">
         <label>Private</label>
-        <input type="checkbox" name="private" value="yes">yes<br>
-        <input type="checkbox" name="private" value="no">no<br>
+        <label class="switch">
+            <input type="checkbox" name="checkbox" >
+            <div class="slider"></div>
+        </label>
+
+
     </div>
 
-    <div class="btn_createcollection">
+    <div class="btn_collection">
         <input type="submit" name='submit' value="Create" />
     </div>
 

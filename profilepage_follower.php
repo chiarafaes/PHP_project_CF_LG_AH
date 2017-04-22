@@ -55,6 +55,8 @@ spl_autoload_register(function ($class){
     <div class="avatar">
         <a href="profilepage_user.php" class="dropbtn"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
         <div class="dropdown-content">
+            <a href="discoverUsers.php">Discover users</a>
+            <hr class="hr_dropdown">
             <a href="profilepage_user.php">My profile</a>
             <a href="profilepage_user.php">My collections</a>
             <a href="profilepage_user.php">My uploads</a>
@@ -66,25 +68,19 @@ spl_autoload_register(function ($class){
 </header>
 
 
-<!-- Popup - overlay - create collection -->
-<a href="#x" class="overlay" id="add_form"></a>
-<div class="popup_additem">
-    <?php include_once('createcollection.php');?>
-</div>
 <div id="main">
     <div id="profile_left">
 
         <div class="profile_user_info">
             <img src="<?php echo Avatar::showAvatar(); ?>">
-            <h2><?php echo $_SESSION['username']; ?></h2>
+            <h2>Naam volger</h2>
             <h3>City, BE</h3>
             <p>hier komt een woordje uitleg over persoon in kwestie</p>
+
+            <a href="#">Follow</a>
         </div>
 
-        <div class="create_collection">
-            <h3>Create collection</h3>
-            <a href="#add_form" id="login_pop">+</a>
-        </div>
+
     </div>
 
     <div id="profile_right">
@@ -178,7 +174,6 @@ spl_autoload_register(function ($class){
     </div>
 </div>
 
-<script src="js/popup.js"></script>
 
 </body>
 </html>
