@@ -148,7 +148,7 @@ if(!empty($_POST['search'])){
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                 <hr>
                 <div class="user_info">
-                    <img src="<?php echo$post['avatar']; ?>" alt="#">
+                    <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
                     <p class="categorie">Categorie</p>
                 </div>
