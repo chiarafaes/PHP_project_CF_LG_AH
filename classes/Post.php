@@ -161,5 +161,12 @@ class Post {
             return false;
         }
     }
+
+    public static function getTimeAgo($p_dDate){
+        $currentDate = new DateTime();
+        $postDate = new DateTime($p_dDate);
+        $interval = $postDate->diff($currentDate);
+        return $interval->format('%ad ago');
+    }
 }
 ?>

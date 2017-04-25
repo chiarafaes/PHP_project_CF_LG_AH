@@ -146,6 +146,7 @@ if(!empty($_POST['search'])){
                 </div>
                 <p class="description"><?php echo $post['title']; ?></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                <p class="time"><?php echo Post::getTimeAgo($post['postdate']); ?></span></p>
                 <hr>
                 <div class="user_info">
                     <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
@@ -155,8 +156,6 @@ if(!empty($_POST['search'])){
             </div>
         <?php endforeach;?>
     </div>
-
-
 </main>
 
 <!-- Load more - over hele pagina -->
