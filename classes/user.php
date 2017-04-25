@@ -82,6 +82,21 @@ class user{
 
         return ($output);
     }
+
+    public function getUsers()
+    {
+        $conn= Db::getInstance();
+
+        $stmt = $conn->prepare("SELECT FROM Users (Username,Avatar) VALUES (:Username,:Avatar)");
+        $stmt->bindValue(":Username",$this->m_sUsername);
+        $stmt->bindValue(":Avatar", $this->m_sAvatar);
+
+        $stmt->execute();
+
+        return ($stmt->fetchAll(PDO::FETCH_ASSOC));
+    }
+
+
 }
 ?>
 

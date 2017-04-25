@@ -4,6 +4,12 @@ spl_autoload_register(function ($class){
     include_once ("classes/".$class.".php");
 });
 
+$conn = Db::getInstance();
+$statement = $conn->prepare("SELECT * FROM users");
+$statement->execute();
+
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +25,122 @@ spl_autoload_register(function ($class){
     <link rel="stylesheet" href="css/profilepage.css">
 
 
-    <title><?php echo $_SESSION['username']; ?></title>
+    <title><?php echo $allUser['Username']; ?></title>
+
+    <style>
+            h1{
+                text-align: center;
+                color: rgb(80,80,80);
+            }
+
+            #wrapper{
+                width: 95%;
+                margin: 2em;
+            }
+
+            .allUsers {
+                margin: 1em;
+                padding: 0;
+                -moz-column-gap: 1em;
+                -webkit-column-gap: 1em;
+                column-gap: 1em;
+            }
+
+
+            .item {
+                display: inline-block;
+                background-color: white;
+                border-radius: 5px;
+                padding: 1em;
+                margin: 0 0 1em;
+                width: 100%;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+
+            .item a{
+                text-decoration: none;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                margin-top: 10px;
+                background-color: #10a6ad;
+                color: white;
+                border-radius: 5px;
+                padding: 10px 20px 10px 20px;
+                font-weight: 400;
+                font-size: 12px;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                text-align:center;
+                width: 100px;
+            }
+
+            .item a:hover{
+                background-color: #0A6970;
+                color: white;
+            }
+
+            .item p{
+                font-size: 13px;
+                font-weight: 400;
+                letter-spacing: 1px;
+
+                color:#666666;
+                text-align: center;
+            }
+
+            .item img{
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                margin-bottom: 20px;
+                width: 120px;
+
+            }
+
+
+            @media only screen and (min-width: 400px) {
+                .allUsers {
+                    -moz-column-count: 2;
+                    -webkit-column-count: 2;
+                    column-count: 2;
+                }
+            }
+
+            @media only screen and (min-width: 700px) {
+                .allUsers {
+                    -moz-column-count: 3;
+                    -webkit-column-count: 3;
+                    column-count: 3;
+                }
+            }
+
+            @media only screen and (min-width: 900px) {
+                .allUsers {
+                    -moz-column-count: 4;
+                    -webkit-column-count: 4;
+                    column-count: 4;
+                }
+            }
+
+            @media only screen and (min-width: 1100px) {
+                .allUsers {
+                    -moz-column-count: 5;
+                    -webkit-column-count: 5;
+                    column-count: 5;
+                }
+            }
+
+            @media only screen and (min-width: 1280px) {
+                #wrapper {
+                    width: 1260px;
+                }
+            }
+
+
+    </style>
 </head>
 <body>
 
@@ -70,14 +191,17 @@ spl_autoload_register(function ($class){
 
 
 <h1>Discover users</h1>
-
-<div>
-    <img src="<?php echo Avatar::showAvatar(); ?>">
-    <p>Naam gebruiker</p>
-    <a href="profilepage_follower.php">View profile</a>
-
+<div id="wrapper">
+    <div class="allUsers">
+        <?php while($row = $statement->fetch(PDO::FETCH_ASSOC)): ?>
+        <div class="item">
+            <img src="<?php echo $row['avatar'] ?>">
+            <p><?php echo $row['Username'] ?></p>
+            <a href="profilepage_follower.php">View profile</a>
+        </div>
+        <?php endwhile; ?>
+    </div>
 </div>
-
 
 </body>
 </html>
