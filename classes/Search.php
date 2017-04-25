@@ -26,13 +26,14 @@ class Search
         $this->m_sSearchParam = $m_sSearchParam;
     }
 
-    public function Search(){
+    public function Search()
+    {
         $conn = Db::getInstance();
 
         $statement = $conn->prepare('SELECT * FROM posts WHERE MATCH (`title`,`description`) AGAINST (:searchParam)');
         $statement->bindValue(':searchParam', $this->m_sSearchParam);
 
-        if ($statement->execute()){
+        if ($statement->execute()) {
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
         } else {
             return false;

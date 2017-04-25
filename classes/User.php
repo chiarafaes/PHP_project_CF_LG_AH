@@ -1,13 +1,15 @@
 <?php
-class User{
+class User
+{
     private $m_sFullname;
     private $m_sUsername;
     private $m_sMail;
     private $m_sPassword;
     private $m_sAvatar;
 
-    public function __set($p_sProperty,$p_vValue){
-        switch ($p_sProperty){
+    public function __set($p_sProperty, $p_vValue)
+    {
+        switch ($p_sProperty) {
             case "Fullname":
                 $this->m_sFullname = $p_vValue;
                 break;
@@ -30,9 +32,9 @@ class User{
         }
     }
 
-    public function __get($p_sProperty){
-        switch ($p_sProperty)
-        {
+    public function __get($p_sProperty)
+    {
+        switch ($p_sProperty) {
             case "Fullname":
                 return $this->m_sFullname;
             break;
@@ -55,16 +57,17 @@ class User{
         }
     }
 
-    public function Save(){
+    public function Save()
+    {
         //connectie maken (PDO) -> geen mysqli, PDO kan voor meerder data banken
         $conn= Db::getInstance();
 
         //query schrijven
         $statement = $conn->prepare("INSERT INTO Users (Fullname,Username,Mail,Password, Avatar) VALUES (:Fullname,:Username,:Mail,:Password, :Avatar)");
-        $statement->bindValue(":Fullname",$this->m_sFullname);
-        $statement->bindValue(":Username",$this->m_sUsername);
-        $statement->bindValue(":Mail",$this->m_sMail);
-        $statement->bindValue(":Password",$this->m_sPassword);
+        $statement->bindValue(":Fullname", $this->m_sFullname);
+        $statement->bindValue(":Username", $this->m_sUsername);
+        $statement->bindValue(":Mail", $this->m_sMail);
+        $statement->bindValue(":Password", $this->m_sPassword);
         $statement->bindValue(":Avatar", $this->m_sAvatar);
 
         //query executen
@@ -72,7 +75,6 @@ class User{
 
         //true or false?
         return ($res);
-
     }
 
     public function __toString()
@@ -83,20 +85,23 @@ class User{
         return ($output);
     }
 
-    public function getUsers()
+    public static function getUsers()
     {
         $conn= Db::getInstance();
-
-        $stmt = $conn->prepare("SELECT FROM Users (Username,Avatar) VALUES (:Username,:Avatar)");
-        $stmt->bindValue(":Username",$this->m_sUsername);
-        $stmt->bindValue(":Avatar", $this->m_sAvatar);
-
+        $stmt = $conn->prepare("SELECT * FROM Users");
         $stmt->execute();
 
         return ($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    public static function getTopics()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM topics");
+        $statement->execute();
 
+        return ($statement->fetchAll(PDO::FETCH_ASSOC));
+    }
 }
 ?>
 

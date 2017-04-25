@@ -1,12 +1,12 @@
 <?php
 //vervangt includes, deze functie moet slechts 1 keer geschreven worden
-    spl_autoload_register(function ($class){
-        include_once ("classes/".$class.".php");
+    spl_autoload_register(function ($class) {
+        include_once("classes/".$class.".php");
     });
 
 // als er gesubmit is gaan we velden uitlezen
-    if(!empty($_POST)){
-        try{
+    if (!empty($_POST)) {
+        try {
             $options = [
                 'cost'=> 12
             ];
@@ -20,22 +20,17 @@
             $email = $user->Mail = $_POST['email'];
 
             // error handling voor lege velden en het nakijken voor correct email adress
-            if(empty($user->Fullname = $_POST["fullname"])){
+            if (empty($user->Fullname = $_POST["fullname"])) {
                 $error = "Field 'Fullname' can not be empty.";
-            }
-            elseif (empty($user->Username = $_POST["username"])){
+            } elseif (empty($user->Username = $_POST["username"])) {
                 $error = "Field 'Username' can not be empty.";
-            }
-            elseif (empty($email)){
+            } elseif (empty($email)) {
                 $error = "Field 'Email' can not be empty.";
-            }
-            elseif (substr_count($email, "@") < 1 || substr_count(substr($email, strpos($email, "@")), ".") < 1){
+            } elseif (substr_count($email, "@") < 1 || substr_count(substr($email, strpos($email, "@")), ".") < 1) {
                 $error = "hallo";
-            }
-            elseif (empty($user->Password = $_POST['password'])){
+            } elseif (empty($user->Password = $_POST['password'])) {
                 $error = "Field 'Password' can not be empty.";
-            }
-            elseif (strlen($user->Password) < $MinimumLength){
+            } elseif (strlen($user->Password) < $MinimumLength) {
                 $error = "Your password has to be at least 6 characters long.";
             }
 
@@ -61,7 +56,7 @@
                     $resultaat = $statement->fetch(PDO::FETCH_ASSOC);
                     $error = "Mail is already used";
                     $res = false;
-                }else{
+                } else {
                     // doorsturen naar topics
                     if ($res != false) {
                         // OK
@@ -74,7 +69,6 @@
                         $_SESSION['email'] = $user->Mail;
                         $_SESSION['username'] = $user->Username;
                         $_SESSION['fullname'] = $user->Fullname;
-
                     } else {
                         // Niet OK
                         $fail = "Oops, something went wrong! Try again!";
@@ -82,8 +76,7 @@
                     }
                 }
             }
-        }
-        catch (PDOException $e){
+        } catch (PDOException $e) {
             $error= $e->getMessage();
         }
     }

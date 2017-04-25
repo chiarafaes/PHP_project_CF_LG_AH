@@ -1,14 +1,12 @@
 <?php
 
 session_start();
-spl_autoload_register(function ($class){
-    include_once ("classes/".$class.".php");
+spl_autoload_register(function ($class) {
+    include_once("classes/".$class.".php");
 });
 
-if (isset($_SESSION['email'])){
-
-}
-else {
+if (isset($_SESSION['email'])) {
+} else {
     header('Location: login.php');
 }
 

@@ -60,6 +60,8 @@ main {
 
 }
 
+
+
 /* POPUP ADD ITEM*/
 .overlay {
     background-color: black;
@@ -232,18 +234,36 @@ a.btn.send {
     word-wrap: break-word;
     line-height: 18px;
 }
-.pin .likes {
+.pin .likes,
+.pin .postdate{
     color: #8C7E7E;
     float:right;
-    width: 45%;
     line-height: 1.35em;
-    margin-top: 10px;
+    text-align: right;
 }
+
+.pin .likes,
+.pin .postdate{
+        margin-right: 10px;
+}
+
+.pin .likes{
+    margin-top: 5px;
+}
+
 
 .pin .likes span {
     text-align: right;
     margin-left: 80px;
 }
+
+.pin .icon_heart img{
+    width: 13px;
+    float:right;
+    margin-top: 5px;
+    margin-right: 2px;
+}
+
 
 .user_info{
     margin-left: 15px;
@@ -335,6 +355,7 @@ hr{
 
 }
 
+
 /* CREATE POST */
 
 .label_upload {
@@ -380,7 +401,7 @@ hr{
     width: 48%;
 }
 
-.create_uploadphoto label{
+.create_uploadphoto label, .box_topics .boxTitle {
     color: #8C7E7E;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -433,6 +454,28 @@ textarea {
 .label_upload label, .create_title label, .create_description label {
     font-size: 14px;
 }
+
+form input[type=checkbox]{
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #b3b3b3;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+form input[type=checkbox]:checked {
+    background-color: #10a6ad;
+    border:none;
+}
+
+
+
+
+/* MEDIAQUERIES */
 
 
 @media (max-width: 1500px) {
@@ -557,9 +600,6 @@ textarea {
         position: relative;
         width: 320px;
     }
-
-
-
 
 }
 

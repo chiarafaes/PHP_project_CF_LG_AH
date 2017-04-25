@@ -1,4 +1,12 @@
-<!doctype html>
+<?php
+spl_autoload_register(function ($class) {
+    include_once("classes/".$class.".php");
+});
+
+$getTopics = User::getTopics();
+
+
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,8 +20,8 @@
     <title>Create collection</title>
 </head>
 <body>
-<form method="post" name="create" action="board.php" id="create" />
-<a class="close" href="#close">x</a>
+<form method="post" name="create" action="board.php" id="create" >
+    <a class="close" href="#close">x</a>
 
 
     <div class="collection_title">
@@ -28,14 +36,29 @@
             <input type="checkbox" name="checkbox" >
             <div class="slider"></div>
         </label>
+    </div>
 
+    <div class="box_topics">
 
+        <form id="topics" action="" method="post">
+            <ul>
+                <?php foreach ($getTopics as $topic): ?>
+                    <li>
+                        <label for="<?php echo $topic ['name'];?>"><?php echo $topic ['name'];?>
+
+                            <input class="topicInput" id="<?php echo $topic['name'];?>" name="<?php echo $topic['name'];?>" type="checkbox" value="<?php echo $topic['id'];?>">
+
+                        </label>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
+        </form>
     </div>
 
     <div class="btn_collection">
         <input type="submit" name='submit' value="Create" />
     </div>
 
-</form>
 </body>
 </html>

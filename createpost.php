@@ -1,4 +1,12 @@
-<!doctype html>
+<?php
+spl_autoload_register(function ($class) {
+    include_once("classes/".$class.".php");
+});
+
+$getTopics = User::getTopics();
+
+
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +29,13 @@
         <img id="target" src="http://placehold.it/180x280" alt="#" />
         <input type="file" name="fileToUpload" id="fileToUpload" class="inputfile">
     </div>
+
+    <div class="create_description">
+        <label>Description</label>
+        <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
+    </div>
 </div>
+
 
 <div class="right_column">
 
@@ -31,15 +45,30 @@
     </div>
 
 
-    <div class="create_description">
-    <label>Description</label>
-    <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
+    <div class="box_topics">
+        <label class="boxTitle">Choose collection</label>
+        <form id="topics" action="" method="post">
+            <ul>
+                <?php foreach ($getTopics as $topic): ?>
+                    <li>
+                        <label for="<?php echo $topic ['name'];?>"><?php echo $topic ['name'];?>
+
+                            <input class="topicInput" id="<?php echo $topic['name'];?>" name="<?php echo $topic['name'];?>" type="checkbox" value="<?php echo $topic['id'];?>">
+
+                        </label>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
+        </form>
+    </div>
+
+<div class="create_btnPost">
+    <input type="submit" name='submit' value="Post" />
 </div>
 
-    <div class="create_btnPost">
-    <input type="submit" name='submit' value="Post" />
-    </div>
 </div>
+
 </form>
 </body>
 </html>

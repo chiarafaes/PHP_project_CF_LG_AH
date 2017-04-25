@@ -1,12 +1,10 @@
 <?php
 session_start();
-spl_autoload_register(function ($class){
-    include_once ("classes/".$class.".php");
+spl_autoload_register(function ($class) {
+    include_once("classes/".$class.".php");
 });
 
-$conn = Db::getInstance();
-$statement = $conn->prepare("SELECT * FROM users");
-$statement->execute();
+$allUsers = User::getUsers();
 
 
 
@@ -25,7 +23,7 @@ $statement->execute();
     <link rel="stylesheet" href="css/profilepage.css">
 
 
-    <title><?php echo $allUser['Username']; ?></title>
+    <title>Discover Users</title>
 
     <style>
             h1{
@@ -193,13 +191,13 @@ $statement->execute();
 <h1>Discover users</h1>
 <div id="wrapper">
     <div class="allUsers">
-        <?php while($row = $statement->fetch(PDO::FETCH_ASSOC)): ?>
+        <?php foreach ($allUsers as $user): ?>
         <div class="item">
-            <img src="<?php echo $row['avatar'] ?>">
-            <p><?php echo $row['Username'] ?></p>
+            <img src="<?php echo $user['avatar'] ?>">
+            <p><?php echo $user['Username'] ?></p>
             <a href="profilepage_follower.php">View profile</a>
         </div>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
     </div>
 </div>
 

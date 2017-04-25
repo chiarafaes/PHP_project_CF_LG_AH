@@ -1,5 +1,6 @@
 <?php
-class Post {
+class Post
+{
     private $m_iID;
     private $m_sPicture;
     private $m_sTitle;
@@ -7,6 +8,7 @@ class Post {
     private $m_sUserName;
     private $m_iLikes;
     private $m_iAantalComments;
+    private $m_sCategorie;
 
     //getters & setters
     /**
@@ -24,6 +26,25 @@ class Post {
     {
         $this->m_sTitle = $m_sTitle;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMSCategorie()
+    {
+        return $this->m_sCategorie;
+    }
+
+    /**
+     * @param mixed $m_sCategorie
+     */
+    public function setMSCategorie($m_sCategorie)
+    {
+        $this->m_sCategorie = $m_sCategorie;
+    }
+
+
+
 
     /**
      * @return mixed
@@ -114,59 +135,80 @@ class Post {
         return $this->m_iID;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMSPicture()
+    {
+        return $this->m_sPicture;
+    }
+
+    /**
+     * @param mixed $m_sPicture
+     */
+    public function setMSPicture($m_sPicture)
+    {
+        $this->m_sPicture = $m_sPicture;
+    }
+
+
+
 
     //save naar DB
-    public function Save(){
+    public function Save()
+    {
         //connectie maken (PDO) -> geen mysqli, PDO kan voor meerdere data banken
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Posts (Picture,Title ,Description,Username) VALUES (:Picture,:Title,:Description,:Username)");
-        $statement->bindValue(":Picture",$this->m_sPicture);
-        $statement->bindValue(":Title",$this->m_sTitle);
-        $statement->bindValue(":Description",$this->m_sDescription);
-        $statement->bindValue(":Username",$this->m_sUserName);
+        $statement = $conn->prepare("INSERT INTO Posts (Picture,Title ,Description,Username,Categorie) VALUES (:Picture,:Title,:Description,:Username,:Categorie)");
+        $statement->bindValue(":Picture", $this->m_sPicture);
+        $statement->bindValue(":Title", $this->m_sTitle);
+        $statement->bindValue(":Description", $this->m_sDescription);
+        $statement->bindValue(":Username", $this->m_sUserName);
+        $statement->bindValue(":Categorie", $this->m_sCategorie);
 
         //query executen
         $res = $statement->execute();
 
         //true or false?
         return ($res);
-
     }
 
-    public static function getPosts($p_iLimit, $p_iOffset){
+    public static function getPosts($p_iLimit, $p_iOffset)
+    {
         $conn = Db::getInstance();
 
         $statement = $conn->prepare("SELECT posts.*, users.avatar FROM posts LEFT JOIN users on users.username  = posts.username ORDER BY postdate DESC LIMIT :limit OFFSET :offset");
         $statement->bindValue(':limit', (int) trim($p_iLimit), PDO::PARAM_INT);
         $statement->bindValue(':offset', (int) trim($p_iOffset), PDO::PARAM_INT);
 
-        if ($statement->execute()){
+        if ($statement->execute()) {
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
         } else {
             return false;
         }
     }
 
-    public static function getPostsLikedByUser($p_sUsername){
+    public static function getPostsLikedByUser($p_sUsername)
+    {
         $conn = Db::getInstance();
 
         $statement = $conn->prepare('SELECT * FROM users_likes_posts WHERE user = :user');
         $statement->bindValue(':user', $p_sUsername);
 
-        if($statement->execute()){
+        if ($statement->execute()) {
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
         } else {
             return false;
         }
     }
 
-    public static function getTimeAgo($p_dDate){
+    public static function getTimeAgo($p_dDate)
+    {
         $currentDate = new DateTime();
         $postDate = new DateTime($p_dDate);
         $interval = $postDate->diff($currentDate);
         return $interval->format('%ad ago');
     }
 }
-?>

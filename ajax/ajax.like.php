@@ -8,8 +8,8 @@
 
     session_start();
 
-    spl_autoload_register(function ($class){
-        include_once ("../classes/".$class.".php");
+    spl_autoload_register(function ($class) {
+        include_once("../classes/".$class.".php");
     });
 
     $user = $_SESSION['email'];
@@ -22,8 +22,8 @@
     $statement->bindValue(':user', $user);
     $statement->bindValue(':post', $post);
 
-    if($statement->execute()){
-        if(count($res = $statement->fetchAll(PDO::FETCH_ASSOC)) == 0){
+    if ($statement->execute()) {
+        if (count($res = $statement->fetchAll(PDO::FETCH_ASSOC)) == 0) {
             $insert = $conn->prepare('INSERT INTO users_likes_posts (user, post) VALUES (:user, :post)');
             $insert->bindValue(':user', $user);
             $insert->bindValue(':post', $post);
@@ -33,7 +33,7 @@
             $likes += 1;
 
 
-            if ($insert->execute()){
+            if ($insert->execute()) {
                 echo json_encode($likes);
             }
         } else {
@@ -43,7 +43,7 @@
 
             $likes -= 1;
 
-            if ($delete->execute()){
+            if ($delete->execute()) {
                 echo json_encode($likes);
             }
         }
@@ -54,9 +54,6 @@
         $update->bindValue(':post', $post);
 
         $update->execute();
-
-    } else{
+    } else {
         echo json_encode("niet gelukt");
     }
-
-?>

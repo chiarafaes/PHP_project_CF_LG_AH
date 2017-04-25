@@ -4,19 +4,22 @@
     {
         private $m_sAvatar;
 
-        public function __set($p_sProperty, $p_vValue){
-            switch ($p_sProperty){
+        public function __set($p_sProperty, $p_vValue)
+        {
+            switch ($p_sProperty) {
                 case 'file':
                     $this->m_sAvatar = $p_vValue;
                 break;
             }
         }
 
-        public function __get($p_sProperty){
+        public function __get($p_sProperty)
+        {
             return $this->m_sAvatar;
         }
 
-        public function saveAvatar(){
+        public function saveAvatar()
+        {
             // deze functie slaat de avatar op naar de database.
 
             $conn = Db::getInstance();
@@ -28,12 +31,13 @@
             $statement->bindValue(':avatar', $this->m_sAvatar);
             $statement->bindValue(':user', $user->Mail);
 
-            if($statement->execute()){
+            if ($statement->execute()) {
                 header('location:profilesettings.php');
             }
         }
 
-        public function deleteOldAvatar(){
+        public function deleteOldAvatar()
+        {
             // deze functie dient om mensen maar 1 profile pic tegelijk te bewaren op de file server
             // anders geraakt deze vol.
 
@@ -45,13 +49,14 @@
             $statement = $conn->prepare("SELECT avatar FROM users WHERE Mail = :mail");
             $statement->bindValue(':mail', $user->Mail);
 
-            if($statement->execute()){
+            if ($statement->execute()) {
                 $res = $statement->fetch(PDO::FETCH_ASSOC);
                 unlink($res['avatar']);
             }
         }
 
-        public static function showAvatar(){
+        public static function showAvatar()
+        {
             $user = new User();
             $user->Mail = $_SESSION['email'];
 
@@ -60,7 +65,7 @@
             $retrieveQuery = $conn->prepare("SELECT avatar FROM users WHERE Mail = :user");
             $retrieveQuery->bindValue(':user', $user->Mail);
 
-            if($retrieveQuery->execute()) {
+            if ($retrieveQuery->execute()) {
                 $res = $retrieveQuery->fetch(PDO::FETCH_ASSOC);
                 return $res['avatar'];
             }

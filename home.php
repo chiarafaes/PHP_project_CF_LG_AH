@@ -1,24 +1,24 @@
 <?php
 session_start();
-spl_autoload_register(function ($class){
-    include_once ("classes/".$class.".php");
+spl_autoload_register(function ($class) {
+    include_once("classes/".$class.".php");
 });
 // Wordt er gezocht? Doe dan de search
-if(!empty($_POST['search'])){
-    try{
+if (!empty($_POST['search'])) {
+    try {
         $search_param = $_POST['search'];
         $search = new Search();
         $search->setMSSearchParam($search_param);
         $renderedPosts = $search->Search();
-    } catch (PDOException $e){
+    } catch (PDOException $e) {
         $error = $e->getMessage();
     }
 } else {
     // Als er niet gezocht wordt, dan alle posts inladen
-    try{
+    try {
         $renderedPosts = Post::getPosts(20, 0); // Veranderd naar 20, want in briefing moet bij load more 20 items bijkomen
         $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
-    } catch (PDOException $e){
+    } catch (PDOException $e) {
         $error = $e->getMessage();
     }
 }
@@ -65,16 +65,16 @@ if(!empty($_POST['search'])){
     </div>
 
     <div class="iconen">
-            <div class="icon_1">
-                <a href="#" ></a>
-            </div>
+        <div class="icon_1">
+            <a href="#" ></a>
+        </div>
 
-            <div class="icon_2">
-                <a href="#" ></a>
-            </div>
-            <div class="icon_3">
-                <a href="#" ></a>
-            </div>
+        <div class="icon_2">
+            <a href="#" ></a>
+        </div>
+        <div class="icon_3">
+            <a href="#" ></a>
+        </div>
 
     </div>
 
@@ -108,7 +108,7 @@ if(!empty($_POST['search'])){
 
 <!-- Overzicht posts-->
 <main>
-    <?php if(!empty($search_param)):?>
+    <?php if (!empty($search_param)):?>
         <h1>Search results for '<?php echo $search_param; ?>'</h1>
         <a href="home.php">Clear results</a>
     <?php endif; ?>
@@ -121,14 +121,14 @@ if(!empty($_POST['search'])){
                         <a href="#" class="btn save">Save</a></br>
                         <a href="#" class="btn like">
                             <img src="img/<?php
-                            if(!empty($likedPosts)) {
+                            if (!empty($likedPosts)) {
                                 $isLiked = false;
                                 foreach ($likedPosts as $item) {
                                     if ($post['id'] == $item['post']) {
                                         $isLiked = true;
                                     }
                                 }
-                                if($isLiked){
+                                if ($isLiked) {
                                     echo 'liked_icon.svg';
                                 } else {
                                     echo 'like_icon.svg';
@@ -145,8 +145,10 @@ if(!empty($_POST['search'])){
                     </a>
                 </div>
                 <p class="description"><?php echo $post['title']; ?></p>
+                <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                <p class="time"><?php echo Post::getTimeAgo($post['postdate']); ?></span></p>
+                <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+
                 <hr>
                 <div class="user_info">
                     <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>

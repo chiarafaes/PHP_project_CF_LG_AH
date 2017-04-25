@@ -1,18 +1,18 @@
 <?php
 
-    spl_autoload_register(function ($class){
-        include_once ("classes/".$class.".php");
+    spl_autoload_register(function ($class) {
+        include_once("classes/".$class.".php");
     });
 
-    if (!empty($_POST)){
-        try{
+    if (!empty($_POST)) {
+        try {
             // gegevens opslaan
             $user = new User();
 
             // error handling voor lege velden
-            if(empty($user->Mail = $_POST['email'])){
+            if (empty($user->Mail = $_POST['email'])) {
                 $error = "Field 'email' can not be empty.";
-            } elseif (empty($user->Password = $_POST['password'])){
+            } elseif (empty($user->Password = $_POST['password'])) {
                 $error = "Field 'password' can not be empty.";
             }
 
@@ -42,7 +42,6 @@
                     } else {
                         $error = 'Password does not match. Please try again.';
                     }
-
                 } else {
                     $error = "User does not exist in database. Please register first." . "</br>" . "<a href='registration.php'>Sign up here</a>";
                 }
@@ -51,8 +50,7 @@
             // Normaal gezien gaan we niet zeggen of het wachtwoord of de username fout is.
             // We gaan gewoon zeggen dat indien één van de twee fout is dat de user niet kan inloggen.
             // Dit is nu zo om te testen, maar in production kunnen/moeten we dat veranderen.
-
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             $error = $e->getMessage();
         }
     }

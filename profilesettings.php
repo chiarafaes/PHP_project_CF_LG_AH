@@ -3,8 +3,8 @@
     $feedback = '';
 
     //vervangt includes, deze functie moet slechts 1 keer geschreven worden
-    spl_autoload_register(function ($class){
-        include_once ("classes/".$class.".php");
+    spl_autoload_register(function ($class) {
+        include_once("classes/".$class.".php");
     });
 
     // eerst de usergegevens gaan halen uit db
@@ -16,7 +16,7 @@
     $retrieveQuery = $conn->prepare("SELECT * FROM users WHERE Mail = :user");
     $retrieveQuery->bindValue(':user', $user->Mail);
 
-    if($retrieveQuery->execute()){
+    if ($retrieveQuery->execute()) {
         $res = $retrieveQuery->fetch(PDO::FETCH_ASSOC);
         $user->Fullname = $res['Fullname'];
         $user->Username = $res['Username'];
@@ -25,11 +25,11 @@
     }
 
     //Enkel bij post iets doen
-    if(!empty($_POST)){
-        try{
+    if (!empty($_POST)) {
+        try {
 
             // we checken of er gezocht wordt of niet. Search krijgt voorang op update van userprofile
-            if(isset($_POST['search'])){
+            if (isset($_POST['search'])) {
                 // TODO: Search integereren
             } else {
                 //nieuwe input user aanmaken
@@ -40,21 +40,18 @@
                 $MinimumLength = 6;
 
                 // We zien of alle velden zijn ingevuld en vullen alles reeds correct in voor de update
-                if(empty($userNew->Fullname = $_POST["fullname"])){
+                if (empty($userNew->Fullname = $_POST["fullname"])) {
                     $feedback = "Field 'Fullname' can not be empty.";
-                }
-                elseif (empty($userNew->Username = $_POST["username"])){
+                } elseif (empty($userNew->Username = $_POST["username"])) {
                     $feedback = "Field 'Username' can not be empty.";
-                }
-                elseif (empty($userNew->Password = $_POST['password'])){
+                } elseif (empty($userNew->Password = $_POST['password'])) {
                     $feedback = "Field 'Password' can not be empty.";
-                }
-                elseif (strlen($userNew->Password) < $MinimumLength){
+                } elseif (strlen($userNew->Password) < $MinimumLength) {
                     $feedback = "Your password has to be at least 6 characters long.";
                 }
 
                 // enkel indien er geen fouten waren met het formulier gaan we door
-                if(empty($feedback)){
+                if (empty($feedback)) {
 
                     // Wachtwoord encrypten
                     $userNew->Password = password_hash($userNew->Password, PASSWORD_DEFAULT, $options);
@@ -75,7 +72,7 @@
                     }
                 }
             }
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             $feedback = $e->getMessage();
         }
     }
@@ -177,7 +174,7 @@
                     </form>
                 </div>
             </div>
-            <?php if(!empty($feedback)):?>
+            <?php if (!empty($feedback)):?>
                 <div class="feedback"><?php echo $feedback;?></div>
             <?php endif; ?>
             <form name="changeprofile" id="changeprofile" action="#" method="post">
