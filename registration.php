@@ -12,7 +12,7 @@
             ];
 
             //lezen velden uit en steken dit in de waarden van de class user
-            $user = new user();
+            $user = new User();
 
             $res = "succes";
             $MinimumLength = 6;

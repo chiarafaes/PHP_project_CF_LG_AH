@@ -7,7 +7,7 @@
     if (!empty($_POST)){
         try{
             // gegevens opslaan
-            $user = new user();
+            $user = new User();
 
             // error handling voor lege velden
             if(empty($user->Mail = $_POST['email'])){

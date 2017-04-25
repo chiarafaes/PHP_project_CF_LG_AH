@@ -21,7 +21,7 @@
 
             $conn = Db::getInstance();
 
-            $user = new user();
+            $user = new User();
             $user->Mail = $_SESSION['email'];
 
             $statement = $conn->prepare("UPDATE users SET avatar = :avatar WHERE Mail = :user");
@@ -39,7 +39,7 @@
 
             $conn = Db::getInstance();
 
-            $user = new user();
+            $user = new User();
             $user->Mail = $_SESSION['email'];
 
             $statement = $conn->prepare("SELECT avatar FROM users WHERE Mail = :mail");
@@ -52,7 +52,7 @@
         }
 
         public static function showAvatar(){
-            $user = new user();
+            $user = new User();
             $user->Mail = $_SESSION['email'];
 
             $conn = Db::getInstance();

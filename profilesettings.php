@@ -8,7 +8,7 @@
     });
 
     // eerst de usergegevens gaan halen uit db
-    $user = new user();
+    $user = new User();
     $user->Mail = $_SESSION['email'];
 
     $conn = Db::getInstance();
@@ -33,7 +33,7 @@
                 // TODO: Search integereren
             } else {
                 //nieuwe input user aanmaken
-                $userNew = new user();
+                $userNew = new User();
                 $options = [
                     'cost' => 12
                 ];

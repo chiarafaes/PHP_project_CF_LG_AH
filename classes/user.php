@@ -1,5 +1,5 @@
 <?php
-class user{
+class User{
     private $m_sFullname;
     private $m_sUsername;
     private $m_sMail;
