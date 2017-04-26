@@ -195,7 +195,7 @@ $allUsers = User::getUsers();
         <div class="item">
             <img src="<?php echo $user['avatar'] ?>">
             <p><?php echo $user['Username'] ?></p>
-            <a href="profilepage_follower.php">View profile</a>
+            <a href="profilepage_follower.php?profileId=<?php echo $user['id']?>">View profile</a>
         </div>
         <?php endforeach; ?>
     </div>

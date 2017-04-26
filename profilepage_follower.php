@@ -4,6 +4,9 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
+$user = User::getUser($_GET['profileId']);
+$posts = Post::getPostsByUser($user['id']);
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +22,7 @@ spl_autoload_register(function ($class) {
     <link rel="stylesheet" href="css/profilepage.css">
 
 
-    <title><?php echo $_SESSION['username']; ?></title>
+    <title><?php echo $user['Username']; ?></title>
 </head>
 <body>
 
@@ -72,11 +75,9 @@ spl_autoload_register(function ($class) {
     <div id="profile_left">
 
         <div class="profile_user_info">
-            <img src="<?php echo Avatar::showAvatar(); ?>">
-            <h2>Naam volger</h2>
-            <h3>City, BE</h3>
+            <img src="<?php echo $user['avatar'] ?>">
+            <h2><?php echo $user['Username'] ?></h2>
             <p>hier komt een woordje uitleg over persoon in kwestie</p>
-
             <a href="#">Follow</a>
         </div>
 
@@ -122,57 +123,54 @@ spl_autoload_register(function ($class) {
             </a>
         </div>
 
-        <div id="collections_boards">
-            <div class="collections_boards_">
-                <a href="#">
-                    <div class="board 1">
-                        <p>Name board</p> <!-- get name from collection -->
-                        <div class="board_info">
-                            <p>0 items</p>
-                            <p>0 followers</p>
+        <div class="main_container_profile">
+            <?php foreach ($posts as $post):?>
+                <div class="pin" id="pinID-<?php echo $post['id']?>">
+                    <div class="img_holder">
+                        <div class="buttons" id="1">
+                            <a href="#" class="btn send">Send</a>
+                            <a href="#" class="btn save">Save</a>
+                            <a href="#" class="btn send">IN</a></br>
+                            <a href="#" class="btn like">
+                                <img src="img/<?php
+                                if (!empty($likedPosts)) {
+                                    $isLiked = false;
+                                    foreach ($likedPosts as $item) {
+                                        if ($post['id'] == $item['post']) {
+                                            $isLiked = true;
+                                        }
+                                    }
+                                    if ($isLiked) {
+                                        echo 'liked_icon.svg';
+                                    } else {
+                                        echo 'like_icon.svg';
+                                    }
+                                } else {
+                                    echo 'like_icon.svg';
+                                }
+                                ?>"/>
+                            </a>
+
                         </div>
-                        <div class="collection_images">
-                            <img src="#" class="img_1"/> <!-- get image from collection -->
-                        </div>
+                        <a class="image ajax" href="#" title="photo 1" id="1">
+                            <img src="<?php echo $post['picture']; ?>" alt="" >
+                        </a>
                     </div>
-                </a>
-                <a href="#">
-                    <div class="board 2">
-                        <p>Name board</p> <!-- get name from collection -->
-                        <div class="board_info">
-                            <p>0 items</p>
-                            <p>0 followers</p>
-                        </div>
-                        <div class="collection_images">
-                            <img src="#" class="img_1"/> <!-- get image from collection -->
-                        </div>
+                    <p class="description"><?php echo $post['title']; ?></p>
+                    <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
+                    <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                    <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+
+                    <hr>
+                    <div class="user_info">
+                        <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                        <p><?php echo $post['username']; ?></p>
+                        <p class="categorie">Categorie</p>
                     </div>
-                </a>
-                <a href="#">
-                    <div class="board 3">
-                        <p>Name board</p> <!-- get name from collection -->
-                        <div class="board_info">
-                            <p>0 items</p>
-                            <p>0 followers</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="board 4">
-                        <p>Name board</p> <!-- get name from collection -->
-                        <div class="board_info">
-                            <p>0 items</p>
-                            <p>0 followers</p>
-                        </div>
-                        <div class="collection_images">
-                            <img src="#" class="img_1"/> <!-- get image from collection -->
-                        </div>
-                    </div>
-            </div>
-            </a>
+                </div>
+            <?php endforeach;?>
         </div>
     </div>
-</div>
 
 
 </body>

@@ -94,6 +94,16 @@ class User
         return ($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    public static function getUser($id)
+    {
+        $conn= Db::getInstance();
+        $stmt = $conn->prepare("SELECT * FROM Users WHERE id=".$id);
+        $stmt->execute();
+
+        return ($stmt->fetch(PDO::FETCH_ASSOC));
+    }
+
+
     public static function getTopics()
     {
         $conn = Db::getInstance();

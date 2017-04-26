@@ -211,4 +211,19 @@ class Post
         $interval = $postDate->diff($currentDate);
         return $interval->format('%ad ago');
     }
+
+    public static function getPostsByUser($userid)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM posts LEFT JOIN users on users.username = posts.username WHERE users.id = ".$userid." ORDER BY postdate DESC");
+
+        if ($statement->execute()) {
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
+
+
 }

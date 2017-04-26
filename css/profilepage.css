@@ -21,6 +21,10 @@ html{
     clear:both;
 }
 
+.main_container_profile{
+    clear:both;
+}
+
 
 .collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following{
     background-color:white;
@@ -31,30 +35,6 @@ html{
     float:left;
     display:block;
 
-
-}
-.collections_boards_{
-    column-count: 2;
-    column-gap: 50px;
-
-}
-
-.board {
-    background-color: white;
-    display: inline-block;
-    margin: 0 0 1em;
-    width: 100%;
-    height: 400px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-
-}
-
-#collections_boards{
-    clear:both;
-    padding-top: 20px;
-    width: 1030px;
 
 }
 
@@ -68,8 +48,95 @@ html{
 }
 
 .profile_user_info{
+     margin-bottom: 30px;
+    padding-bottom: 20px;
+ }
+
+.profile_user_info a{
+    background-color: #10a6ad;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 50px 10px 50px;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+.profile_user_info a:hover{
+    background-color: #0A6970;
+    color:white;
+
+}
+
+.profile_user_info h2{
+    font-size: 18px;
+    color: rgb(60,60,60);
+}
+
+.profile_user_info h3{
+    font-size: 14px;
+    margin-top: 5px;
+    color: #666666;
+    font-weight: 400;
+}
+
+.profile_user_info p{
+    font-size: 14px;
+    color: rgb(60,60,60);
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 18px;
+    margin-bottom: 30px;
+
+}
+
+.profile_user_info img {
+    border-radius: 50%;
+    width: 120px;
+    margin-bottom:20px;
+    margin-top: 10px;
+}
+
+.profile_user_info img {
+    border-radius: 50%;
+    width: 120px;
+    margin-bottom:20px;
+    margin-top: 10px;
+}
+
+.create_collection {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.create_collection h3{
+    font-size: 18px;
+    color: rgb(60,60,60);
     margin-bottom: 30px;
 }
+
+.create_collection a{
+    background-color: #0F9BAF;
+    border-radius: 100%;
+    padding: 3px 13px;
+    text-decoration:none;
+    color:white;
+    font-size: 35px;
+}
+
+.create_collection a:hover{
+    background-color: #0A6970;
+    color:white;
+
+}
+
+
 
 .collection_images .img_1{
     width: 100px;
