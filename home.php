@@ -141,7 +141,7 @@ if (!empty($_POST['search'])) {
                         </a>
 
                     </div>
-                    <a class="image ajax" href="#" title="photo 1" id="1">
+                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" class="image ajax" href="#" title="photo 1" id="1">
                         <img src="<?php echo $post['picture']; ?>" alt="" >
                     </a>
                 </div>

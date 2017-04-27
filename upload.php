@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Chiara
- * Date: 25/03/2017
- * Time: 22:14
- */
 
 session_start();
 
