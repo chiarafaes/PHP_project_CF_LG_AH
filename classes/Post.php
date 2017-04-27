@@ -190,6 +190,20 @@ class Post
         }
     }
 
+    public static function getPostsByID($p_iID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM posts WHERE id = :post');
+        $statement->bindValue(':post', $p_iID);
+
+        if ($statement->execute()) {
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
+
     public static function getPostsLikedByUser($p_sUsername)
     {
         $conn = Db::getInstance();

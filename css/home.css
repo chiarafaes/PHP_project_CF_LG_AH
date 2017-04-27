@@ -235,6 +235,17 @@ a.btn.send {
     word-wrap: break-word;
     line-height: 18px;
 }
+.pin .title {
+    margin-left: 15px;
+    font-size: 16px;
+    color: #666666;
+    font-weight: 700;
+    float:left;
+    width: 45%;
+    margin-top: 10px;
+    word-wrap: break-word;
+    line-height: 18px;
+}
 .pin .likes,
 .pin .postdate{
     color: #8C7E7E;
