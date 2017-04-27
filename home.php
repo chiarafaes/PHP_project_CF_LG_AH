@@ -150,7 +150,7 @@ if (!empty($_POST['search'])) {
 
                 <hr>
                 <div class="user_info">
-                    <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                    <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
                     <p class="categorie">Categorie</p>
                 </div>
