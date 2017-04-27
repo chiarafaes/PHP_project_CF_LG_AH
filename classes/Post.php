@@ -212,18 +212,16 @@ class Post
         return $interval->format('%ad ago');
     }
 
-    public static function getPostsByUser($userid)
+    public static function getPostsByUser($useremail)
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM posts LEFT JOIN users on users.username = posts.username WHERE users.id = ".$userid." ORDER BY postdate DESC");
-
+        $statement = $conn->prepare("SELECT * FROM posts WHERE creator_mail = :useremail ORDER BY postdate DESC");
+        $statement->bindValue(':useremail' , $useremail);
         if ($statement->execute()) {
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
         } else {
             return false;
         }
     }
-
-
 }

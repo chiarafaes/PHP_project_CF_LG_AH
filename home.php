@@ -30,7 +30,6 @@ if (!empty($_POST['search'])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/default.css">
@@ -118,8 +117,7 @@ if (!empty($_POST['search'])) {
                 <div class="img_holder">
                     <div class="buttons" id="1">
                         <a href="#" class="btn send">Send</a>
-                        <a href="#" class="btn save">Save</a>
-                        <a href="#" class="btn send">IN</a></br>
+                        <a href="#" class="btn save">Save</a></br>
                         <a href="#" class="btn like">
                             <img src="img/<?php
                             if (!empty($likedPosts)) {

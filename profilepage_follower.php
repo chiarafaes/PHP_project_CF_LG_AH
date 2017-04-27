@@ -4,8 +4,8 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
-$user = User::getUser($_GET['profileId']);
-$posts = Post::getPostsByUser($user['id']);
+$user = User::getUser($_GET['profile']);
+$posts = Post::getPostsByUser($user['Mail']);
 
 ?><!doctype html>
 <html lang="en">
@@ -77,7 +77,7 @@ $posts = Post::getPostsByUser($user['id']);
         <div class="profile_user_info">
             <img src="<?php echo $user['avatar'] ?>">
             <h2><?php echo $user['Username'] ?></h2>
-            <p>hier komt een woordje uitleg over persoon in kwestie</p>
+            <p>hier komt nog locatie</p>
             <a href="#">Follow</a>
         </div>
 
@@ -96,7 +96,7 @@ $posts = Post::getPostsByUser($user['id']);
 
             <a href="#">
                 <div class="collection_items">
-                    <p>0</p>
+                    <p><?php echo count($posts);?></p>
                     <p>items</p>
                 </div>
             </a>

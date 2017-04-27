@@ -4,7 +4,7 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
-        
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -19,10 +19,6 @@ spl_autoload_register(function ($class) {
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profilepage.css">
 
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
 
     <title><?php echo $_SESSION['username']; ?></title>
 </head>
@@ -133,55 +129,7 @@ spl_autoload_register(function ($class) {
             </a>
         </div>
 
-        <div id="collections_boards">
-            <div class="collections_boards_">
-                <a href="#">
-                <div class="board 1">
-                    <p>Name board</p> <!-- get name from collection -->
-                    <div class="board_info">
-                        <p>0 items</p>
-                        <p>0 followers</p>
-                    </div>
-                        <div class="collection_images">
-                            <img src="#" class="img_1"/> <!-- get image from collection -->
-                        </div>
-                </div>
-                </a>
-                <a href="#">
-                <div class="board 2">
-                    <p>Name board</p> <!-- get name from collection -->
-                    <div class="board_info">
-                        <p>0 items</p>
-                        <p>0 followers</p>
-                    </div>
-                        <div class="collection_images">
-                            <img src="#" class="img_1"/> <!-- get image from collection -->
-                </div>
-                </div>
-                </a>
-                <a href="#">
-                <div class="board 3">
-                    <p>Name board</p> <!-- get name from collection -->
-                    <div class="board_info">
-                        <p>0 items</p>
-                        <p>0 followers</p>
-                    </div>
-                </div>
-                </a>
-                <a href="#">
-                <div class="board 4">
-                    <p>Name board</p> <!-- get name from collection -->
-                    <div class="board_info">
-                        <p>0 items</p>
-                        <p>0 followers</p>
-                    </div>
-                    <div class="collection_images">
-                    <img src="#" class="img_1"/> <!-- get image from collection -->
-                </div>
-                    </div>
-            </div>
-                </a>
-        </div>
+
     </div>
 </div>
 
