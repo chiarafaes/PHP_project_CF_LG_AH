@@ -136,8 +136,6 @@ html{
 
 }
 
-
-
 .collection_images .img_1{
     width: 100px;
 }
@@ -170,12 +168,12 @@ html{
 
 }
 
-
 .btn_collection{
     margin-top: 20px;
 }
 
-.btn_collection input[type=submit]{
+.btn_collection input[type=submit],
+.btn_collection input[type=button]{
     background-color: #0f9baf; /* Blue */
     border: none;
     color: white;
@@ -189,10 +187,13 @@ html{
     font-size: 12px;
     width: 170px;
     border-radius: 5px;
+    cursor: pointer;
 
 }
 
-.btn_collection input[type=submit]:hover{
+.btn_collection input[type=submit]:hover,
+.btn_collection input[type=button]:hover
+{
     background-color: #0A6970; /* dark - Blue */
 
 }

@@ -16,6 +16,7 @@ $getTopics = User::getTopics();
 
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/profilepage.css" />
+    <script src="js/create-board.js"></script>
 
     <title>Create collection</title>
 </head>
@@ -26,14 +27,14 @@ $getTopics = User::getTopics();
 
     <div class="collection_title">
         <label>Name</label>
-        <input type="text" name="name" placeholder="Give your collection a name"/>
+        <input type="text" name="name" id="board-name" placeholder="Give your collection a name"/>
     </div>
 
 
     <div class="toggleSwitch">
         <label>Private</label>
         <label class="switch">
-            <input type="checkbox" name="checkbox" >
+            <input type="checkbox" name="checkbox" id="private" value="off" onclick="if($(this).val() == 'off'){$(this).val('on')} else {$(this).val('off')}" >
             <div class="slider"></div>
         </label>
     </div>
@@ -46,19 +47,17 @@ $getTopics = User::getTopics();
                     <li>
                         <label for="<?php echo $topic ['name'];?>"><?php echo $topic ['name'];?>
 
-                            <input class="topicInput" id="<?php echo $topic['name'];?>" name="<?php echo $topic['name'];?>" type="checkbox" value="<?php echo $topic['id'];?>">
+                            <input class="topicInput" id="<?php echo $topic['id'];?>" name="<?php echo $topic['name'];?>" type="checkbox" value="off" onclick="if($(this).val() == 'off'){$(this).val('on')} else {$(this).val('off')}">
 
                         </label>
                     </li>
                 <?php endforeach; ?>
             </ul>
+            <div class="btn_collection">
+                <input type="button" id="create-board" value="Create"/>
+            </div>
 
         </form>
     </div>
-
-    <div class="btn_collection">
-        <input type="submit" name='submit' value="Create" />
-    </div>
-
 </body>
 </html>
