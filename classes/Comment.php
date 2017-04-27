@@ -1,7 +1,13 @@
 <?php
 
     class Comment {
+
         private $m_sText;
+
+        private $m_sHost = "localhost";
+        private $m_sUser = "root";
+        private $m_sPassword = "";
+        private $m_sDatabase = "Pinterest";
 
         public function __set($p_sProperty,$p_vValue)
         {

@@ -9,9 +9,9 @@ $posts= Post::getPostsByID($_GET["post"]);
 $comment = new Comment();
 
 //controleer of er een update wordt verzonden
-if(!empty($_POST['activitymessage']))
+if(!empty($_POST['comment']))
 {
-    $comment->Text = $_POST['activitymessage'];
+    $comment->Text = $_POST['comment'];
     try
     {
         $comment->Save();
@@ -79,7 +79,7 @@ $recentActivities = $comment->GetRecentActivities();
                     {
                         while($singleActivity = mysqli_fetch_assoc($recentActivities))
                         {
-                            echo "<li><h2>chiara</h2> ". htmlspecialchars($singleActivity['activity_description']) ."</li>";
+                            echo "<li>". htmlspecialchars($singleActivity['comment']) ."</li>";
                         }
                     }
                     else

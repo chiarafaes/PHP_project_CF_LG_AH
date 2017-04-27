@@ -1,7 +1,7 @@
 <?php
 
 header('Content-Type: application/json');
-include_once("../classes/comment.php");
+include_once("../classes/Comment.php");
 $comment = new Comment();
 
 //controleer of er een update wordt verzonden

@@ -9,7 +9,7 @@ $(document).ready(function () {
         // via ajax update naar de DB sturen
         $.ajax({
             method: "POST",
-            url: "ajax/save_update.php",
+            url: "ajax/ajax.saveupdate.php",
             data:{update: bericht}
         })
             .done(function( response ) {
