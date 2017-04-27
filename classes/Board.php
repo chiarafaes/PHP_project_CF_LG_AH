@@ -87,6 +87,7 @@ class Board
         $statement->bindValue(':private', $this->m_bPrivate);
 
         if($statement->execute()){
+            echo json_encode("bord gemaakt");
 
             $id = $conn->lastInsertId();
 
@@ -94,18 +95,13 @@ class Board
 
                 $insertTopics = $conn->prepare('INSERT INTO boards_categories (board, category) VALUES (:board, :category)');
                 $insertTopics->bindValue(':board', $id);
-                $insertTopics->bindValue('category', $key['topic']);
+                $insertTopics->bindValue(':category', $topic);
 
-                $insertTopics->execute();
+                if($insertTopics->execute()){
+                    echo json_encode("bord gekoppeld");
+                };
+
             }
-
-            return true;
         }
-        else {
-            return false;
-        }
-
-
     }
-
 }

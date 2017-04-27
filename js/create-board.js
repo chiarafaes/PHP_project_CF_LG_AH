@@ -24,8 +24,7 @@ $(document).ready(function ()
         console.log(typeof private);
 
         $.ajax(
-            {
-
+        {
             url: 'ajax/ajax.createboard.php',
             type: 'post',
             data:
@@ -35,7 +34,12 @@ $(document).ready(function ()
                     'topics' : topics
                 },
             success: function (data) {
-                console.log(data)
+                console.log(data);
+                $('#add_form').hide();
+
+            },
+            error: function (data) {
+                $('#add_form').hide();
             }
 
         })

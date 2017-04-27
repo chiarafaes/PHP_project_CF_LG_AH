@@ -39,7 +39,10 @@ if (!empty($_POST['search'])) {
 
 
     <title>Home</title>
-    ☺
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <script src="js/loadmore.js"></script>
     <script src="js/like.js"></script>
 </head>
