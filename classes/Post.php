@@ -9,8 +9,26 @@ class Post
     private $m_iLikes;
     private $m_iAantalComments;
     private $m_sCategorie;
+    private $m_sMail;
+
+    /**
+     * @return mixed
+     */
+    public function getMSMail()
+    {
+        return $this->m_sMail;
+    }
+
+    /**
+     * @param mixed $m_sMail
+     */
+    public function setMSMail($m_sMail)
+    {
+        $this->m_sMail = $m_sMail;
+    }
 
     //getters & setters
+
     /**
      * @return mixed
      */
@@ -161,12 +179,12 @@ class Post
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Posts (Picture,Title ,Description,Username,Categorie) VALUES (:Picture,:Title,:Description,:Username,:Categorie)");
+        $statement = $conn->prepare("INSERT INTO Posts (Picture,Title ,Description,Username, Creator_Mail) VALUES (:Picture,:Title,:Description,:Username, :creator_mail)");
         $statement->bindValue(":Picture", $this->m_sPicture);
         $statement->bindValue(":Title", $this->m_sTitle);
         $statement->bindValue(":Description", $this->m_sDescription);
         $statement->bindValue(":Username", $this->m_sUserName);
-        $statement->bindValue(":Categorie", $this->m_sCategorie);
+        $statement->bindValue(":creator_mail", $this->m_sMail);
 
         //query executen
         $res = $statement->execute();
