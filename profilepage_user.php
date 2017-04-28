@@ -4,7 +4,22 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
+    $tmp = Board::getBoards($_SESSION['email']);
+    $collections = [];
 
+    // resultatenlijst opdelen in collections en bijbehorende categorieën
+    foreach ($tmp as $val){
+        $categoriesPerCollection[] = array_slice($val, -3);
+        $tmp_col[] = array_slice($val, 0, 4);
+    }
+
+    // ervoor zorgen dat collections geen dubbele rows bevatten
+    foreach ($tmp_col as $val){
+        if (!in_array($val, $collections)){
+            $collections[] = $val;
+        }
+    }
+    
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +34,10 @@ spl_autoload_register(function ($class) {
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profilepage.css">
 
-
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <title><?php echo $_SESSION['username']; ?></title>
 </head>
 <body>
@@ -128,8 +146,32 @@ spl_autoload_register(function ($class) {
             </div>
             </a>
         </div>
-
-
+    </div>
+    <div id="collection-section">
+        <?php foreach($collections as $collection):?>
+            <div class="collection-container">
+                <h1 class="collection-title"><?php echo $collection['title']?></h1>
+                <div class="toggleSwitch">
+                    <label>Private</label>
+                    <?php echo $collection['private']?>
+                    <label class="switch">
+                        <input type="checkbox" name="checkbox" class="private-collection" value="off" onclick="if($(this).val() == 'off'){$(this).val('on')} else {$(this).val('off')}" >
+                        <div class="slider"></div>
+                    </label>
+                </div>
+                <div class="posts-container">
+                </div>
+                <div class="collection-topics">
+                    <ul>
+                        <?php foreach ($categoriesPerCollection as $category):?>
+                            <?php if ($category['board'] == $collection['id']):?>
+                                <li><?php echo $category['name']?></li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 

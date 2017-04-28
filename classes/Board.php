@@ -8,7 +8,7 @@
  */
 class Board
 {
-    private $m_sName;
+    private $m_sTitle;
     private $m_bPrivate;
     private $m_sUser;
     private $m_aTopics;
@@ -48,17 +48,17 @@ class Board
     /**
      * @return mixed
      */
-    public function getMSName()
+    public function getMSTitle()
     {
-        return $this->m_sName;
+        return $this->m_sTitle;
     }
 
     /**
      * @param mixed $m_sName
      */
-    public function setMSName($m_sName)
+    public function setMSTitle($m_sTitle)
     {
-        $this->m_sName = $m_sName;
+        $this->m_sTitle = $m_sTitle;
     }
 
     /**
@@ -81,8 +81,8 @@ class Board
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('INSERT INTO boards (name, user, private) VALUES (:name, :user, :private)');
-        $statement->bindValue(':name', $this->m_sName);
+        $statement = $conn->prepare('INSERT INTO boards (title, user, private) VALUES (:title, :user, :private)');
+        $statement->bindValue(':title', $this->m_sName);
         $statement->bindValue(':user', $this->m_sUser);
         $statement->bindValue(':private', $this->m_bPrivate);
 
@@ -102,6 +102,18 @@ class Board
                 };
 
             }
+        }
+    }
+
+    public static function getBoards($p_sUser)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT boards.*, boards_categories.board, boards_categories.category, topics.name FROM boards JOIN boards_categories ON boards.id = boards_categories.board JOIN topics ON boards_categories.category = topics.id WHERE user = :user');
+        $statement->bindValue(':user', $p_sUser);
+
+        if ($statement->execute()){
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 }

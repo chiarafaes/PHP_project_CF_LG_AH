@@ -36,10 +36,12 @@ $(document).ready(function ()
             success: function (data) {
                 console.log(data);
                 $('#add_form').hide();
+                $('div.popup_additem').hide();
 
             },
             error: function (data) {
                 $('#add_form').hide();
+                $('div.popup_additem').hide();
             }
 
         })
