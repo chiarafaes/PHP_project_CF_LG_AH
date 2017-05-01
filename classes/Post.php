@@ -10,6 +10,7 @@ class Post
     private $m_iAantalComments;
     private $m_sCategorie;
     private $m_sMail;
+    private $m_iinapr;
 
     /**
      * @return mixed
@@ -168,6 +169,23 @@ class Post
     {
         $this->m_sPicture = $m_sPicture;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMIinapr()
+    {
+        return $this->m_iinapr;
+    }
+
+    /**
+     * @param mixed $m_iinapr
+     */
+    public function setMIinapr($m_iinapr)
+    {
+        $this->m_iinapr = $m_iinapr;
+    }
+
 
 
 

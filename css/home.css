@@ -181,6 +181,14 @@ a.btn.save{
     font-size: 13px;
 }
 
+.inapp{
+    background-color: #0F9BAF;
+    font-size: 10px;
+    width: 10px;
+}
+
+
+
 a.btn.send {
     text-decoration: none;
     color:#666666;
