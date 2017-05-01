@@ -60,7 +60,7 @@ class Comment {
         {
             $conn = Db::getInstance();
 
-            $statement = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post");
+            $statement = $conn->prepare("SELECT * FROM Comments WHERE id_post = :id_post");
             $statement->bindValue(":id_post", $_GET["post"]);
             $statement->execute();
             return $statement->fetch(PDO::FETCH_ASSOC);
@@ -70,7 +70,7 @@ class Comment {
         {
             $conn = Db::getInstance();
 
-            $statement = $conn->prepare("select Comments, users.Username, users.avatar from Comments inner join users on users.id = Comments.id_user where Comments.id_post = :items");
+            $statement = $conn->prepare("select comment, users.Username, users.avatar from Comments inner join users on users.id = Comments.id_user where Comments.id_post = :items");
             $statement->bindValue(":items", $_GET["post"]);
             $statement->execute();
             $comments = $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -81,14 +81,13 @@ $recentActivities = $comment->GetRecentActivities();
                 <?php $comment = new Comment();
                 $comments = $comment->Comments();
 
-                var_dump($comments);
                 foreach($comments as $c):?>
 
                 <li>
 
-                    <img id='avatar' src=' <?php echo $c["avatar"] ?> ' />
-                    <a href="profile?userid=<?php  echo $c['user_id']?>"><?php echo $c['firstname']?></a>
-                    <p><?php echo $c['comments']?></p>
+                    <img class="avatarcomment" id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+                    <a href="profile?userid=<?php  echo $c['user_id']?>"><?php echo $c['Username']?></a>
+                    <p><?php echo $c['comment']?></p>
 
                 </li>
 
@@ -115,7 +114,7 @@ $recentActivities = $comment->GetRecentActivities();
                 // via AJAX update naar databank sturen
                 $.ajax({
                     method: "POST",
-                    url: "AJAX/save_update.php",
+                    url: "AJAX/ajax.saveupdate.php",
                     data: {update: update, postID: postID} //update: is de naam en update is de waarde (value)
                 })
 
