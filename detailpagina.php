@@ -81,7 +81,7 @@ $recentActivities = $comment->GetRecentActivities();
                 <?php $comment = new Comment();
                 $comments = $comment->Comments();
 
-
+                var_dump($comments);
                 foreach($comments as $c):?>
 
                 <li>

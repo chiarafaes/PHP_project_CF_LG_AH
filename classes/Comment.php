@@ -61,7 +61,7 @@ class Comment {
             $conn = Db::getInstance();
 
             $statement = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post");
-            $statement->bindValue(":id_post", $_GET["id"]);
+            $statement->bindValue(":id_post", $_GET["post"]);
             $statement->execute();
             return $statement->fetch(PDO::FETCH_ASSOC);
         }
