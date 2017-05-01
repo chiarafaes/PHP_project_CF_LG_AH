@@ -31,9 +31,9 @@ class Comment {
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("INSERT INTO Comments (id_user, id_post, comments) VALUES (:iduser, :iditem, :comments)");
+        $statement = $conn->prepare("INSERT INTO Comments (id_user, id_post, comment) VALUES (:iduser, :iditem, :comments)");
         $statement->bindValue(":iduser", $_SESSION['id']);
-        $statement->bindValue(":iditem", $_POST["postID"]);
+        $statement->bindValue(":iditem", $_GET["post"]);
         $statement->bindValue(":comments", $_POST["update"]);
         return $statement->execute();
     }

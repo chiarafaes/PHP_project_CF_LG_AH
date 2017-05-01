@@ -84,22 +84,16 @@ $recentActivities = $comment->GetRecentActivities();
                 foreach($comments as $c):?>
 
                 <li>
-
-                    <img class="avatarcomment" id='avatar' src=' <?php echo $c["avatar"] ?> ' />
-                    <a href="profile?userid=<?php  echo $c['user_id']?>"><?php echo $c['Username']?></a>
+                    <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+                    <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?userid=<?php  echo $c['user_id']?>"><?php echo $c['Username']?></a>
                     <p><?php echo $c['comment']?></p>
-
                 </li>
-
-
                     <?php endforeach; ?>
             </ul>
         </div>
     </form>
 
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
-
-    <script src="js/comment.js"></script>
 
     <script src="js/bootstrap.min.js"></script>
 
