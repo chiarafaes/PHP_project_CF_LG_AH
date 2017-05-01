@@ -3,8 +3,6 @@ class Comment {
 
         private $m_sText;
 
-
-
         public function __set($p_sProperty,$p_vValue)
         {
             switch ($p_sProperty)
@@ -31,10 +29,10 @@ class Comment {
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("INSERT INTO Comments (id_user, id_post, comment) VALUES (:iduser, :iditem, :comments)");
-        $statement->bindValue(":iduser", $_SESSION['id']);
+        $statement = $conn->prepare("INSERT INTO Comments (comment, id_post, id_user ) VALUES (:comments, :iditem, :iduser )");
+        $statement->bindValue(":iduser", $_SESSION["id"]);
         $statement->bindValue(":iditem", $_GET["post"]);
-        $statement->bindValue(":comments", $_POST['update']);
+        $statement->bindValue(":comments", $_POST['comment']);
         return $statement->execute();
     }
 
