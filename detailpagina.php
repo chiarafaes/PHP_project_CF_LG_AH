@@ -64,6 +64,10 @@ $recentActivities = $comment->GetRecentActivities();
                     <p><?php echo $post['username']; ?></p>
                     <p class="categorie">Categorie</p>
                 </div>
+
+                <div class="inappropriate">
+                    <p class="inap"
+                </div>
             </div>
     <?php endforeach; ?>
 
@@ -74,19 +78,22 @@ $recentActivities = $comment->GetRecentActivities();
             <input id="btnSubmit" type="submit" value="Comment"/>
 
             <ul id="listupdates">
-                <?php
-                    if(mysqli_num_rows($recentActivities) > 0)
-                    {
-                        while($singleActivity = mysqli_fetch_assoc($recentActivities))
-                        {
-                            echo "<li>". htmlspecialchars($singleActivity['comment']) ."</li>";
-                        }
-                    }
-                    else
-                    {
-                        echo "<li>Waiting for first status update</li>";
-                    }
-                ?>
+                <?php $comment = new Comment();
+                $comments = $comment->Comments();
+
+
+                foreach($comments as $c):?>
+
+                <li>
+
+                    <img id='avatar' src=' <?php echo $c["avatar"] ?> ' </img>
+                    <a href="profile?userid=<?php  echo $c['user_id']?>"><?php echo $c['firstname']?></a>
+                    <p><?php echo $c['comments']?></p>
+
+                </li>
+
+
+                    <?php endforeach; ?>
             </ul>
         </div>
     </form>
@@ -94,5 +101,42 @@ $recentActivities = $comment->GetRecentActivities();
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
 
     <script src="js/comment.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#btnSubmit").on("click", function (e) {
+                //console.log("clicked");
+
+                // tekst vak uitlezen
+                var update = $("#comment").val();
+                var postID = document.getElementById("post").getAttribute("data-id");
+                // via AJAX update naar databank sturen
+                $.ajax({
+                    method: "POST",
+                    url: "AJAX/save_update.php",
+                    data: {update: update, postID: postID} //update: is de naam en update is de waarde (value)
+                })
+
+                    .done(function (response) {
+
+                        // code + message
+                        if (response.code == 200) {
+
+                            // iets plaatsen?
+                            var li = $("<li style='display: none;'>");
+                            li.html("<img id='avatar' src='" + response.avatar + "' </img>" + "   " + "  " + "<a href='http://localhost/PHP_project_cf_lg_ah/user_profile.php?user=" + response.id + "'>" + response.user + "</a>: " + response.message);
+                            // waar?
+                            $("#listupdates").prepend(li);
+                            $("#listupdates li").first().slideDown();
+                            $("#comment").val("").focus();
+                        }
+                    });
+
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html>
