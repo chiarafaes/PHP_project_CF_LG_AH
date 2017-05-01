@@ -86,7 +86,7 @@ $recentActivities = $comment->GetRecentActivities();
 
                 <li>
 
-                    <img id='avatar' src=' <?php echo $c["avatar"] ?> ' </img>
+                    <img id='avatar' src=' <?php echo $c["avatar"] ?> ' />
                     <a href="profile?userid=<?php  echo $c['user_id']?>"><?php echo $c['firstname']?></a>
                     <p><?php echo $c['comments']?></p>
 
