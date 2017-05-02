@@ -29,8 +29,8 @@ class Comment {
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("INSERT INTO Comments (comment, id_post, id_user ) VALUES (:comments, :iditem, :iduser )");
-        $statement->bindValue(":iduser", $_SESSION["id"]);
+        $statement = $conn->prepare("INSERT INTO Comments (comment, id_post, Mail_user ) VALUES (:comments, :iditem, :Mailuser )");
+        $statement->bindValue(":Mailuser", $_SESSION["email"]);
         $statement->bindValue(":iditem", $_GET["post"]);
         $statement->bindValue(":comments", $_POST['comment']);
         return $statement->execute();
@@ -42,7 +42,7 @@ class Comment {
 
             if ($link = mysqli_connect($this->m_sHost, $this->m_sUser, $this->m_sPassword, $this->m_sDatabase))
             {
-                $sSql = "select * from Comments ORDER BY commentID DESC LIMIT 8";
+                $sSql = "select * from Comments ORDER BY commentID ASC LIMIT 8";
                 $rResult = mysqli_query($link, $sSql);
                 return $rResult;
             }
@@ -68,7 +68,7 @@ class Comment {
         {
             $conn = Db::getInstance();
 
-            $statement = $conn->prepare("select comment, users.Username, users.avatar from Comments inner join users on users.id = Comments.id_user where Comments.id_post = :items");
+            $statement = $conn->prepare("select comment, users.Username, users.avatar from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items");
             $statement->bindValue(":items", $_GET["post"]);
             $statement->execute();
             $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
