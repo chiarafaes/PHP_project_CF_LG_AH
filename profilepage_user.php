@@ -19,7 +19,13 @@ spl_autoload_register(function ($class) {
             $collections[] = $val;
         }
     }
-    
+
+$user = User::getUser($_SESSION['email']);
+$posts = Post::getPostsByUser($user['Mail']);
+
+$likes = Post::getPostsLikedByUser($_SESSION['email']);
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -120,14 +126,14 @@ spl_autoload_register(function ($class) {
 
             <a href="#">
             <div class="collection_items">
-                <p>0</p>
+                <p><?php echo count($posts);?></p>
                 <p>items</p>
             </div>
             </a>
 
             <a href="#">
             <div class="collection_likes">
-                <p>0</p>
+                <p><?php echo count($likes);?></p>
                 <p>likes</p>
             </div>
             </a>
@@ -146,7 +152,57 @@ spl_autoload_register(function ($class) {
             </div>
             </a>
         </div>
+
+    <div class="main_container_profile" class="likeable">
+        <?php foreach ($posts as $post):?>
+            <div class="pin" id="pinID-<?php echo $post['id']?>">
+                <div class="img_holder">
+                    <div class="buttons" id="1">
+                        <a href="#" class="btn send">Send</a>
+                        <a href="#" class="btn save">Save</a></br>
+                        <a href="#" class="btn like">
+                            <img src="img/<?php
+                            if (!empty($likedPosts)) {
+                                $isLiked = false;
+                                foreach ($likedPosts as $item) {
+                                    if ($post['id'] == $item['post']) {
+                                        $isLiked = true;
+                                    }
+                                }
+                                if ($isLiked) {
+                                    echo 'liked_icon.svg';
+                                } else {
+                                    echo 'like_icon.svg';
+                                }
+                            } else {
+                                echo 'like_icon.svg';
+                            }
+                            ?>"/>
+                        </a>
+
+                    </div>
+                    <a class="image ajax" href="#" title="photo 1" id="1">
+                        <img src="<?php echo $post['picture']; ?>" alt="" >
+                    </a>
+                </div>
+                <p class="description"><?php echo $post['title']; ?></p>
+                <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
+                <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+
+                <hr>
+                <div class="user_info">
+                    <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                    <p><?php echo $post['username']; ?></p>
+                    <p class="categorie">Categorie</p>
+                </div>
+            </div>
+        <?php endforeach;?>
     </div>
+
+
+
+
     <div id="collection-section">
         <?php foreach($collections as $collection):?>
             <div class="collection-container">
@@ -174,7 +230,7 @@ spl_autoload_register(function ($class) {
         <?php endforeach; ?>
     </div>
 </div>
-
+</div>
 <script src="js/popup.js"></script>
 
 </body>

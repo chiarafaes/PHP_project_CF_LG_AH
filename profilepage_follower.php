@@ -7,6 +7,9 @@ spl_autoload_register(function ($class) {
 $user = User::getUser($_GET['profile']);
 $posts = Post::getPostsByUser($user['Mail']);
 
+$likes = Post::getPostsLikedByUser($_GET['profile']);
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -20,6 +23,8 @@ $posts = Post::getPostsByUser($user['Mail']);
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profilepage.css">
+    <script src="js/like.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
 
 
     <title><?php echo $user['Username']; ?></title>
@@ -78,7 +83,9 @@ $posts = Post::getPostsByUser($user['Mail']);
             <img src="<?php echo $user['avatar'] ?>">
             <h2><?php echo $user['Username'] ?></h2>
             <p>hier komt nog locatie</p>
-            <a href="#">Follow</a>
+
+            <button class="btn follow" rel="<?php echo $user['Username'] ?>">Follow</button>
+            <button class="btn follow following" rel="<?php echo $user['Username'] ?>">Following</button>
         </div>
 
 
@@ -103,7 +110,7 @@ $posts = Post::getPostsByUser($user['Mail']);
 
             <a href="#">
                 <div class="collection_likes">
-                    <p>0</p>
+                    <p><?php echo count($likes);?></p>
                     <p>likes</p>
                 </div>
             </a>
@@ -123,14 +130,13 @@ $posts = Post::getPostsByUser($user['Mail']);
             </a>
         </div>
 
-        <div class="main_container_profile">
+        <div class="main_container_profile" class="likeable">
             <?php foreach ($posts as $post):?>
                 <div class="pin" id="pinID-<?php echo $post['id']?>">
                     <div class="img_holder">
                         <div class="buttons" id="1">
                             <a href="#" class="btn send">Send</a>
-                            <a href="#" class="btn save">Save</a>
-                            <a href="#" class="btn send">IN</a></br>
+                            <a href="#" class="btn save">Save</a></br>
                             <a href="#" class="btn like">
                                 <img src="img/<?php
                                 if (!empty($likedPosts)) {
@@ -172,6 +178,7 @@ $posts = Post::getPostsByUser($user['Mail']);
         </div>
     </div>
 
+    <script type="text/javascript" src="js/follow.js"></script>
 
 </body>
 </html>

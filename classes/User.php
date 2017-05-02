@@ -113,28 +113,6 @@ class User
 
         return ($statement->fetchAll(PDO::FETCH_ASSOC));
     }
-
-    public function getFirstnameUser()
-    {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT firstname FROM users WHERE id = :id");
-        $statement->bindValue(":id", $_SESSION["id"]);
-        $statement->execute();
-        $allUser = $statement->fetchAll(PDO::FETCH_OBJ);
-
-        return $allUser;
-    }
-
-    public function getFirstnameUserO($id)
-    {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT firstname FROM users WHERE id = :id");
-        $statement->bindValue(":id", $id);
-        $statement->execute();
-        $allUser = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $allUser;
-    }
 }
 ?>
 

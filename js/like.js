@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
     // $(document).change(function () {
-        $('.main_container' +
+        $('.likeable' +
             '' +
             '').on('click', '.like' ,function (e) {
             e.preventDefault();

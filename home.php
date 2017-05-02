@@ -23,6 +23,8 @@ if (!empty($_POST['search'])) {
     }
 }
 
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -111,7 +113,7 @@ if (!empty($_POST['search'])) {
         <h1>Search results for '<?php echo $search_param; ?>'</h1>
         <a href="home.php">Clear results</a>
     <?php endif; ?>
-    <div id="left" class="main_container">
+    <div id="left" class="main_container likeable">
         <?php foreach ($renderedPosts as $post):?>
             <div class="pin" id="pinID-<?php echo $post['id']?>">
                 <div class="img_holder">
