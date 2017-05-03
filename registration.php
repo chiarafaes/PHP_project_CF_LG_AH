@@ -1,4 +1,5 @@
 <?php
+
 //vervangt includes, deze functie moet slechts 1 keer geschreven worden
     spl_autoload_register(function ($class) {
         include_once("classes/".$class.".php");
@@ -61,18 +62,30 @@
                     if ($res != false) {
                         // OK
                         $succes = "Welcome, you are registered";
-                        $user->Save();
-                        header("location:topics.php");
-                        session_start();
+                        if($user->Save() == true ){
+                            session_start();
 
+                            $_SESSION['email'] = $user->Mail;
+                            $_SESSION['username'] = $user->Username;
+                            $_SESSION['fullname'] = $user->Fullname;
+
+                            // ob_start();
+                            // error_reporting(E_ALL);
+                            // ini_set("display_errors", 'on');
+                            // header("Location : topics.php");
+
+                            header('location: topics.php');
+
+                            //omdat header niet werkt en ik geen zin meer heb tijd te verdoen
+
+                        }
                         // we maken session vars aan voor later
-                        $_SESSION['email'] = $user->Mail;
-                        $_SESSION['username'] = $user->Username;
-                        $_SESSION['fullname'] = $user->Fullname;
+
                     } else {
                         // Niet OK
                         $fail = "Oops, something went wrong! Try again!";
-                        header("location:registration.php");
+                        header('location: registration.php');
+
                     }
                 }
             }

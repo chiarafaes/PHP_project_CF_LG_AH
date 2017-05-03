@@ -63,12 +63,12 @@ class User
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Users (Fullname,Username,Mail,Password, Avatar) VALUES (:Fullname,:Username,:Mail,:Password, :Avatar)");
-        $statement->bindValue(":Fullname", $this->m_sFullname);
-        $statement->bindValue(":Username", $this->m_sUsername);
-        $statement->bindValue(":Mail", $this->m_sMail);
-        $statement->bindValue(":Password", $this->m_sPassword);
-        $statement->bindValue(":Avatar", $this->m_sAvatar);
+        $statement = $conn->prepare("INSERT INTO users (fullname,username,mail,password, avatar) VALUES (:fullname,:username,:mail,:password, :avatar)");
+        $statement->bindValue(":fullname", $this->m_sFullname);
+        $statement->bindValue(":username", $this->m_sUsername);
+        $statement->bindValue(":mail", $this->m_sMail);
+        $statement->bindValue(":password", $this->m_sPassword);
+        $statement->bindValue(":avatar", $this->m_sAvatar);
 
         //query executen
         $res = $statement->execute();
@@ -115,4 +115,3 @@ class User
     }
 }
 ?>
-

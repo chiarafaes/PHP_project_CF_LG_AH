@@ -99,7 +99,7 @@
                 break;
             }
         } else {
-            header('location:login.php');
+            header('location:registration.php');
         }
     } catch (PDOException $e) {
         $error = $e->getMessage();

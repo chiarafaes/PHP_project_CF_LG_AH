@@ -11,7 +11,7 @@ class Db
             return self::$conn;
         } else {
             //er is nog geen connectie, maak aan en geef terug
-            self::$conn = new PDO("mysql:host=localhost;dbname=Pinterest", "root", "");
+            self::$conn = new PDO("mysql:host=buildingrockets.be.mysql;dbname=buildingrockets_be_pinterest", "buildingrockets_be_pinterest", "whatever");
             return self::$conn;
         }
     }
