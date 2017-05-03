@@ -39,12 +39,12 @@ class Comment {
 
     public function GetRecentActivities()
         {
-
-            if ($link = mysqli_connect($this->m_sHost, $this->m_sUser, $this->m_sPassword, $this->m_sDatabase))
+            if ($conn = DB::getInstance())
             {
-                $sSql = "select * from Comments ORDER BY commentID ASC LIMIT 8";
-                $rResult = mysqli_query($link, $sSql);
-                return $rResult;
+
+                $statement = $conn->prepare("SELECT * FROM Comments ORDER BY commentID ASC LIMIT 8");
+                $statement->execute();
+                return $statement->fetch(PDO::FETCH_ASSOC);
             }
             else
             {

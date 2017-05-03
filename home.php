@@ -101,6 +101,8 @@ if (!empty($_POST['search'])) {
     <?php include_once('createpost.php');?>
 </div>
 
+
+
 <!-- Button add item - rechterkolom -->
 <div id="right" class="additem">
     <a href="#add_form" id="login_pop">+</a>
@@ -113,7 +115,7 @@ if (!empty($_POST['search'])) {
         <h1>Search results for '<?php echo $search_param; ?>'</h1>
         <a href="home.php">Clear results</a>
     <?php endif; ?>
-    <div id="left" class="main_container likeable">
+    <div id="left" class="main_container likeable" >
         <?php foreach ($renderedPosts as $post):?>
             <div class="pin" id="pinID-<?php echo $post['id']?>">
                 <div class="img_holder">
@@ -145,10 +147,13 @@ if (!empty($_POST['search'])) {
                         </a>
 
                     </div>
-                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" class="image ajax" href="#" title="photo 1" id="1">
+
+                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" class="image ajax" title="photo 1" id="login_pop">
                         <img src="<?php echo $post['picture']; ?>" alt="" >
                     </a>
-                </div>
+
+
+                    </div>
                 <p class="description"><?php echo $post['title']; ?></p>
                 <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
