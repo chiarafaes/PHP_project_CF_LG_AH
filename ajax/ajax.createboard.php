@@ -14,7 +14,7 @@
     });
 
     $board = new Board();
-    $board->setMSName($_POST['name']);
+    $board->setMSTitle($_POST['name']);
     $board->setMSUser($_SESSION['email']);
     $board->setMBPrivate($_POST['private']);
     $board->setMATopics($_POST['topics']);

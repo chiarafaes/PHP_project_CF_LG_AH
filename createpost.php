@@ -3,7 +3,7 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
-$getTopics = User::getTopics();
+$getTopics = Topic::getAllTopics();
 
 
 ?><!doctype html>

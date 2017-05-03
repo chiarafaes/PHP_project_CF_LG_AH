@@ -42,51 +42,22 @@
             // we maken een standaard avatar voor nieuwe profielen
             $user->Avatar = "https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg";
 
-
-            //maken connectie met de database door verwijzing naar de "klasse" DB
-            $conn= Db::getInstance();
-
             // checken of er een error is door de lege velden
             if (!isset($error)) {
-                // als er geen error is , zoek dan het mailadres op
-                $statement = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
-                $statement->bindValue(":mail", $user->Mail);
 
-                //als het mailadres bestaat geef melding dat de mail reeds in gebruik is en niet save
-                if ($statement->execute() && $statement->rowCount() != 0) {
-                    $resultaat = $statement->fetch(PDO::FETCH_ASSOC);
-                    $error = "Mail is already used";
-                    $res = false;
+                if ($user->save()) {
+
+                    session_start();
+
+                    $_SESSION['email'] = $user->Mail;
+                    $_SESSION['username'] = $user->Username;
+                    $_SESSION['fullname'] = $user->Fullname;
+
+                    header('location: topics.php');
+
                 } else {
-                    // doorsturen naar topics
-                    if ($res != false) {
-                        // OK
-                        $succes = "Welcome, you are registered";
-                        if($user->Save() == true ){
-                            session_start();
-
-                            $_SESSION['email'] = $user->Mail;
-                            $_SESSION['username'] = $user->Username;
-                            $_SESSION['fullname'] = $user->Fullname;
-
-                            // ob_start();
-                            // error_reporting(E_ALL);
-                            // ini_set("display_errors", 'on');
-                            // header("Location : topics.php");
-
-                            header('location: topics.php');
-
-                            //omdat header niet werkt en ik geen zin meer heb tijd te verdoen
-
-                        }
-                        // we maken session vars aan voor later
-
-                    } else {
-                        // Niet OK
-                        $fail = "Oops, something went wrong! Try again!";
-                        header('location: registration.php');
-
-                    }
+                    // Niet OK
+                    $error = "This e-mail address is already in use in the database. Please try again with another address.";
                 }
             }
         } catch (PDOException $e) {

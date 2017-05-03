@@ -3,7 +3,7 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
-$getTopics = User::getTopics();
+$getTopics = Topic::getAllTopics();
 
 
 ?><!doctype html>
@@ -27,7 +27,7 @@ $getTopics = User::getTopics();
 
     <div class="collection_title">
         <label>Name</label>
-        <input type="text" name="name" id="board-name" placeholder="Give your collection a name"/>
+        <input type="text" name="title" id="board-name" placeholder="Give your collection a name"/>
     </div>
 
 

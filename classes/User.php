@@ -62,19 +62,30 @@ class User
         //connectie maken (PDO) -> geen mysqli, PDO kan voor meerder data banken
         $conn= Db::getInstance();
 
-        //query schrijven
-        $statement = $conn->prepare("INSERT INTO users (fullname,username,mail,password, avatar) VALUES (:fullname,:username,:mail,:password, :avatar)");
-        $statement->bindValue(":fullname", $this->m_sFullname);
-        $statement->bindValue(":username", $this->m_sUsername);
-        $statement->bindValue(":mail", $this->m_sMail);
-        $statement->bindValue(":password", $this->m_sPassword);
-        $statement->bindValue(":avatar", $this->m_sAvatar);
+        $q_alreadyExists = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
+        $q_alreadyExists->bindValue(":mail", $this->m_sMail);
 
-        //query executen
-        $res = $statement->execute();
+        //als het mailadres bestaat geef melding dat de mail reeds in gebruik is en niet save
+        if ($q_alreadyExists->execute() && $q_alreadyExists->rowCount() != 0) {
+            return false;
+        }
+        else {
 
-        //true or false?
-        return ($res);
+            //query schrijven
+            $statement = $conn->prepare("INSERT INTO users (fullname,username,mail,password, avatar) VALUES (:fullname,:username,:mail,:password, :avatar)");
+            $statement->bindValue(":fullname", $this->m_sFullname);
+            $statement->bindValue(":username", $this->m_sUsername);
+            $statement->bindValue(":mail", $this->m_sMail);
+            $statement->bindValue(":password", $this->m_sPassword);
+            $statement->bindValue(":avatar", $this->m_sAvatar);
+
+            //query execute
+            $res = $statement->execute();
+
+            //true or false?
+            return ($res);
+
+        }
     }
 
     public function __toString()
@@ -102,16 +113,6 @@ class User
         $stmt->execute();
 
         return ($stmt->fetch(PDO::FETCH_ASSOC));
-    }
-
-
-    public static function getTopics()
-    {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * FROM topics");
-        $statement->execute();
-
-        return ($statement->fetchAll(PDO::FETCH_ASSOC));
     }
 }
 ?>

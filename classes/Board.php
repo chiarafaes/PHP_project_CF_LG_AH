@@ -82,7 +82,7 @@ class Board
         $conn = Db::getInstance();
 
         $statement = $conn->prepare('INSERT INTO boards (title, user, private) VALUES (:title, :user, :private)');
-        $statement->bindValue(':title', $this->m_sName);
+        $statement->bindValue(':title', $this->m_sTitle);
         $statement->bindValue(':user', $this->m_sUser);
         $statement->bindValue(':private', $this->m_bPrivate);
 
@@ -97,10 +97,9 @@ class Board
                 $insertTopics->bindValue(':board', $id);
                 $insertTopics->bindValue(':category', $topic);
 
-                if($insertTopics->execute()){
+                if($insertTopics->execute()) {
                     echo json_encode("bord gekoppeld");
                 };
-
             }
         }
     }

@@ -4,19 +4,22 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
-    $tmp = Board::getBoards($_SESSION['email']);
-    $collections = [];
+    //eerst checken of user boards heeft, anders gewoon doorgaan
+    if (!empty($tmp = Board::getBoards($_SESSION['email']))) {
 
-    // resultatenlijst opdelen in collections en bijbehorende categorieën
-    foreach ($tmp as $val){
-        $categoriesPerCollection[] = array_slice($val, -3);
-        $tmp_col[] = array_slice($val, 0, 4);
-    }
+        $collections = [];
 
-    // ervoor zorgen dat collections geen dubbele rows bevatten
-    foreach ($tmp_col as $val){
-        if (!in_array($val, $collections)){
-            $collections[] = $val;
+        // resultatenlijst opdelen in collections en bijbehorende categorieën
+        foreach ($tmp as $val) {
+            $categoriesPerCollection[] = array_slice($val, -3);
+            $tmp_col[] = array_slice($val, 0, 4);
+        }
+
+        // ervoor zorgen dat collections geen dubbele rows bevatten
+        foreach ($tmp_col as $val) {
+            if (!in_array($val, $collections)) {
+                $collections[] = $val;
+            }
         }
     }
 
