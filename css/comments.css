@@ -1,0 +1,187 @@
+:root {
+    --ponwidth: 230px;
+    --ponheight: 700px;
+}
+
+
+.pon{
+    width: var(--ponwidth);
+    height: var(--ponheight);
+}
+.pon .image img {
+    max-width: 230px;
+    min-height: 75px;
+    opacity: 1;
+}
+
+.pon .image img:hover {
+    max-width: 230px;
+    min-height: 75px;
+    opacity: 0.5;
+
+}
+.pon .description {
+    margin-left: 15px;
+    font-size: 13px;
+    color: #666666;
+    font-weight: 700;
+    float:left;
+    width: 45%;
+    margin-top: 10px;
+    word-wrap: break-word;
+    line-height: 18px;
+}
+.pon .title {
+    margin-left: 15px;
+    font-size: 16px;
+    color: #666666;
+    font-weight: 700;
+    float:left;
+    width: 45%;
+    margin-top: 10px;
+    word-wrap: break-word;
+    line-height: 18px;
+}
+.pon .likes,
+.pon .postdate{
+    color: #8C7E7E;
+    float:right;
+    line-height: 1.35em;
+    text-align: right;
+}
+
+.pon .likes{
+    margin-right: 10px;
+}
+.pon .postdate{
+    float: left;
+}
+
+.pon .likes{
+}
+
+
+.pon .likes span {
+    text-align: right;
+    margin-left: 80px;
+}
+
+.pon .icon_heart img{
+    width: 13px;
+    float:right;
+    margin-top: 5px;
+    margin-right: 2px;
+}
+#avatar{
+    width: 20%;
+    height: 10%;
+}
+
+.comment{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+.comment_zelf{
+    width: 100%;
+    display: flex;
+    align-self: center;
+}
+
+.statusupdates{
+    height: 100%;
+}
+.commentformulier{
+    align-self: center;
+    margin-top:50px;
+    height: 200px;
+}
+.commentform{
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100px;
+}
+.btnsubmit{
+    background-color: #0f9baf; /* Blue */
+    border: none;
+    color: white;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    width: 170px;
+    border-radius: 5px;
+    align-self: center;
+}
+
+input[type=text]{
+    border-radius: 5px;
+    border: 1.5px solid #b3b3b3;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #666666;
+    font-weight: 400;
+    padding-top: 7px;
+    padding-left: 10px;
+    padding-bottom: 7px;
+}
+
+.listupdates{
+    height: 200px;
+    overflow: auto;
+}
+#modalOverlay {
+
+    position: absolute;
+    background: rgba(119, 119, 119, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+#content {
+    position: absolute;
+    color:black;
+    padding:10px;
+    background: rgba(255,255,255, 1);
+    border-radius:5px;
+    box-shadow:0px 4px 10px black;
+    left: calc((100% - var(--ponwidth))/ 2);
+    top: 5%;
+}
+
+.fadeInbg50 {
+    -webkit-animation: fadeInbg50 0.5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+}
+
+
+@-webkit-keyframes fadeInbg50
+{
+    to {background: rgba(0,0,0, 0.5); }
+}
+
+.fadeIn100 {
+    -webkit-animation: fadeIn100 0.7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-transition: all 500ms ease-out;
+}
+
+@-webkit-keyframes fadeIn100
+{
+    from {margin-top:-50px;}
+    to {  margin-top:0;opacity:1;}
+}
+
+

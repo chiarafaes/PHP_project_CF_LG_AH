@@ -35,68 +35,80 @@ $recentActivities = $comment->GetRecentActivities();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/comments.css" />
 
     <title>Detail Post</title>
 </head>
 <body>
-    <?php foreach ($posts as $post):?>
-            <div class="pin" id="pinID-<?php echo $post['id']?>">
-                <div class="img_holder">
-                    <div class="buttons" id="1">
-                        <a href="#" class="btn send">Send</a>
-                        <a href="#" class="btn save">Save</a>
-                        <a href="#" class="btn send">IN</a></br>
+<div id="modalOverlay">
+    <div id="content">
+        <?php foreach ($posts as $post):?>
+                <div class="pon" id="pinID-<?php echo $post['id']?>">
+                    <div class="img_holder">
+                        <div class="buttons" id="1">
+                            <a href="#" class="btn send">Send</a>
+                            <a href="#" class="btn save">Save</a>
+                            <a href="#" class="btn send">IN</a></br>
+                        </div>
+                        <a onclick="goBack()">x</a>
+                        <a class="image ajax" href="#" title="photo 1" id="1">
+                            <img src="<?php echo $post['picture']; ?>" alt="" >
+                        </a>
                     </div>
-                    <a class="image ajax" href="#" title="photo 1" id="1">
-                        <img src="<?php echo $post['picture']; ?>" alt="" >
-                    </a>
+
+
+                    <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
+                    <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                    <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+                    <p class="title"><?php echo $post['title']; ?></p>
+                    <p class="description"><?php echo $post['description']?></p>
+
+                    <hr>
+                    <div class="user_info">
+                        <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                            <p><?php echo $post['username']; ?></p>
+                            <p class="categorie">Categorie</p>
+                    </div>
+
+                    <div class="inappropriate">
+                        <p class="inap"
+                    </div>
+                </div>
+        <?php endforeach; ?>
+
+        <form method="post" action="" class="commentformulier">
+            <div class="statusupdates">
+                <h2>Comments</h2>
+                <div class="commentform">
+                    <input type="text" value="Leave a comment" id="comment" name="comment"/>
+                </br>
+                    <input id="btnSubmit" type="submit" value="Comment" class="btnsubmit"/>
                 </div>
 
-                <p class="title"><?php echo $post['title']; ?></p>
-                <p class="description"><?php echo $post['description']?></p>
-                <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
-                <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
 
-                <hr>
-                <div class="user_info">
-                    <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
-                    <p><?php echo $post['username']; ?></p>
-                    <p class="categorie">Categorie</p>
-                </div>
+                <div class="listupdates">
+                    <?php $comment = new Comment();
+                    $comments = $comment->Comments();
 
-                <div class="inappropriate">
-                    <p class="inap"
+                    foreach($comments as $c):?>
+
+                    <div class="comment">
+                        <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+                        <div class="comment_zelf">
+                            <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?userid=<?php  echo $c['user_id']?>"><?php echo $c['Username'].":"?></a>
+                            <p><?php echo $c['comment']?></p>
+                        </div>
+                    </div>
+                        <?php endforeach; ?>
                 </div>
             </div>
-    <?php endforeach; ?>
-
-    <form method="post" action="">
-        <div class="statusupdates">
-            <h1>Comments</h1>
-            <input type="text" value="Leave a comment" id="comment" name="comment"/>
-            <input id="btnSubmit" type="submit" value="Comment"/>
-
-            <ul id="listupdates">
-                <?php $comment = new Comment();
-                $comments = $comment->Comments();
-
-                foreach($comments as $c):?>
-
-                <li>
-                    <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
-                    <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?userid=<?php  echo $c['user_id']?>"><?php echo $c['Username']?></a>
-                    <p><?php echo $c['comment']?></p>
-                </li>
-                    <?php endforeach; ?>
-            </ul>
-        </div>
-    </form>
-
+        </form>
+    </div>
+</div>
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
 
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/popup.js"></script>
+ <!--   <script src="js/popup2.js"></script> -->
 
     <script>
         $(document).ready(function () {
@@ -132,5 +144,14 @@ $recentActivities = $comment->GetRecentActivities();
             });
         });
     </script>
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
 </body>
 </html>

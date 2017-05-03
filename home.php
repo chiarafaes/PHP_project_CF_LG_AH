@@ -3,6 +3,12 @@ session_start();
 spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
+
+if (isset($_SESSION['email'])) {
+} else {
+    header('Location: login.php');
+}
+
 // Wordt er gezocht? Doe dan de search
 if (!empty($_POST['search'])) {
     try {
@@ -102,12 +108,10 @@ if (!empty($_POST['search'])) {
 </div>
 
 
-
 <!-- Button add item - rechterkolom -->
 <div id="right" class="additem">
     <a href="#add_form" id="login_pop">+</a>
 </div>
-
 
 <!-- Overzicht posts-->
 <main>
@@ -148,7 +152,7 @@ if (!empty($_POST['search'])) {
 
                     </div>
 
-                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" class="image ajax" title="photo 1" id="login_pop">
+                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" onclick="PopupCenter();" class="image ajax" title="photo 1" id="loginpop">
                         <img src="<?php echo $post['picture']; ?>" alt="" >
                     </a>
 
@@ -177,7 +181,7 @@ if (!empty($_POST['search'])) {
 </div>
 
 
-<script src="js/popup.js"></script>
+<script src="js/popup2.js"></script>
 
 <script>
     $(function() {
