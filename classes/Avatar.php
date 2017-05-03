@@ -32,7 +32,7 @@
             $statement->bindValue(':user', $user->Mail);
 
             if ($statement->execute()) {
-                header('location:settings.php');
+                header('location:profilesettings.php');
             }
         }
 
