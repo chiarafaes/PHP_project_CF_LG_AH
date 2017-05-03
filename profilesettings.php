@@ -11,13 +11,9 @@
     $user = new User();
     $user->Mail = $_SESSION['email'];
 
-    $conn = Db::getInstance();
 
-    $retrieveQuery = $conn->prepare("SELECT * FROM users WHERE Mail = :user");
-    $retrieveQuery->bindValue(':user', $user->Mail);
 
-    if ($retrieveQuery->execute()) {
-        $res = $retrieveQuery->fetch(PDO::FETCH_ASSOC);
+    if ($res =User::getUser($user->Mail)) {
         $user->Fullname = $res['Fullname'];
         $user->Username = $res['Username'];
     } else {
@@ -34,6 +30,7 @@
             } else {
                 //nieuwe input user aanmaken
                 $userNew = new User();
+                $userNew->Mail = $user->Mail;
                 $options = [
                     'cost' => 12
                 ];
@@ -56,13 +53,7 @@
                     // Wachtwoord encrypten
                     $userNew->Password = password_hash($userNew->Password, PASSWORD_DEFAULT, $options);
 
-                    $updateQuery = $conn->prepare("UPDATE users SET Fullname=:fullname, Username=:username, Password=:password WHERE Mail=:user");
-                    $updateQuery->bindValue(':fullname', $userNew->Fullname);
-                    $updateQuery->bindValue(':username', $userNew->Username);
-                    $updateQuery->bindValue(':password', $userNew->Password);
-                    $updateQuery->bindValue(':user', $user->Mail);
-
-                    if ($updateQuery->execute()) {
+                    if ($userNew->updateUser()) {
                         // als de update gelukt is dan gaan we de originele user vars overschrijven met de nieuwe vars
                         $user->Fullname = $userNew->Fullname;
                         $user->Username = $userNew->Username;

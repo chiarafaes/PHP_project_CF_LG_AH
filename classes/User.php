@@ -88,12 +88,24 @@ class User
         }
     }
 
-    public function __toString()
-    {
-        $output = "<p>".$this->m_sFullname." ".$this->m_sUsername."</p>";
-        $output .= "<p>".$this->m_sMail."</p>";
+    public function checkPassword(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
+        $statement->bindValue(":mail", $this->Mail);
 
-        return ($output);
+        if($statement->execute() && $statement->rowCount() != 0){
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+
+            // hier gaan we het opgeslagen wachtwoord vergelijken met het ingegeven wachtwoord
+            if (password_verify($this->Password, $res['Password'])){
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
     }
 
     public static function getUsers()
@@ -113,6 +125,18 @@ class User
         $stmt->execute();
 
         return ($stmt->fetch(PDO::FETCH_ASSOC));
+    }
+
+    public function updateUser(){
+        $conn= Db::getInstance();
+
+        $statement = $conn->prepare("UPDATE users SET Fullname=:fullname, Username=:username, Password=:password WHERE Mail=:user");
+        $statement->bindValue(':fullname', $this->Fullname);
+        $statement->bindValue(':username', $this->Username);
+        $statement->bindValue(':password', $this->Password);
+        $statement->bindValue(':user', $this->Mail);
+
+        return $statement->execute();
     }
 }
 ?>

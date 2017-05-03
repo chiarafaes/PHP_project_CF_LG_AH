@@ -6,6 +6,7 @@ spl_autoload_register(function ($class) {
 });
 
 if (isset($_SESSION['email'])) {
+    var_dump($_SESSION);
 } else {
     header('Location: login.php');
 }

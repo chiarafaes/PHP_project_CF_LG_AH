@@ -19,17 +19,10 @@
             // enkel code doen indien alle velden ingevuld zijn
             if (!isset($error)) {
 
-                // query doen naar db om bcrypt wachtwoord terug te krijgen en te verifyen
-                $conn = Db::getInstance();
-                $statement = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
-                $statement->bindValue(":mail", $user->Mail);
+                if ($user->checkPassword()){
 
-                if ($statement->execute() && $statement->rowCount() != 0) {
-                    $res = $statement->fetch(PDO::FETCH_ASSOC);
+                        $res = User::getUser($user->Mail);
 
-                    // hier gaan we het opgeslagen wachtwoord vergelijken met het ingegeven wachtwoord
-                    if (password_verify($user->Password, $res['Password'])) {
-                        // correct dus we starten de session
                         session_start();
 
                         // we maken session vars aan voor later
@@ -45,11 +38,6 @@
                 } else {
                     $error = "User does not exist in database. Please register first." . "</br>" . "<a href='registration.php'>Sign up here</a>";
                 }
-            }
-
-            // Normaal gezien gaan we niet zeggen of het wachtwoord of de username fout is.
-            // We gaan gewoon zeggen dat indien één van de twee fout is dat de user niet kan inloggen.
-            // Dit is nu zo om te testen, maar in production kunnen/moeten we dat veranderen.
         } catch (PDOException $e) {
             $error = $e->getMessage();
         }

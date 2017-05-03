@@ -33,8 +33,8 @@
                 // we zien of er wel degelijk 5 topics gekozen zijn (XSS)
                 if (count($topics)>= 5) {
                     $topic->setMATopics($topics);
-
                     $topic->saveTopics();
+                    header('location: home.php');
                 }
                 else {
                     $error = "You need to pick at least 5 topics to continue.";
