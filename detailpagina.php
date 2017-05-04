@@ -75,6 +75,11 @@ $recentActivities = $comment->GetRecentActivities();
                     </div>
                 </div>
         <?php endforeach; ?>
+        <div class="inappropriate">
+            <a href="#" class="inapp" >
+                <img src="img/icon_inapp.svg"/>
+            </a>
+        </div>
 
         <form method="post" action="" class="commentformulier">
             <div class="statusupdates">
