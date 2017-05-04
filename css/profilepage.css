@@ -202,6 +202,31 @@ html{
 
 }
 
+
+#profile_left .follow {
+    background-color: #10a6ad;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 40px 10px 40px;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 0;
+    border: 2px solid #10a6ad;
+
+
+}
+
+
+#profile_left .follow:hover {
+    background-color: #0A6970;;
+    border: 2px solid #0A6970;;
+    color: white;
+
+}
+
+
 .toggleSwitch label{
     color: #8C7E7E;
     letter-spacing: 1.5px;

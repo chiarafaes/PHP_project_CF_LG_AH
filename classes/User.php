@@ -138,5 +138,28 @@ class User
 
         return $statement->execute();
     }
+
+
+    public function followUser(){
+
+        $conn= Db:: getInstance();
+        $statement = $conn->prepare("INSERT INTO users_follower (userEmail,followEmail) VALUES (:userEmail,:followEmail)");
+        $statement->bindParam(":userEmail", $_SESSION['Mail']);
+        $statement->bindParam(":followEmail", $_POST['Mail']);
+        $result = $statement->execute();
+        return ($result);
+
+    }
+
+    public function unfollowUser(){
+
+        $conn= Db::getInstance();
+        $statement = $conn->prepare("DELETE FROM users_follower where userEmail = :userEmail and followEmail = :followEmail ");
+        $statement->bindParam(":userEmail", $_SESSION['Mail']);
+        $statement->bindParam(":followEmail", $_POST['Mail']);
+        $result = $statement->execute();
+        return $result;
+    }
+
 }
 ?>

@@ -84,8 +84,7 @@ $likes = Post::getPostsLikedByUser($_GET['profile']);
             <h2><?php echo $user['Username'] ?></h2>
             <p>hier komt nog locatie</p>
 
-            <button class="btn follow" rel="<?php echo $user['Username'] ?>">Follow</button>
-            <button class="btn follow following" rel="<?php echo $user['Username'] ?>">Following</button>
+            <button class="follow">Follow</button>
         </div>
 
 
