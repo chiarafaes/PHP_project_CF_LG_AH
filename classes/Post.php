@@ -63,8 +63,6 @@ class Post
     }
 
 
-
-
     /**
      * @return mixed
      */
@@ -187,14 +185,11 @@ class Post
     }
 
 
-
-
-
     //save naar DB
     public function Save()
     {
         //connectie maken (PDO) -> geen mysqli, PDO kan voor meerdere data banken
-        $conn= Db::getInstance();
+        $conn = Db::getInstance();
 
         //query schrijven
         $statement = $conn->prepare("INSERT INTO posts (picture,title ,description,username, creator_mail, topic) VALUES (:Picture,:Title,:Description,:Username, :creator_mail, :topic)");
@@ -217,8 +212,8 @@ class Post
         $conn = Db::getInstance();
 
         $statement = $conn->prepare("SELECT posts.*, users.avatar FROM posts LEFT JOIN users on users.username  = posts.username ORDER BY postdate DESC LIMIT :limit OFFSET :offset");
-        $statement->bindValue(':limit', (int) trim($p_iLimit), PDO::PARAM_INT);
-        $statement->bindValue(':offset', (int) trim($p_iOffset), PDO::PARAM_INT);
+        $statement->bindValue(':limit', (int)trim($p_iLimit), PDO::PARAM_INT);
+        $statement->bindValue(':offset', (int)trim($p_iOffset), PDO::PARAM_INT);
 
         if ($statement->execute()) {
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
@@ -264,15 +259,15 @@ class Post
         $statement->bindValue(':post', $id);
         $statement->execute();
 
-        if ($statement->rowCount() > 0) {}
-        else {
+        if ($statement->rowCount() > 0) {
+        } else {
             $statement = $conn->prepare('UPDATE posts SET reports = reports+1 WHERE id = :id');
             $statement->bindValue(':id', $id);
             $statement->execute();
 
             $statement1 = $conn->prepare('INSERT INTO  users_inapr_posts (post, user) VALUES (:post,:user)');
             $statement1->bindValue(':post', $id);
-            $statement1->bindValue(':user',  $_SESSION["email"]);
+            $statement1->bindValue(':user', $_SESSION["email"]);
             $statement1->execute();
 
         }
@@ -291,11 +286,23 @@ class Post
         $conn = Db::getInstance();
 
         $statement = $conn->prepare("SELECT * FROM posts WHERE creator_mail = :useremail ORDER BY postdate DESC");
-        $statement->bindValue(':useremail' , $useremail);
+        $statement->bindValue(':useremail', $useremail);
         if ($statement->execute()) {
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
         } else {
             return false;
         }
+    }
+
+
+    public static function deletePost($id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("DELETE from posts WHERE id = :id");
+        $statement->bindValue(":id", $id);
+        $result = $statement->execute();
+        return($result);
+
+
     }
 }
