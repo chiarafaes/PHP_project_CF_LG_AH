@@ -22,7 +22,7 @@ if(!empty($_POST['comment']))
     }
 }
 
-$inapropriatepost = Post::getPostsInaprByUser($_SESSION['email']);
+$inapropriatepost = Post::report($_GET["post"]);
 
 ?><!doctype html>
 <html lang="en">
@@ -71,26 +71,7 @@ $inapropriatepost = Post::getPostsInaprByUser($_SESSION['email']);
                 </div>
 
                 <div class="inappropriate">
-
-                        <a href="#" class="btn inapr">
-                            <img src="img/<?php
-                            if (!empty($inapropriatepost)) {
-                                $isInapr = false;
-                                foreach ($inapropriatepost as $item) {
-                                    if ($post['id'] == $item['post']) {
-                                        $isInapr = true;
-                                    }
-                                }
-                                if ($isInapr) {
-                                    echo 'icon_inapp_act.svg';
-                                } else {
-                                    echo 'icon_inapp.svg';
-                                }
-                            } else {
-                                echo 'icon_inapp.svg';
-                            }
-                            ?>"/>
-                        </a>
+                        <a href="#" class="btn inapr btnReport"> Inapproriate </a>
 
                 </div>
         <?php endforeach; ?>
@@ -130,6 +111,7 @@ $inapropriatepost = Post::getPostsInaprByUser($_SESSION['email']);
 
     <script src="js/bootstrap.min.js"></script>
  <!--   <script src="js/popup2.js"></script> -->
+    <script src="js/inapr.js"></script>
 
     <script>
         $(document).ready(function () {

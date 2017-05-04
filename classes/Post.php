@@ -254,17 +254,26 @@ class Post
         }
     }
 
-    public static function getPostsInaprByUser($p_sUsername)
+    public function report($id)
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('SELECT * FROM users_inapr_posts WHERE user = :user');
-        $statement->bindValue(':user', $p_sUsername);
+        $statement = $conn->prepare('SELECT * FROM users_inapr_posts WHERE user = :user AND post = :post');
+        $statement->bindValue(':user', $_SESSION["email"]);
+        $statement->bindValue(':post', $id);
+        $statement->execute();
 
-        if ($statement->execute()) {
-            return ($statement->fetchAll(PDO::FETCH_ASSOC));
-        } else {
-            return false;
+        if ($statement->rowCount() > 0) {}
+        else {
+            $statement = $conn->prepare('UPDATE posts SET reports = reports+1 WHERE id = :id');
+            $statement->bindValue(':id', $id);
+            $statement->execute();
+
+            $statement1 = $conn->prepare('INSERT INTO  users_inapr_posts (post, user) VALUES (:post,:user)');
+            $statement1->bindValue(':post', $id);
+            $statement1->bindValue(':user',  $_SESSION["email"]);
+            $statement1->execute();
+
         }
     }
 

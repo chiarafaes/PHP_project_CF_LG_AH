@@ -1,12 +1,10 @@
 :root {
     --ponwidth: 230px;
-    --ponheight: 700px;
 }
 
 
 .pon{
     width: var(--ponwidth);
-
 }
 .pon .image img {
     max-width: 230px;
@@ -74,12 +72,15 @@
 }
 
 .inappropriate{
-    width: 50px;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
 }
 
 
 .inapr{
-    width: 50px;
+    width: 20px;
 }
 
 
