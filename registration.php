@@ -131,11 +131,17 @@
             </fieldset>
 
             <fieldset>
-                <input type="submit" name='submit' value="Sign up" />
+                <input id="createaccount" type="submit" name='submit' value="Sign up" />
             </fieldset>
 
         </form>
     </section>
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="js/checkemail.js"></script>
 
 
 </body>
