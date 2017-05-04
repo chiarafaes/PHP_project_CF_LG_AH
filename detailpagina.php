@@ -86,7 +86,7 @@ $recentActivities = $comment->GetRecentActivities();
                 </div>
         <?php endforeach; ?>
 
-<<<<<<< HEAD
+
 =======
         <? if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
@@ -96,7 +96,7 @@ $recentActivities = $comment->GetRecentActivities();
         <?php endif; ?>
 
 
->>>>>>> origin/master
+
 
 
         <form method="post" action="" class="commentformulier">
