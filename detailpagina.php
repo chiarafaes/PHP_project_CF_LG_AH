@@ -84,7 +84,7 @@ $recentActivities = $comment->GetRecentActivities();
                 </div>
         <?php endforeach; ?>
 
-        <? if ($_SESSION['email'] == $post['creator_mail']):?>
+        <?php if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
 
         <input id = "btnVerwijder" type="submit" value ="Verwijderen">

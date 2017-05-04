@@ -47,6 +47,7 @@ $likes = Post::getPostsLikedByUser($_SESSION['email']);
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+    <script src="js/showcollections.js"></script>
     <title><?php echo $_SESSION['username']; ?></title>
 </head>
 <body>
@@ -120,7 +121,7 @@ $likes = Post::getPostsLikedByUser($_SESSION['email']);
     <div id="profile_right">
 
         <div id="header_info">
-            <a href="#">
+            <a href="#" id="btn_collections">
             <div class="collection_collections">
                 <p>0</p>
                 <p>collections</p>
