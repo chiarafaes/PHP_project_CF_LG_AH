@@ -254,6 +254,20 @@ class Post
         }
     }
 
+    public static function getPostsInaprByUser($p_sUsername)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM users_inapr_posts WHERE user = :user');
+        $statement->bindValue(':user', $p_sUsername);
+
+        if ($statement->execute()) {
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
+
     public static function getTimeAgo($p_dDate)
     {
         $currentDate = new DateTime();

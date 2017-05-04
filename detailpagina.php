@@ -22,9 +22,7 @@ if(!empty($_POST['comment']))
     }
 }
 
-//altijd alle laatste activiteiten ophalen
-$recentActivities = $comment->GetRecentActivities();
-
+$inapropriatepost = Post::getPostsInaprByUser($_SESSION['email']);
 
 ?><!doctype html>
 <html lang="en">
@@ -70,16 +68,34 @@ $recentActivities = $comment->GetRecentActivities();
                             <p class="categorie">Categorie</p>
                     </div>
 
-                    <div class="inappropriate">
-                        <p class="inap"
-                    </div>
+                </div>
+
+                <div class="inappropriate">
+
+                        <a href="#" class="btn inapr">
+                            <img src="img/<?php
+                            if (!empty($inapropriatepost)) {
+                                $isInapr = false;
+                                foreach ($inapropriatepost as $item) {
+                                    if ($post['id'] == $item['post']) {
+                                        $isInapr = true;
+                                    }
+                                }
+                                if ($isInapr) {
+                                    echo 'liked_icon.svg';
+                                } else {
+                                    echo 'like_icon.svg';
+                                }
+                            } else {
+                                echo 'like_icon.svg';
+                            }
+                            ?>"/>
+                        </a>
+
                 </div>
         <?php endforeach; ?>
-        <div class="inappropriate">
-            <a href="#" class="inapp" >
-                <img src="img/icon_inapp.svg"/>
-            </a>
-        </div>
+
+
 
         <form method="post" action="" class="commentformulier">
             <div class="statusupdates">
