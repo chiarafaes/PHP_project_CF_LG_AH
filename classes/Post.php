@@ -197,12 +197,13 @@ class Post
         $conn= Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO Posts (Picture,Title ,Description,Username, Creator_Mail) VALUES (:Picture,:Title,:Description,:Username, :creator_mail)");
+        $statement = $conn->prepare("INSERT INTO posts (picture,title ,description,username, creator_mail, topic) VALUES (:Picture,:Title,:Description,:Username, :creator_mail, :topic)");
         $statement->bindValue(":Picture", $this->m_sPicture);
         $statement->bindValue(":Title", $this->m_sTitle);
         $statement->bindValue(":Description", $this->m_sDescription);
         $statement->bindValue(":Username", $this->m_sUserName);
         $statement->bindValue(":creator_mail", $this->m_sMail);
+        $statement->bindValue(":topic", $this->m_sCategorie);
 
         //query executen
         $res = $statement->execute();

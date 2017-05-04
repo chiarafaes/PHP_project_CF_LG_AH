@@ -53,7 +53,7 @@ $getTopics = Topic::getAllTopics();
                     <li>
                         <label for="<?php echo $topic ['name'];?>"><?php echo $topic ['name'];?>
 
-                            <input class="topicInput" id="<?php echo $topic['name'];?>" name="<?php echo $topic['name'];?>" type="checkbox" value="<?php echo $topic['id'];?>">
+                            <input class="topicInput" id="<?php echo $topic['name'];?>" name="topic" type="radio" value="<?php echo $topic['id'];?>">
 
                         </label>
                     </li>
