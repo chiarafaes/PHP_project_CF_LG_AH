@@ -24,6 +24,15 @@ if(!empty($_POST['comment']))
 
 $inapropriatepost = Post::report($_GET["post"]);
 
+if (!empty($_POST['id'])){
+  if(Post::deletePost($_POST['id'])){
+      header('location: home.php');
+  }else{
+      echo "er ging iets fout";
+  }
+}
+
+
 
 
 
@@ -87,11 +96,13 @@ $recentActivities = $comment->GetRecentActivities();
         <?php endforeach; ?>
 
 
-=======
+
         <? if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
-
-        <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+            <form method="post" action="">
+                <input type="hidden" name="id" value="<?php echo $post['id']?>">
+                <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+            </form>
         </div>
         <?php endif; ?>
 
