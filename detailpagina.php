@@ -22,8 +22,16 @@ if(!empty($_POST['comment']))
     }
 }
 
+
+
+
+
 //altijd alle laatste activiteiten ophalen
 $recentActivities = $comment->GetRecentActivities();
+
+
+
+
 
 
 ?><!doctype html>
@@ -75,6 +83,16 @@ $recentActivities = $comment->GetRecentActivities();
                     </div>
                 </div>
         <?php endforeach; ?>
+
+        <? if ($_SESSION['email'] == $post['creator_mail']):?>
+        <div class="verwijderpost">
+
+        <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+        </div>
+        <?php endif; ?>
+
+
+
 
         <form method="post" action="" class="commentformulier">
             <div class="statusupdates">
