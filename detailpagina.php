@@ -88,13 +88,12 @@ $recentActivities = $comment->GetRecentActivities();
 
 <<<<<<< HEAD
 =======
-        <? if ($_SESSION['email'] == $post['creator_mail']):?>
+        <?php if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
 
-        <input id = "btnVerwijder" type="submit" value ="Verwijderen">
-        </div>
-        <?php endif; ?>
-
+                <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+            </div>
+            <?php endif;?>
 
 >>>>>>> origin/master
 
