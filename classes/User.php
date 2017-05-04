@@ -139,27 +139,19 @@ class User
         return $statement->execute();
     }
 
+    public function Check(){
+        $conn = Db::getInstance();
 
-    public function followUser(){
+        $statement = $conn->prepare("SELECT email FROM users WHERE email = :user");
+        $statement->bindValue(':user', $this->Mail);
 
-        $conn= Db:: getInstance();
-        $statement = $conn->prepare("INSERT INTO users_follower (userEmail,followEmail) VALUES (:userEmail,:followEmail)");
-        $statement->bindParam(":userEmail", $_SESSION['Mail']);
-        $statement->bindParam(":followEmail", $_POST['Mail']);
-        $result = $statement->execute();
-        return ($result);
+        $statement->execute();
+        if($statement->rowCount() == 0){
+            return false;
+        }else{
+            return true;
+        }
 
     }
-
-    public function unfollowUser(){
-
-        $conn= Db::getInstance();
-        $statement = $conn->prepare("DELETE FROM users_follower where userEmail = :userEmail and followEmail = :followEmail ");
-        $statement->bindParam(":userEmail", $_SESSION['Mail']);
-        $statement->bindParam(":followEmail", $_POST['Mail']);
-        $result = $statement->execute();
-        return $result;
-    }
-
 }
 ?>

@@ -24,6 +24,15 @@ if(!empty($_POST['comment']))
 
 $inapropriatepost = Post::report($_GET["post"]);
 
+if (!empty($_POST['id'])){
+  if(Post::deletePost($_POST['id'])){
+      header('location: home.php');
+  }else{
+      echo "er ging iets fout";
+  }
+}
+
+
 
 
 
@@ -75,7 +84,7 @@ $recentActivities = $comment->GetRecentActivities();
                     <div class="user_info">
                         <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                             <p><?php echo $post['username']; ?></p>
-                            <p class="categorie">Categorie</p>
+                            <p class="categorie"><?php echo $post['username']; ?></p>
                     </div>
 
                 </div>
@@ -86,13 +95,20 @@ $recentActivities = $comment->GetRecentActivities();
                 </div>
         <?php endforeach; ?>
 
+<<<<<<< HEAD
+=======
 
-        <?php if ($_SESSION['email'] == $post['creator_mail']):?>
+
+>>>>>>> origin/master
+        <? if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
-
+            <form method="post" action="">
+                <input type="hidden" name="id" value="<?php echo $post['id']?>">
                 <input id = "btnVerwijder" type="submit" value ="Verwijderen">
-            </div>
-            <?php endif;?>
+            </form>
+        </div>
+        <?php endif; ?>
+
 
 
 

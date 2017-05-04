@@ -53,6 +53,8 @@ class Topic
         return ($statement->fetchAll(PDO::FETCH_ASSOC));
     }
 
+
+
     // Voor later ...
     public function getTopicsByUser(){
         $conn = Db::getInstance();
@@ -77,4 +79,6 @@ class Topic
         }
 
     }
+
+
 }
