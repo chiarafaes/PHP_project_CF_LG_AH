@@ -43,7 +43,7 @@
 
         // nu gaan we de like opslaan in de tabel posts
         $update = $conn->prepare('UPDATE posts SET inapr = :inapr WHERE id = :post');
-        $update->bindValue(':inapr', $likes);
+        $update->bindValue(':inapr', $inapr);
         $update->bindValue(':post', $post);
 
         $update->execute();
