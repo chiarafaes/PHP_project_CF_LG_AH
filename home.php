@@ -163,7 +163,7 @@ if (!empty($_POST['search'])) {
                 <div class="user_info">
                     <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
-                    <p class="categorie">Categorie</p>
+                    <p class="categorie"><?php echo $post['topic']?></p>
                 </div>
             </div>
         <?php endforeach;?>
