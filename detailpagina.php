@@ -82,12 +82,12 @@ $inapropriatepost = Post::getPostsInaprByUser($_SESSION['email']);
                                     }
                                 }
                                 if ($isInapr) {
-                                    echo 'liked_icon.svg';
+                                    echo 'icon_inapp_act.svg';
                                 } else {
-                                    echo 'like_icon.svg';
+                                    echo 'icon_inapp.svg';
                                 }
                             } else {
-                                echo 'like_icon.svg';
+                                echo 'icon_inapp.svg';
                             }
                             ?>"/>
                         </a>

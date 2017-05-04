@@ -6,7 +6,7 @@
 
 .pon{
     width: var(--ponwidth);
-    height: var(--ponheight);
+
 }
 .pon .image img {
     max-width: 230px;
@@ -72,6 +72,19 @@
     margin-top: 5px;
     margin-right: 2px;
 }
+
+.inappropriate{
+    width: 50px;
+}
+
+
+.inapr{
+    width: 50px;
+}
+
+
+
+
 #avatar{
     width: 20%;
     height: 10%;
