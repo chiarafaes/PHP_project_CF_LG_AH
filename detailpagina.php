@@ -24,6 +24,16 @@ if(!empty($_POST['comment']))
 
 $inapropriatepost = Post::report($_GET["post"]);
 
+
+
+
+//altijd alle laatste activiteiten ophalen
+$recentActivities = $comment->GetRecentActivities();
+
+
+
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -76,6 +86,17 @@ $inapropriatepost = Post::report($_GET["post"]);
                 </div>
         <?php endforeach; ?>
 
+<<<<<<< HEAD
+=======
+        <? if ($_SESSION['email'] == $post['creator_mail']):?>
+        <div class="verwijderpost">
+
+        <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+        </div>
+        <?php endif; ?>
+
+
+>>>>>>> origin/master
 
 
         <form method="post" action="" class="commentformulier">
