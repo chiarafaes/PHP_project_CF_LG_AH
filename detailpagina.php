@@ -95,12 +95,8 @@ $recentActivities = $comment->GetRecentActivities();
                 </div>
         <?php endforeach; ?>
 
-<<<<<<< HEAD
-=======
+        <?php if ($_SESSION['email'] == $post['creator_mail']):?>
 
-
->>>>>>> origin/master
-        <? if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
             <form method="post" action="">
                 <input type="hidden" name="id" value="<?php echo $post['id']?>">
@@ -108,10 +104,6 @@ $recentActivities = $comment->GetRecentActivities();
             </form>
         </div>
         <?php endif; ?>
-
-
-
-
 
         <form method="post" action="" class="commentformulier">
             <div class="statusupdates">

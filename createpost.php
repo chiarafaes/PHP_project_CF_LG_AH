@@ -70,5 +70,8 @@ $getTopics = Topic::getAllTopics();
 </div>
 
 </form>
+
+
+
 </body>
 </html>
