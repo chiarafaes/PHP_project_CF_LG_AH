@@ -22,13 +22,22 @@ if(!empty($_POST['comment']))
     }
 }
 
+$inapropriatepost = Post::report($_GET["post"]);
+
+if (!empty($_POST['id'])){
+  if(Post::deletePost($_POST['id'])){
+      header('location: home.php');
+  }else{
+      echo "er ging iets fout";
+  }
+}
+
 
 
 
 
 //altijd alle laatste activiteiten ophalen
 $recentActivities = $comment->GetRecentActivities();
-
 
 
 
@@ -75,21 +84,35 @@ $recentActivities = $comment->GetRecentActivities();
                     <div class="user_info">
                         <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                             <p><?php echo $post['username']; ?></p>
-                            <p class="categorie">Categorie</p>
+                            <p class="categorie"><?php echo $post['username']; ?></p>
                     </div>
 
-                    <div class="inappropriate">
-                        <p class="inap"
-                    </div>
+                </div>
+
+                <div class="inappropriate">
+                        <a href="#" class="btn inapr btnReport"> Inapproriate </a>
+
                 </div>
         <?php endforeach; ?>
 
+<<<<<<< HEAD
         <?php if ($_SESSION['email'] == $post['creator_mail']):?>
-        <div class="verwijderpost">
+=======
+<<<<<<< HEAD
+=======
 
-        <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+
+>>>>>>> origin/master
+        <? if ($_SESSION['email'] == $post['creator_mail']):?>
+>>>>>>> origin/master
+        <div class="verwijderpost">
+            <form method="post" action="">
+                <input type="hidden" name="id" value="<?php echo $post['id']?>">
+                <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+            </form>
         </div>
         <?php endif; ?>
+
 
 
 
@@ -127,6 +150,7 @@ $recentActivities = $comment->GetRecentActivities();
 
     <script src="js/bootstrap.min.js"></script>
  <!--   <script src="js/popup2.js"></script> -->
+    <script src="js/inapr.js"></script>
 
     <script>
         $(document).ready(function () {

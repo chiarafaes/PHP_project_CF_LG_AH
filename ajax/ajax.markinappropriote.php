@@ -5,48 +5,20 @@
         include_once("../classes/".$class.".php");
     });
 
-    $user = $_SESSION['email'];
-    $post = $_POST['post'];
-    $inapr = $_POST['inapr'];
+    $code = array(
+        "succes"=> false,
+        "error" => ""
+        );
 
-    $conn = Db::getInstance();
+    try {
+        $report = new Post();
+        $report->report($_POST["id"]);
+        $code["succes"] = true;
 
-    $statement = $conn->prepare('SELECT post, user FROM users_inapr_posts WHERE user = :user AND post = :post');
-    $statement->bindValue(':user', $user);
-    $statement->bindValue(':post', $post);
+    }catch (Exception $e){
+        $code["succes"] = false;
+        $code["error"] = $e->getMessage();
+}
 
-    if ($statement->execute()) {
-        if (count($res = $statement->fetchAll(PDO::FETCH_ASSOC)) == 0) {
-            $insert = $conn->prepare('INSERT INTO users_inapr_posts (user, post) VALUES (:user, :post)');
-            $insert->bindValue(':user', $user);
-            $insert->bindValue(':post', $post);
+        echo json_encode($code);
 
-            $res = $statement->fetch(PDO::FETCH_ASSOC);
-
-            $inapr += 1;
-
-
-            if ($insert->execute()) {
-                echo json_encode($inapr);
-            }
-        } else {
-            $delete = $conn->prepare('DELETE FROM users_inapr_posts WHERE user = :user and post = :post');
-            $delete->bindValue(':user', $user);
-            $delete->bindValue(':post', $post);
-
-            $inapr -= 1;
-
-            if ($delete->execute()) {
-                echo json_encode($inapr);
-            }
-        }
-
-        // nu gaan we de like opslaan in de tabel posts
-        $update = $conn->prepare('UPDATE posts SET inapr = :inapr WHERE id = :post');
-        $update->bindValue(':inapr', $inapr);
-        $update->bindValue(':post', $post);
-
-        $update->execute();
-    } else {
-        echo json_encode("niet gelukt");
-    }

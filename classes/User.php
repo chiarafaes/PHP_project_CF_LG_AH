@@ -138,5 +138,20 @@ class User
 
         return $statement->execute();
     }
+
+    public function Check(){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT email FROM users WHERE email = :user");
+        $statement->bindValue(':user', $this->Mail);
+
+        $statement->execute();
+        if($statement->rowCount() == 0){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
 }
 ?>

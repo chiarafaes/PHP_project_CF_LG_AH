@@ -1,12 +1,10 @@
 :root {
     --ponwidth: 230px;
-    --ponheight: 700px;
 }
 
 
 .pon{
     width: var(--ponwidth);
-    height: var(--ponheight);
 }
 .pon .image img {
     max-width: 230px;
@@ -72,6 +70,22 @@
     margin-top: 5px;
     margin-right: 2px;
 }
+
+.inappropriate{
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.inapr{
+    width: 20px;
+}
+
+
+
+
 #avatar{
     width: 20%;
     height: 10%;

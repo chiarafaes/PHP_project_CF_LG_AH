@@ -126,10 +126,6 @@ if (!empty($_POST['search'])) {
                     <div class="buttons" id="1">
                         <a href="#" class="btn send">Send</a>
                         <a href="#" class="btn save">Save</a></br>
-                        <a href="#" class="inapp" >
-                            <img src="img/icon_inapp.svg"/>
-                        </a>
-
                         <a href="#" class="btn like">
                             <img src="img/<?php
                             if (!empty($likedPosts)) {
@@ -167,7 +163,7 @@ if (!empty($_POST['search'])) {
                 <div class="user_info">
                     <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
-                    <p class="categorie">Categorie</p>
+                    <p class="categorie"><?php echo $post['topic']?></p>
                 </div>
             </div>
         <?php endforeach;?>
