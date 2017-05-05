@@ -28,6 +28,7 @@ if(!empty($_POST['comment']))
 $recentActivities = $comment->GetRecentActivities();
 
 
+$test = Post::CountReport($_GET["post"]);
 
 if (!empty($_POST['id'])){
   if(Post::deletePost($_POST['id'])){
@@ -37,7 +38,7 @@ if (!empty($_POST['id'])){
   }
 }
 
-$test = Post::CountReport($_GET["post"]);
+$ReportedBy = Post::ReportedByUser($_GET["post"]);
 
 ?><!doctype html>
 <html lang="en">
@@ -76,12 +77,9 @@ $test = Post::CountReport($_GET["post"]);
                     <p class="title"><?php echo $post['title']; ?></p>
                     <p class="description"><?php echo $post['description']?></p>
                     <?php
-
                     $id = $post['id'];
                     $topic = Post::getCategorie($id);
-
                     ?>
-
                     <hr>
                     <div class="user_info">
                         <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
@@ -91,10 +89,11 @@ $test = Post::CountReport($_GET["post"]);
 
                 </div>
 
+            <?php if(count($ReportedBy) == 0):?>
                 <div class="inappropriate">
-                        <a href="#" class="btn inapr btnReport"> Inapproriate </a>
-
+                    <a href="#" class="btnReport" data-id="<?php echo $post['id']?> "> Inapproriate </a>
                 </div>
+            <?php endif; ?>
         <?php endforeach; ?>
 
         <!-- VERWIJDER POST -->

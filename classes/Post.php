@@ -302,18 +302,32 @@ class Post
         $statement->bindValue(':post', $id);
         $statement->execute();
 
-        if ($statement->rowCount() > 0) {
+        if ($statement->rowCount() == 1) {
+
         } else {
             $statement = $conn->prepare('UPDATE posts SET reports = reports+1 WHERE id = :id');
             $statement->bindValue(':id', $id);
             $statement->execute();
 
-            $statement1 = $conn->prepare('INSERT INTO  users_inapr_posts (post, user) VALUES (:post,:user)');
+            $statement1 = $conn->prepare('INSERT INTO users_inapr_posts (post, user) VALUES (:post,:user)');
             $statement1->bindValue(':post', $id);
             $statement1->bindValue(':user', $_SESSION["email"]);
             $statement1->execute();
 
+
         }
+    }
+
+    public static function ReportedByUser($id){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM users_inapr_posts WHERE user = :user AND post = :post');
+        $statement->bindValue(':user', $_SESSION["email"]);
+        $statement->bindValue(':post', $id);
+        $statement->execute();
+        $res = $statement->fetchAll();
+
+        return $res;
     }
 
     public static function CountReport($id){
@@ -332,12 +346,9 @@ class Post
             header('Location: home.php');
 
             return $res;
-
         } else {
             return $res;
-
         }
-
     }
 
     public static function getTimeAgo($p_dDate)
