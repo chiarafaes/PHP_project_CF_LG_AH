@@ -24,6 +24,5 @@ $(document).ready(function () {
                     bericht.innerText= "dit is gerapporteerd!";
             })
             e.preventDefault();
-
         });
 });
