@@ -21,7 +21,7 @@ class User
             case "Mail":
                 $this->m_sMail  = $p_vValue;
                 break;
-                
+
             case "Password":
                 $this->m_sPassword  = $p_vValue;
                 break;
@@ -34,6 +34,8 @@ class User
 
     public function __get($p_sProperty)
     {
+        $vResult = null;
+
         switch ($p_sProperty) {
             case "Fullname":
                 return $this->m_sFullname;
@@ -55,6 +57,8 @@ class User
                 return $this->m_sAvatar;
             break;
         }
+        return $vResult;
+
     }
 
     public function Save()
@@ -107,6 +111,20 @@ class User
             return false;
         }
     }
+    public function Check(){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT Mail FROM users WHERE Mail = :user_mail");
+        $statement->bindValue(':user_mail', $this->m_sMail,$conn::PARAM_STR);
+
+        $statement->execute();
+        if($statement->rowCount() > 0){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
 
     public static function getUsers()
     {
@@ -139,19 +157,6 @@ class User
         return $statement->execute();
     }
 
-    public function Check(){
-        $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT email FROM users WHERE email = :user");
-        $statement->bindValue(':user', $this->Mail);
-
-        $statement->execute();
-        if($statement->rowCount() == 0){
-            return false;
-        }else{
-            return true;
-        }
-
-    }
 }
 ?>

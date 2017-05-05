@@ -1,27 +1,28 @@
-/**
- * Created by chiarafaes on 4/05/17.
- */
 $(document).ready(function(){
-
     $("#email").on("keyup", function(){
-
-
         var email = $("#email").val();
+        $(".usernameFeedback").show();
+        // Ajax call: verzenden naar php bestand om query uit te voeren
 
-        $.ajax({
-            method: "POST",
-            url: "ajax/ajax.checkemail.php",
-            data: { email: email }
-        })
-            .done(function( response ){
-                $("#errors").text(response.message);
-                if(response.message == "Username available!"){
-                    $("#createaccount").prop("disabled", false).removeClass("dis");
-                }else{
-                    $("#createaccount").prop("disabled", true).addClass("dis");
+        $.post(
+            {
+                url:"ajax/ajax.checkmail.php",
+                method:"post",
+                data:{
+                    email: email
+                }
+            }).done(function( response ){
+                $('.usernameFeedback span').text(response.message);
+                console.log("test1");
+
+                if(response.status === 'error') {
+                    $('#createAccount').prop('disabled', true);
+                    console.log("test2");
+                } else {
+                    $('#createAccount').prop('disabled', false);
+                    console.log("test3");
                 }
             });
-
     });
 
 });

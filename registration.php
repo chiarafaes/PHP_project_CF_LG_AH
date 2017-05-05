@@ -101,6 +101,10 @@
         <h2>Sign up to discover</h2> </br>
         <h2>IMD'terest</h2>
 
+        <div class="usernameFeedback">
+            <span>checking</span>
+        </div>
+
         <div>
             <?php if (isset($error)):?>
                 <div class="error">
@@ -120,6 +124,8 @@
                 <input id="username" name="username" type="text" placeholder="username"/>
             </fieldset>
 
+
+
             <fieldset>
                 <label>Email</label>
                 <input id="email" name="email" type="text" placeholder="email"/>
@@ -131,7 +137,7 @@
             </fieldset>
 
             <fieldset>
-                <input id="createaccount" type="submit" name='submit' value="Sign up" />
+                <input id="createAccount" type="submit" name='submit' value="Sign up" />
             </fieldset>
 
         </form>
