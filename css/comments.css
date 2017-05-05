@@ -4,7 +4,14 @@
     margin-right: auto;
 }
 
-
+#inappropriate{
+    margin-top: 70px;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    color: red;
+}
 .pon{
     width: var(--ponwidth);
 }

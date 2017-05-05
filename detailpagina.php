@@ -90,8 +90,12 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                 </div>
 
             <?php if(count($ReportedBy) == 0):?>
-                <div class="inappropriate">
+                <div id="inappropriate">
                     <a href="#" class="btnReport" data-id="<?php echo $post['id']?> "> Inapproriate </a>
+                </div>
+                <?php else:?>
+                <div id="inappropriate">
+                    <p>Dit is reeds gerapporteerd door u. Bij 3 dislikes verdwijnt deze post</p>
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
