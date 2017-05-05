@@ -6,6 +6,8 @@ spl_autoload_register(function ($class) {
 
 $posts= Post::getPostsByID($_GET["post"]);
 
+
+//COMMENTS
 $comment = new Comment();
 
 //controleer of er een update wordt verzonden
@@ -22,6 +24,12 @@ if(!empty($_POST['comment']))
     }
 }
 
+//altijd alle laatste commentaren ophalen
+$recentActivities = $comment->GetRecentActivities();
+
+
+
+// INAPPROPRIATE
 $inapropriatepost = Post::report($_GET["post"]);
 
 if (!empty($_POST['id'])){
@@ -33,11 +41,6 @@ if (!empty($_POST['id'])){
 }
 
 
-
-
-
-//altijd alle laatste activiteiten ophalen
-$recentActivities = $comment->GetRecentActivities();
 
 
 
@@ -95,8 +98,9 @@ $recentActivities = $comment->GetRecentActivities();
                 </div>
         <?php endforeach; ?>
 
-        <?php if ($_SESSION['email'] == $post['creator_mail']):?>
+        <!-- VERWIJDER POST -->
 
+        <? if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
             <form method="post" action="">
                 <input type="hidden" name="id" value="<?php echo $post['id']?>">
@@ -105,9 +109,13 @@ $recentActivities = $comment->GetRecentActivities();
         </div>
         <?php endif; ?>
 
+
+        <!-- COMMENTAAR -->
+
+
         <form method="post" action="" class="commentformulier">
             <div class="statusupdates">
-                <h2>Comments</h2>
+                <h4>Comments</h4>
                 <div class="commentform">
                     <input type="text" value="Leave a comment" id="comment" name="comment"/>
                 </br>
@@ -122,9 +130,12 @@ $recentActivities = $comment->GetRecentActivities();
                     foreach($comments as $c):?>
 
                     <div class="comment">
-                        <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+                        <!-- <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"> -->
+                            <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+
+                        <!-- </a> -->
                         <div class="comment_zelf">
-                            <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?userid=<?php  echo $c['user_id']?>"><?php echo $c['Username'].":"?></a>
+                            <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
                             <p><?php echo $c['comment']?></p>
                         </div>
                     </div>
@@ -137,43 +148,7 @@ $recentActivities = $comment->GetRecentActivities();
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
 
     <script src="js/bootstrap.min.js"></script>
- <!--   <script src="js/popup2.js"></script> -->
     <script src="js/inapr.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $("#btnSubmit").on("click", function (e) {
-                //console.log("clicked");
-
-                // tekst vak uitlezen
-                var update = $("#comment").val();
-                var postID = document.getElementById("post").getAttribute("data-id");
-                // via AJAX update naar databank sturen
-                $.ajax({
-                    method: "POST",
-                    url: "AJAX/ajax.saveupdate.php",
-                    data: {update: update, postID: postID} //update: is de naam en update is de waarde (value)
-                })
-
-                    .done(function (response) {
-
-                        // code + message
-                        if (response.code == 200) {
-
-                            // iets plaatsen?
-                            var li = $("<li style='display: none;'>");
-                            li.html("<img id='avatar' src='" + response.avatar + "' </img>" + "   " + "  " + "<a href='http://localhost/PHP_project_cf_lg_ah/user_profile.php?user=" + response.id + "'>" + response.user + "</a>: " + response.message);
-                            // waar?
-                            $("#listupdates").prepend(li);
-                            $("#listupdates li").first().slideDown();
-                            $("#comment").val("").focus();
-                        }
-                    });
-
-                e.preventDefault();
-            });
-        });
-    </script>
 
 
 <script>
@@ -182,6 +157,7 @@ $recentActivities = $comment->GetRecentActivities();
     }
 </script>
 
+<script src="js/comment.js"></script>
 
 </body>
 </html>
