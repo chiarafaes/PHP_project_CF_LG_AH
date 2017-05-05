@@ -29,8 +29,6 @@ if (!empty($_POST['search'])) {
     }
 }
 
-
-
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -152,6 +150,13 @@ if (!empty($_POST['search'])) {
                         <img src="<?php echo $post['picture']; ?>" alt="" >
                     </a>
 
+                    <?php
+
+                    $id = $post['id'];
+                    $topic = Post::getCategorie($id);
+
+                    ?>
+
 
                     </div>
                 <p class="description"><?php echo $post['title']; ?></p>
@@ -163,7 +168,7 @@ if (!empty($_POST['search'])) {
                 <div class="user_info">
                     <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
-                    <p class="categorie"><?php echo $post['topic']?></p>
+                    <p class="categorie"><?php echo $topic['name']?></p>
                 </div>
             </div>
         <?php endforeach;?>

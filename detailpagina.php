@@ -82,12 +82,18 @@ if (!empty($_POST['id'])){
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
                     <p class="title"><?php echo $post['title']; ?></p>
                     <p class="description"><?php echo $post['description']?></p>
+                    <?php
+
+                    $id = $post['id'];
+                    $topic = Post::getCategorie($id);
+
+                    ?>
 
                     <hr>
                     <div class="user_info">
                         <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                             <p><?php echo $post['username']; ?></p>
-                            <p class="categorie"><?php echo $post['username']; ?></p>
+                            <p class="categorie"><?php echo $topic['name']; ?></p>
                     </div>
 
                 </div>

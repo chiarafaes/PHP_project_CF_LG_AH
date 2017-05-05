@@ -236,6 +236,21 @@ class Post
         }
     }
 
+
+    public static function getCategorie($id)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT name FROM posts INNER JOIN topics ON posts.topic = topics.id WHERE posts.id = :postid');
+        $statement->bindValue(':postid',$id );
+        $statement->execute();
+
+        $res = $statement->fetch();
+        return($res);
+    }
+
+
+
     public static function getPostsByID($p_iID)
     {
         $conn = Db::getInstance();
