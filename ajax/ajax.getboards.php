@@ -29,5 +29,4 @@
     }
 
     echo json_encode($collections);
-    // echo json_encode($collections);
 

@@ -54,12 +54,10 @@ class Topic
     }
 
 
-
-    // Voor later ...
     public function getTopicsByUser(){
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM users_topics WHERE fk_users = :user");
+        $statement = $conn->prepare("SELECT users_topics.fk_topics FROM users_topics INNER JOIN topics ON topics.id = users_topics.fk_topics WHERE fk_users = :user");
         $statement->bindValue(':user', $this->m_sUser);
 
         if($statement->execute()){

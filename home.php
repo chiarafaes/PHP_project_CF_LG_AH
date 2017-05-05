@@ -22,7 +22,7 @@ if (!empty($_POST['search'])) {
 } else {
     // Als er niet gezocht wordt, dan alle posts inladen
     try {
-        $renderedPosts = Post::getPosts(20, 0); // Veranderd naar 20, want in briefing moet bij load more 20 items bijkomen
+        $renderedPosts = Post::getPosts(20, 0, $_SESSION['email']); // Veranderd naar 20, want in briefing moet bij load more 20 items bijkomen
         $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
     } catch (PDOException $e) {
         $error = $e->getMessage();

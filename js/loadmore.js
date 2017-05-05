@@ -33,45 +33,51 @@ $(document).ready(function () {
                     data: {'offset': offset},
                     success: function (data)
                     {
-                        data.forEach(function (value)
-                        {
-                            $.each(likedPosts, function (index, likedValue) {
-                                if (value.id == likedValue.post){
-                                    isLiked = '<img src="img/liked_icon.svg" />';
-                                } else {
-                                    isLiked = '<img src="img/like_icon.svg" />';
-                                }
-                            });
-                            console.log();
-                            var post = '<div class="pin" id="pinID-'+value.id+'">'+
-                                '<div class="img_holder">'+
-                                '<div class="buttons" id="1">'+
-                                '<a href="#" class="btn send">Send</a>'+
-                                '<a href="#" class="btn save">Save</a>'+
-                                '<a href="#" class="btn like">'+
-                                isLiked+
-                                '</a>'+
-                                '</div>'+
-                                '<a class="image ajax" href="#" title="photo 1" id="1">'+
-                                '<img src="'+value.picture+'" alt="" >'+
-                                '</a>'+
-                                '</div>'+
-                                '<p class="description">'+value.title+'</p>'+
-                                '<p class="likes"><span>'+value.likes+'</span></p>'+
-                                '<p class="postdate"<span>'+getTimeAgo(value.postdate)+'d ago</span></p>'+
-                                '<hr>'+
-                                '<div class="user_info">'+
-                                '<img src="'+value.avatar+'" alt="#">'+
-                                '<p>'+value.username+'</p>'+
-                                '<p class="categorie">Categorie</p>'+
-                                '</div>'+
-                                '</div>';
+                        if (data == false){
+                            var end = '<div class="error">No more posts</div>'
+                            $('#left').append(end)
+                        } else {
+                            data.forEach(function (value) {
+                                $.each(likedPosts, function (index, likedValue) {
+                                    if (value.id == likedValue.post) {
+                                        isLiked = '<img src="img/liked_icon.svg" />';
+                                    } else {
+                                        isLiked = '<img src="img/like_icon.svg" />';
+                                    }
+                                });
+                                console.log();
+                                var post = '<div class="pin" id="pinID-' + value.id + '">' +
+                                    '<div class="img_holder">' +
+                                    '<div class="buttons" id="1">' +
+                                    '<a href="#" class="btn send">Send</a>' +
+                                    '<a href="#" class="btn save">Save</a>' +
+                                    '<a href="#" class="btn like">' +
+                                    isLiked +
+                                    '</a>' +
+                                    '</div>' +
+                                    '<a class="image ajax" href="#" title="photo 1" id="1">' +
+                                    '<img src="' + value.picture + '" alt="" >' +
+                                    '</a>' +
+                                    '</div>' +
+                                    '<p class="description">' + value.title + '</p>' +
+                                    '<p class="likes"><span>' + value.likes + '</span></p>' +
+                                    '<p class="postdate"<span>' + getTimeAgo(value.postdate) + 'd ago</span></p>' +
+                                    '<hr>' +
+                                    '<div class="user_info">' +
+                                    '<img src="' + value.avatar + '" alt="#">' +
+                                    '<p>' + value.username + '</p>' +
+                                    '<p class="categorie">Categorie</p>' +
+                                    '</div>' +
+                                    '</div>';
 
-                            $('#left').append(post);
-                        })
+                                $('#left').append(post);
+                            });
+                        };
                     },
                     error : function () {
-                        alert("oei niet goed");
+                        var end = '<div>No more posts</div>'
+
+                        $('#left').append(end)
                     }
                 })
             }

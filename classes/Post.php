@@ -207,18 +207,32 @@ class Post
         return ($res);
     }
 
-    public static function getPosts($p_iLimit, $p_iOffset)
+    public static function getPosts($p_iLimit, $p_iOffset, $p_sUser)
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT posts.*, users.avatar FROM posts LEFT JOIN users on users.username  = posts.username ORDER BY postdate DESC LIMIT :limit OFFSET :offset");
-        $statement->bindValue(':limit', (int)trim($p_iLimit), PDO::PARAM_INT);
-        $statement->bindValue(':offset', (int)trim($p_iOffset), PDO::PARAM_INT);
+        $topic = new Topic();
+        $topic->setMSUser($p_sUser);
+        $param = $topic->getTopicsByUser();
+        $placeholders = implode(',', array_fill(0, count($param), '?'));
+
+        foreach ($param as $value){
+           foreach ($value as $key => $val){
+               $topics [] = $val;
+           }
+        }
+
+        $statement = $conn->prepare("SELECT posts.*, users.avatar FROM posts LEFT JOIN users on users.username = posts.username WHERE posts.topic IN (".$placeholders.") ORDER BY postdate  DESC LIMIT ? OFFSET ?");
+
+        foreach ($topics as $k => $id) {
+            $statement->bindValue(($k + 1), $id);
+        }
+
+        $statement->bindValue(count($topics)+1, (int)trim($p_iLimit), PDO::PARAM_INT);
+        $statement->bindValue(count($topics)+2, (int)trim($p_iOffset), PDO::PARAM_INT);
 
         if ($statement->execute()) {
-            return ($statement->fetchAll(PDO::FETCH_ASSOC));
-        } else {
-            return false;
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 
@@ -302,7 +316,5 @@ class Post
         $statement->bindValue(":id", $id);
         $result = $statement->execute();
         return($result);
-
-
     }
 }
