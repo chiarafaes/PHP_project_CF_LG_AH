@@ -51,7 +51,7 @@ if (!empty($_POST['search'])) {
     <script src="js/loadmore.js"></script>
     <script src="js/like.js"></script>
 </head>
-<body>
+<body >
 
 <!-- Default header -->
 <header>
@@ -113,6 +113,8 @@ if (!empty($_POST['search'])) {
 
 <!-- Overzicht posts-->
 <main>
+
+
     <?php if (!empty($search_param)):?>
         <h1>Search results for '<?php echo $search_param; ?>'</h1>
         <a href="home.php">Clear results</a>
@@ -180,7 +182,6 @@ if (!empty($_POST['search'])) {
 <div id="loadmore">
     <a href="#" class="btn_loadmore" id="btn_loadmore">Load more...</a>
 </div>
-
 
 <script src="js/popup2.js"></script>
 

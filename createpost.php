@@ -18,7 +18,7 @@ $getTopics = Topic::getAllTopics();
 
     <title>CreatePost</title>
 </head>
-<body>
+<body onload="ready()">
 <form method="post" name="Posten" action="upload.php" id="Posten" enctype="multipart/form-data"/>
 <a class="close" href="#close">x</a>
 <div class="create_uploadphoto">
@@ -34,7 +34,10 @@ $getTopics = Topic::getAllTopics();
         <label>Description</label>
         <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
+
+    <div id="demo"></div>
 </div>
+
 
 
 <div class="right_column">
@@ -43,6 +46,7 @@ $getTopics = Topic::getAllTopics();
         <label>Title</label>
         <input type="text" name="title" />
     </div>
+
 
 
     <div class="box_topics">
@@ -67,10 +71,13 @@ $getTopics = Topic::getAllTopics();
     <input type="submit" name='submit' value="Post" />
 </div>
 
+
+
 </div>
 
 </form>
 
+<script src="js/geolocation.js"></script>
 
 
 </body>
