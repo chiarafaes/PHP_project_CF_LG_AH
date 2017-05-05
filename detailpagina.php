@@ -105,10 +105,6 @@ $recentActivities = $comment->GetRecentActivities();
         </div>
         <?php endif; ?>
 
-
-
-
-
         <form method="post" action="" class="commentformulier">
             <div class="statusupdates">
                 <h2>Comments</h2>
