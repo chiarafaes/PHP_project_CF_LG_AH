@@ -10,7 +10,7 @@ $posts= Post::getPostsByID($_GET["post"]);
 //COMMENTS
 $comment = new Comment();
 
-//controleer of er een update wordt verzonden
+//controleer of er een comment wordt verzonden
 if(!empty($_POST['comment']))
 {
     $comment->Text = $_POST['comment'];
@@ -121,7 +121,6 @@ if (!empty($_POST['id'])){
                 </br>
                     <input id="btnSubmit" type="submit" value="Comment" class="btnsubmit"/>
                 </div>
-
 
                 <div class="listupdates">
                     <?php $comment = new Comment();
