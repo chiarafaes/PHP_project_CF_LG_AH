@@ -29,6 +29,7 @@ $recentActivities = $comment->GetRecentActivities();
 
 
 $test = Post::CountReport($_GET["post"]);
+$dislikes = count($test);
 
 if (!empty($_POST['id'])){
   if(Post::deletePost($_POST['id'])){
@@ -70,7 +71,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                         </a>
                     </div>
 
-                    <p class = > dislikes : <?php echo count($test); ?></p>
+                    <p class = > dislikes : <?php echo $dislikes; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
