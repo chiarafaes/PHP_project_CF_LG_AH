@@ -279,6 +279,20 @@ class Post
         }
     }
 
+    public static function getPostsLikedByUserAndShow($p_sUsername)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM users_likes_posts INNER JOIN posts ON users_likes_posts.post = posts.id WHERE user = :user');
+        $statement->bindValue(':user', $p_sUsername);
+
+        if ($statement->execute()) {
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
+
     public function report($id)
     {
         $conn = Db::getInstance();
@@ -302,6 +316,30 @@ class Post
         }
     }
 
+    public static function CountReport($id){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM users_inapr_posts WHERE post = :post');
+        $statement->bindValue(':post', $id);
+        $statement->execute();
+        $res = $statement->fetchAll();
+
+        if(count($res) > 2){
+
+            $statement = $conn->prepare('DELETE from posts WHERE id = :post');
+            $statement->bindValue(':post', $id);
+            $statement->execute();
+            header('Location: home.php');
+
+            return $res;
+
+        } else {
+            return $res;
+
+        }
+
+    }
+
     public static function getTimeAgo($p_dDate)
     {
         $currentDate = new DateTime();
@@ -322,7 +360,6 @@ class Post
             return false;
         }
     }
-
 
     public static function deletePost($id)
     {

@@ -29,9 +29,6 @@ $recentActivities = $comment->GetRecentActivities();
 
 
 
-// INAPPROPRIATE
-$inapropriatepost = Post::report($_GET["post"]);
-
 if (!empty($_POST['id'])){
   if(Post::deletePost($_POST['id'])){
       header('location: home.php');
@@ -40,11 +37,7 @@ if (!empty($_POST['id'])){
   }
 }
 
-
-
-
-
-
+$test = Post::CountReport($_GET["post"]);
 
 ?><!doctype html>
 <html lang="en">
@@ -76,7 +69,7 @@ if (!empty($_POST['id'])){
                         </a>
                     </div>
 
-
+                    <p class = > dislikes : <?php echo count($test); ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
