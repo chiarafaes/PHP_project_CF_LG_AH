@@ -14,8 +14,7 @@ function showLocation(position) {
         method:"post",
         data:{
             "latitude" : latitude,
-            "longitude": longitude,
-            "id": id
+            "longitude": longitude
         },
         success:function(msg){
             if(msg){

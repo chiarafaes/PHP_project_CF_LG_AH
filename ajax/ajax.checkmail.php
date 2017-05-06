@@ -9,7 +9,7 @@ $mailCheck = new User();
 if(!empty($_POST['email'])){
     $mailCheck-> Mail =$_POST['email'];
 
-        if($mailCheck->Check()) {
+        if($mailCheck->UsernameAvailable()) {
             $response['status'] = 'success';
             $response['message'] = 'Username available';
         } else {

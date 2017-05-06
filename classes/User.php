@@ -92,6 +92,7 @@ class User
         }
     }
 
+
     public function checkPassword(){
         $conn = Db::getInstance();
         $statement = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
@@ -111,20 +112,41 @@ class User
             return false;
         }
     }
-    public function Check(){
-        $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT Mail FROM users WHERE Mail = :user_mail");
-        $statement->bindValue(':user_mail', $this->m_sMail,$conn::PARAM_STR);
+    public function UsernameAvailable() {
 
+        $PDO = Db::getInstance();
+        $statement = $PDO->prepare( "SELECT username FROM users WHERE username = :username" );
+        $statement->bindValue( ":username", $this->m_sUsername );
         $statement->execute();
-        if($statement->rowCount() > 0){
-            return false;
-        }else{
+        $count = count( $statement->fetchAll() );
+
+        if ( $count > 0 ) {
             return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public function EmailAvailable() {
+
+        $PDO = Db::getInstance();
+        $statement = $PDO->prepare( "SELECT Mail FROM users WHERE Mail = :email" );
+        $statement->bindValue( ":email", $this->m_sEmail );
+        $statement->execute();
+        $count = count( $statement->fetchAll() );
+
+        if( $count > 0 ){
+            return true;
+
+        } else {
+            return false;
         }
 
+
     }
+
 
     public static function getUsers()
     {

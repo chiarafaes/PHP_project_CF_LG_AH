@@ -1,28 +1,38 @@
-$(document).ready(function(){
-    $("#email").on("keyup", function(){
+
+$(document).ready(function()
+{
+    // AJAX CHECK USERNAME AVAILIBILITY
+    $("#email").on("keyup", function(e)
+    {
+        // GET USERNAME VALUE
         var email = $("#email").val();
         $(".usernameFeedback").show();
-        // Ajax call: verzenden naar php bestand om query uit te voeren
 
-        $.post(
-            {
-                url:"ajax/ajax.checkmail.php",
-                method:"post",
-                data:{
-                    email: email
-                }
-            }).done(function( response ){
-                $('.usernameFeedback span').text(response.message);
-                console.log("test1");
+        $.post("ajax/ajax.checkmail.php", {email: email}).done(function( response )
+        {
 
-                if(response.status === 'error') {
-                    $('#createAccount').prop('disabled', true);
-                    console.log("test2");
-                } else {
-                    $('#createAccount').prop('disabled', false);
-                    console.log("test3");
-                }
-            });
-    });
+            $('.usernameFeedback').text(response.message);
 
-});
+            if( response.status === 'success' ) {
+                $('#email').css('color', '#4BAE4F');
+                $('.usernameFeedback').css('color', '#4BAE4F');
+                $("input[type=submit]").removeAttr("disabled");
+                console.log("succes");
+
+
+            } else if(response.status === 'error' ) {
+                $('#email').css('color', '#D22E2E');
+                $('.usernameFeedback').css('color', '#D22E2E');
+                console.log("error");
+
+            } else {
+                $('#email').css('color', '#000');
+                $('.usernameFeedback').hide();
+                $("input[type=submit]").attr("disabled", "disabled");
+            }
+
+            $("input[type=submit]").removeAttr("disabled");
+        });
+        e.preventDefault();
+    })
+})
