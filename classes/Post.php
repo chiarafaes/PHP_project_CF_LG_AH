@@ -11,6 +11,7 @@ class Post
     private $m_sCategorie;
     private $m_sMail;
     private $m_iinapr;
+    private $m_sLocation;
 
     /**
      * @return mixed
@@ -184,6 +185,23 @@ class Post
         $this->m_iinapr = $m_iinapr;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMSLocation()
+    {
+        return $this->m_sLocation;
+    }
+
+    /**
+     * @param mixed $m_sLocation
+     */
+    public function setMSLocation($m_sLocation)
+    {
+        $this->m_sLocation = $m_sLocation;
+    }
+
+
 
     //save naar DB
     public function Save()
@@ -192,13 +210,14 @@ class Post
         $conn = Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO posts (picture,title ,description,username, creator_mail, topic) VALUES (:Picture,:Title,:Description,:Username, :creator_mail, :topic)");
+        $statement = $conn->prepare("INSERT INTO posts (picture,title ,description,username, creator_mail, topic, location) VALUES (:Picture,:Title,:Description,:Username, :creator_mail, :topic,:location)");
         $statement->bindValue(":Picture", $this->m_sPicture);
         $statement->bindValue(":Title", $this->m_sTitle);
         $statement->bindValue(":Description", $this->m_sDescription);
         $statement->bindValue(":Username", $this->m_sUserName);
         $statement->bindValue(":creator_mail", $this->m_sMail);
         $statement->bindValue(":topic", $this->m_sCategorie);
+        $statement->bindValue(":location", $this->m_sLocation);
 
         //query executen
         $res = $statement->execute();
