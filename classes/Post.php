@@ -211,13 +211,13 @@ class Post
 
         //query schrijven
         $statement = $conn->prepare("INSERT INTO posts (picture,title ,description,username, creator_mail, topic, location) VALUES (:Picture,:Title,:Description,:Username, :creator_mail, :topic,:location)");
-        $statement->bindValue(":Picture", $this->m_sPicture);
-        $statement->bindValue(":Title", $this->m_sTitle);
-        $statement->bindValue(":Description", $this->m_sDescription);
-        $statement->bindValue(":Username", $this->m_sUserName);
-        $statement->bindValue(":creator_mail", $this->m_sMail);
-        $statement->bindValue(":topic", $this->m_sCategorie);
-        $statement->bindValue(":location", $this->m_sLocation);
+        $statement->bindValue(":Picture", htmlspecialchars($this->m_sPicture));
+        $statement->bindValue(":Title", htmlspecialchars($this->m_sTitle));
+        $statement->bindValue(":Description", htmlspecialchars($this->m_sDescription));
+        $statement->bindValue(":Username", htmlspecialchars($this->m_sUserName));
+        $statement->bindValue(":creator_mail", htmlspecialchars($this->m_sMail));
+        $statement->bindValue(":topic", htmlspecialchars($this->m_sCategorie));
+        $statement->bindValue(":location", htmlspecialchars($this->m_sLocation));
 
         //query executen
         $res = $statement->execute();

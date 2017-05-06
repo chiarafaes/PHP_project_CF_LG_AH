@@ -20,6 +20,7 @@ if(!empty($_POST['latitude']) && !empty($_POST['longitude'])){
     if($status=="OK"){
         //Get address from json data
         $location = $data->results[3]->formatted_address;
+
         $newpost = new Post();
         $newpost->setMSLocation($location);
     }else{
