@@ -249,36 +249,6 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
             </div>
         <?php endforeach;?>
     </div>
-
-
-
-
-    <div id="collection-section">
-        <?php foreach($collections as $collection):?>
-            <div class="collection-container">
-                <h1 class="collection-title"><?php echo $collection['title']?></h1>
-                <div class="toggleSwitch">
-                    <label>Private</label>
-                    <?php echo $collection['private']?>
-                    <label class="switch">
-                        <input type="checkbox" name="checkbox" class="private-collection" value="off" onclick="if($(this).val() == 'off'){$(this).val('on')} else {$(this).val('off')}" >
-                        <div class="slider"></div>
-                    </label>
-                </div>
-                <div class="posts-container">
-                </div>
-                <div class="collection-topics">
-                    <ul>
-                        <?php foreach ($categoriesPerCollection as $category):?>
-                            <?php if ($category['board'] == $collection['id']):?>
-                                <li><?php echo $category['name']?></li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
 </div>
 </div>
 <script src="js/popup.js"></script>
