@@ -60,24 +60,20 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
         <?php foreach ($posts as $post):?>
                 <div class="pon" id="pinID-<?php echo $post['id']?>">
                     <div class="img_holder">
-                        <div class="buttons" id="1">
-                            <a href="#" class="btn send">Send</a>
-                            <a href="#" class="btn save">Save</a>
-                            <a href="#" class="btn send">IN</a></br>
-                        </div>
-                        <a onclick="goBack()">x</a>
+                        <a class="go_back" onclick="goBack()">x</a>
                         <a class="image ajax" href="#" title="photo 1" id="1">
                             <img src="<?php echo $post['picture']; ?>" alt="" >
                         </a>
                     </div>
 
-                    <p class="loc"> location: <?php echo $post['location'];?></p>
-                    <p class ="disl"> dislikes : <?php echo $dislikes; ?></p>
+                <div class="image_info">
+                    <p class ="dislikes"> dislikes : <?php echo $dislikes; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
                     <p class="title"><?php echo $post['title']; ?></p>
                     <p class="description"><?php echo $post['description']?></p>
+                </div>
                     <?php
                     $id = $post['id'];
                     $topic = Post::getCategorie($id);
@@ -90,6 +86,8 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                     </div>
 
                 </div>
+
+            <div id="right_detail">
 
             <?php if(count($ReportedBy) == 0):?>
                 <div id="inappropriate">
@@ -121,8 +119,8 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
             <div class="statusupdates">
                 <h4>Comments</h4>
                 <div class="commentform">
-                    <input type="text" value="Leave a comment" id="comment" name="comment"/>
-                </br>
+                    <input type="text" placeholder="Leave a comment" id="comment" name="comment"/>
+                    </br>
                     <input id="btnSubmit" type="submit" value="Comment" class="btnsubmit"/>
                 </div>
 
@@ -132,20 +130,22 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
                     foreach($comments as $c):?>
 
-                    <div class="comment">
-                        <!-- <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"> -->
+                        <div class="comment">
+                            <!-- <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"> -->
                             <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
 
-                        <!-- </a> -->
-                        <div class="comment_zelf">
-                            <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
-                            <p><?php echo $c['comment']?></p>
+                            <!-- </a> -->
+                            <div class="comment_zelf">
+                                <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
+                                <p><?php echo $c['comment']?></p>
+                            </div>
                         </div>
-                    </div>
-                        <?php endforeach; ?>
+                        <hr class="line_comment">
+                    <?php endforeach; ?>
                 </div>
             </div>
         </form>
+    </div>
     </div>
 </div>
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
