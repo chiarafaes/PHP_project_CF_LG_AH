@@ -24,6 +24,24 @@ if (!empty($_POST['search'])) {
     try {
         $renderedPosts = Post::getPosts(20, 0, $_SESSION['email']); // Veranderd naar 20, want in briefing moet bij load more 20 items bijkomen
         $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
+
+        // boards inladen voor save functie
+        $tmp = Board::getBoards($_SESSION['email']);
+
+        $collections = [];
+
+        // resultatenlijst opdelen in collections en bijbehorende categorieën
+        foreach ($tmp as $val) {
+            $categoriesPerCollection[] = array_slice($val, -3);
+            $tmp_col[] = array_slice($val, 0, 4);
+        }
+
+        // ervoor zorgen dat collections geen dubbele rows bevatten
+        foreach ($tmp_col as $val) {
+            if (!in_array($val, $collections)) {
+                $collections[] = $val;
+            }
+        }
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
@@ -50,6 +68,7 @@ if (!empty($_POST['search'])) {
             crossorigin="anonymous"></script>
     <script src="js/loadmore.js"></script>
     <script src="js/like.js"></script>
+    <script src="js/add-to-collection.js"></script>
 </head>
 <body>
 
@@ -105,6 +124,16 @@ if (!empty($_POST['search'])) {
     <?php include_once('createpost.php');?>
 </div>
 
+<!-- Popup - overlay - save to collection -->
+<a href="#x" class="overlay" id="save_to_collection"></a>
+<div class="popup_additem" id="save_to_collection_content">
+    <h2>Save post to collection:</h2>
+    <?php foreach ($collections as $collection): ?>
+        <label><?php echo $collection['title']?></label>
+        <input type="radio" name="id" value="<?php echo $collection['id']?>"><br>
+    <?php endforeach; ?>
+    <button type="button" id="save">Save</button>
+</div>
 
 <!-- Button add item - rechterkolom -->
 <div id="right" class="additem">
