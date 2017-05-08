@@ -10,7 +10,7 @@ function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     $.ajax({
-        url:"ajax/ajax.markinappropriote.php",
+        url:"ajax/ajax.getLocation.php",
         method:"post",
         data:{
             "latitude" : latitude,
