@@ -228,7 +228,7 @@ class Post
         $conn = Db::getInstance();
 
         //query schrijven
-        $statement = $conn->prepare("INSERT INTO posts (picture,title ,description,username, creator_mail, topic, location) VALUES (:Picture,:Title,:Description,:Username, :creator_mail, :topic,:location)");
+        $statement = $conn->prepare("INSERT INTO posts (picture,title ,description,username, creator_mail, topic, location, URL) VALUES (:Picture,:Title,:Description,:Username, :creator_mail, :topic,:location,:url)");
         $statement->bindValue(":Picture", htmlspecialchars($this->m_sPicture));
         $statement->bindValue(":Title", htmlspecialchars($this->m_sTitle));
         $statement->bindValue(":Description", htmlspecialchars($this->m_sDescription));
@@ -236,6 +236,7 @@ class Post
         $statement->bindValue(":creator_mail", htmlspecialchars($this->m_sMail));
         $statement->bindValue(":topic", htmlspecialchars($this->m_sCategorie));
         $statement->bindValue(":location", htmlspecialchars($this->m_sLocation));
+        $statement->bindValue(":url", htmlspecialchars($this->m_sURL));
 
         //query executen
         $res = $statement->execute();
