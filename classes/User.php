@@ -119,13 +119,12 @@ class User
         $statement = $PDO->prepare( "SELECT username FROM users WHERE username = :username" );
         $statement->bindValue( ":username", $this->m_sUsername );
         $statement->execute();
-        $count = count( $statement->fetchAll() );
-
+        $count = $statement->rowCount();
         if ( $count > 0 ) {
-            return true;
+            return false;
 
         } else {
-            return false;
+            return true;
         }
     }
 

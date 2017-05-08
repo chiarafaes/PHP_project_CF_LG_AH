@@ -83,6 +83,7 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/checkemail.js"></script>
+    <script type="text/javascript" src="js/checkUsername.js"></script>
 
     <style>
 
@@ -122,12 +123,18 @@
                 <input id="fullname" name="fullname" type="text" placeholder="fullname"/>
             </fieldset>
 
-            <fieldset>
+        <div class="usernameFeedback"><span></span></div>
+        <?php if(isset($_SESSION['loginfeedback'])): ?>
+            <div class="feedback"><?php echo $_SESSION['loginfeedback']; ?></div>
+        <?php endif; ?>
+
+
+        <fieldset>
                 <label>Username</label>
                 <input id="username" name="username" type="text" placeholder="username"/>
             </fieldset>
 
-        <div class="usernameFeedback"><span></span></div>
+        <div class="mailFeedback"><span></span></div>
         <?php if(isset($_SESSION['loginfeedback'])): ?>
             <div class="feedback"><?php echo $_SESSION['loginfeedback']; ?></div>
         <?php endif; ?>
