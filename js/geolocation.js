@@ -1,38 +1,27 @@
-var x = document.getElementById("demo");
-
-function ready()
-{
-
+$(document).ready(function(){
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showLocation);
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        $('#location').html('Geolocation is not supported by this browser.');
     }
-}
+});
 
-function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
-
-    var var1 = position.coords.latitude;
-    var var2 = position.coords.longitude;
-
-    var r = httpGet("https://maps.googleapis.com/maps/api/geocode/json?latlng="+var1+","+var2+"&sensor=false");
-    x.innerHTML = getAddress(r);
-}
-
-function httpGet(theUrl)
-{
-    var xmlHttp = null;
-
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false );
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
-
-function getAddress(response)
-{
-    var obj = jQuery.parseJSON(response);
-    return obj.results[2].formatted_address;
+function showLocation(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    $.ajax({
+        url:"ajax/ajax.getLocation.php",
+        method:"post",
+        data:{
+            "latitude" : latitude,
+            "longitude": longitude
+        },
+        success:function(msg){
+            if(msg){
+                $("#location").val(msg);
+            }else{
+                $("#location").val('Not Available');
+            }
+        }
+    });
 }

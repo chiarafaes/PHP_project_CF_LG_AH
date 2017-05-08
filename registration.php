@@ -35,30 +35,31 @@
                 $error = "Your password has to be at least 6 characters long.";
             }
 
-            $user->Fullname = $_POST["fullname"];
-            $user->Username = $_POST["username"];
-            $user->Mail = $_POST["email"];
+            $user->Fullname = htmlspecialchars($_POST["fullname"]);
+            $user->Username = htmlspecialchars($_POST["username"]);
+            $user->Mail = htmlspecialchars($_POST["email"]);
             $user->Password = password_hash($_POST["password"], PASSWORD_DEFAULT, $options);
             // we maken een standaard avatar voor nieuwe profielen
             $user->Avatar = "https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg";
 
             // checken of er een error is door de lege velden
             if (!isset($error)) {
+                    if ($user->save()) {
 
-                if ($user->save()) {
+                        session_start();
 
-                    session_start();
+                        $_SESSION['email'] = $user->Mail;
+                        $_SESSION['username'] = $user->Username;
+                        $_SESSION['fullname'] = $user->Fullname;
 
-                    $_SESSION['email'] = $user->Mail;
-                    $_SESSION['username'] = $user->Username;
-                    $_SESSION['fullname'] = $user->Fullname;
+                        header('location: topics.php');
 
-                    header('location: topics.php');
+                    } else {
+                        // Niet OK
+                        $error = "This e-mail address is already in use in the database. Please try again with another address.";
+                    }
 
-                } else {
-                    // Niet OK
-                    $error = "This e-mail address is already in use in the database. Please try again with another address.";
-                }
+            }else{
             }
         } catch (PDOException $e) {
             $error= $e->getMessage();
@@ -76,6 +77,12 @@
 
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/registration.css" />
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/checkemail.js"></script>
 
     <style>
 
@@ -101,10 +108,6 @@
         <h2>Sign up to discover</h2> </br>
         <h2>IMD'terest</h2>
 
-        <div class="usernameFeedback">
-            <span>checking</span>
-        </div>
-
         <div>
             <?php if (isset($error)):?>
                 <div class="error">
@@ -124,7 +127,10 @@
                 <input id="username" name="username" type="text" placeholder="username"/>
             </fieldset>
 
-
+        <div class="usernameFeedback"><span></span></div>
+        <?php if(isset($_SESSION['loginfeedback'])): ?>
+            <div class="feedback"><?php echo $_SESSION['loginfeedback']; ?></div>
+        <?php endif; ?>
 
             <fieldset>
                 <label>Email</label>
@@ -143,11 +149,7 @@
         </form>
     </section>
 
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-    <script src="js/checkemail.js"></script>
+
 
 
 </body>

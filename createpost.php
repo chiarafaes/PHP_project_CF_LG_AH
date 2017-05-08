@@ -18,7 +18,7 @@ $getTopics = Topic::getAllTopics();
 
     <title>CreatePost</title>
 </head>
-<body onload="ready()">
+<body>
 <form method="post" name="Posten" action="upload.php" id="Posten" enctype="multipart/form-data"/>
 <a class="close" href="#close">x</a>
 <div class="create_uploadphoto">
@@ -35,7 +35,8 @@ $getTopics = Topic::getAllTopics();
         <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
 
-    <div id="demo"></div>
+    <label for="location">Locatie</label>
+    <input type="text" id="location" name="location" readonly/>
 </div>
 
 

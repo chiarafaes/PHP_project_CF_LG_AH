@@ -101,7 +101,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
         <!-- VERWIJDER POST -->
 
-        <? if ($_SESSION['email'] == $post['creator_mail']):?>
+        <?php if ($_SESSION['email'] == $post['creator_mail']):?>
         <div class="verwijderpost">
             <form method="post" action="">
                 <input type="hidden" name="id" value="<?php echo $post['id']?>">

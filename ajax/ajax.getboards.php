@@ -5,11 +5,15 @@
  * Date: 4/05/2017
  * Time: 11:31
  */
+    header("content-type:application/json");
+
     session_start();
 
     spl_autoload_register(function ($class) {
         include_once("../classes/".$class.".php");
     });
+
+    $mode = $_POST['mode'];
 
     $tmp = Board::getBoards($_SESSION['email']);
 
@@ -28,5 +32,9 @@
         }
     }
 
-    echo json_encode($collections);
+    if ($mode == 'collections'){
+        echo json_encode($collections);
+    } elseif ($mode == 'categories'){
+        echo json_encode($categoriesPerCollection);
+    }
 

@@ -23,5 +23,5 @@ $(document).ready(function () {
                     document.getElementById("inappropriate").innerHTML = "dit is gerapporteerd!";
             })
             e.preventDefault();
-        });
-});
+        })
+})

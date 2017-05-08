@@ -2,19 +2,19 @@
 header('Content-Type: application/json');
 
 spl_autoload_register(function ($class) {
-    include_once("classes/".$class.".php");
+    include_once("../classes/".$class.".php");
 });
 
 $mailCheck = new User();
 if(!empty($_POST['email'])){
-    $mailCheck-> Mail =$_POST['email'];
+    $mailCheck->Mail = $_POST['email'];
 
-        if($mailCheck->Check()) {
+        if($mailCheck->EmailAvailable()) {
             $response['status'] = 'success';
-            $response['message'] = 'Username available';
+            $response['message'] = 'Email available';
         } else {
             $response['status'] = "error";
-            $response['message'] = 'Username already taken';
+            $response['message'] = 'Email already taken';
         }
     echo json_encode($response);
 }

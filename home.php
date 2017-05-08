@@ -51,7 +51,7 @@ if (!empty($_POST['search'])) {
     <script src="js/loadmore.js"></script>
     <script src="js/like.js"></script>
 </head>
-<body >
+<body>
 
 <!-- Default header -->
 <header>
@@ -209,6 +209,7 @@ if (!empty($_POST['search'])) {
 
 </script>
 
+<script src="js/geolocation.js"></script>
 
 </body>
 </html>
