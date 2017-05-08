@@ -69,26 +69,34 @@ class User
         $q_alreadyExists = $conn->prepare("SELECT * FROM users WHERE Mail = :mail");
         $q_alreadyExists->bindValue(":mail", $this->m_sMail);
 
-        //als het mailadres bestaat geef melding dat de mail reeds in gebruik is en niet save
-        if ($q_alreadyExists->execute() && $q_alreadyExists->rowCount() != 0) {
+        $q_alreadyExists1 = $conn->prepare("SELECT username FROM users WHERE username = :username");
+        $q_alreadyExists1->bindValue(":username", $this->m_sUsername);
+
+
+        if ($q_alreadyExists1->execute() && $q_alreadyExists1->rowCount() != 0) {
             return false;
-        }
-        else {
+        }else{
+            //als het mailadres bestaat geef melding dat de mail reeds in gebruik is en niet save
+            if ($q_alreadyExists->execute() && $q_alreadyExists->rowCount() != 0) {
+                return false;
+            }
+            else {
 
-            //query schrijven
-            $statement = $conn->prepare("INSERT INTO users (fullname,username,mail,password, avatar) VALUES (:fullname,:username,:mail,:password, :avatar)");
-            $statement->bindValue(":fullname", $this->m_sFullname);
-            $statement->bindValue(":username", $this->m_sUsername);
-            $statement->bindValue(":mail", $this->m_sMail);
-            $statement->bindValue(":password", $this->m_sPassword);
-            $statement->bindValue(":avatar", $this->m_sAvatar);
+                //query schrijven
+                $statement = $conn->prepare("INSERT INTO users (fullname,username,mail,password, avatar) VALUES (:fullname,:username,:mail,:password, :avatar)");
+                $statement->bindValue(":fullname", $this->m_sFullname);
+                $statement->bindValue(":username", $this->m_sUsername);
+                $statement->bindValue(":mail", $this->m_sMail);
+                $statement->bindValue(":password", $this->m_sPassword);
+                $statement->bindValue(":avatar", $this->m_sAvatar);
 
-            //query execute
-            $res = $statement->execute();
+                //query execute
+                $res = $statement->execute();
 
-            //true or false?
-            return ($res);
+                //true or false?
+                return ($res);
 
+            }
         }
     }
 

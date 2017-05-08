@@ -134,7 +134,7 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
             </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="btn_likes">
             <div class="collection_likes">
                 <p><?php echo count($likes);?></p>
                 <p>likes</p>
