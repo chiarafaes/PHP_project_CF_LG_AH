@@ -5,6 +5,8 @@
  * Date: 6/05/17
  * Time: 15:00
  */
+header('Content-Type: application/json');
+
 session_start();
 
 spl_autoload_register(function ($class) {
@@ -20,9 +22,6 @@ if(!empty($_POST['latitude']) && !empty($_POST['longitude'])){
     if($status=="OK"){
         //Get address from json data
         $location = $data->results[3]->formatted_address;
-
-        $newpost = new Post();
-        $newpost->setMSLocation($location);
     }else{
         $location =  '';
     }

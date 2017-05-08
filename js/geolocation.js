@@ -18,9 +18,9 @@ function showLocation(position) {
         },
         success:function(msg){
             if(msg){
-                $("#location").html(msg);
+                $("#location").val(msg);
             }else{
-                $("#location").html('Not Available');
+                $("#location").val('Not Available');
             }
         }
     });

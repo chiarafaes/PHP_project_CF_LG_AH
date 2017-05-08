@@ -35,7 +35,8 @@ $getTopics = Topic::getAllTopics();
         <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
 
-    <div id="location" ></div>
+    <label for="location">Locatie</label>
+    <input type="text" id="location" name="location" readonly/>
 </div>
 
 

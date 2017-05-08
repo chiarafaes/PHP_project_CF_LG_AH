@@ -65,6 +65,7 @@ if ($uploadOk == 0) {
                 $post->setMSUserName($_SESSION['username']);
                 $post->setMSMail($_SESSION['email']);
                 $post->setMSCategorie($_POST['topic']);
+                $post->setMSLocation($_POST['location']);
 
                 if ($post->Save()) {
                     header('location:home.php');
