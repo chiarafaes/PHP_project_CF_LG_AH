@@ -18,7 +18,6 @@ $(document).ready(function () {
                 console.log(value);
                 container.html("");
 
-                container.html(value);
             },
             error: function () {
                 console.log('could not get Liked posts');

@@ -30,7 +30,8 @@ class Search
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('SELECT * FROM posts WHERE MATCH (`title`,`description`) AGAINST (:searchParam)');
+        // in SQL local host voor kunnen zoeken :  ALTER TABLE posts ADD FULLTEXT INDEX (`title`,`description`,`location`)
+        $statement = $conn->prepare('SELECT * FROM posts WHERE MATCH (`title`,`description`,`location`) AGAINST (:searchParam)');
         $statement->bindValue(':searchParam', $this->m_sSearchParam);
 
         if ($statement->execute()) {
@@ -39,4 +40,5 @@ class Search
             return false;
         }
     }
+
 }
