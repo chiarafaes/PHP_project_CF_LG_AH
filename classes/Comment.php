@@ -10,10 +10,6 @@ class Comment {
                 case "Text":
                     $this->m_sText = $p_vValue;
                     break;
-
-                case "mail":
-                    $this->m_sText = $p_vValue;
-                    break;
             }
         }
 
@@ -25,8 +21,7 @@ class Comment {
                 case "Text":
                     $vResult = $this->m_sText;
                     break;
-                case "mail":
-                    $vResult = $this->m_sText;
+
             }
             return $vResult;
         }
