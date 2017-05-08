@@ -141,12 +141,6 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                                 <p><?php echo $c['comment']?></p>
                             </div>
                         </div>
-                        <div class="verwijderpost">
-                            <form method="post" action="">
-                                <input type="hidden" name="id" value="<?php echo $post['id']?>">
-                                <input id = "btnVerwijderComment" type="submit" value ="x">
-                            </form>
-                        </div>
                         <hr class="line_comment">
 
                     <?php endforeach; ?>
