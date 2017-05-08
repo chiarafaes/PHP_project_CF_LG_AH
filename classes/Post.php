@@ -12,6 +12,7 @@ class Post
     private $m_sMail;
     private $m_iinapr;
     private $m_sLocation;
+    private $m_sURL;
 
     /**
      * @return mixed
@@ -200,6 +201,23 @@ class Post
     {
         $this->m_sLocation = $m_sLocation;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMSURL()
+    {
+        return $this->m_sURL;
+    }
+
+    /**
+     * @param mixed $m_sURL
+     */
+    public function setMSURL($m_sURL)
+    {
+        $this->m_sURL = $m_sURL;
+    }
+
 
 
 
