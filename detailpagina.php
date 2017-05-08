@@ -71,7 +71,8 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                         </a>
                     </div>
 
-                    <p class = > dislikes : <?php echo $dislikes; ?></p>
+                    <p class="loc"> location: <?php echo $post['location'];?></p>
+                    <p class ="disl"> dislikes : <?php echo $dislikes; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>

@@ -226,7 +226,7 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
                         <a href="#" class="btn send">Send</a>
                         <a href="#" class="btn save">Save</a></br>
                     </div>
-                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" onclick="PopupCenter();" class="image ajax" title="photo 1" id="loginpop">
+                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" class="image ajax" title="photo 1" id="loginpop">
                         <img src="<?php echo $post['picture']; ?>" alt="" >
                     </a>
                 </div>
