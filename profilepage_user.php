@@ -234,14 +234,10 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
                 <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                 <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
-
                 <?php
-
                 $id = $post['id'];
                 $topic = Post::getCategorie($id);
-
                 ?>
-
                 <hr>
                 <div class="user_info">
                     <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
