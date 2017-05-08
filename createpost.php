@@ -35,6 +35,11 @@ $getTopics = Topic::getAllTopics();
         <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
 
+    <div class="url">
+        <label for="url">URL</label>
+        <input type="url" class="url" id="url"/>
+    </div>
+
     <label for="location">Locatie</label>
     <input type="text" id="location" name="location" readonly/>
 </div>
