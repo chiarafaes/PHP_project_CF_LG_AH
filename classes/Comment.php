@@ -32,7 +32,7 @@ class Comment {
         $statement = $conn->prepare("INSERT INTO Comments (comment, id_post, Mail_user ) VALUES (:comments, :iditem, :Mailuser )");
         $statement->bindValue(":Mailuser", $_SESSION["email"]);
         $statement->bindValue(":iditem", $_GET["post"]);
-        $statement->bindValue(":comments", $_POST['comment']);
+        $statement->bindValue(":comments",htmlspecialchars($_POST['comment']));
         return $statement->execute();
     }
 
