@@ -78,5 +78,15 @@ class Topic
 
     }
 
+    public static function getIdTopic($id)
+    {
+        $conn= Db::getInstance();
+        $stmt = $conn->prepare("SELECT * FROM topics WHERE id= :id");
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+
+        return ($stmt->fetch(PDO::FETCH_ASSOC));
+    }
+
 
 }

@@ -28,4 +28,11 @@ if(!empty($_POST ['comment'])) { // comment uit query
 echo json_encode($feedback); //{"code":500, "message:"}
 }
 
+
+
+
 ?>
+
+
+
+

@@ -9,6 +9,8 @@ $posts = Post::getPostsByUser($user['Mail']);
 
 $likes = Post::getPostsLikedByUser($_GET['profile']);
 
+$allTopics = Topic::getAllTopics();
+
 
 ?><!doctype html>
 <html lang="en">
@@ -48,7 +50,14 @@ $likes = Post::getPostsLikedByUser($_GET['profile']);
 
     <div class="iconen">
         <div class="icon_1">
-            <a href="#" ></a>
+            <a href="home.php" class="dropbtn_categorie"><img src="img/icon_categories.svg"></a>
+            <div class="dropdown-content_categorie">
+                <div class="left_categorie">
+                    <?php foreach ($allTopics as $topic): ?>
+                        <a href="categorie.php?categorie=<?php echo $topic['id']?>"><?php echo $topic['name']?></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
 
         <div class="icon_2">
@@ -157,9 +166,18 @@ $likes = Post::getPostsLikedByUser($_GET['profile']);
                             </a>
 
                         </div>
-                        <a class="image ajax" href="#" title="photo 1" id="1">
+
+                        <a href="detailpagina.php?post=<?php echo $post['id'];?>" onclick="PopupCenter();" class="image ajax" title="photo 1" id="loginpop">
                             <img src="<?php echo $post['picture']; ?>" alt="" >
                         </a>
+
+                        <?php
+
+                        $id = $post['id'];
+                        $topic = Post::getCategorie($id);
+
+                        ?>
+
                     </div>
                     <p class="description"><?php echo $post['title']; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>

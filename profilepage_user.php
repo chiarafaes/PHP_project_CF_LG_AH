@@ -28,6 +28,8 @@ $posts = Post::getPostsByUser($user['Mail']);
 $likes = Post::getPostsLikedByUser($_SESSION['email']);
 $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
 
+$allTopics = Topic::getAllTopics();
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -70,7 +72,14 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
 
     <div class="iconen">
         <div class="icon_1">
-            <a href="#" ></a>
+            <a href="home.php" class="dropbtn_categorie"><img src="img/icon_categories.svg"></a>
+            <div class="dropdown-content_categorie">
+                <div class="left_categorie">
+                    <?php foreach ($allTopics as $topic): ?>
+                        <a href="categorie.php?categorie=<?php echo $topic['id']?>"><?php echo $topic['name']?></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
 
         <div class="icon_2">

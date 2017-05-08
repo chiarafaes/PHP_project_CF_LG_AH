@@ -391,6 +391,26 @@ class Post
         }
     }
 
+
+    public static function getPostsByTopic($topic)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM posts WHERE topic = :topic");
+        $statement->bindValue(':topic', $topic);
+        if ($statement->execute()) {
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
+
+    public static function getAllPosts(){
+
+
+    }
+
+
     public static function deletePost($id)
     {
         $conn = Db::getInstance();

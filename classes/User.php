@@ -186,6 +186,38 @@ class User
         return $statement->execute();
     }
 
+    public static function followUser($email){
+        $conn = Db::getInstance();
 
+        $statement = $conn->prepare('INSERT INTO users_follower (userEmail, followEmail) VALUES (:userEmail, :followEmail)');
+        $statement->bindValue(':userEmail', $_SESSION["email"]);
+        $statement->bindValue(':followEmail', $email);
+
+        return ($statement->fetch(PDO::FETCH_ASSOC));
+
+    }
+
+    public static function unfollowUser($email){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("DELETE from users_follower where userEmail = :userEmail and followEmail = :followEmail");
+        $statement->bindValue(':userEmail', $_SESSION['email']);
+        $statement->bindValue(':followEmail', $email);
+
+        return ($statement->fetch(PDO::FETCH_ASSOC));
+    }
+
+    public static function getFollowers(){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM users_follower where userEmail = :userEmail");
+        $statement->bindValue(':userEmail', $_SESSION['email']);
+
+        if ($statement->execute()){
+            return($statement->fetchAll(PDO::FETCH_ASSOC));
+        }else{
+            return false;
+        }
+    }
 }
 ?>

@@ -4,50 +4,12 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
-if (isset($_SESSION['email'])) {
-} else {
-    header('Location: login.php');
-}
-
-// Wordt er gezocht? Doe dan de search
-if (!empty($_POST['search'])) {
-    try {
-        $search_param = $_POST['search'];
-        $search = new Search();
-        $search->setMSSearchParam($search_param);
-        $renderedPosts = $search->Search();
-    } catch (PDOException $e) {
-        $error = $e->getMessage();
-    }
-} else {
-    // Als er niet gezocht wordt, dan alle posts inladen
-    try {
-        $renderedPosts = Post::getPosts(20, 0, $_SESSION['email']); // Veranderd naar 20, want in briefing moet bij load more 20 items bijkomen
-        $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
-
-        // boards inladen voor save functie
-        $tmp = Board::getBoards($_SESSION['email']);
-
-        $collections = [];
-
-        // resultatenlijst opdelen in collections en bijbehorende categorieën
-        foreach ($tmp as $val) {
-            $categoriesPerCollection[] = array_slice($val, -3);
-            $tmp_col[] = array_slice($val, 0, 4);
-        }
-
-        // ervoor zorgen dat collections geen dubbele rows bevatten
-        foreach ($tmp_col as $val) {
-            if (!in_array($val, $collections)) {
-                $collections[] = $val;
-            }
-        }
-    } catch (PDOException $e) {
-        $error = $e->getMessage();
-    }
-}
 
 $allTopics = Topic::getAllTopics();
+
+$categorie = Topic::getIdTopic($_GET['categorie']);
+$posts = Post::getPostsByTopic($categorie['id']);
+
 
 
 ?><!doctype html>
@@ -64,7 +26,7 @@ $allTopics = Topic::getAllTopics();
     <link rel="stylesheet" href="css/profilesettings.css">
 
 
-    <title>Home</title>
+    <title><?php echo $topic['name']; ?></title>
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -103,12 +65,12 @@ $allTopics = Topic::getAllTopics();
             </div>
         </div>
 
-        <div class="icon_2">
-            <a href="#" ></a>
-        </div>
-        <div class="icon_3">
-            <a href="#" ></a>
-        </div>
+    <div class="icon_2">
+        <a href="#" ></a>
+    </div>
+    <div class="icon_3">
+        <a href="#" ></a>
+    </div>
 
     </div>
 
@@ -126,40 +88,11 @@ $allTopics = Topic::getAllTopics();
         </div>
     </div>
 
-</header>
+    </header>
 
-<!-- Popup - overlay - add item -->
-<a href="#x" class="overlay" id="add_form"></a>
-<div class="popup_additem">
-    <?php include_once('createpost.php');?>
-</div>
-
-<!-- Popup - overlay - save to collection -->
-<a href="#x" class="overlay" id="save_to_collection"></a>
-<div class="popup_additem" id="save_to_collection_content">
-    <h2>Save post to collection:</h2>
-    <?php foreach ($collections as $collection): ?>
-        <label><?php echo $collection['title']?></label>
-        <input type="radio" name="id" value="<?php echo $collection['id']?>"><br>
-    <?php endforeach; ?>
-    <button type="button" id="save">Save</button>
-</div>
-
-<!-- Button add item - rechterkolom -->
-<div id="right" class="additem">
-    <a href="#add_form" id="login_pop">+</a>
-</div>
-
-<!-- Overzicht posts-->
 <main>
-
-
-    <?php if (!empty($search_param)):?>
-        <h1>Search results for '<?php echo $search_param; ?>'</h1>
-        <a href="home.php">Clear results</a>
-    <?php endif; ?>
     <div id="left" class="main_container likeable" >
-        <?php foreach ($renderedPosts as $post):?>
+        <?php foreach ($posts as $post):?>
             <div class="pin" id="pinID-<?php echo $post['id']?>">
                 <div class="img_holder">
                     <div class="buttons" id="1">
@@ -199,7 +132,7 @@ $allTopics = Topic::getAllTopics();
                     ?>
 
 
-                    </div>
+                </div>
                 <p class="description"><?php echo $post['title']; ?></p>
                 <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
@@ -207,48 +140,15 @@ $allTopics = Topic::getAllTopics();
 
                 <hr>
                 <div class="user_info">
-                    <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                    <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
-                    <p class="categorie"><?php echo $topic['name']?></p>
+                    <p class="categorie">categorie</p>
                 </div>
             </div>
         <?php endforeach;?>
     </div>
+
+
 </main>
-
-<!-- Load more - over hele pagina -->
-
-<div id="loadmore">
-    <a href="#" class="btn_loadmore" id="btn_loadmore">Load more...</a>
-</div>
-
-<script src="js/popup2.js"></script>
-
-<script>
-    $(function() {
-
-        var $sidebar   = $("#right"),
-            $window    = $(window),
-            offset     = $sidebar.offset(),
-            topPadding = 60;
-
-        $window.scroll(function() {
-            if ($window.scrollTop() > offset.top) {
-                $sidebar.stop().animate({
-                    marginTop: $window.scrollTop() - offset.top + topPadding
-                });
-            } else {
-                $sidebar.stop().animate({
-                    marginTop: 50
-                });
-            }
-        });
-
-    });
-
-</script>
-
-<script src="js/geolocation.js"></script>
-
 </body>
 </html>
