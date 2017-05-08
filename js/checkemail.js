@@ -8,8 +8,11 @@ $(document).ready(function()
         var email = $("#email").val();
         $(".usernameFeedback").show();
 
-        $.post("ajax/ajax.checkmail.php", {email: email}).done(function( response )
-        {
+        $.ajax({
+            method: "POST",
+            url: "ajax/ajax.checkmail.php",
+            data: {email: email}
+        }).done(function( response ){
 
             $('.usernameFeedback').text(response.message);
 

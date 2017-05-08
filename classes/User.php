@@ -133,15 +133,15 @@ class User
 
         $PDO = Db::getInstance();
         $statement = $PDO->prepare( "SELECT Mail FROM users WHERE Mail = :email" );
-        $statement->bindValue( ":email", $this->m_sEmail );
+        $statement->bindValue( ":email", $this->m_sMail );
         $statement->execute();
-        $count = count( $statement->fetchAll() );
+        $count = $statement->rowCount();
 
         if( $count > 0 ){
-            return true;
+            return false;
 
         } else {
-            return false;
+            return true;
         }
 
 
