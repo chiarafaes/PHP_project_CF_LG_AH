@@ -39,6 +39,7 @@ if (!empty($_POST['id'])){
   }
 }
 
+
 $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
 ?><!doctype html>
@@ -106,7 +107,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
         <div class="verwijderpost">
             <form method="post" action="">
                 <input type="hidden" name="id" value="<?php echo $post['id']?>">
-                <input id = "btnVerwijder" type="submit" value ="Verwijderen">
+                <input id ="btnVerwijder" type="submit" value ="Verwijderen">
             </form>
         </div>
         <?php endif; ?>
@@ -140,7 +141,14 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                                 <p><?php echo $c['comment']?></p>
                             </div>
                         </div>
+                        <div class="verwijderpost">
+                            <form method="post" action="">
+                                <input type="hidden" name="id" value="<?php echo $post['id']?>">
+                                <input id = "btnVerwijderComment" type="submit" value ="x">
+                            </form>
+                        </div>
                         <hr class="line_comment">
+
                     <?php endforeach; ?>
                 </div>
             </div>

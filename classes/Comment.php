@@ -10,6 +10,10 @@ class Comment {
                 case "Text":
                     $this->m_sText = $p_vValue;
                     break;
+
+                case "mail":
+                    $this->m_sText = $p_vValue;
+                    break;
             }
         }
 
@@ -21,6 +25,8 @@ class Comment {
                 case "Text":
                     $vResult = $this->m_sText;
                     break;
+                case "mail":
+                    $vResult = $this->m_sText;
             }
             return $vResult;
         }
@@ -76,5 +82,14 @@ class Comment {
         }
 
 
+        public static function deleteComment($id)
+        {
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("DELETE from Comments WHERE Commentid = :id AND Mail_user = :user ");
+            $statement->bindValue(":id", $id);
+            $statement->bindValue(":user", $_SESSION["email"]);
+            $result = $statement->execute();
+            return($result);
+        }
     }
 ?>
