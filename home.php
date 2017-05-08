@@ -128,6 +128,8 @@ $allTopics = Topic::getAllTopics();
 
 </header>
 
+<div class="success"></div>
+
 <!-- Popup - overlay - add item -->
 <a href="#x" class="overlay" id="add_form"></a>
 <div class="popup_additem">
@@ -137,10 +139,11 @@ $allTopics = Topic::getAllTopics();
 <!-- Popup - overlay - save to collection -->
 <a href="#x" class="overlay" id="save_to_collection"></a>
 <div class="popup_additem" id="save_to_collection_content">
+    <p class="error">Hello</p>
     <h2>Save post to collection:</h2>
     <?php foreach ($collections as $collection): ?>
-        <label><?php echo $collection['title']?></label>
-        <input type="radio" name="id" value="<?php echo $collection['id']?>"><br>
+        <label for="<?php echo $collection['title']?>"><?php echo $collection['title']?></label>
+        <input type="radio" id="<?php echo $collection['title']?>" name="id" value="<?php echo $collection['id']?>"><br>
     <?php endforeach; ?>
     <button type="button" id="save">Save</button>
 </div>

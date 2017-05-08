@@ -5,7 +5,20 @@ $(document).ready(function () {
     var container = $('.main_container_profile')
 
     $('#btn_collections').on('click', function () {
-        console.log('dikke lul')
+        var postsInCollections = [];
+
+        $.ajax({
+            url: 'ajax/ajax.get-posts-in-boards.php',
+            method: 'post',
+            success: function (value) {
+                console.log(value);
+            },
+            error: function () {
+                console.log("shit he");
+            }
+
+        })
+
         $.ajax({
             url: 'ajax/ajax.getboards.php',
             type: 'post',
@@ -41,7 +54,6 @@ $(document).ready(function () {
                                     cats +='<li>' + catsPerCollections[prop].name + '</li>';
                                 }
                             }
-
                             return cats;
                         }
 

@@ -115,4 +115,40 @@ class Board
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
+
+    public static function getPostsInBoards()
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM boards_posts INNER JOIN posts ON posts.id = boards_posts.post ');
+
+        if ($statement->execute()){
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+
+    public static function saveToBoard($p_sBoard, $p_sPost){
+        $conn = Db::getInstance();
+        $exists = false;
+
+        $existsStatement = $conn->prepare('SELECT * FROM boards_posts');
+
+        if ($existsStatement->execute()){
+            foreach ($res = $existsStatement->fetchAll(PDO::FETCH_ASSOC) as $item){
+                if ($item['board'] == $p_sBoard && $item['post'] == $p_sPost){
+                    $exists = true;
+                }
+            }
+        }
+
+        if (!$exists){
+            $statement = $conn->prepare('INSERT INTO boards_posts (board, post) VALUES (:board, :post)');
+            $statement->bindValue(':board', $p_sBoard);
+            $statement->bindValue(':post', $p_sPost);
+
+            return $statement->execute();
+        } else {
+            return false;
+        }
+    }
 }

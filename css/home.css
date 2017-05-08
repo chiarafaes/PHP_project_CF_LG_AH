@@ -22,8 +22,6 @@ main {
 
 }
 
-
-
 .pin {
     display: inline-block;
     background: #fff;
@@ -498,7 +496,42 @@ form input[type=checkbox]:checked {
     border:none;
 }
 
+#save_to_collection_content{
+    padding-top: 15px;
+}
 
+#save_to_collection_content label{
+    margin-top: 15px ;
+    display: inline-block;
+}
+
+#save_to_collection_content button{
+    background-color: #0F9BAF;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    border-radius: 5px;
+    font-weight: 700;
+    line-height: 1em;
+    padding: 8px 16px;
+    border: none;
+    margin-top: 15px;
+}
+
+.error{
+    color: firebrick;
+    text-align: center;
+    padding-bottom: 15px;
+    display: none;
+}
+
+.success{
+    display: none;
+    background-color: #aacd63;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+}
 
 
 /* MEDIAQUERIES */
