@@ -60,14 +60,19 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
         <?php foreach ($posts as $post):?>
                 <div class="pon" id="pinID-<?php echo $post['id']?>">
                     <div class="img_holder">
-                        <a class="go_back" onclick="goBack()">x</a>
+                        <div class="buttons" id="1">
+                            <a href="#" class="btn send">Send</a>
+                            <a href="#" class="btn save">Save</a>
+                            <a href="#" class="btn send">IN</a></br>
+                        </div>
+                        <a onclick="goBack()">x</a>
                         <a class="image ajax" href="#" title="photo 1" id="1">
                             <img src="<?php echo $post['picture']; ?>" alt="" >
                         </a>
                     </div>
 
-                    <div class="image_info">
-                    <p class = "dislikes"> Dislikes : <?php echo $dislikes; ?></p>
+                    <p class="loc"> location: <?php echo $post['location'];?></p>
+                    <p class ="disl"> dislikes : <?php echo $dislikes; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
@@ -83,10 +88,8 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                             <p><?php echo $post['username']; ?></p>
                             <p class="categorie"><?php echo $topic['name']; ?></p>
                     </div>
-                    </div>
 
                 </div>
-    <div id="right_detail">
 
             <?php if(count($ReportedBy) == 0):?>
                 <div id="inappropriate">
@@ -118,7 +121,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
             <div class="statusupdates">
                 <h4>Comments</h4>
                 <div class="commentform">
-                    <input type="text" placeholder="Leave a comment" id="comment" name="comment"/>
+                    <input type="text" value="Leave a comment" id="comment" name="comment"/>
                 </br>
                     <input id="btnSubmit" type="submit" value="Comment" class="btnsubmit"/>
                 </div>
@@ -139,12 +142,10 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                             <p><?php echo $c['comment']?></p>
                         </div>
                     </div>
-                       <hr class="line_comment">
                         <?php endforeach; ?>
                 </div>
             </div>
         </form>
-    </div>
     </div>
 </div>
     <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>

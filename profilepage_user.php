@@ -47,6 +47,8 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script src="js/showcollections.js"></script>
+    <script src="js/showLikedposts.js"></script>
+
     <title><?php echo $_SESSION['username']; ?></title>
 </head>
 <body>
@@ -134,7 +136,7 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
             </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="btn_likes">
             <div class="collection_likes">
                 <p><?php echo count($likes);?></p>
                 <p>likes</p>
@@ -224,7 +226,7 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
                         <a href="#" class="btn send">Send</a>
                         <a href="#" class="btn save">Save</a></br>
                     </div>
-                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" onclick="PopupCenter();" class="image ajax" title="photo 1" id="loginpop">
+                    <a href="detailpagina.php?post=<?php echo $post['id'];?>" class="image ajax" title="photo 1" id="loginpop">
                         <img src="<?php echo $post['picture']; ?>" alt="" >
                     </a>
                 </div>
@@ -232,14 +234,10 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
                 <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
                 <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
-
                 <?php
-
                 $id = $post['id'];
                 $topic = Post::getCategorie($id);
-
                 ?>
-
                 <hr>
                 <div class="user_info">
                     <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
