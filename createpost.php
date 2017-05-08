@@ -35,9 +35,9 @@ $getTopics = Topic::getAllTopics();
         <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
 
-    <div class="url">
+    <div class="url_link">
         <label for="url">URL</label>
-        <input type="url" class="url" id="url"/>
+        <input type="url" class="url" name="url" id="url" placeholder="Enter URL here"/>
     </div>
 
     <label for="location">Locatie</label>
@@ -50,7 +50,7 @@ $getTopics = Topic::getAllTopics();
 
     <div class="create_title">
         <label>Title</label>
-        <input type="text" name="title" />
+        <input type="text" name="title" id="title" />
     </div>
 
 

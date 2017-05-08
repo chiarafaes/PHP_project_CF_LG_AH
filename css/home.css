@@ -461,6 +461,18 @@ textarea {
     padding-bottom: 7px;
 }
 
+.url{
+    border-radius: 5px;
+    border: 1.5px solid #b3b3b3;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #666666;
+    font-weight: 400;
+    padding-top: 7px;
+    padding-left: 10px;
+    padding-bottom: 7px;
+}
+
 .create_title input{
     width: 160px;
 }
