@@ -47,6 +47,8 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script src="js/showcollections.js"></script>
+    <script src="js/showLikedposts.js"></script>
+
     <title><?php echo $_SESSION['username']; ?></title>
 </head>
 <body>
