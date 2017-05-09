@@ -103,7 +103,7 @@ $(document).ready(function ()
                                         } else {
                                             check = ""
                                         }
-                                        var collection = '<div class="collection-container" id="collection-' + collections[prop].id + '">' +
+                                        var collection = '<div style="display: none" class="collection-container" id="collection-' + collections[prop].id + '">' +
                                             '<div class="collection-header">' +
                                             '<div class="posts-container">' +
                                             '<h1 class="collection-title">' + collections[prop].title + '</h1>' +
@@ -125,7 +125,8 @@ $(document).ready(function ()
                                             '</div>' +
                                             '</div>'
 
-                                        container.append(collection);
+                                        container.prepend(collection)
+                                        $('.collection-container:first-of-type').slideDown('fast');
                                     }
 
                                     for (var prop in postsInCollections) {
@@ -141,7 +142,7 @@ $(document).ready(function ()
                                             '</div>' +
                                             '<p class="description">' + postsInCollections[prop].description + '</p>' +
                                             '<p class="likes"><span>' + postsInCollections[prop].likes + '</span></p>' +
-                                            '<p class="postdate"<span>' + getTimeAgo(value.postdate) + 'd ago</span></p>' +
+                                            '<p class="postdate"<span>' + getTimeAgo(postsInCollections[prop].postdate) + 'd ago</span></p>' +
                                             '<hr>' +
                                             '<div class="user_info">' +
                                             '<img src="' + postsInCollections[prop].avatar + '" alt="#">' +

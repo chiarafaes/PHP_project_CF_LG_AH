@@ -95,7 +95,7 @@ $(document).ready(function () {
                                                 '</div>'+
                                                 '</div>'
 
-                            container.append(collection);
+                            container.prepend(collection);
                         }
 
                         for (var prop in postsInCollections){
@@ -111,7 +111,7 @@ $(document).ready(function () {
                                 '</div>' +
                                 '<p class="description">' + postsInCollections[prop].description + '</p>' +
                                 '<p class="likes"><span>' + postsInCollections[prop].likes + '</span></p>' +
-                                '<p class="postdate"<span>' + getTimeAgo(value.postdate) + 'd ago</span></p>' +
+                                '<p class="postdate"<span>' + getTimeAgo(postsInCollections[prop].postdate) + 'd ago</span></p>' +
                                 '<hr>' +
                                 '<div class="user_info">' +
                                 '<img src="' + postsInCollections[prop].avatar + '" alt="#">' +

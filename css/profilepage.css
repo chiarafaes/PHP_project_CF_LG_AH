@@ -288,6 +288,19 @@ input:checked + .slider:before {
     margin-bottom: 25px;
 }
 
+.collection-container .slider:before{
+    position: absolute;
+    content: "";
+    height: 11px;
+    width: 28px;
+    left: 4px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 3px;
+}
+
 .collection-header{
     width: 100%;
     display: flex;
