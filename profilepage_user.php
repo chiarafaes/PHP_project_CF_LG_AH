@@ -119,8 +119,6 @@ $allTopics = Topic::getAllTopics();
         <div class="profile_user_info">
             <img src="<?php echo Avatar::showAvatar(); ?>">
             <h2><?php echo $_SESSION['username']; ?></h2>
-            <h3>City, BE</h3>
-            <p>hier komt een woordje uitleg over persoon in kwestie</p>
         </div>
 
         <div class="create_collection">

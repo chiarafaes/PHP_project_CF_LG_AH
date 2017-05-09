@@ -2,6 +2,7 @@ main {
     float:left;
     width: 95%;
     position: relative;
+    margin-top: -60px;
 
 }
 
@@ -246,17 +247,31 @@ a.btn.send {
     word-wrap: break-word;
     line-height: 18px;
 }
-.pin .likes,
-.pin .postdate{
+.pin .likes{
     color: #8C7E7E;
     float:right;
     line-height: 1.35em;
     text-align: right;
+    margin-right:15px;
+}
+
+.pin .postdate{
+    float:left;
+    color: #8C7E7E;
+    line-height: 1.35em;
+    margin-left: 15px;
 }
 
 .pin .likes,
 .pin .postdate{
         margin-right: 10px;
+}
+
+.pin .comment_count{
+    float:right;
+    color: #8C7E7E;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
 .pin .likes{
@@ -266,14 +281,13 @@ a.btn.send {
 
 .pin .likes span {
     text-align: right;
-    margin-left: 80px;
 }
 
 .pin .icon_heart img{
     width: 13px;
     float:right;
     margin-top: 5px;
-    margin-right: 2px;
+    margin-right: 10px;
 }
 
 
@@ -602,6 +616,7 @@ form input[type=checkbox]:checked {
         -moz-column-count:    3;
         -webkit-column-count: 3;
         column-count:         3;
+        margin-top: 60px;
     }
 
     .search{
@@ -630,6 +645,7 @@ form input[type=checkbox]:checked {
         -moz-column-count: 2;
         -webkit-column-count: 2;
         column-count: 2;
+        margin-top: 60px;
     }
 
 
@@ -640,6 +656,7 @@ form input[type=checkbox]:checked {
         -moz-column-count: 1;
         -webkit-column-count: 1;
         column-count: 1;
+        margin-top: 60px;
     }
 
     .pin {
@@ -659,6 +676,10 @@ form input[type=checkbox]:checked {
         position: relative;
         width: 320px;
     }
+
+
+
+
 
 }
 

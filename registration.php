@@ -120,7 +120,7 @@
 
             <fieldset>
                 <label>Fullname</label>
-                <input id="fullname" name="fullname" type="text" placeholder="fullname"/>
+                <input id="fullname" name="fullname" type="text" placeholder="Fill in your fullname"/>
             </fieldset>
 
         <div class="usernameFeedback"><span></span></div>
@@ -131,7 +131,7 @@
 
         <fieldset>
                 <label>Username</label>
-                <input id="username" name="username" type="text" placeholder="username"/>
+                <input id="username" name="username" type="text" placeholder=" Fill in your username"/>
             </fieldset>
 
         <div class="mailFeedback"><span></span></div>
@@ -141,12 +141,12 @@
 
             <fieldset>
                 <label>Email</label>
-                <input id="email" name="email" type="text" placeholder="email"/>
+                <input id="email" name="email" type="text" placeholder=" Fill in your email"/>
             </fieldset>
 
             <fieldset>
                 <label>Password</label>
-                <input id="password" name="password" type="password" placeholder="password"/>
+                <input id="password" name="password" type="password" placeholder=" Fill in your password"/>
             </fieldset>
 
             <fieldset>

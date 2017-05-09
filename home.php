@@ -62,8 +62,10 @@ $allTopics = Topic::getAllTopics();
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profilesettings.css">
-
-
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <title>Home</title>
 
     <script src="js/loadmore.js"></script>
@@ -81,8 +83,7 @@ $allTopics = Topic::getAllTopics();
 
     <div class="search">
         <form method="post" name="searching" action="#" id="searching" >
-            <input type="text" name="search" id="search" results=5 value="Search title, description, place" onblur="if(this.value == '')
-                    { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
+            <input type="text" name="search" id="search" results=5 placeholder="Search title, description, place"; }">
             <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
 
         </form>
@@ -126,6 +127,17 @@ $allTopics = Topic::getAllTopics();
 </header>
 
 <div class="success"></div>
+
+<div class="search_">
+    <form method="post" name="searching" action="#" id="searching" >
+        <input type="text" name="search" id="search" results=5 placeholder="Search title, description, place"; }">
+        <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
+
+    </form>
+</div>
+
+
+
 
 <!-- Popup - overlay - add item -->
 <a href="#x" class="overlay" id="add_form"></a>
@@ -200,12 +212,19 @@ $allTopics = Topic::getAllTopics();
 
 
                     </div>
-                <p class="description"><?php echo $post['title']; ?></p>
-                <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
-                <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                <p class="likes"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
-                <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+                <div class="info_photo">
+                    <p class="description"><?php echo $post['title']; ?></p>
+                    <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
+                    <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                    <p class="comment_count"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
+                    <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+                </div>
+
                 <hr>
+
+
+
+
                 <div class="user_info">
                     <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>

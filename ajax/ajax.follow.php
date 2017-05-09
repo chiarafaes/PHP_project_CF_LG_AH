@@ -12,7 +12,7 @@ $user = new User();
 $action = $_POST['action'];
 $userMail = $_POST['userMail'];
 
-if($action == 'follow'){
+if($action === 'follow'){
         $user->followUser($userMail);
         $response['status'] = 'success';
         $response['action'] = 'following';

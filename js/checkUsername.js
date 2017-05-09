@@ -27,7 +27,7 @@ $(document).ready(function()
 
 
             } else if(response.status === 'error' ) {
-                $('#username').css('color', '#D22E2E');
+                $('#username').css('color', '#dd6b47');
                 $('.usernameFeedback').css('color', '#D22E2E');
                 console.log("error");
 

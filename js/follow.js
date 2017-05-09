@@ -19,10 +19,8 @@ $(document).ready(function () {
                         $("#btnFollow").attr('class', 'succes');
                         $("#btnFollow").attr('data-action', 'unfollow');
 
-                    } else if (response.action != 'Follow') {
-                        $("#btnFollow").val('Follow');
-                        $("#btnFollow").attr('class', 'succes');
-                        $("#btnFollow").attr('data-action', 'follow');
+                    } else {
+                        console.log('Error');
 
                     }
                 }

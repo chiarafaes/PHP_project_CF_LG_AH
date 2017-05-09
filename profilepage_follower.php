@@ -104,9 +104,6 @@ if( !empty( $_POST['btnUnfollow'] ) ) {
         <div class="profile_user_info">
             <img src="<?php echo $user['avatar'] ?>">
             <h2><?php echo $user['Username'] ?></h2>
-            <p>hier komt nog locatie</p>
-
-
 
             <form action='' method='post'>
                 <input type='submit' id='btnFollow' name='btnFollow' class="succes" value='Follow' data-id="<?php echo $user['Mail'] ?>" data-action='follow'>

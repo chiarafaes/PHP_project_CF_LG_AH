@@ -76,7 +76,7 @@
 
 <section class="left">
     <a href="index.php"><img src="img/logo_icon.svg" class="logo_icon"/></a>
-    <a href="index.php"><img src="img/logo_naam.png" class="login_name"/></a>
+    <a href="index.php"><img src="img/logo_naam.svg" class="login_name"/></a>
 </section>
 
 
@@ -96,12 +96,12 @@
         
            <fieldset>
                 <label for="email">Email</label>
-                <input name="email" id="email" type="email" placeholder="email" />
+                <input name="email" id="email" type="email" placeholder=" Fill in your email" />
            </fieldset>
 
             <fieldset>
                 <label for="password">Password</label>
-                <input name="password" id="password" type="password" placeholder="password"/>
+                <input name="password" id="password" type="password" placeholder=" Fill in your password"/>
             </fieldset>
   
             <fieldset>
