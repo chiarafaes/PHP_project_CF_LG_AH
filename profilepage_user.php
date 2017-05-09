@@ -139,7 +139,7 @@ $allTopics = Topic::getAllTopics();
             </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="btn_items">
             <div class="collection_items">
                 <p><?php echo count($posts);?></p>
                 <p>items</p>
@@ -167,65 +167,6 @@ $allTopics = Topic::getAllTopics();
             </div>
             </a>
         </div>
-
-        <!-- dit stukje geeft alle posts weer die geliked zijn door de gebruiker
-
-        <div class="main_container_profile" class="likeable">
-            <?php foreach ($likedPostsShow as $post):?>
-                <div class="pin" id="pinID-<?php echo $post['id']?>">
-                    <div class="img_holder">
-                        <div class="buttons" id="1">
-                            <a href="#" class="btn send">Send</a>
-                            <a href="#" class="btn save">Save</a></br>
-                            <a href="#" class="btn like">
-                                <img src="img/<?php
-                                if (!empty($likedPosts)) {
-                                    $isLiked = false;
-                                    foreach ($likedPosts as $item) {
-                                        if ($post['id'] == $item['post']) {
-                                            $isLiked = true;
-                                        }
-                                    }
-                                    if ($isLiked) {
-                                        echo 'liked_icon.svg';
-                                    } else {
-                                        echo 'like_icon.svg';
-                                    }
-                                } else {
-                                    echo 'like_icon.svg';
-                                }
-                                ?>"/>
-                            </a>
-
-                        </div>
-                        <a href="detailpagina.php?post=<?php echo $post['id'];?>" onclick="PopupCenter();" class="image ajax" title="photo 1" id="loginpop">
-                            <img src="<?php echo $post['picture']; ?>" alt="" >
-                        </a>
-                    </div>
-                    <p class="description"><?php echo $post['title']; ?></p>
-                    <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
-                    <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                    <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
-
-                    <?php
-
-                    $id = $post['id'];
-                    $topic = Post::getCategorie($id);
-
-                    ?>
-
-                    <hr>
-                    <div class="user_info">
-                        <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
-                        <p><?php echo $post['username']; ?></p>
-                        <p class="categorie"><?php echo $topic['name']?></p>
-                    </div>
-                </div>
-            <?php endforeach;?>
-        </div>
-
--->
-
 
 
     <div class="main_container_profile" class="likeable">
@@ -261,6 +202,6 @@ $allTopics = Topic::getAllTopics();
 </div>
 </div>
 <script src="js/popup.js"></script>
-
+<script src="js/ShowOwnItems.js"></script>
 </body>
 </html>
