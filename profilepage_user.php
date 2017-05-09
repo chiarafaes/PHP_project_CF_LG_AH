@@ -132,7 +132,7 @@ $allTopics = Topic::getAllTopics();
         <div id="header_info">
             <a href="#" id="btn_collections">
             <div class="collection_collections">
-                <p><?php echo count($collections)?></p>
+                <p id="counter"><?php echo count($collections)?></p>
                 <p>collections</p>
             </div>
             </a>

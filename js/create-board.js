@@ -72,6 +72,15 @@ $(document).ready(function ()
                                     console.log('got cats per collection');
                                     console.log(value);
 
+                                    function getTimeAgo(p_dDate)
+                                    {
+                                        var currentDate = new Date();
+                                        var postDate = new Date(p_dDate);
+                                        var timeDiff = Math.abs(postDate.getTime() - currentDate.getTime());
+                                        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                                        return diffDays;
+                                    }
+
                                     // de container div leegmaken voordat we terug beginnen vullen
                                     container.html("");
 
@@ -145,7 +154,7 @@ $(document).ready(function ()
                                     }
 
                                     var counter = parseInt($('.collection_collections p').text())
-                                    $('.collection_collections p').text(counter + 1);
+                                    $('.collection_collections p#counter').text(counter + 1);
                                 },
                                 error: function () {
                                     console.log('could not get cats per collection');
