@@ -100,8 +100,8 @@
 <body>
 
     <section class="left">
-        <a href="index.php"><img src="img/logo_icon.svg"/></a>
-        <img src="img/logo_naam.png" class="login_name"/>
+        <a href="index.php"><img src="img/logo_icon.svg" class="logo_icon"/></a>
+        <a href="index.php"><img src="img/logo_naam.png" class="login_name"/></a>
     </section>
 
 

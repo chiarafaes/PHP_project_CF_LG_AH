@@ -65,10 +65,7 @@ $allTopics = Topic::getAllTopics();
 
 
     <title>Home</title>
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+
     <script src="js/loadmore.js"></script>
     <script src="js/like.js"></script>
     <script src="js/add-to-collection.js"></script>
@@ -84,7 +81,7 @@ $allTopics = Topic::getAllTopics();
 
     <div class="search">
         <form method="post" name="searching" action="#" id="searching" >
-            <input type="text" name="search" id="search" results=5 value="Search" onblur="if(this.value == '')
+            <input type="text" name="search" id="search" results=5 value="Search title, description, place" onblur="if(this.value == '')
                     { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
             <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
 

@@ -30,7 +30,7 @@ body{
 .logo_naam img{
     display:block;
     margin:0 auto;
-    width:500px;
+    width:350px;
 }
 
 h1{
@@ -105,5 +105,18 @@ h2{
     border: 1px solid white;
 
 }
+
+@media only screen and (min-width: 768px) {
+    .logo img {
+        width: 150px;
+    }
+    .logo_naam img{
+        display:block;
+        margin:0 auto;
+        width:500px;
+    }
+}
+
+
 
 

@@ -1,29 +1,34 @@
 $(document).ready(function () {
-    $(".follow").on("click", function (e) {
+    $("#btnFollow").on("click", function (e) {
 
-        // via ajax naar de DB sturen
+        var userMail = $(this).attr("data-id");
+        var action = $(this).attr("data-action");// follow of niet?
+
         $.ajax({
             method: "POST",
             url: "ajax/ajax.follow.php",
-            data:{update: comment, postID: postID}  //update: en postID= naam en comment en postID= waarde (value)
+            data: {userMail:userMail, action:action}
         })
-            .done(function( response ) {
-                //code+message
-                if (response.code == 200){
+            .done(function(response){
 
-                    //iets plaatsen
-                    var $this = $(this);
-                    $this.toggleClass('follow');
+                if(response.status == 'success') {
+                    console.log('Success');
 
-                    if($this.hasClass('follow')){
-                        $this.text('Follow');
-                    } else {
-                        $this.text('Following');
+                    if (response.action == 'Follow') {
+                        $("#btnFollow").val('Follow');
+                        $("#btnFollow").attr('class', 'succes');
+                        $("#btnFollow").attr('data-action', 'unfollow');
+
+                    } else if (response.action != 'Follow') {
+                        $("#btnFollow").val('Follow');
+                        $("#btnFollow").attr('class', 'succes');
+                        $("#btnFollow").attr('data-action', 'follow');
+
                     }
+                }
             });
-
         e.preventDefault();
-    })
+    });
 })
 
 

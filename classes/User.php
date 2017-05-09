@@ -186,25 +186,25 @@ class User
         return $statement->execute();
     }
 
-    public static function followUser($email){
+    public static function followUser($p_sMail){
         $conn = Db::getInstance();
 
         $statement = $conn->prepare('INSERT INTO users_follower (userEmail, followEmail) VALUES (:userEmail, :followEmail)');
-        $statement->bindValue(':userEmail', $_SESSION["email"]);
-        $statement->bindValue(':followEmail', $email);
+        $statement->bindValue(':userEmail', $_SESSION['email']);
+        $statement->bindValue(':followEmail', $p_sMail);
 
-        return ($statement->fetch(PDO::FETCH_ASSOC));
+        return $statement->execute();
 
     }
 
-    public static function unfollowUser($email){
+    public static function unfollowUser($p_sMail){
         $conn = Db::getInstance();
 
         $statement = $conn->prepare("DELETE from users_follower where userEmail = :userEmail and followEmail = :followEmail");
         $statement->bindValue(':userEmail', $_SESSION['email']);
-        $statement->bindValue(':followEmail', $email);
+        $statement->bindValue(':followEmail', $p_sMail);
 
-        return ($statement->fetch(PDO::FETCH_ASSOC));
+        return $statement->execute();
     }
 
     public static function getFollowers(){

@@ -12,6 +12,16 @@ $likes = Post::getPostsLikedByUser($_GET['profile']);
 $allTopics = Topic::getAllTopics();
 
 
+if( !empty( $_POST['btnFollow'] ) ) {
+    $user->followUser($_POST['profileMail']);
+}
+if( !empty( $_POST['btnUnfollow'] ) ) {
+    $user->unfollowUser($_POST['profileMail']);
+}
+
+
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -25,9 +35,12 @@ $allTopics = Topic::getAllTopics();
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profilepage.css">
-    <script src="js/like.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
 
+    <script src="js/like.js"></script>
 
     <title><?php echo $user['Username']; ?></title>
 </head>
@@ -93,7 +106,14 @@ $allTopics = Topic::getAllTopics();
             <h2><?php echo $user['Username'] ?></h2>
             <p>hier komt nog locatie</p>
 
-            <button class="follow">Follow</button>
+
+
+            <form action='' method='post'>
+                <input type='submit' id='btnFollow' name='btnFollow' class="succes" value='Follow' data-id="<?php echo $user['Mail'] ?>" data-action='follow'>
+                <input type='hidden' name='profileMail' value="<?php echo $user['Mail'] ?>">
+            </form>
+
+
         </div>
 
 

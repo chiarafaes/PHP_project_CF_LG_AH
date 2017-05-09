@@ -6,17 +6,34 @@ spl_autoload_register(function ($class) {
     include_once("../classes/".$class.".php");
 });
 
-$user = new User;
-$user_email = $_SESSION['Mail'];
+$user = new User();
 
-if(isset($_POST['follow'])){
-    $follow_email = $_POST['follow'];
+// get posted values
+$action = $_POST['action'];
+$userMail = $_POST['userMail'];
 
-    $submit->follow($user_email,$follow_email);
+if($action == 'follow'){
+        $user->followUser($userMail);
+        $response['status'] = 'success';
+        $response['action'] = 'following';
+
+}else if($action != 'follow'){
+    $user->unfollowUser($userMail);
+    $response['status'] = 'standard';
+    $response['action'] = 'unfollow';
+
 }
-if(isset($_POST['unfollow'])){
-    $follow_email = $_POST['unfollow'];
-    $submit->unfollow($user_email,$follow_email);
-}
+
+header('Content-type: application/json');
+echo json_encode($response);
+
 ?>
+
+
+
+
+
+
+
+
 
