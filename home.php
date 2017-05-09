@@ -203,7 +203,7 @@ $allTopics = Topic::getAllTopics();
                 <p class="description"><?php echo $post['title']; ?></p>
                 <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                <p class="likes"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p
+                <p class="likes"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
                 <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
                 <hr>
                 <div class="user_info">

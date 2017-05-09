@@ -35,11 +35,19 @@ $tel = Comment::countComments($_GET["post"]);
 $countsComment= count($tel);
 
 if (!empty($_POST['id'])){
-  if(Post::deletePost($_POST['id'])){
-      header('location: home.php');
-  }else{
-      echo "er ging iets fout";
-  }
+    if(Post::deletePost($_POST['id'])){
+        header('location: home.php');
+    }else{
+        echo "er ging iets fout bij verwijderen post";
+    }
+}
+
+if (!empty($_POST['commentId'])){
+    if(Comment::deleteOwnComments($_POST['commentId'])){
+        echo"verwijderen gelukt";
+    }else{
+        echo "er ging iets fout bij commentaar";
+    }
 }
 
 
@@ -117,6 +125,9 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
         <?php endif; ?>
 
 
+
+
+
         <!-- COMMENTAAR -->
 
 
@@ -143,6 +154,17 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                             <div class="comment_zelf">
                                 <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
                                 <p><?php echo $c['comment']?></p>
+
+                                <!-- VERWIJDER COMMENT -->
+                                <?php if ($_SESSION['email'] == $c['Mail_user']):?>
+                                <div class ="verwijdercomment">
+                                <form method ="post" action="">
+                                <input type="hidden" name="commentId" value="<?php echo $c['commentId']?>">
+                                <input id="btnVerwijderC" type="submit" value="Verwijderen">
+                                </form>
+                            </div>
+                            <?php endif; ?>
+
                             </div>
                         </div>
                         <hr class="line_comment">

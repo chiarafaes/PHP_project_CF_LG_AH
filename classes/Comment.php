@@ -69,7 +69,7 @@ class Comment {
         {
             $conn = Db::getInstance();
 
-            $statement = $conn->prepare("SELECT comment, users.Username, users.avatar from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items ORDER BY commentID DESC LIMIT 8");
+            $statement = $conn->prepare("SELECT Comments.commentId, comment, users.Username, users.avatar, Mail_user from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items ORDER BY commentID DESC LIMIT 8");
             $statement->bindValue(":items", $_GET["post"]);
             $statement->execute();
             $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -83,6 +83,16 @@ class Comment {
         $statement->bindValue(":commentID", $id);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return($result);
+    }
+
+
+    public static function deleteOwnComments($id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("DELETE from comments WHERE commentID =:id");
+        $statement->bindValue(":id", $id);
+        $result = $statement->execute();
         return($result);
     }
 
