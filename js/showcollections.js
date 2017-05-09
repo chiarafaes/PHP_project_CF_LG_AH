@@ -2,6 +2,15 @@
  * Created by Alex on 4/05/2017.
  */
 $(document).ready(function () {
+    function getTimeAgo(p_dDate)
+    {
+        var currentDate = new Date();
+        var postDate = new Date(p_dDate);
+        var timeDiff = Math.abs(postDate.getTime() - currentDate.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        return diffDays;
+    }
+
     var container = $('.main_container_profile')
 
     $('#btn_collections').on('click', function () {
@@ -11,7 +20,7 @@ $(document).ready(function () {
             url: 'ajax/ajax.get-posts-in-boards.php',
             method: 'post',
             success: function (value) {
-                console.log(value);
+                postsInCollections = value;
             },
             error: function () {
                 console.log("shit he");
@@ -46,6 +55,7 @@ $(document).ready(function () {
                         container.html("");
 
                         catsPerCollections = value;
+                        console.log(postsInCollections);
 
                         function getCats (id) {
                             cats = "";
@@ -63,8 +73,12 @@ $(document).ready(function () {
                             } else {
                                 check = ""
                             }
-                            var collection =    '<div class="collection-container">'+
+                            var collection =    '<div class="collection-container" id="collection-'+collections[prop].id+'">'+
+                                                '<div class="collection-header">'+
+                                                '<div class="posts-container">'+
                                                 '<h1 class="collection-title">'+collections[prop].title+'</h1>'+
+                                                '</div>'+
+                                                '<div>'+
                                                 '<div class="toggleSwitch">'+
                                                 '<label>Private</label>'+
                                                 '<label class="switch">'+
@@ -72,16 +86,41 @@ $(document).ready(function () {
                                                 '<div class="slider"></div>'+
                                                 '</label>'+
                                                 '</div>'+
-                                                '<div class="posts-container">'+
-                                                '</div>'+
                                                 '<div class="collection-topics">'+
                                                 '<ul>'+
                                                 getCats(collections[prop].id) +
                                                 '</ul>'+
                                                 '</div>'+
+                                                '</div>'+
+                                                '</div>'+
                                                 '</div>'
 
                             container.append(collection);
+                        }
+
+                        for (var prop in postsInCollections){
+                            var post = '<div class="pin" id="pinID-' + postsInCollections[prop].id + '">' +
+                                '<div class="img_holder">' +
+                                '<div class="buttons" id="1">' +
+                                '<a href="#" class="btn send">Send</a>' +
+                                '<a href="#" class="btn save">Save</a>' +
+                                '</div>' +
+                                '<a class="image ajax" href="#" title="photo 1" id="1">' +
+                                '<img src="' + postsInCollections[prop].picture + '" alt="" >' +
+                                '</a>' +
+                                '</div>' +
+                                '<p class="description">' + postsInCollections[prop].description + '</p>' +
+                                '<p class="likes"><span>' + postsInCollections[prop].likes + '</span></p>' +
+                                '<p class="postdate"<span>' + getTimeAgo(value.postdate) + 'd ago</span></p>' +
+                                '<hr>' +
+                                '<div class="user_info">' +
+                                '<img src="' + postsInCollections[prop].avatar + '" alt="#">' +
+                                '<p>' + postsInCollections[prop].username + '</p>' +
+                                '<p class="categorie">Categorie</p>' +
+                                '</div>' +
+                                '</div>';
+
+                            $('#collection-'+postsInCollections[prop].board+' .posts-container').append(post);
                         }
                     },
                     error: function () {

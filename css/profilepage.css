@@ -26,7 +26,7 @@ html{
 
 .main_container_profile{
     clear:both;
-
+    padding-top: 25px;
 }
 
 
@@ -238,7 +238,7 @@ html{
     position: relative;
     display: inline-block;
     width: 55px;
-    height: 34px;
+    height: 15px;
     margin-top: 15px;
 }
 
@@ -260,10 +260,10 @@ html{
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
+    height: 15px;
     width: 26px;
     left: 4px;
-    bottom: 4px;
+    bottom: 0;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -281,3 +281,49 @@ input:checked + .slider:before {
     transform: translateX(30px);
 }
 
+.collection-container{
+    background-color: #DDD;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 50px;
+    margin-bottom: 25px;
+}
+
+.collection-header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.collection-container .toggleSwitch{
+    display: flex;
+    align-items: baseline;
+}
+
+.collection-container .switch{
+    margin-top: 0;
+}
+
+.collection-container h1{
+    font-size: 110%;
+    margin: 0 15px;
+    padding-bottom: 15px;
+}
+
+.collection-container ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.collection-container ul li{
+    color: #999;
+    background-color: #BBB;
+    margin: 5px 0;
+    padding: 8px;
+    font-size: 80%;
+    text-align: center;
+}

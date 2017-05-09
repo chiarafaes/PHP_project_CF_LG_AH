@@ -101,6 +101,8 @@ class Board
                     echo json_encode("bord gekoppeld");
                 };
             }
+
+        return true;
         }
     }
 
