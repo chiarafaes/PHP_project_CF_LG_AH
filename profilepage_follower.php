@@ -129,7 +129,7 @@ if( !empty( $_POST['btnUnfollow'] ) ) {
                 </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="btn_ItemsUser">
                 <div class="collection_items">
                     <p><?php echo count($posts);?></p>
                     <p>items</p>
@@ -217,6 +217,6 @@ if( !empty( $_POST['btnUnfollow'] ) ) {
     </div>
 
     <script type="text/javascript" src="js/follow.js"></script>
-
+    <script src="js/ShowUsersItems.js"></script>
 </body>
 </html>
