@@ -31,6 +31,9 @@ $recentActivities = $comment->GetRecentActivities();
 $test = Post::CountReport($_GET["post"]);
 $dislikes = count($test);
 
+$tel = Comment::countComments($_GET["post"]);
+$countsComment= count($tel);
+
 if (!empty($_POST['id'])){
   if(Post::deletePost($_POST['id'])){
       header('location: home.php');
@@ -71,6 +74,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                     <p class ="dislikes"> dislikes : <?php echo $dislikes; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                    <p class="likes"> comments: <?php echo $countsComment; ?></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
                     <p class="title"><?php echo $post['title']; ?></p>
                     <p class="description"><?php echo $post['description']?></p>

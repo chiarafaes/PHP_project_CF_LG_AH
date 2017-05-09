@@ -76,5 +76,19 @@ class Comment {
             return $comments;
         }
 
+    public static function countComments($id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * from comments WHERE id_post = :commentID");
+        $statement->bindValue(":commentID", $id);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return($result);
+    }
+
+
+    
+
+
     }
 ?>
