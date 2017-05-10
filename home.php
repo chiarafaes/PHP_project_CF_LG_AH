@@ -149,7 +149,7 @@ $allTopics = Topic::getAllTopics();
 <a href="#x" class="overlay" id="save_to_collection"></a>
 <div class="popup_additem" id="save_to_collection_content">
     <p class="error">Hello</p>
-    <h2>Save post to collection:</h2>
+    <h2>Save post to collection</h2>
     <?php foreach ($collections as $collection): ?>
         <label for="<?php echo $collection['title']?>"><?php echo $collection['title']?></label>
         <input type="radio" id="<?php echo $collection['title']?>" name="id" value="<?php echo $collection['id']?>"><br>
@@ -167,8 +167,10 @@ $allTopics = Topic::getAllTopics();
 
 
     <?php if (!empty($search_param)):?>
-        <h1>Search results for '<?php echo $search_param; ?>'</h1>
-        <a href="home.php">Clear results</a>
+        <div class="search_results">
+            <h1>Search results for '<?php echo $search_param; ?>'</h1>
+            <a href="home.php">Clear results</a>
+        </div>
     <?php endif; ?>
     <div id="left" class="main_container likeable" >
         <?php foreach ($renderedPosts as $post):?>
@@ -258,7 +260,7 @@ $allTopics = Topic::getAllTopics();
                 });
             } else {
                 $sidebar.stop().animate({
-                    marginTop: 50
+                    marginTop: 0
                 });
             }
         });

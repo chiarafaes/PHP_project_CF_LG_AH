@@ -27,26 +27,19 @@ $(document).ready(function () {
                         check = ""
                     }
                     var pin =
-                        '<div class="collection-container">'+
-                            '<h1 class="collection-title">'+likedposts[prop].title+'</h1>'+
+                        '<div class="main_container_items">'+
+                        '<div class="pin_"'+
+                        '<div class="img_holder">'+
+                        '<img class="img_container" src="'+likedposts[prop].picture+'" >'+
                         '</div>'+
+                        '<p class="description_">'+likedposts[prop].title+' </p>'+
+                        '<p class="likes_"> '+likedposts[prop].likes+' </p>'+
+                        '</p>'+
+                        '<p class="postdate_"> '+likedposts[prop].postdate+'</p>'+
+                        '<p> '+likedposts[prop].location+' </p>'+
+                        '</div>'+
+                        '</div>';
 
-                        '<div class="posts-container">'+
-                            '<div class="pin"'+
-                                '<div class="img_holder">'+
-                                    '<img src="'+likedposts[prop].picture+'" >'+
-                                '</div>'+
-                                '<p class="description">'+likedposts[prop].description+' </p>'+
-                                '<p class="icon_heart">'+
-                                    '<img src="img/icon_hartjeLikes.svg">'+
-                                    '<p> '+likedposts[prop].likes+' </p>'+
-                                '</p>'+
-                                '<p> '+likedposts[prop].postdate+'</p>'+
-                                '<p> '+likedposts[prop].location+' </p>'+
-                                '<div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'+
 
 
                     container.append(pin);

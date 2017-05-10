@@ -39,7 +39,9 @@ $allTopics = Topic::getAllTopics();
             }
 
             .allUsers {
-                margin: 1em;
+                margin-top: 1em;
+                margin-bottom: 1em;
+                margin-right: 1em;
                 padding: 0;
                 -moz-column-gap: 1em;
                 -webkit-column-gap: 1em;
@@ -152,8 +154,7 @@ $allTopics = Topic::getAllTopics();
 
     <div class="search">
         <form method="post" name="searching" action="#" id="searching" >
-            <input type="text" name="search" id="search" results=5 value="Search" onblur="if(this.value == '')
-                    { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
+            <input type="text" name="search" id="search" results=5 placeholder="Search title, description, place"; }">
             <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
 
         </form>
@@ -165,8 +166,8 @@ $allTopics = Topic::getAllTopics();
             <div class="dropdown-content_categorie">
                 <div class="left_categorie">
                     <?php foreach ($allTopics as $topic): ?>
-                         <a href="categorie.php?categorie=<?php echo $topic['id']?>"><?php echo $topic['name']?></a>
-                        <?php endforeach; ?>
+                        <a href="categorie.php?categorie=<?php echo $topic['id']?>"><?php echo $topic['name']?></a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -193,6 +194,7 @@ $allTopics = Topic::getAllTopics();
             <a href="logout.php" class="btn_logout">Logout</a>
         </div>
     </div>
+
 </header>
 <body>
 

@@ -22,17 +22,12 @@ $getTopics = Topic::getAllTopics();
 <form method="post" name="Posten" action="upload.php" id="Posten" enctype="multipart/form-data"/>
 <a class="close" href="#close">x</a>
 <div class="create_uploadphoto">
-    <label>Upload photo</label>
+    <div class="upload_file">
     <div class="picgroup">
+        <label>Upload photo</label>
         <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
-        <input type="hidden" name="img_type" value="post" />
-        <img id="target" src="http://placehold.it/180x280" alt="#" />
+        <input type="hidden" name="img_type" value="post"/>
         <input type="file" name="fileToUpload" id="fileToUpload" class="inputfile">
-    </div>
-
-    <div class="create_description">
-        <label>Description</label>
-        <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
 
     <div class="url_link">
@@ -40,19 +35,17 @@ $getTopics = Topic::getAllTopics();
         <input type="url" class="url" name="url" id="url" placeholder="Enter URL here"/>
     </div>
 
-    <label for="location">Locatie</label>
-    <input type="text" id="location" name="location" readonly/>
 </div>
-
-
-
-<div class="right_column">
 
     <div class="create_title">
         <label>Title</label>
         <input type="text" name="title" id="title" />
     </div>
 
+    <div class="create_description">
+        <label>Description</label>
+        <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
+    </div>
 
 
     <div class="box_topics">
@@ -73,15 +66,22 @@ $getTopics = Topic::getAllTopics();
         </form>
     </div>
 
+
+  <div class="locationPost">
+<div class="locationField">
+    <label for="location">Locatie</label>
+    <input type="text" id="location" name="location" readonly/>
+</div>
+
 <div class="create_btnPost">
     <input type="submit" name='submit' value="Post" />
 </div>
-
+  </div>
 
 
 </div>
-
 </form>
+
 
 <script src="js/geolocation.js"></script>
 

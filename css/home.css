@@ -1,27 +1,30 @@
+
+
 main {
     float:left;
     width: 95%;
     position: relative;
-    margin-top: -60px;
+    margin:0;
+    padding:0;
 
 }
 
 #right{
     float:right;
     width: 5%;
-    margin-top: 50px;
     margin-right: 15px;
 
 }
 
-.main_container {
-    margin: 1em 0;
+.main_container{
+    margin-top: 0;
     padding: 0;
     -moz-column-gap: 1.2em;
     -webkit-column-gap: 1.2em;
     column-gap: 1.2em;
 
 }
+
 
 .pin {
     display: inline-block;
@@ -92,7 +95,7 @@ main {
     padding: 35px 35px 20px;
     position: fixed;
     visibility: hidden;
-    width: 350px;
+    width: 400px;
     z-index: 10;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -143,9 +146,13 @@ main {
 /*  ITEMS    */
 #left.main_container {
     padding-left: 35px;
-    padding-top: 35px;
     position: relative;
     padding-right: 0;
+}
+
+.main_container_likeable{
+    margin-left: 35px;
+    margin-top: 55px;
 }
 
 .buttons{
@@ -398,6 +405,7 @@ hr{
 
 .create_btnPost{
     margin-top: 20px;
+    float:right;
 }
 
 .create_btnPost input[type=submit]{
@@ -421,23 +429,44 @@ hr{
     background-color: #0A6970; /* dark - Blue */
 
 }
-
-.create_uploadphoto{
+.picgroup{
     float:left;
     width: 48%;
 }
 
-.create_uploadphoto label, .box_topics .boxTitle {
-    color: #8C7E7E;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-size: 14px;
+.picgroup input{
+    display: block;
+    font-size: 12px;
+    margin-top: 10px;
 }
 
-.right_column{
+.url_link{
     float:right;
     width: 48%;
 }
+
+.url_link input{
+    display: block;
+}
+
+.locationField{
+    float:left;
+    width: 45%;
+
+}
+
+.create_btnPost{
+    float:right;
+    width: 45%;
+}
+
+.create_title{
+    padding-bottom: 20px;
+    clear:both;
+    padding-top: 10px;
+}
+
+
 
 
 textarea {
@@ -448,17 +477,9 @@ textarea {
     color: #666666;
     font-weight: 300;
     padding: 10px;
-}
-
-.create_title label, .create_description label{
-    color: #8C7E7E;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-size: 14px;
-}
-
-.create_title{
-    padding-bottom: 20px;
+    width: 390px;
+    height: 50px;
+    clear:both;
 }
 
 .create_title input[type=text]{
@@ -477,8 +498,8 @@ textarea {
     border-radius: 5px;
     border: 1.5px solid #b3b3b3;
     margin-top: 5px;
-    font-size: 13px;
-    color: #666666;
+    font-size: 12px;
+    color: #7F7F7F;
     font-weight: 400;
     padding-top: 7px;
     padding-left: 10px;
@@ -486,29 +507,71 @@ textarea {
 }
 
 .create_title input{
-    width: 160px;
+    width: 400px;
+    display: block;
 }
 
-.label_upload label, .create_title label, .create_description label {
+.box_topics{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.boxTitle, .create_title label, .create_description label, .url_link label, .upload_file label{
+    text-transform: uppercase;
+    color: #7F7F7F;
     font-size: 14px;
 }
 
-form input[type=checkbox]{
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: middle;
-    border: 1px solid #b3b3b3;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
+.locationField{
+    margin-top: 10px;
 }
 
-form input[type=checkbox]:checked {
-    background-color: #10a6ad;
-    border:none;
+.locationField label{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #7F7F7F;
 }
+.locationField input{
+    font-size: 12px;
+    display:block;
+    padding: 2px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border:1px solid #b3b3b3;
+    padding-left: 5px;
+}
+
+
+
+
+form ul{
+    -moz-column-count: 3;
+    -moz-column-gap: 30px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 30px;
+    column-count: 3;
+    column-gap: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+form ul li label{
+    font-size: 12px;
+}
+
+form ul li{
+    list-style-type: none;
+}
+
+
+#save_to_collection_content h2{
+    color: #0F9BAF;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
 
 #save_to_collection_content{
     padding-top: 15px;
@@ -517,6 +580,12 @@ form input[type=checkbox]:checked {
 #save_to_collection_content label{
     margin-top: 15px ;
     display: inline-block;
+    color: #7F7F7F;
+    font-size: 14px;
+}
+
+#save_to_collection_content input{
+    margin-left: 10px;
 }
 
 #save_to_collection_content button{
@@ -525,11 +594,19 @@ form input[type=checkbox]:checked {
     color: white;
     font-size: 13px;
     border-radius: 5px;
-    font-weight: 700;
+    font-weight: 400;
+    width: 100px;
+    letter-spacing: 1px;
     line-height: 1em;
     padding: 8px 16px;
     border: none;
     margin-top: 15px;
+    text-transform: uppercase;
+}
+
+#save_to_collection_content button:hover{
+    background-color: #0A6970;
+
 }
 
 .error{
@@ -560,6 +637,8 @@ form input[type=checkbox]:checked {
         -moz-column-count:    5;
         -webkit-column-count: 5;
         column-count:         5;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 
@@ -570,6 +649,8 @@ form input[type=checkbox]:checked {
         -moz-column-count:    4;
         -webkit-column-count: 4;
         column-count:         4;
+        margin-left: auto;
+        margin-right: auto;
 
     }
 
@@ -592,6 +673,8 @@ form input[type=checkbox]:checked {
         -moz-column-count:    4;
         -webkit-column-count: 4;
         column-count:         4;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .search{
@@ -663,18 +746,6 @@ form input[type=checkbox]:checked {
         margin-top: 60px;
     }
 
-    .pin {
-        display: inline-block;
-        background: #fff;
-        margin: 0px 30px 30px 0px;
-        width: 320px;
-        font-size: 11px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        left: 0;
-        right: 0;
-    }
 
     .pin .img_holder {
         position: relative;

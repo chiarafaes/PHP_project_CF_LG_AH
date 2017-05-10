@@ -91,7 +91,7 @@ $posts = Post::getPostsByTopic($categorie['id']);
     </header>
 
 <main>
-    <div id="left" class="main_container likeable" >
+    <div id="left" class="main_container_likeable" >
         <?php foreach ($posts as $post):?>
             <div class="pin" id="pinID-<?php echo $post['id']?>">
                 <div class="img_holder">
@@ -136,6 +136,7 @@ $posts = Post::getPostsByTopic($categorie['id']);
                 <p class="description"><?php echo $post['title']; ?></p>
                 <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                <p class="comment_count"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
                 <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
 
                 <hr>

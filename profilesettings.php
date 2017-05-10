@@ -67,6 +67,7 @@
             $feedback = $e->getMessage();
         }
     }
+$allTopics = Topic::getAllTopics();
 
 ?><!doctype html>
 <html lang="en">
@@ -93,8 +94,7 @@
 
     <div class="search">
         <form method="post" name="searching" action="#" id="searching" >
-            <input type="text" name="search" id="search" results=5 value="Search" onblur="if(this.value == '')
-                    { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
+            <input type="text" name="search" id="search" results=5 placeholder="Search title, description, place"; }">
             <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
 
         </form>
@@ -102,7 +102,14 @@
 
     <div class="iconen">
         <div class="icon_1">
-            <a href="#" ></a>
+            <a href="home.php" class="dropbtn_categorie"><img src="img/icon_categories.svg"></a>
+            <div class="dropdown-content_categorie">
+                <div class="left_categorie">
+                    <?php foreach ($allTopics as $topic): ?>
+                        <a href="categorie.php?categorie=<?php echo $topic['id']?>"><?php echo $topic['name']?></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
 
         <div class="icon_2">
@@ -117,6 +124,8 @@
     <div class="avatar">
         <a href="profilepage_user.php" class="dropbtn"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
         <div class="dropdown-content">
+            <a href="discoverUsers.php">Discover users</a>
+            <hr class="hr_dropdown">
             <a href="profilepage_user.php">My profile</a>
             <a href="profilepage_user.php">My collections</a>
             <a href="profilepage_user.php">My uploads</a>
@@ -125,10 +134,6 @@
             <a href="logout.php" class="btn_logout">Logout</a>
         </div>
     </div>
-
-
-
-
 
 </header>
 <div class="wrap">

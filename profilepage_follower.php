@@ -54,8 +54,7 @@ if( !empty( $_POST['btnUnfollow'] ) ) {
 
     <div class="search">
         <form method="post" name="searching" action="#" id="searching" >
-            <input type="text" name="search" id="search" results=5 value="Search" onblur="if(this.value == '')
-                    { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
+            <input type="text" name="search" id="search" results=5 placeholder="Search title, description, place"; }">
             <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
 
         </form>
@@ -95,6 +94,7 @@ if( !empty( $_POST['btnUnfollow'] ) ) {
             <a href="logout.php" class="btn_logout">Logout</a>
         </div>
     </div>
+
 </header>
 
 

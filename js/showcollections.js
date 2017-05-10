@@ -109,7 +109,7 @@ $(document).ready(function () {
                                 '<img src="' + postsInCollections[prop].picture + '" alt="" >' +
                                 '</a>' +
                                 '</div>' +
-                                '<p class="description">' + postsInCollections[prop].description + '</p>' +
+                                '<p class="description">' + postsInCollections[prop].title + '</p>' +
                                 '<p class="likes"><span>' + postsInCollections[prop].likes + '</span></p>' +
                                 '<p class="postdate"<span>' + getTimeAgo(postsInCollections[prop].postdate) + 'd ago</span></p>' +
                                 '<hr>' +
