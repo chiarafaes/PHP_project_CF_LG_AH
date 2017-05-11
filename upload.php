@@ -2,8 +2,6 @@
 
 session_start();
 
-var_dump($_POST);
-
 //vervangt includes, deze functie moet slechts 1 keer geschreven worden
 spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
