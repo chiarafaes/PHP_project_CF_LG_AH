@@ -88,6 +88,7 @@ $getTopics = Topic::getAllTopics();
 
 
 <script src="js/geolocation.js"></script>
+<script src="js/emptyfieldspost.js"></script>
 
 
 </body>

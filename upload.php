@@ -59,15 +59,25 @@ if ($uploadOk == 0) {
             case "post":
                 $post = new Post();
 
-                $post->setMPicture($target_file);
-                $post->setMSDescription($_POST['Description']);
-                $post->setMSTitle($_POST['title']);
-                $post->setMSUserName($_SESSION['username']);
-                $post->setMSMail($_SESSION['email']);
-                $post->setMSCategorie($_POST['topic']);
-                $post->setMSLocation($_POST['location']);
-                $post->setMSURL($_POST['url']);
 
+                if (empty($_POST["Description"])) {
+                    $error = "Field 'Description' can not be empty.";
+                } elseif (empty($_POST["title"])) {
+                    $error = "Field 'title' can not be empty.";
+                } elseif (empty($_POST["topic"])) {
+                    $error = "Field 'topic' can not be empty.";
+                } else {
+
+                    $post->setMPicture($target_file);
+                    $post->setMSDescription($_POST['Description']);
+                    $post->setMSTitle($_POST['title']);
+                    $post->setMSUserName($_SESSION['username']);
+                    $post->setMSMail($_SESSION['email']);
+                    $post->setMSCategorie($_POST['topic']);
+                    $post->setMSLocation($_POST['location']);
+                    $post->setMSURL($_POST['url']);
+
+                }
                 if ($post->Save()) {
                     header('location:home.php');
                 }
