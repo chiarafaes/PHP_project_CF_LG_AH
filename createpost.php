@@ -15,6 +15,8 @@ $getTopics = Topic::getAllTopics();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/scrape.js"></script>
 
     <title>CreatePost</title>
 </head>
@@ -32,7 +34,7 @@ $getTopics = Topic::getAllTopics();
 
     <div class="url_link">
         <label for="url">URL</label>
-        <input type="url" class="url" name="url" id="url" placeholder="Enter URL here"/>
+        <input type="url" class="url" name="url" id="url" placeholder="Enter URL here" />
     </div>
 
 </div>
