@@ -26,6 +26,4 @@
 //    }
 
 
-
-
-    echo json_encode($html);
+    echo json_encode($matchesIMG[0]);

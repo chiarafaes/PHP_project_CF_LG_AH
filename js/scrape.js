@@ -4,7 +4,7 @@
 $(document).ready(function () {
     $('#url').on('blur', function (e) {
         e.preventDefault();
-        console.log('init')
+        var container = $('.rendered-images')
         if ($(this).val() != ""){
             var input = $(this).val()
 
@@ -15,16 +15,16 @@ $(document).ready(function () {
                     input: input,
                 },
                 success: function (value) {
-                    //var output = value.replace('\\', '')
-                    //console.log(output);
-
-                    console.log(value)
+                    value.each(function () {
+                        console.log('haha')
+                        container.append('kaka');
+                    })
                 },
                 error: function (value) {
                     //var output = value.replace('\\', '')
                     //console.log(output);
 
-                   console.log(value)
+                   //console.log(value)
                 }
             })
         } else {

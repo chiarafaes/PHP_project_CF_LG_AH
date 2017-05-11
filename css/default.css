@@ -290,6 +290,15 @@ footer {
     columns: 100px 2;
 }
 
+.rendered-images{
+    margin-top: 15px;
+}
+
+.rendered-images img{
+    height: 50px;
+    width: 50px;
+}
+
 
 
 

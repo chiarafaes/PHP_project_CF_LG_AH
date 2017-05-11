@@ -38,6 +38,9 @@ $getTopics = Topic::getAllTopics();
     </div>
 
 </div>
+    <div class="rendered-images">
+        <label for="">Select an image</label>
+    </div>
 
     <div class="create_title">
         <label>Title</label>
@@ -48,7 +51,6 @@ $getTopics = Topic::getAllTopics();
         <label>Description</label>
         <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
-
 
     <div class="box_topics">
         <label class="boxTitle">Choose collection</label>

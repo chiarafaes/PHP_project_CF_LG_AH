@@ -516,7 +516,7 @@ textarea {
     margin-bottom: 10px;
 }
 
-.boxTitle, .create_title label, .create_description label, .url_link label, .upload_file label{
+.boxTitle, .create_title label, .create_description label, .url_link label, .upload_file label, .rendered-images label{
     text-transform: uppercase;
     color: #7F7F7F;
     font-size: 14px;
