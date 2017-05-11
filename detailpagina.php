@@ -143,7 +143,9 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
                         <div class="comment">
                             <!-- <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"> -->
-                            <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+                            <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>">
+                                <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+                            </a>
 
                             <!-- </a> -->
                             <div class="comment_zelf">
