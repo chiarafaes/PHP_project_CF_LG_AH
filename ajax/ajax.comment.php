@@ -6,7 +6,7 @@ spl_autoload_register(function ($class) {
 });
 
 //controleer of er een comment wordt verzonden
-if(!empty($_POST ['comment'])) { // comment uit query
+if(!empty($_POST['comment'])) { // comment uit query
 
     $comment->Text = $_POST['comment'];
     try {
