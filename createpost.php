@@ -22,6 +22,7 @@ $getTopics = Topic::getAllTopics();
 </head>
 <body>
 <form method="post" name="Posten" action="upload.php" id="Posten" enctype="multipart/form-data"/>
+<div class="error" id="error-post"></div>
 <a class="close" href="#close">x</a>
 <div class="create_uploadphoto">
     <div class="upload_file">
