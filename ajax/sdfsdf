@@ -1,4 +1,0 @@
-} elseif ($mode == 'img') {
-//        preg_match_all( '|<img.*?src=[\'"](.*?)[\'"].*?>|i',$html, $matches );
-//        echo json_encode($matches);
-//    }
