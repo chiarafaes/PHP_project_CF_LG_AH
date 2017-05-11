@@ -76,7 +76,7 @@
 
 <section class="left">
     <a href="index.php"><img src="img/logo_icon.svg" class="logo_icon"/></a>
-    <a href="index.php"><img src="img/logo_naam.svg" class="login_name"/></a>
+    <a href="index.php"><img src="img/logo_naam.png" class="login_name"/></a>
 </section>
 
 

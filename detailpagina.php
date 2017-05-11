@@ -44,9 +44,8 @@ if (!empty($_POST['id'])){
 
 if (!empty($_POST['commentId'])){
     if(Comment::deleteOwnComments($_POST['commentId'])){
-        echo"verwijderen gelukt";
     }else{
-        echo "er ging iets fout bij commentaar";
+        echo "er ging iets fout";
     }
 }
 
@@ -80,9 +79,9 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
                 <div class="image_info">
                     <p class ="dislikes"> dislikes : <?php echo $dislikes; ?></p>
+                    <p class="comment_count"> comments: <?php echo $countsComment; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                    <p class="likes"> comments: <?php echo $countsComment; ?></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
                     <p class="title"><?php echo $post['title']; ?></p>
                     <p class="description"><?php echo $post['description']?></p>
@@ -91,7 +90,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                     $id = $post['id'];
                     $topic = Post::getCategorie($id);
                     ?>
-                    <hr>
+                    <hr class="line_detail">
                     <div class="user_info">
                         <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                             <p><?php echo $post['username']; ?></p>
@@ -124,10 +123,6 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
         </div>
         <?php endif; ?>
 
-
-
-
-
         <!-- COMMENTAAR -->
 
 
@@ -155,18 +150,20 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                                 <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
                                 <p><?php echo $c['comment']?></p>
 
-                                <!-- VERWIJDER COMMENT -->
-                                <?php if ($_SESSION['email'] == $c['Mail_user']):?>
-                                <div class ="verwijdercomment">
-                                <form method ="post" action="">
-                                <input type="hidden" name="commentId" value="<?php echo $c['commentId']?>">
-                                <input id="btnVerwijderC" type="submit" value="Verwijderen">
-                                </form>
-                            </div>
-                            <?php endif; ?>
-
                             </div>
                         </div>
+
+
+                        <!-- VERWIJDER COMMENT -->
+                        <?php if ($_SESSION['email'] == $c['Mail_user']):?>
+                            <div class ="verwijdercomment">
+                                <form method ="post" action="">
+                                    <input type="hidden" name="commentId" value="<?php echo $c['commentId']?>">
+                                    <input id="btnVerwijderC" type="submit" value="Verwijderen">
+                                </form>
+                            </div>
+                        <?php endif; ?>
+
                         <hr class="line_comment">
 
                     <?php endforeach; ?>

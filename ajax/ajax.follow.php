@@ -14,13 +14,11 @@ $userMail = $_POST['userMail'];
 
 if($action === 'follow'){
         $user->followUser($userMail);
-        $response['status'] = 'success';
-        $response['action'] = 'following';
+        $response['status'] = 'follow';
+        $response['action'] = 'follow';
 
-}else if($action != 'follow'){
-    $user->unfollowUser($userMail);
-    $response['status'] = 'standard';
-    $response['action'] = 'unfollow';
+}else {
+    echo "error";
 
 }
 

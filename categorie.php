@@ -11,7 +11,6 @@ $categorie = Topic::getIdTopic($_GET['categorie']);
 $posts = Post::getPostsByTopic($categorie['id']);
 
 
-
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +25,7 @@ $posts = Post::getPostsByTopic($categorie['id']);
     <link rel="stylesheet" href="css/profilesettings.css">
 
 
-    <title><?php echo $topic['name']; ?></title>
+    <title>Categorie</title>
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -143,7 +142,7 @@ $posts = Post::getPostsByTopic($categorie['id']);
                 <div class="user_info">
                     <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
-                    <p class="categorie">categorie</p>
+                    <p class="categorie"><?php echo $topic['name']; ?></p>
                 </div>
             </div>
         <?php endforeach;?>

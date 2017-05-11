@@ -35,73 +35,57 @@
     max-width: 300px;
     min-height: 75px;
     margin-top: 20px;
+    margin-bottom: 5px;
     margin-left: 20px;
 }
 
 .pon .description {
-    margin-left: 15px;
-    font-size: 13px;
-    color: #666666;
+    font-size: 12px;
+    color: #999999;
     font-weight: 700;
-    float:left;
-    width: 45%;
-    margin-top: 10px;
     word-wrap: break-word;
-    line-height: 18px;
 }
 .pon .title {
-    margin-left: 15px;
-    font-size: 16px;
+    font-size: 14px;
     color: #666666;
     font-weight: 700;
-    float:left;
-    width: 45%;
-    margin-top: 10px;
+    margin-top: 20px;
     word-wrap: break-word;
-    line-height: 18px;
-}
-.pon .likes,
-.pon .postdate{
-    color: #8C7E7E;
-    float:right;
-    line-height: 1.35em;
-    text-align: right;
-}
+    line-height: 16px;
+    margin-bottom: 5px;
 
-.pon .likes{
-    margin-right: 10px;
-}
-.pon .postdate{
-    float: left;
-}
-
-.pon .likes{
 }
 
 
-.pon .likes span {
-    text-align: right;
-    margin-left: 80px;
-}
-
-.pon .icon_heart img{
-    width: 13px;
-    float:right;
-    margin-top: 5px;
-    margin-right: 2px;
-}
 
 
 #inappropriate a{
     text-decoration: none;
     color: #0F9BAF;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-bottom: 1px solid #0F9BAF;
+
 }
+
+#inappropriate a:hover{
+    text-decoration: none;
+    color: #0A6970;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-bottom: 1px solid #0A6970;
+
+}
+
 
 #inappropriate{
     margin-top: 20px;
     float:left;
-    width: 45%;
+    width: 50%;
 }
 
 hr{
@@ -143,7 +127,39 @@ hr{
 }
 
 .image_info{
+    color: #666666;
+}
+
+.image_info, .line_detail{
     margin-left: 40px;
+    font-size: 12px;
+}
+
+.image_info .comment_count{
+    display: block;
+    text-align: right;
+    margin-right: 20px;
+    margin-bottom: 5px;
+
+}
+
+.image_info .dislikes{
+    float:left;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+
+.image_info .icon_heart img{
+    width: 13px;
+    float:right;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.image_info .likes {
+    float:right;
 }
 
 hr{
@@ -151,14 +167,8 @@ hr{
     margin-top: 10px;
 }
 
-.dislikes{
-    margin-bottom: 10px;
-    color: #666666;
-    font-size: 14px;
-}
-
-.icon_heart{
-    margin-left: 20px;
+.user_info{
+    margin-left: 40px;
 }
 
 .statusupdates{
@@ -167,7 +177,7 @@ hr{
 .commentformulier{
     align-self: center;
     margin-top:80px;
-    height: 200px;
+    height: 300px;
     clear:both;
 }
 .commentform{
@@ -193,6 +203,10 @@ hr{
     border-radius: 5px;
     margin-left: -180px;
     align-self: center;
+}
+
+.btnsubmit:hover{
+    background-color: #0A6970;
 }
 
 input[type=text]{
@@ -241,23 +255,54 @@ input[type=text]{
 }
 
 
+#btnVerwijderC{
+   border:none;
+    background-color: transparent;
+    margin-left: 50px;
+    font-weight: 700;
+    color:#dd6b47;
+    cursor: pointer;
+    border-bottom: 1px solid #dd6b47;
+
+}
 
 #btnVerwijder{
     display: inline-block;
     float:right;
     width: 50%;
     margin-top: 20px;
+    width: 150px;
 
 }
 
 .verwijderpost input[type=submit]{
+    color: #dd6b47;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid #dd6b47;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 12px;
+    background:none;
+    cursor: pointer;
+    padding: 5px;
+
+}
+
+.verwijderpost input[type=submit]:hover {
+    background-color: #dd6b47;
+    color:white;
+}
+
+
+
+.verwijdercomment input [type=submit]{
     color: #0A6970;
     border:none;
     font-weight: 700;
-    font-size: 14px;
-    background:none;
+    font-size: 12px;
+    background:transparent;
     cursor: pointer;
-
 }
 
 

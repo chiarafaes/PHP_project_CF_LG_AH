@@ -69,7 +69,7 @@ class Comment {
         {
             $conn = Db::getInstance();
 
-            $statement = $conn->prepare("SELECT Comments.commentId, comment, users.Username, users.avatar, Mail_user from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items ORDER BY commentID DESC LIMIT 8");
+            $statement = $conn->prepare("SELECT Comments.commentId, comment, users.Username, users.avatar, Mail_user from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items ORDER BY commentID DESC LIMIT 10");
             $statement->bindValue(":items", $_GET["post"]);
             $statement->execute();
             $comments = $statement->fetchAll(PDO::FETCH_ASSOC);

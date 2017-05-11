@@ -181,7 +181,7 @@ $allTopics = Topic::getAllTopics();
                 <p class="description"><?php echo $post['title']; ?></p>
                 <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                 <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                <p class="likes"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
+                <p class="comment_count"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
                 <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
                 <?php
                 $id = $post['id'];
@@ -189,7 +189,7 @@ $allTopics = Topic::getAllTopics();
                 ?>
                 <hr>
                 <div class="user_info">
-                    <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                    <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
                     <p class="categorie"><?php echo $topic['name']?></p>
                 </div>

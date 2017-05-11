@@ -4,6 +4,8 @@ $(document).ready(function () {
         var userMail = $(this).attr("data-id");
         var action = $(this).attr("data-action");// follow of niet?
 
+        var $this  = $(this);
+
         $.ajax({
             method: "POST",
             url: "ajax/ajax.follow.php",
@@ -16,8 +18,15 @@ $(document).ready(function () {
 
                     if (response.action == 'Follow') {
                         $("#btnFollow").val('Follow');
-                        $("#btnFollow").attr('class', 'succes');
-                        $("#btnFollow").attr('data-action', 'unfollow');
+                        $("#btnFollow").attr('class', 'follow');
+                        $("#btnFollow").attr('data-action', 'follow');
+
+                        $this.toggleClass('follow');
+                        if($this.hasClass('follow')){
+                            $this.text('Follow');
+                        } else {
+                            $this.text('Following');
+                        }
 
                     } else {
                         console.log('Error');

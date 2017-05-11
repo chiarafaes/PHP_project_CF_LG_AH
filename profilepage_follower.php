@@ -15,9 +15,7 @@ $allTopics = Topic::getAllTopics();
 if( !empty( $_POST['btnFollow'] ) ) {
     $user->followUser($_POST['profileMail']);
 }
-if( !empty( $_POST['btnUnfollow'] ) ) {
-    $user->unfollowUser($_POST['profileMail']);
-}
+
 
 
 
@@ -106,10 +104,9 @@ if( !empty( $_POST['btnUnfollow'] ) ) {
             <h2><?php echo $user['Username'] ?></h2>
 
             <form action='' method='post'>
-                <input type='submit' id='btnFollow' name='btnFollow' class="succes" value='Follow' data-id="<?php echo $user['Mail'] ?>" data-action='follow'>
+                <button type='submit' id='btnFollow' name='btnFollow' class="follow" data-id="<?php echo $user['Mail'] ?>" data-action='follow'>Follow</button>
                 <input type='hidden' name='profileMail' value="<?php echo $user['Mail'] ?>">
             </form>
-
 
         </div>
 
@@ -199,12 +196,12 @@ if( !empty( $_POST['btnUnfollow'] ) ) {
                     <p class="description"><?php echo $post['title']; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                    <p class="likes"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
+                    <p class="comment_count"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
                     <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
 
                     <hr>
                     <div class="user_info">
-                        <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                        <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                         <p><?php echo $post['username']; ?></p>
                         <p class="categorie">Categorie</p>
                     </div>

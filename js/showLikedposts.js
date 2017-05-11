@@ -36,7 +36,6 @@ $(document).ready(function () {
                         '<p class="likes_"> '+likedposts[prop].likes+' </p>'+
                         '</p>'+
                         '<p class="postdate_"> '+likedposts[prop].postdate+'</p>'+
-                        '<p> '+likedposts[prop].location+' </p>'+
                         '</div>'+
                         '</div>';
 
