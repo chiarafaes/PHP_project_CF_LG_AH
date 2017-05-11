@@ -52,6 +52,11 @@
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/registration.css" />
 
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
     <style>
 
         .error {
@@ -93,7 +98,12 @@
         <?php endif; ?>
 
         <form action="" method="post" id="login">
-        
+
+            <div class="mailFeedback"><span></span></div>
+            <?php if(isset($_SESSION['loginfeedback'])): ?>
+                <div class="feedback"><?php echo $_SESSION['loginfeedback']; ?></div>
+            <?php endif; ?>
+
            <fieldset>
                 <label for="email">Email</label>
                 <input name="email" id="email" type="email" placeholder=" Fill in your email" />
@@ -110,5 +120,7 @@
         </form> 
     </section>
 
+<script src="js/checkemailLogin.js"></script>
 </body>
 </html>
+

@@ -371,12 +371,12 @@ class Post
     public static function CountReport($id){
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('SELECT * FROM users_inapr_posts WHERE post = :post');
+        $statement = $conn->prepare('SELECT reports FROM posts WHERE id = :post');
         $statement->bindValue(':post', $id);
         $statement->execute();
-        $res = $statement->fetchAll();
+        $res = $statement->fetch();
 
-        if(count($res) > 2){
+        if($res["reports"] > 2){
 
             $statement = $conn->prepare('DELETE from posts WHERE id = :post');
             $statement->bindValue(':post', $id);
@@ -388,6 +388,7 @@ class Post
             return $res;
         }
     }
+
 
     public static function getTimeAgo($p_dDate)
     {

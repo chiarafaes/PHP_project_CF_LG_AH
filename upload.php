@@ -2,8 +2,11 @@
 
 session_start();
 
+<<<<<<< HEAD
 // var_dump($_POST);
 
+=======
+>>>>>>> origin/master
 //vervangt includes, deze functie moet slechts 1 keer geschreven worden
 spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
@@ -62,6 +65,7 @@ if (!empty($_FILES['fileToUpload']['name'])) {
                 case "post":
                     $post = new Post();
 
+<<<<<<< HEAD
                     $post->setMPicture($target_file);
                     $post->setMSDescription($_POST['Description']);
                     $post->setMSTitle($_POST['title']);
@@ -78,6 +82,31 @@ if (!empty($_FILES['fileToUpload']['name'])) {
             }
         } else {
             echo "Sorry, there was an error uploading your file.";
+=======
+
+                if (empty($_POST["Description"])) {
+                    $error = "Field 'Description' can not be empty.";
+                } elseif (empty($_POST["title"])) {
+                    $error = "Field 'title' can not be empty.";
+                } elseif (empty($_POST["topic"])) {
+                    $error = "Field 'topic' can not be empty.";
+                } else {
+
+                    $post->setMPicture($target_file);
+                    $post->setMSDescription($_POST['Description']);
+                    $post->setMSTitle($_POST['title']);
+                    $post->setMSUserName($_SESSION['username']);
+                    $post->setMSMail($_SESSION['email']);
+                    $post->setMSCategorie($_POST['topic']);
+                    $post->setMSLocation($_POST['location']);
+                    $post->setMSURL($_POST['url']);
+
+                }
+                if ($post->Save()) {
+                    header('location:home.php');
+                }
+            break;
+>>>>>>> origin/master
         }
     }
 } else {

@@ -28,8 +28,8 @@ if(!empty($_POST['comment']))
 $recentActivities = $comment->GetRecentActivities();
 
 
-$test = Post::CountReport($_GET["post"]);
-$dislikes = count($test);
+$dislikes = Post::CountReport($_GET["post"]);
+
 
 $tel = Comment::countComments($_GET["post"]);
 $countsComment= count($tel);
@@ -71,14 +71,14 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
         <?php foreach ($posts as $post):?>
                 <div class="pon" id="pinID-<?php echo $post['id']?>">
                     <div class="img_holder">
-                        <a class="go_back" onclick="goBack()">x</a>
+                        <a class="go_back" href="home.php">x</a>
                         <a class="image ajax" href="#" title="photo 1" id="1">
                             <img src="<?php echo $post['picture']; ?>" alt="" >
                         </a>
                     </div>
 
                 <div class="image_info">
-                    <p class ="dislikes"> dislikes : <?php echo $dislikes; ?></p>
+                    <p class ="dislikes"> dislikes : <?php echo $dislikes['reports']; ?></p>
                     <p class="comment_count"> comments: <?php echo $countsComment; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
@@ -142,10 +142,12 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                     foreach($comments as $c):?>
 
                         <div class="comment">
-                            <!-- <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"> -->
-                            <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
 
-                            <!-- </a> -->
+                            <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>">
+                                <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
+                            </a>
+
+
                             <div class="comment_zelf">
                                 <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
                                 <p><?php echo $c['comment']?></p>
@@ -181,12 +183,6 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
  <script src="js/inapr.js"></script>
 
-
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 
 <script src="js/comment.js"></script>
 

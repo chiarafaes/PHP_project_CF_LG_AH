@@ -4,6 +4,8 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
+// error_reporting(0); zorgt voor geen errors
+
     //eerst checken of user boards heeft, anders gewoon doorgaan
     if (!empty($tmp = Board::getBoards($_SESSION['email']))) {
 
