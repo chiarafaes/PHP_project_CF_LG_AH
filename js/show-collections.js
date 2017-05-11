@@ -91,6 +91,7 @@ $(document).ready(function () {
                                                 getCats(collections[prop].id) +
                                                 '</ul>'+
                                                 '</div>'+
+                                                '<button class="delete-collection">Delete collection</button>'+
                                                 '</div>'+
                                                 '</div>'+
                                                 '</div>'
@@ -129,7 +130,7 @@ $(document).ready(function () {
                 })
             },
             error: function () {
-                console.log('could not get collections');
+                container.html('<div class="error">This user has no collections</div>')
             }
         })
     })

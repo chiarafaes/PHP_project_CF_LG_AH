@@ -51,7 +51,7 @@ $allTopics = Topic::getAllTopics();
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-    <script src="js/showcollections.js"></script>
+    <script src="js/show-collections.js"></script>
     <script src="js/showLikedposts.js"></script>
 
     <title><?php echo $_SESSION['username']; ?></title>
@@ -133,7 +133,7 @@ $allTopics = Topic::getAllTopics();
         <div id="header_info">
             <a href="#" id="btn_collections">
             <div class="collection_collections">
-                <p id="counter"><?php echo count($collections)?></p>
+                <p id="counter"><?php if(!empty($collections)){echo count($collections);} else {echo '0';}?></p>
                 <p>collections</p>
             </div>
             </a>

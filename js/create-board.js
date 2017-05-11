@@ -4,6 +4,27 @@
 
 $(document).ready(function ()
 {
+    $('.overlay').on('click', function (e) {
+        e.preventDefault();
+        $('#add_form').fadeOut('fast');
+        $('div.popup_additem').fadeOut('fast');
+    })
+
+    $('#login_pop').on('click', function (e) {
+        e.preventDefault();
+        $('#add_form').fadeIn('fast');
+        $('div.popup_additem').fadeIn('fast');
+
+        // alle velden resetten
+        $("#board-name").val('');
+        $('.topicInput').each(function () {
+            $(this).prop('checked', false)
+            $(this).val('off')
+        });
+        $('#private').prop('checked', false);
+        $('#private').val('off');
+
+    })
     var container = $('.main_container_profile');
 
     $('#create-board').on('click', function() {
@@ -20,7 +41,7 @@ $(document).ready(function ()
         var name = $("#board-name").val();
         var private = $('#private').val();
 
-        console.log(typeof private);
+        console.log(topics);
 
         $.ajax({
                 url: 'ajax/ajax.createboard.php',
@@ -32,8 +53,8 @@ $(document).ready(function ()
                 },
                 complete: function (value) {
                     console.log(value);
-                    $('#add_form').hide();
-                    $('div.popup_additem').hide();
+                    $('#add_form').fadeOut('fast');
+                    $('div.popup_additem').fadeOut('fast');
 
                     var postsInCollections = [];
 
@@ -169,8 +190,8 @@ $(document).ready(function ()
                     })
                 },
                 error: function (data) {
-                    $('#add_form').hide();
-                    $('div.popup_additem').hide();
+                    $('#add_form').fadeOut('fast');
+                    $('div.popup_additem').fadeOut('fast');
 
                 }
             })

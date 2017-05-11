@@ -299,6 +299,14 @@ input:checked + .slider:before {
     margin-right: 10px;
 }
 
+.delete-collection{
+    background-color: firebrick;
+    border: none;
+    color: #FFF;
+    width: 100%;
+    padding: 5px 0;
+    cursor: pointer;
+}
 
 
 

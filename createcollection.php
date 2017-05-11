@@ -56,8 +56,7 @@ $getTopics = Topic::getAllTopics();
             <div class="btn_collection">
                 <input type="button" id="create-board" value="Create"/>
             </div>
-
-        </form>
     </div>
+</form>
 </body>
 </html>
