@@ -142,12 +142,12 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                     foreach($comments as $c):?>
 
                         <div class="comment">
-                            <!-- <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"> -->
+
                             <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>">
                                 <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
                             </a>
 
-                            <!-- </a> -->
+
                             <div class="comment_zelf">
                                 <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
                                 <p><?php echo $c['comment']?></p>

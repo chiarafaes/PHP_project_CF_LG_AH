@@ -30,7 +30,7 @@
 
             $res = $statement->fetch(PDO::FETCH_ASSOC);
 
-            $likes = +1;
+            $likes += 1;
 
 
             if ($insert->execute()) {
@@ -41,7 +41,7 @@
             $delete->bindValue(':user', $user);
             $delete->bindValue(':post', $post);
 
-            $likes = -0;
+            $likes -= 0;
 
             if ($delete->execute()) {
                 echo json_encode($likes);
