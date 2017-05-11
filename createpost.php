@@ -34,13 +34,15 @@ $getTopics = Topic::getAllTopics();
 
     <div class="url_link">
         <label for="url">URL</label>
-        <input type="url" class="url" name="url" id="url" placeholder="Enter URL here" />
+        <input type="url" class="url"  id="url" placeholder="Enter URL here" />
     </div>
 
 </div>
     <div class="rendered-images">
-        <label for="">Select an image</label>
+        <input type="hidden" name="url" id="rendered-url" >
+        <label for="">Select an image</label><br>
     </div>
+        <input type="hidden" name="url" id="rendered-url" >
 
     <div class="create_title">
         <label>Title</label>

@@ -14,16 +14,29 @@
         include_once("../classes/".$class.".php");
     });
 
+    $mode = $_POST['mode'];
     $input = $_POST['input'];
 
     $html = file_get_contents($input);
+    $dom = new domDocument;
+    libxml_use_internal_errors(true);
+    $dom->loadHTML($html);
+    $dom->preserveWhiteSpace = false;
 
-    preg_match_all( '|<img.*?src=[\'"](.*?)[\'"].*?>|i',$html, $matchesIMG );
-    preg_match_all( '|<h1>|i',$html, $matchesH1 );
+    if ($mode == 'img') {
+        preg_match_all( '|<img.*?src=[\'"](.*?)[\'"].*?>|i',$html, $matches );
+        echo json_encode($matches[0]);
+    }
 
-//    foreach ($images as $image) {
-//        echo json_encode($image->getAttribute('src'));
-//    }
+    if ($mode == 'text') {
+        if ($dom->getElementsByTagName('h1')->length != 0) {
+            foreach ($dom->getElementsByTagName('h1') as $node) {
+                echo json_encode($node->nodeValue);
+            }
+        } else {
+            foreach ($dom->getElementsByTagName('h2') as $node) {
+                echo json_encode($node->nodeValue);
+            }
+        }
+    }
 
-
-    echo json_encode($matchesIMG[0]);

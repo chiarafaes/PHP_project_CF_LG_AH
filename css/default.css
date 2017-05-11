@@ -299,8 +299,9 @@ footer {
     width: 50px;
 }
 
-
-
+.selected{
+    border: 2px solid lightseagreen;
+}
 
 
 
