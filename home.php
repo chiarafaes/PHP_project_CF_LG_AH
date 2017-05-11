@@ -4,6 +4,8 @@ spl_autoload_register(function ($class) {
     include_once("classes/".$class.".php");
 });
 
+//error_reporting(0); zorgt voor verdwijnen van notice error
+
 if (!isset($_SESSION['email'])) {
     header('Location: login.php');
 }

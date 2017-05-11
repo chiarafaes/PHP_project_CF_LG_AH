@@ -71,7 +71,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
         <?php foreach ($posts as $post):?>
                 <div class="pon" id="pinID-<?php echo $post['id']?>">
                     <div class="img_holder">
-                        <a class="go_back" onclick="goBack()">x</a>
+                        <a class="go_back" href="home.php">x</a>
                         <a class="image ajax" href="#" title="photo 1" id="1">
                             <img src="<?php echo $post['picture']; ?>" alt="" >
                         </a>
@@ -183,12 +183,6 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
  <script src="js/inapr.js"></script>
 
-
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 
 <script src="js/comment.js"></script>
 
