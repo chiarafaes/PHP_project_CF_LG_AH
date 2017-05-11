@@ -293,7 +293,7 @@ class Post
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('SELECT * FROM posts WHERE id = :post');
+        $statement = $conn->prepare('SELECT * FROM posts INNER JOIN users ON posts.creator_mail = users.mail WHERE posts.id = :post');
         $statement->bindValue(':post', $p_iID);
 
         if ($statement->execute()) {
@@ -351,8 +351,6 @@ class Post
             $statement1->bindValue(':post', $id);
             $statement1->bindValue(':user', $_SESSION["email"]);
             $statement1->execute();
-
-
         }
     }
 
@@ -389,7 +387,6 @@ class Post
         }
     }
 
-
     public static function getTimeAgo($p_dDate)
     {
         $currentDate = new DateTime();
@@ -424,12 +421,6 @@ class Post
             return false;
         }
     }
-
-    public static function getAllPosts(){
-
-
-    }
-
 
     public static function deletePost($id)
     {

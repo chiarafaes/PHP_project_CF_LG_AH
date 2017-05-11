@@ -49,7 +49,6 @@ if (!empty($_POST['commentId'])){
     }
 }
 
-
 $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
 ?><!doctype html>
