@@ -150,10 +150,7 @@ class User
         } else {
             return true;
         }
-
-
     }
-
 
     public static function getUsers()
     {

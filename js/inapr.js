@@ -4,6 +4,7 @@
 
 $(document).ready(function () {
 
+    var dislikesCounter = $('.dislikes').text()
     var report = $(".btnReport");
 
         report.on('click', function (e) {
@@ -13,7 +14,7 @@ $(document).ready(function () {
 
             $.ajax(
                 {
-                    url:"ajax/ajax.markinappropriote.php",
+                    url:"ajax/ajax.markinappropriate.php",
                     method:"post",
                     data:{
                         "id": id
@@ -21,6 +22,8 @@ $(document).ready(function () {
                 }).done(function(response){
                     console.log(response); // de response uit ajax file in de console steken
                     document.getElementById("inappropriate").innerHTML = "dit is gerapporteerd!";
+                    var newDislikes = parseInt($('.dislikes').text().substr(-1,1))+1;
+                     $('.dislikes').text('dislikes : ' + newDislikes);
             })
             e.preventDefault();
         })

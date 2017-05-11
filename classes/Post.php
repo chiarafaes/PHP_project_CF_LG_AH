@@ -293,7 +293,7 @@ class Post
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('SELECT * FROM posts INNER JOIN users ON posts.creator_mail = users.mail WHERE posts.id = :post');
+        $statement = $conn->prepare('SELECT posts.*, users.avatar FROM posts INNER JOIN users ON posts.creator_mail = users.mail WHERE posts.id = :post');
         $statement->bindValue(':post', $p_iID);
 
         if ($statement->execute()) {
