@@ -41,10 +41,12 @@
                     $feedback = "Field 'Fullname' can not be empty.";
                 } elseif (empty($userNew->Username = $_POST["username"])) {
                     $feedback = "Field 'Username' can not be empty.";
-                } elseif (empty($userNew->Password = $_POST['password'])) {
-                    $feedback = "Field 'Password' can not be empty.";
-                } elseif (strlen($userNew->Password) < $MinimumLength) {
-                    $feedback = "Your password has to be at least 6 characters long.";
+                }
+
+                if (!empty($userNew->Password = $_POST['password'])) {
+                    if (strlen($userNew->Password) < $MinimumLength) {
+                        $feedback = "Your password has to be at least 6 characters long.";
+                    }
                 }
 
                 // enkel indien er geen fouten waren met het formulier gaan we door
@@ -171,27 +173,27 @@ $allTopics = Topic::getAllTopics();
                 </div>
             </div>
             <?php if (!empty($feedback)):?>
-                <div class="feedback"><?php echo $feedback;?></div>
+                <div class="error"><?php echo $feedback;?></div>
             <?php endif; ?>
             <form name="changeprofile" id="changeprofile" action="#" method="post">
                 <fieldset>
                     <label>Fullname</label>
-                    <input id="fullname" name="fullname" type="text" placeholder="fullname" value="<?php echo $user->Fullname; ?>"/>
+                    <input id="fullname" name="fullname" type="text" placeholder="Full Name" value="<?php echo $user->Fullname; ?>"/>
                 </fieldset>
 
                 <fieldset>
                     <label>Username</label>
-                    <input id="username" name="username" type="text" placeholder="username" value="<?php echo $user->Username; ?>"/>
+                    <input id="username" name="username" type="text" placeholder="Username" value="<?php echo $user->Username; ?>"/>
                 </fieldset>
 
                 <fieldset>
                     <label>Email</label>
-                    <input disabled id="email" name="email" type="text" placeholder="email" value="<?php echo $user->Mail; ?>"/>
+                    <input disabled id="email" name="email" type="text" placeholder="Email" value="<?php echo $user->Mail; ?>"/>
                 </fieldset>
 
                 <fieldset>
                     <label>Password</label>
-                    <input id="password" name="password" type="password" placeholder="password"/>
+                    <input id="password" name="password" type="password" placeholder="Enter new password"/>
                 </fieldset>
 
                 <fieldset>

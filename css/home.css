@@ -615,13 +615,6 @@ form ul li{
 
 }
 
-.error{
-    color: firebrick;
-    text-align: center;
-    padding-bottom: 15px;
-    display: none;
-}
-
 .success{
     display: none;
     background-color: #aacd63;

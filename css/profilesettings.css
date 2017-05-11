@@ -161,14 +161,20 @@ fieldset{
     margin-top: 10px;
     border-radius: 5px;
     border: 2px solid #c4c4c4;
-    color: #666666;
+    color: #333;
     width: 250px;
     outline: none;
     padding: 10px;
     display: block;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 700;
     padding-bottom: 5px;
+
+}
+
+#changeprofile input::placeholder{
+    font-weight: 100;
+    color: #AAA;
 }
 
 #changeprofile label{
@@ -224,7 +230,22 @@ fieldset{
 }
 
 
+.error{
+    color: firebrick;
+    text-align: center;
+    padding-bottom: 15px;
+    display: none;
+}
 
+.profile .error{
+    margin: 15px 0 0;
+    padding: 0;
+    display: block;
+}
+
+#changeprofile input[type=text]{
+
+}
 
 
 
