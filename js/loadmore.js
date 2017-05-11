@@ -33,6 +33,11 @@ $(document).ready(function () {
                     data: {'offset': offset},
                     success: function (data)
                     {
+                        console.log(data.length);
+                        if(data.length < 20){
+                            $('#btn_loadmore').hide();
+                        }
+
                         if (data == false){
                             var end = '<div class="error">No more posts</div>'
                             $('#left').append(end)

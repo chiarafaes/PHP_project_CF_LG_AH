@@ -237,10 +237,11 @@ $allTopics = Topic::getAllTopics();
 </main>
 
 <!-- Load more - over hele pagina -->
-
+<?php if(count($renderedPosts) > 19):?>
 <div id="loadmore">
     <a href="#" class="btn_loadmore" id="btn_loadmore">Load more...</a>
 </div>
+<?php endif; ?>
 
 <script src="js/popup2.js"></script>
 
