@@ -28,8 +28,8 @@ if(!empty($_POST['comment']))
 $recentActivities = $comment->GetRecentActivities();
 
 
-$test = Post::CountReport($_GET["post"]);
-$dislikes = count($test);
+$dislikes = Post::CountReport($_GET["post"]);
+
 
 $tel = Comment::countComments($_GET["post"]);
 $countsComment= count($tel);
@@ -78,7 +78,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                     </div>
 
                 <div class="image_info">
-                    <p class ="dislikes"> dislikes : <?php echo $dislikes; ?></p>
+                    <p class ="dislikes"> dislikes : <?php echo $dislikes['reports']; ?></p>
                     <p class="comment_count"> comments: <?php echo $countsComment; ?></p>
                     <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
                     <p class="likes"><span><?php echo $post['likes']; ?></span></p>
