@@ -8,7 +8,7 @@ $(document).ready(function () {
             '').on('click', '.like' ,function (e) {
             e.preventDefault();
             var id = $(this).parent().parent().parent().attr('id').substr(6);
-            var likes = $(this).parent().parent().siblings('.likes').text();
+            var likes = $(this).parent().parent().siblings('.info_photo').children('.likes').text()
             $.ajax({
                 url: 'ajax/ajax.like.php',
                 type: 'post',
