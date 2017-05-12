@@ -8,7 +8,7 @@ class Comment {
             switch ($p_sProperty)
             {
                 case "Text":
-                    $this->m_sText = $p_vValue;
+                    $this->m_sText = htmlspecialchars($p_vValue);
                     break;
             }
         }
@@ -26,55 +26,57 @@ class Comment {
             return $vResult;
         }
 
-    public function Save()
+    public function save($p_sUser, $p_iPost)
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("INSERT INTO Comments (comment, id_post, Mail_user ) VALUES (:comments, :iditem, :Mailuser )");
-        $statement->bindValue(":Mailuser", $_SESSION["email"]);
-        $statement->bindValue(":iditem", $_GET["post"]);
-        $statement->bindValue(":comments",htmlspecialchars($_POST['comment']));
-        return $statement->execute();
+        $statement = $conn->prepare("INSERT INTO comments (comment, id_post, Mail_user ) VALUES (:comment, :idItem, :mailuser )");
+        $statement->bindValue(":mailuser", $p_sUser);
+        $statement->bindValue(":idItem", $p_iPost);
+        $statement->bindValue(":comment", $this->m_sText);
+
+       if($statement->execute()){
+           return $conn->lastInsertId();
+       }
     }
 
 
     public function GetRecentActivities()
+    {
+        if ($conn = DB::getInstance())
         {
-            if ($conn = DB::getInstance())
-            {
 
-                $statement = $conn->prepare("SELECT * FROM Comments ORDER BY commentID DESC LIMIT 5");
-                $statement->execute();
-                return $statement->fetch(PDO::FETCH_ASSOC);
-            }
-            else
-            {
-                // er kon geen connectie gelegd worden met de databank
-                throw new Exception('Ooh my, something terrible happened to the database connection');
-            }
-
-
-        }
-        public function GetCommentsFromPost()
-        {
-            $conn = Db::getInstance();
-
-            $statement = $conn->prepare("SELECT * FROM Comments WHERE id_post = :id_post");
-            $statement->bindValue(":id_post", $_GET["post"]);
+            $statement = $conn->prepare("SELECT * FROM Comments ORDER BY commentID DESC LIMIT 5");
             $statement->execute();
             return $statement->fetch(PDO::FETCH_ASSOC);
         }
-
-        public function Comments()
+        else
         {
-            $conn = Db::getInstance();
-
-            $statement = $conn->prepare("SELECT Comments.commentId, comment, users.Username, users.avatar, Mail_user from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items ORDER BY commentID DESC LIMIT 10");
-            $statement->bindValue(":items", $_GET["post"]);
-            $statement->execute();
-            $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
-            return $comments;
+            // er kon geen connectie gelegd worden met de databank
+            throw new Exception('Ooh my, something terrible happened to the database connection');
         }
+    }
+
+    public function GetCommentsFromPost()
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM Comments WHERE id_post = :id_post");
+        $statement->bindValue(":id_post", $_GET["post"]);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function Comments()
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT Comments.commentId, comment, users.Username, users.avatar, Mail_user from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items ORDER BY commentID DESC LIMIT 10");
+        $statement->bindValue(":items", $_GET["post"]);
+        $statement->execute();
+        $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $comments;
+    }
 
     public static function countComments($id)
     {
@@ -95,10 +97,5 @@ class Comment {
         $result = $statement->execute();
         return($result);
     }
-
-
-    
-
-
-    }
+}
 ?>

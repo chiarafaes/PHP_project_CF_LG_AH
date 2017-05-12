@@ -6,9 +6,9 @@ spl_autoload_register(function ($class) {
 
 $posts= Post::getPostsByID($_GET["post"]);
 
-
-//COMMENTS
+// COMMENTS
 $comment = new Comment();
+$comments = $comment->Comments();
 
 //controleer of er een comment wordt verzonden
 if(!empty($_POST['comment']))
@@ -130,15 +130,13 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                 <h4>Comments</h4>
                 <div class="commentform">
                     <input type="text" placeholder="Leave a comment" id="comment" name="comment"/>
+                    <input type="hidden" name="id" id="post-id" value="<?php echo $post['id']?>">
                     </br>
-                    <input id="btnSubmit" type="submit" value="Comment" class="btnsubmit"/>
+                    <input id="btnSubmit" type="button" value="Comment" class="btnsubmit"/>
                 </div>
 
-                <div class="listupdates">
-                    <?php $comment = new Comment();
-                    $comments = $comment->Comments();
-
-                    foreach($comments as $c):?>
+                <div class="listupdates" id="listupdates">
+                    <?php foreach($comments as $c):?>
 
                         <div class="comment">
 

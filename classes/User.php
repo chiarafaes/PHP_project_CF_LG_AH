@@ -155,7 +155,7 @@ class User
     public static function getUsers()
     {
         $conn= Db::getInstance();
-        $stmt = $conn->prepare("SELECT * FROM Users");
+        $stmt = $conn->prepare("SELECT * FROM users");
         $stmt->execute();
 
         return ($stmt->fetchAll(PDO::FETCH_ASSOC));
@@ -164,7 +164,7 @@ class User
     public static function getUser($email)
     {
         $conn= Db::getInstance();
-        $stmt = $conn->prepare("SELECT * FROM Users WHERE mail= :email");
+        $stmt = $conn->prepare("SELECT * FROM users WHERE mail= :email");
         $stmt->bindValue(':email', $email);
         $stmt->execute();
 

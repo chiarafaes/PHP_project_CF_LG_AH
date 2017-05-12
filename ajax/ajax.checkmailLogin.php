@@ -17,10 +17,10 @@ if(!empty($_POST['email'])){
 
     if($mailCheck->EmailAvailable()) {
         $response['status'] = 'success';
-        $response['message'] = 'Email does not exits';
+        $response['message'] = 'Email does not exist';
     } else {
         $response['status'] = "error";
-        $response['message'] = 'Email exits';
+        $response['message'] = 'Email exists';
     }
     echo json_encode($response);
 }

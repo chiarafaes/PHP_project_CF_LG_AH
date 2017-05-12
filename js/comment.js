@@ -1,32 +1,47 @@
 $(document).ready(function () {
     $("#btnSubmit").on("click", function (e) {
+        e.preventDefault();
 
         //text vak uitlezen
         var comment = $("#comment").val();
-        var postID = document.getElementById("post").getAttribute("data-id");
+        var postID = $('#post-id').val()
+
+        console.log(postID)
 
         // via ajax comment naar de DB sturen
         $.ajax({
-            method: "POST",
             url: "ajax/ajax.comment.php",
-            data:{update: comment, postID: postID}  //update: en postID= naam en comment en postID= waarde (value)
+            method: "post",
+            data:{comment: comment, postID: postID}  //update: en postID= naam en comment en postID= waarde (value)
         })
-            .done(function( response ) {
-                //code+message
-                if (response.code == 200){
+        .done(function( response ) {
 
-                    //iets plaatsen
-                    var li = $("<li style='display: none;'>");
-                    li.html("<a href='http://localhost/PHP_project_cf_lg_ah/user_profile.php?user=" + response.email + "' ><img id='avatar' src='" + response.avatar + "' /></a>" + "   " + "  " + "<a href='http://localhost/PHP_project_cf_lg_ah/user_profile.php?user=" + response.email + "'>" + response.user + "</a>: " + response.message);
+            console.log(response);
+            //code+message
+            if (response.code == 200){
 
-                    //waar plaatsen
-                    $("#listupdates").prepend(li);
-                    $("#listupdates li").first().slideDown();
-                    $("#comment").val("").focus();
-                }
-            });
+                console.log('success');
 
-        e.preventDefault();
+                //iets plaatsen
+                var div = $('<div class="comment" style="display: none;"></div>');
+
+                div.html("<a href='http://localhost/PHP_project_cf_lg_ah/profilepage_follower.php?user=" + response.email + "' ><img id='avatar' src='" + response.avatar + "' /></a>" + "<div class='comment_zelf'>" + "<a href='http://localhost/PHP_project_cf_lg_ah/profilepage_follower.php?user=" + response.email + "'>" + response.user + "</a>: " + "<p>" + response.message + "</p></div>");
+
+                var deleteDiv =
+                    '<div class ="verwijdercomment">'+
+                    '<form method ="post" action="">'+
+                    '<input type="hidden" name="commentId" value="'+ response.res +'">'+
+                    '<input id="btnVerwijderC" type="submit" value="Verwijderen">'+
+                    '</form>'+
+                    '</div>';
+
+                //waar plaatsen
+                $("#listupdates").prepend(div);
+                $("#listupdates div").first().after(deleteDiv);
+                $("#listupdates div").first().slideDown();
+                $("#comment").val("").focus();
+            }
+        });
     })
 })
 
