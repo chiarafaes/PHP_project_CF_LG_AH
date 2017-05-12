@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alex
- * Date: 17/04/2017
- * Time: 21:57
- */
 
-    session_start();
+ session_start();
 
     spl_autoload_register(function ($class) {
         include_once("../classes/".$class.".php");
@@ -41,7 +35,7 @@
             $delete->bindValue(':user', $user);
             $delete->bindValue(':post', $post);
 
-            $likes -= 1;
+            $likes -= 0;
 
             if ($delete->execute()) {
                 echo json_encode($likes);

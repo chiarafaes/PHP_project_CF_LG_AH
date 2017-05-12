@@ -1,5 +1,6 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 
 spl_autoload_register(function ($class) {
     include_once("../classes/".$class.".php");

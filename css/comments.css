@@ -4,35 +4,29 @@
     margin-right: auto;
 }
 
-.img_holder a{
+.img_holder a {
     font-size: 40px;
 }
 
-.go_back{
-    float:left;
+.go_back {
+    float: left;
     color: #0F9BAF;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.image ajax{
-    float:right;
-}
-
-
-
-#right_detail{
-    float:right;
-    width: 45%;
+#right_detail {
     margin-right: 20px;
 }
 
-.pon{
+.pon {
     width: 45%;
-    float:left;
+    float: left;
 
 }
+
 .pon .image img {
-    max-width: 300px;
+    max-width: 240px;
     min-height: 75px;
     margin-top: 20px;
     margin-bottom: 5px;
@@ -45,6 +39,7 @@
     font-weight: 700;
     word-wrap: break-word;
 }
+
 .pon .title {
     font-size: 14px;
     color: #666666;
@@ -56,10 +51,7 @@
 
 }
 
-
-
-
-#inappropriate a{
+#inappropriate a {
     text-decoration: none;
     color: #0F9BAF;
     font-weight: 600;
@@ -67,10 +59,11 @@
     text-transform: uppercase;
     font-size: 12px;
     border-bottom: 1px solid #0F9BAF;
+    margin-top: 40px;
 
 }
 
-#inappropriate a:hover{
+#inappropriate a:hover {
     text-decoration: none;
     color: #0A6970;
     font-weight: 600;
@@ -82,24 +75,18 @@
 }
 
 
-#inappropriate{
-    margin-top: 20px;
-    float:left;
-    width: 50%;
-}
-
-hr{
+hr {
     margin-top: 10px;
 }
 
-.comment img{
+.comment img {
     width: 40px;
     height: 40px;
     border-radius: 100px;
     margin-right: 10px;
 }
 
-.comment{
+.comment {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -107,35 +94,35 @@ hr{
     padding-top: 10px;
 }
 
-.comment_zelf{
+.comment_zelf {
     width: 100%;
     display: flex;
     align-self: center;
 }
 
-.comment_zelf a{
+.comment_zelf a {
     text-decoration: none;
     font-weight: 700;
     color: #0F9BAF;
     margin-right: 5px;
 }
 
-
-.commentformulier h4{
+.commentformulier h4 {
     margin-bottom: 10px;
     text-transform: uppercase;
 }
 
-.image_info{
+
+.image_info {
     color: #666666;
 }
 
-.image_info, .line_detail{
+.image_info, .line_detail {
     margin-left: 40px;
     font-size: 12px;
 }
 
-.image_info .comment_count{
+.image_info .comment_count {
     display: block;
     text-align: right;
     margin-right: 20px;
@@ -143,51 +130,54 @@ hr{
 
 }
 
-.image_info .dislikes{
-    float:left;
+.image_info .dislikes {
+    float: left;
     display: block;
     text-align: left;
     margin-bottom: 5px;
 }
 
-
-.image_info .icon_heart img{
+.image_info .icon_heart img {
     width: 13px;
-    float:right;
+    float: right;
     margin-right: 20px;
     margin-left: 10px;
 }
 
 .image_info .likes {
-    float:right;
+    float: right;
 }
 
-hr{
-    clear:both;
+hr {
+    clear: both;
     margin-top: 10px;
 }
 
-.user_info{
+.user_info {
     margin-left: 40px;
 }
 
-.statusupdates{
+.statusupdates {
     height: 100%;
+    margin-left: 20px;
 }
-.commentformulier{
+
+.commentformulier {
     align-self: center;
-    margin-top:80px;
+    margin-top: 80px;
     height: 300px;
-    clear:both;
+    clear: both;
 }
-.commentform{
+
+.commentform {
     display: flex;
     align-self: center;
     flex-direction: column;
     flex-wrap: wrap;
     height: 100px;
 }
-.btnsubmit{
+
+.btnsubmit {
     background-color: #0f9baf; /* Blue */
     border: none;
     color: white;
@@ -201,15 +191,15 @@ hr{
     font-size: 12px;
     width: 170px;
     border-radius: 5px;
-    margin-left: -180px;
+    margin-left: -100px;
     align-self: center;
 }
 
-.btnsubmit:hover{
+.btnsubmit:hover {
     background-color: #0A6970;
 }
 
-input[type=text]{
+input[type=text] {
     border-radius: 5px;
     border: 1.5px solid #b3b3b3;
     margin-top: 5px;
@@ -221,11 +211,12 @@ input[type=text]{
     padding-bottom: 7px;
 }
 
-.listupdates{
+.listupdates {
     height: 250px;
     overflow: auto;
     margin-top: 20px;
 }
+
 #modalOverlay {
 
     position: absolute;
@@ -238,14 +229,14 @@ input[type=text]{
 
 #content {
     position: absolute;
-    color:black;
-    padding:10px;
-    background: rgba(255,255,255, 1);
-    border-radius:5px;
-    box-shadow:0px 4px 10px black;
-    left: calc((100% - var(--ponwidth))/ 2);
+    color: black;
+    padding: 10px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px black;
     margin-top: 20px;
-    width: 800px;
+    width: 300px;
+    margin-left: 40px;
 }
 
 .fadeInbg50 {
@@ -254,28 +245,26 @@ input[type=text]{
     -webkit-animation-fill-mode: forwards;
 }
 
-
-#btnVerwijderC{
-   border:none;
+#btnVerwijderC {
+    border: none;
     background-color: transparent;
     margin-left: 50px;
     font-weight: 700;
-    color:#dd6b47;
+    color: #dd6b47;
     cursor: pointer;
     border-bottom: 1px solid #dd6b47;
 
 }
 
-#btnVerwijder{
-    display: inline-block;
-    float:right;
-    width: 50%;
+#btnVerwijder {
     margin-top: 20px;
     width: 150px;
+    margin-left: 20px;
+
 
 }
 
-.verwijderpost input[type=submit]{
+.verwijderpost input[type=submit] {
     color: #dd6b47;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -283,7 +272,7 @@ input[type=text]{
     border-radius: 10px;
     font-weight: 700;
     font-size: 12px;
-    background:none;
+    background: none;
     cursor: pointer;
     padding: 5px;
 
@@ -291,24 +280,22 @@ input[type=text]{
 
 .verwijderpost input[type=submit]:hover {
     background-color: #dd6b47;
-    color:white;
+    color: white;
 }
 
-
-
-.verwijdercomment input [type=submit]{
+.verwijdercomment input [type=submit] {
     color: #0A6970;
-    border:none;
+    border: none;
     font-weight: 700;
     font-size: 12px;
-    background:transparent;
+    background: transparent;
     cursor: pointer;
 }
 
-
-@-webkit-keyframes fadeInbg50
-{
-    to {background: rgba(0,0,0, 0.5); }
+@-webkit-keyframes fadeInbg50 {
+    to {
+        background: rgba(0, 0, 0, 0.5);
+    }
 }
 
 .fadeIn100 {
@@ -318,9 +305,347 @@ input[type=text]{
     -webkit-transition: all 500ms ease-out;
 }
 
-@-webkit-keyframes fadeIn100
-{
-    from {margin-top:-50px;}
-    to {  margin-top:0;opacity:1;}
+@-webkit-keyframes fadeIn100 {
+    from {
+        margin-top: -50px;
+    }
+    to {
+        margin-top: 0;
+        opacity: 1;
+    }
 }
 
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+
+    :root {
+        --ponwidth: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .img_holder a {
+        font-size: 40px;
+    }
+
+    .go_back {
+        float: left;
+        color: #0F9BAF;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .image ajax {
+        float: right;
+    }
+
+    #right_detail {
+        float: right;
+        width: 45%;
+        margin-right: 20px;
+    }
+
+    .pon {
+        width: 45%;
+        float: left;
+
+    }
+
+    .pon .image img {
+        max-width: 300px;
+        min-height: 75px;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        margin-left: 20px;
+    }
+
+    .pon .description {
+        font-size: 12px;
+        color: #999999;
+        font-weight: 700;
+        word-wrap: break-word;
+    }
+
+    .pon .title {
+        font-size: 14px;
+        color: #666666;
+        font-weight: 700;
+        margin-top: 20px;
+        word-wrap: break-word;
+        line-height: 16px;
+        margin-bottom: 5px;
+
+    }
+
+    #inappropriate a {
+        text-decoration: none;
+        color: #0F9BAF;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 12px;
+        border-bottom: 1px solid #0F9BAF;
+
+    }
+
+    #inappropriate a:hover {
+        text-decoration: none;
+        color: #0A6970;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 12px;
+        border-bottom: 1px solid #0A6970;
+
+    }
+
+    #inappropriate {
+        margin-top: 20px;
+        float: left;
+        width: 50%;
+    }
+
+    hr {
+        margin-top: 10px;
+    }
+
+    .comment img {
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        margin-right: 10px;
+    }
+
+    .comment {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        vertical-align: middle;
+        padding-top: 10px;
+    }
+
+    .comment_zelf {
+        width: 100%;
+        display: flex;
+        align-self: center;
+    }
+
+    .comment_zelf a {
+        text-decoration: none;
+        font-weight: 700;
+        color: #0F9BAF;
+        margin-right: 5px;
+    }
+
+    .commentformulier h4 {
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .image_info {
+        color: #666666;
+    }
+
+    .image_info, .line_detail {
+        margin-left: 40px;
+        font-size: 12px;
+    }
+
+    .image_info .comment_count {
+        display: block;
+        text-align: right;
+        margin-right: 20px;
+        margin-bottom: 5px;
+
+    }
+
+    .image_info .dislikes {
+        float: left;
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .image_info .icon_heart img {
+        width: 13px;
+        float: right;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .image_info .likes {
+        float: right;
+    }
+
+    hr {
+        clear: both;
+        margin-top: 10px;
+    }
+
+    .user_info {
+        margin-left: 40px;
+    }
+
+    .statusupdates {
+        height: 100%;
+    }
+
+    .commentformulier {
+        align-self: center;
+        margin-top: 80px;
+        height: 300px;
+        clear: both;
+    }
+
+    .commentform {
+        display: flex;
+        align-self: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 100px;
+    }
+
+    .btnsubmit {
+        background-color: #0f9baf; /* Blue */
+        border: none;
+        color: white;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        width: 170px;
+        border-radius: 5px;
+        margin-left: -180px;
+        align-self: center;
+    }
+
+    .btnsubmit:hover {
+        background-color: #0A6970;
+    }
+
+    input[type=text] {
+        border-radius: 5px;
+        border: 1.5px solid #b3b3b3;
+        margin-top: 5px;
+        font-size: 13px;
+        color: #666666;
+        font-weight: 400;
+        padding-top: 7px;
+        padding-left: 10px;
+        padding-bottom: 7px;
+    }
+
+    .listupdates {
+        height: 250px;
+        overflow: auto;
+        margin-top: 20px;
+    }
+
+    #modalOverlay {
+
+        position: absolute;
+        background: #e6e6e6;
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #content {
+        position: absolute;
+        color: black;
+        padding: 10px;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 5px;
+        box-shadow: 0px 4px 10px black;
+        left: calc((100% - var(--ponwidth)) / 2);
+        margin-top: 20px;
+        width: 800px;
+    }
+
+    .fadeInbg50 {
+        -webkit-animation: fadeInbg50 0.5s;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-fill-mode: forwards;
+    }
+
+    #btnVerwijderC {
+        border: none;
+        background-color: transparent;
+        margin-left: 50px;
+        font-weight: 700;
+        color: #dd6b47;
+        cursor: pointer;
+        border-bottom: 1px solid #dd6b47;
+
+    }
+
+    #btnVerwijder {
+        display: inline-block;
+        float: right;
+        width: 50%;
+        margin-top: 20px;
+        width: 150px;
+
+    }
+
+    .verwijderpost input[type=submit] {
+        color: #dd6b47;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border: 1px solid #dd6b47;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 12px;
+        background: none;
+        cursor: pointer;
+        padding: 5px;
+
+    }
+
+    .verwijderpost input[type=submit]:hover {
+        background-color: #dd6b47;
+        color: white;
+    }
+
+    .verwijdercomment input [type=submit] {
+        color: #0A6970;
+        border: none;
+        font-weight: 700;
+        font-size: 12px;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    @-webkit-keyframes fadeInbg50 {
+        to {
+            background: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .fadeIn100 {
+        -webkit-animation: fadeIn100 0.7s;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-fill-mode: forwards;
+        -webkit-transition: all 500ms ease-out;
+    }
+
+    @-webkit-keyframes fadeIn100 {
+        from {
+            margin-top: -50px;
+        }
+        to {
+            margin-top: 0;
+            opacity: 1;
+        }
+    }
+
+}

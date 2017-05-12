@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+header('Content-Type: application/json');
 spl_autoload_register(function ($class) {
     include_once("../classes/".$class.".php");
 });
@@ -16,6 +16,9 @@ if($action === 'follow'){
         $user->followUser($userMail);
         $response['status'] = 'follow';
         $response['action'] = 'follow';
+
+        $post = new Post();
+        $postsFollower = Post::getPostsByUser($user['Mail']);
 
 }else {
     echo "error";

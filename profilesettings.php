@@ -156,6 +156,7 @@ $allTopics = Topic::getAllTopics();
 
     <div class="right">
         <div id="pagename">
+            <p>Profilesettings</p>
         </div>
         <div class="profile">
             <div class="profilepicture">
