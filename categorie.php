@@ -9,6 +9,8 @@ $allTopics = Topic::getAllTopics();
 
 $categorie = Topic::getIdTopic($_GET['categorie']);
 $posts = Post::getPostsByTopic($categorie['id']);
+$user = User::getUser($_SESSION['email']);
+
 
 
 ?><!doctype html>
@@ -132,17 +134,23 @@ $posts = Post::getPostsByTopic($categorie['id']);
 
 
                 </div>
-                <p class="description"><?php echo $post['title']; ?></p>
-                <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
-                <p class="likes"><span><?php echo $post['likes']; ?></span></p>
-                <p class="comment_count"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
-                <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+                <div class="info_photo">
+                    <p class="description"><?php echo $post['title']; ?></p>
+                    <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
+                    <p class="likes"><span><?php echo $post['likes']; ?></span></p>
+                    <p class="comment_count"><span> Comments: <?php echo count(Comment::countComments($post['id'])); ?></span></p>
+                    <p class="postdate"><?php echo Post::getTimeAgo($post['postdate']); ?></p>
+                </div>
 
                 <hr>
+
+
+
+
                 <div class="user_info">
-                    <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                    <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                     <p><?php echo $post['username']; ?></p>
-                    <p class="categorie"><?php echo $topic['name']; ?></p>
+                    <p class="categorie"><?php echo $topic['name']?></p>
                 </div>
             </div>
         <?php endforeach;?>

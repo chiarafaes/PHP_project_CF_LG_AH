@@ -6,6 +6,15 @@ html {
     padding-top: 50px;
 }
 
+#profile_right{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header_info{
+    margin-top: 20px;
+}
+
 .main_container_profile {
     clear: both;
     padding-top: 25px;
@@ -13,13 +22,44 @@ html {
 
 .collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following {
     background-color: white;
-    padding: 10px;
+    color: black;
+    padding: 10px 15px 10px 0px;
+    text-align: center;
+}
+
+.collection_collections a, .collection_items a, .collection_likes a, .collection_followers a, .collection_following a {
+    text-decoration: none;
+    color:black;
+    margin-left: 4px;
+}
+
+.collection_collections:visited, .collection_items:visited, .collection_likes:visited, .collection_followers:visited, .collection_following:visited {
+    border-bottom: 4px solid #0F9BAF;
+}
+
+.collection_collections:hover, .collection_items:hover, .collection_likes:hover, .collection_followers:hover, .collection_following:hover {
+    color:#0F9BAF;
+
+}
+
+.collection_collections:active, .collection_items:active, .collection_likes:active, .collection_followers:active, .collection_following:active {
+    border-bottom: 4px solid #0F9BAF;
 }
 
 .collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following {
     float: left;
-    display: block;
+    display: inline-block;
+    cursor: pointer;
+}
 
+#header_info .amount{
+    font-weight: 700;
+}
+
+.info_name{
+    text-transform: uppercase;
+    color: #666666;
+    font-size: 14px;
 }
 
 .profile_user_info{
@@ -47,8 +87,8 @@ html {
     margin-top: 20px;
     background-color: #0F9BAF;
     display:block;
-    paddin-bottom: 10px;
-
+    text-align: center;
+    padding-bottom: 5px;
 }
 
 .create_collection h3 {
@@ -63,15 +103,23 @@ html {
     border-radius: 100%;
     padding: 3px 13px;
     text-decoration: none;
+    border: 2px solid white;
     color: #0F9BAF;
     font-size: 35px;
     margin-left:auto;
     margin-right: auto;
     display: block;
     width: 20px;
-    margin-bottom: 20px;
-
+    margin-bottom: 10px;
 }
+
+.create_collection a:hover{
+    color: white;
+    border: 2px solid #0A6970;
+    background: transparent;
+}
+
+
 
 .collection_images .img_1 {
     width: 230px;
@@ -304,8 +352,42 @@ input:checked + .slider:before {
     border: none;
     color: #FFF;
     width: 100%;
+    font-weight: 400;
     padding: 5px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+}
+
+.delete-collection:hover{
+    background-color: darkred;
+}
+
+
+#btnFollow {
+    background-color: #10a6ad;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 40px 10px 40px;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 0;
+    border: 2px solid #10a6ad;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#btnFollow:hover {
+    background-color: #0A6970;;
+    border: 2px solid #0A6970;;
+    color: white;
+
 }
 
 
@@ -361,17 +443,52 @@ input:checked + .slider:before {
         padding-top: 25px;
     }
 
+    #header_info{
+        width: 100%;
+    }
+
 
 
     .collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following {
         background-color: white;
-        padding: 10px;
+        padding: 10px 15px 10px 0px;
+        color: black;
+        text-align: center;
+    }
+
+    .collection_collections a, .collection_items a, .collection_likes a, .collection_followers a, .collection_following a {
+        text-decoration: none;
+        color:black;
+    }
+
+    .collection_collections:visited, .collection_items:visited, .collection_likes:visited, .collection_followers:visited, .collection_following:visited {
+        border-bottom: 4px solid #0F9BAF;
+    }
+
+    .collection_collections:hover, .collection_items:hover, .collection_likes:hover, .collection_followers:hover, .collection_following:hover {
+        color:#0F9BAF;
+
+    }
+
+    .collection_collections:active, .collection_items:active, .collection_likes:active, .collection_followers:active, .collection_following:active {
+        border-bottom: 4px solid #0F9BAF;
     }
 
     .collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following {
         float: left;
-        display: block;
+        display: inline-block;
+        width: 17.2%;
+        cursor: pointer;
+    }
 
+    #header_info .amount{
+        font-weight: 700;
+    }
+
+    .info_name{
+        text-transform: uppercase;
+        color: #666666;
+        font-size: 14px;
     }
 
     .profile_user_info, .create_collection {

@@ -16,21 +16,16 @@ $(document).ready(function () {
                 if(response.status == 'success') {
                     console.log('Success');
 
-                    if (response.action == 'Follow') {
-                        $("#btnFollow").val('Follow');
-                        $("#btnFollow").attr('class', 'follow');
+                    if (response.action == 'follow') {
+                        $("#btnFollow").attr('data-action', 'unfollow');
+                        $this.text('Unfollow');
+
+                    } else if (response.action == 'unfollow'){
                         $("#btnFollow").attr('data-action', 'follow');
+                        $this.text('Follow');
 
-                        $this.toggleClass('follow');
-                        if($this.hasClass('follow')){
-                            $this.text('Follow');
-                        } else {
-                            $this.text('Following');
-                        }
-
-                    } else {
+                    } else{
                         console.log('Error');
-
                     }
                 }
             });

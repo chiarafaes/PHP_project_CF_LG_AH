@@ -30,7 +30,6 @@ $posts = Post::getPostsByUser($user['Mail']);
 $likes = Post::getPostsLikedByUser($_SESSION['email']);
 $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
 
-
 $allTopics = Topic::getAllTopics();
 
 ?><!doctype html>
@@ -133,36 +132,36 @@ $allTopics = Topic::getAllTopics();
         <div id="header_info">
             <a href="#" id="btn_collections">
             <div class="collection_collections">
-                <p id="counter"><?php if(!empty($collections)){echo count($collections);} else {echo '0';}?></p>
-                <p>collections</p>
+                <p id="counter" class="amount"><?php if(!empty($collections)){echo count($collections);} else {echo '0';}?></p>
+                <p class="info_name">collections</p>
             </div>
             </a>
 
             <a href="#" id="btn_items">
             <div class="collection_items">
-                <p><?php echo count($posts);?></p>
-                <p>items</p>
+                <p class="amount"><?php echo count($posts);?></p>
+                <p class="info_name">items</p>
             </div>
             </a>
 
             <a href="#" id="btn_likes">
             <div class="collection_likes">
-                <p><?php echo count($likes);?></p>
-                <p>likes</p>
+                <p class="amount"><?php echo count($likes);?></p>
+                <p class="info_name">likes</p>
             </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="btn_followers ">
             <div class="collection_followers">
-                <p>0</p>
-                <p>Followers</p>
+                <p class="amount">0</p>
+                <p class="info_name">Followers</p>
             </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="btn_following">
             <div class="collection_following">
-                <p>0</p>
-                <p>Following</p>
+                <p class="amount">0</p>
+                <p class="info_name">Following</p>
             </div>
             </a>
         </div>

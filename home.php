@@ -24,9 +24,6 @@ if (!empty($_POST['search'])) {
     // Als er niet gezocht wordt, dan alle posts inladen
     try {
 
-        $user = User::getUser('creator_mail');
-        $postsFollower = Post::getPostsByUser($user['Mail']); // get posts from followed user
-
         $renderedPosts = Post::getPosts(20, 0, $_SESSION['email']); // Veranderd naar 20, want in briefing moet bij load more 20 items bijkomen
         $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
 
@@ -180,75 +177,6 @@ $allTopics = Topic::getAllTopics();
         </div>
     <?php endif; ?>
     <div id="left" class="main_container likeable" >
-
-        <?php foreach ($postsFollower as $f):?>
-            <div class="pin" id="pinID-<?php echo $f['id']?>">
-                <div class="img_holder">
-                    <div class="buttons" id="1">
-                        <a href="#" class="btn send">Send</a>
-                        <a href="#" class="btn save">Save</a></br>
-                        <a href="#" class="btn like">
-                            <img src="img/<?php
-                            if (!empty($likedPosts)) {
-                                $isLiked = false;
-                                foreach ($likedPosts as $item) {
-                                    if ($f['id'] == $item['post']) {
-                                        $isLiked = true;
-                                    }
-                                }
-                                if ($isLiked) {
-                                    echo 'liked_icon.svg';
-                                } else {
-                                    echo 'like_icon.svg';
-                                }
-                            } else {
-                                echo 'like_icon.svg';
-                            }
-                            ?>"/>
-                        </a>
-
-                    </div>
-
-                    <a href="detailpagina.php?post=<?php echo $f['id'];?>" onclick="PopupCenter();" class="image ajax" title="photo 1" id="loginpop">
-                        <img src="<?php echo $f['picture']; ?>" alt="" >
-                    </a>
-
-                    <?php
-
-                    $id = $post['id'];
-                    $topic = Post::getCategorie($id);
-
-                    ?>
-
-
-                </div>
-                <div class="info_photo">
-                    <p class="description"><?php echo $f['title']; ?></p>
-                    <p class="icon_heart"><img src="img/icon_hartjeLikes.svg"></p>
-                    <p class="likes"><span><?php echo $f['likes']; ?></span></p>
-                    <p class="comment_count"><span> Comments: <?php echo count(Comment::countComments($f['id'])); ?></span></p>
-                    <p class="postdate"><?php echo Post::getTimeAgo($f['postdate']); ?></p>
-                </div>
-
-                <hr>
-
-
-                <div class="user_info">
-                    <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
-                    <p><?php echo $post['username']; ?></p>
-                    <p class="categorie"><?php echo $topic['name']?></p>
-                </div>
-            </div>
-        <?php endforeach;?>
-
-
-
-
-
-
-
-
-
 
         <?php foreach ($renderedPosts as $post):?>
             <div class="pin" id="pinID-<?php echo $post['id']?>">

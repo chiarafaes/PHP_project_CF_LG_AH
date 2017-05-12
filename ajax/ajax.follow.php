@@ -14,18 +14,20 @@ $userMail = $_POST['userMail'];
 
 if($action === 'follow'){
         $user->followUser($userMail);
-        $response['status'] = 'follow';
+        $response['status'] = 'success';
         $response['action'] = 'follow';
 
-        $post = new Post();
-        $postsFollower = Post::getPostsByUser($user['Mail']);
 
-}else {
-    echo "error";
+} elseif ($action === 'unfollow'){
+        $user->unfollowUser($userMail);
+        $response['status'] = 'success';
+        $response['action'] = 'unfollow';
 
+
+} else{
+    echo 'something went wrong';
 }
 
-header('Content-type: application/json');
 echo json_encode($response);
 
 ?>

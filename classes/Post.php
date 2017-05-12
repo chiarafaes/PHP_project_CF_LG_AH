@@ -430,4 +430,34 @@ class Post
         $result = $statement->execute();
         return($result);
     }
+
+
+    public static function getPostsFromFollower($p_iLimit, $p_iOffset, $p_sUser)
+    {
+        $conn = Db::getInstance();
+
+        $topic = new Topic();
+        $topic->setMSUser($p_sUser);
+        $param = $topic->getTopicsByUser();
+        $placeholders = implode(',', array_fill(0, count($param), '?'));
+
+        foreach ($param as $value){
+            foreach ($value as $key => $val){
+                $topics [] = $val;
+            }
+        }
+
+        $statement = $conn->prepare("SELECT posts.*, users.avatar, users_follower.userEmail FROM posts LEFT JOIN users on users.username = posts.username LEFT JOIN users_follower on users_follower.followEmail = posts.creator_mail WHERE posts.topic IN (".$placeholders.") ORDER BY postdate  DESC LIMIT ? OFFSET ?)");
+
+        foreach ($topics as $k => $id) {
+            $statement->bindValue(($k + 1), $id);
+        }
+
+        $statement->bindValue(count($topics)+1, (int)trim($p_iLimit), PDO::PARAM_INT);
+        $statement->bindValue(count($topics)+2, (int)trim($p_iOffset), PDO::PARAM_INT);
+
+        if ($statement->execute()) {
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
 }

@@ -197,11 +197,25 @@ class User
     public static function unfollowUser($p_sMail){
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("DELETE from users_follower where userEmail = :userEmail and followEmail = :followEmail");
+        $statement = $conn->prepare("DELETE FROM users_follower where userEmail = :userEmail and followEmail = :followEmail");
         $statement->bindValue(':userEmail', $_SESSION['email']);
         $statement->bindValue(':followEmail', $p_sMail);
 
         return $statement->execute();
+    }
+
+    public static function checkFollowing($p_sMail){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM users_follower where userEmail = :userEmail and followEmail = :followEmail");
+        $statement->bindValue(':userEmail', $_SESSION['email']);
+        $statement->bindValue(':followEmail', $p_sMail);
+        $statement->execute();
+        if ($statement->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static function getFollowers(){

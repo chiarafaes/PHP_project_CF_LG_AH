@@ -6,16 +6,17 @@ spl_autoload_register(function ($class) {
 
 $user = User::getUser($_GET['profile']);
 $posts = Post::getPostsByUser($user['Mail']);
-
 $likes = Post::getPostsLikedByUser($_GET['profile']);
 
 $allTopics = Topic::getAllTopics();
 
 
-if( !empty( $_POST['btnFollow'] ) ) {
-    $user->followUser($_POST['profileMail']);
+$checkFollow =  User::checkFollowing($user['Mail']);
+if ($checkFollow == true) {
+    $followOrUnfollow = "unfollow";
+} else {
+    $followOrUnfollow = "follow";
 }
-
 
 
 
@@ -104,8 +105,7 @@ if( !empty( $_POST['btnFollow'] ) ) {
             <h2><?php echo $user['Username'] ?></h2>
 
             <form action='' method='post'>
-                <button type='submit' id='btnFollow' name='btnFollow' class="follow" data-id="<?php echo $user['Mail'] ?>" data-action='follow'>Follow</button>
-                <input type='hidden' name='profileMail' value="<?php echo $user['Mail'] ?>">
+                <button type='submit' id='btnFollow' name='btnFollow' data-id="<?php echo $user['Mail'] ?>" data-action='<?php echo $followOrUnfollow; ?>'><?php echo ucfirst($followOrUnfollow); ?></button>
             </form>
 
         </div>
@@ -118,36 +118,36 @@ if( !empty( $_POST['btnFollow'] ) ) {
         <div id="header_info">
             <a href="#">
                 <div class="collection_collections">
-                    <p>0</p>
-                    <p>collections</p>
+                    <p class="amount">0</p>
+                    <p class="info_name">collections</p>
                 </div>
             </a>
 
             <a href="#" id="btn_ItemsUser">
                 <div class="collection_items">
-                    <p><?php echo count($posts);?></p>
-                    <p>items</p>
+                    <p class="amount"><?php echo count($posts);?></p>
+                    <p class="info_name">items</p>
                 </div>
             </a>
 
             <a href="#">
                 <div class="collection_likes">
-                    <p><?php echo count($likes);?></p>
-                    <p>likes</p>
+                    <p class="amount"><?php echo count($likes);?></p>
+                    <p class="info_name">likes</p>
                 </div>
             </a>
 
             <a href="#">
                 <div class="collection_followers">
-                    <p>0</p>
-                    <p>Followers</p>
+                    <p class="amount">0</p>
+                    <p class="info_name">Followers</p>
                 </div>
             </a>
 
             <a href="#">
                 <div class="collection_following">
-                    <p>0</p>
-                    <p>Following</p>
+                    <p class="amount">0</p>
+                    <p class="info_name">Following</p>
                 </div>
             </a>
         </div>
@@ -203,7 +203,7 @@ if( !empty( $_POST['btnFollow'] ) ) {
                     <div class="user_info">
                         <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']?>"><img src="<?php echo $user['avatar']; ?>" alt="#"></a>
                         <p><?php echo $post['username']; ?></p>
-                        <p class="categorie">Categorie</p>
+                        <p class="categorie"><?php echo $topic['name']?></p>
                     </div>
                 </div>
             <?php endforeach;?>
