@@ -21,8 +21,11 @@ $(document).ready(function () {
         $('#new_post').fadeIn('fast');
     });
 
-    $('.save').on('click',function (e) {
+    $('.likeable' +
+        '' +
+        '').on('click', '.save' ,function (e) {
         e.preventDefault();
+        post = $(this).parent().parent().parent().attr('id').substr(6);
         $('.overlay').fadeIn('fast');
         $('#save_to_collection').fadeIn('fast');
         $('#save_to_collection_content').fadeIn('fast');
@@ -33,6 +36,9 @@ $(document).ready(function () {
     $('#save').on('click',function (e) {
         e.preventDefault();
         var board = $(this).siblings('input:checked').val()
+
+        console.log(board)
+        console.log(post)
 
         $.ajax({
             url: 'ajax/ajax.add-to-collection.php',
@@ -59,12 +65,5 @@ $(document).ready(function () {
         })
 
     });
-
-    $('.overlay').on('click',function (e) {
-        e.preventDefault();
-        $('#save_to_collection').fadeOut();
-        $('#save_to_collection_content').fadeOut('fast');
-        error.fadeOut('fast')
-    })
 
 })
