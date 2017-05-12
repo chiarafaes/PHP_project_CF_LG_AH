@@ -7,15 +7,28 @@ $(document).ready(function () {
     var error = $('.error');
     var success = $('.success');
 
-    $('.likeable' +
-        '' +
-        '').on('click', '.save' ,function (e) {
-            e.preventDefault();
-            post = $(this).parent().parent().parent().attr('id').substr(6);
+    $('.overlay').on('click', function (e) {
+        e.preventDefault();
+        $('.overlay').fadeOut('fast');
+        $('#new_post').fadeOut('fast');
+        $('#save_to_collection').fadeOut('fast');
+        $('#save_to_collection_content').fadeOut('fast');
+    })
 
-            $('#save_to_collection').fadeIn();
-            $('#save_to_collection_content').css('visibility', 'visible');
+    $('#login_pop').on('click',function (e) {
+        e.preventDefault();
+        $('.overlay').fadeIn('fast');
+        $('#new_post').fadeIn('fast');
     });
+
+    $('.save').on('click',function (e) {
+        e.preventDefault();
+        $('.overlay').fadeIn('fast');
+        $('#save_to_collection').fadeIn('fast');
+        $('#save_to_collection_content').fadeIn('fast');
+    });
+
+    console.log('kutding')
 
     $('#save').on('click',function (e) {
         e.preventDefault();
@@ -31,8 +44,8 @@ $(document).ready(function () {
             success: function (value) {
                 if (value == true){
                     console.log('Query gelukt');
-                    $('#save_to_collection').fadeOut();
-                    $('#save_to_collection_content').css('visibility', 'hidden');
+                    $('#save_to_collection').fadeOut('fast');
+                    $('#save_to_collection_content').fadeOut('fast');
                     success.text('Post opgeslagen!').slideDown().delay(1200).slideUp();
 
                 } else if (value == false) {
@@ -50,7 +63,7 @@ $(document).ready(function () {
     $('.overlay').on('click',function (e) {
         e.preventDefault();
         $('#save_to_collection').fadeOut();
-        $('#save_to_collection_content').css('visibility', 'hidden');
+        $('#save_to_collection_content').fadeOut('fast');
         error.fadeOut('fast')
     })
 

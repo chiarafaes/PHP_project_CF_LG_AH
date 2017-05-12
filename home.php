@@ -27,22 +27,24 @@ if (!empty($_POST['search'])) {
         $likedPosts = Post::getPostsLikedByUser($_SESSION['email']);
 
         // boards inladen voor save functie
-        $tmp = Board::getBoards($_SESSION['email']);
+        if(!empty($tmp = Board::getBoards($_SESSION['email']))){
+            $collections = [];
 
-        $collections = [];
-
-        // resultatenlijst opdelen in collections en bijbehorende categorieën
-        foreach ($tmp as $val) {
-            $categoriesPerCollection[] = array_slice($val, -3);
-            $tmp_col[] = array_slice($val, 0, 4);
-        }
-
-        // ervoor zorgen dat collections geen dubbele rows bevatten
-        foreach ($tmp_col as $val) {
-            if (!in_array($val, $collections)) {
-                $collections[] = $val;
+            // resultatenlijst opdelen in collections en bijbehorende categorieën
+            foreach ($tmp as $val) {
+                $categoriesPerCollection[] = array_slice($val, -3);
+                $tmp_col[] = array_slice($val, 0, 4);
             }
-        }
+
+            // ervoor zorgen dat collections geen dubbele rows bevatten
+            foreach ($tmp_col as $val) {
+                if (!in_array($val, $collections)) {
+                    $collections[] = $val;
+                }
+            }
+        };
+
+
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
@@ -71,6 +73,7 @@ $allTopics = Topic::getAllTopics();
 
     <script src="js/loadmore.js"></script>
     <script src="js/like.js"></script>
+    <script src="js/popup2.js"></script>
     <script src="js/add-to-collection.js"></script>
 </head>
 <body>
@@ -141,8 +144,7 @@ $allTopics = Topic::getAllTopics();
 
 
 <!-- Popup - overlay - add item -->
-<a href="#x" class="overlay" id="add_form"></a>
-<div class="popup_additem">
+<div class="popup_additem" id="new_post">
     <?php include_once('createpost.php');?>
 </div>
 
@@ -160,7 +162,7 @@ $allTopics = Topic::getAllTopics();
 
 <!-- Button add item - rechterkolom -->
 <div id="right" class="additem">
-    <a href="#add_form" id="login_pop">+</a>
+    <a href="#" id="login_pop">+</a>
 </div>
 
 <!-- Overzicht posts-->
@@ -245,7 +247,7 @@ $allTopics = Topic::getAllTopics();
 </div>
 <?php endif; ?>
 
-<script src="js/popup2.js"></script>
+
 
 <script>
     $(function() {
