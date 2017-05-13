@@ -122,7 +122,7 @@ class Board
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('SELECT * FROM boards_posts INNER JOIN posts ON posts.id = boards_posts.post ');
+        $statement = $conn->prepare('SELECT * FROM boards_posts INNER JOIN posts ON posts.id = boards_posts.post INNER JOIN users ON users.mail = posts.creator_mail ');
 
         if ($statement->execute()){
             return $statement->fetchAll(PDO::FETCH_ASSOC);
