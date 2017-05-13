@@ -13,6 +13,8 @@ $user = User::getUser($_SESSION['email']);
 
 
 
+
+
 ?><!doctype html>
 <html lang="en">
 <head>

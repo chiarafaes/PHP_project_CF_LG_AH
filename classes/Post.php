@@ -408,19 +408,22 @@ class Post
         }
     }
 
-
-    public static function getPostsByTopic($topic)
+        public static function getPostsByTopic($topic)
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM posts WHERE topic = :topic");
+        $statement = $conn->prepare('SELECT posts.*, users.avatar FROM posts INNER JOIN users ON posts.creator_mail = users.mail WHERE posts.topic = :topic');
         $statement->bindValue(':topic', $topic);
+
         if ($statement->execute()) {
             return ($statement->fetchAll(PDO::FETCH_ASSOC));
         } else {
             return false;
         }
     }
+
+
+
 
     public static function deletePost($id)
     {
