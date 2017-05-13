@@ -35,7 +35,7 @@
             $delete->bindValue(':user', $user);
             $delete->bindValue(':post', $post);
 
-            $likes -= 0;
+            $likes -= 1;
 
             if ($delete->execute()) {
                 echo json_encode($likes);
