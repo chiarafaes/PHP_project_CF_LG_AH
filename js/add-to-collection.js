@@ -31,8 +31,6 @@ $(document).ready(function () {
         $('#save_to_collection_content').fadeIn('fast');
     });
 
-    console.log('kutding')
-
     $('#save').on('click',function (e) {
         e.preventDefault();
         var board = $(this).siblings('input:checked').val()

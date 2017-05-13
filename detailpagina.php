@@ -42,12 +42,12 @@ if (!empty($_POST['id'])){
     }
 }
 
-// if (!empty($_POST['commentId'])){
-//    if(Comment::deleteOwnComments($_POST['commentId'])){
- //   }else{
- //       echo "er ging iets fout";
- //   }
-// }
+ if (!empty($_POST['commentId'])){
+    if(Comment::deleteOwnComments($_POST['commentId'])){
+   }else{
+       echo "er ging iets fout";
+   }
+}
 
 $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
@@ -58,6 +58,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery.js   "></script>
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/comments.css" />
@@ -155,12 +156,12 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
                         <!-- VERWIJDER COMMENT -->
                         <?php if ($_SESSION['email'] == $c['Mail_user']):?>
-                            <!-- <div class ="verwijdercomment">
+                            <div class ="verwijdercomment">
                                 <form method ="post" action="">
                                     <input type="hidden" name="commentId" value="<?php echo $c['commentId']?>">
                                     <input id="btnVerwijderC" type="submit" value="Verwijderen">
                                 </form>
-                            </div> -->
+                            </div>
                         <?php endif; ?>
 
                         <hr class="line_comment">

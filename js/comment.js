@@ -4,9 +4,7 @@ $(document).ready(function () {
 
         //text vak uitlezen
         var comment = $("#comment").val();
-        var postID = $('#post-id').val()
-
-        console.log(postID)
+        var postID = $('#post-id').val();
 
         // via ajax comment naar de DB sturen
         $.ajax({

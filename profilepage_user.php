@@ -50,7 +50,9 @@ $allTopics = Topic::getAllTopics();
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/show-collections.js"></script>
+    <script src="js/delete-collection.js"></script>
     <script src="js/showLikedposts.js"></script>
 
     <title><?php echo $_SESSION['username']; ?></title>
@@ -167,7 +169,7 @@ $allTopics = Topic::getAllTopics();
         </div>
 
 
-    <div class="main_container_profile" class="likeable">
+    <div id="main-container" class="main_container_profile likeable">
         <?php foreach ($posts as $post):?>
             <div class="pin" id="pinID-<?php echo $post['id']?>">
                 <div class="img_holder">
