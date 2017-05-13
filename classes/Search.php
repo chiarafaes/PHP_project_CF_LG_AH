@@ -31,7 +31,7 @@ class Search
         $conn = Db::getInstance();
 
         // in SQL local host voor kunnen zoeken :  ALTER TABLE posts ADD FULLTEXT INDEX (`title`,`description`,`location`)
-        $statement = $conn->prepare('SELECT * FROM posts WHERE MATCH (`title`,`description`,`location`) AGAINST (:searchParam)');
+        $statement = $conn->prepare('SELECT posts.*, users.avatar FROM posts INNER JOIN users ON posts.creator_mail = users.mail WHERE MATCH (`title`,`description`,`location`) AGAINST (:searchParam)');
         $statement->bindValue(':searchParam', $this->m_sSearchParam);
 
         if ($statement->execute()) {
