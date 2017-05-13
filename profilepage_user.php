@@ -32,6 +32,12 @@ $likedPostsShow = Post::getPostsLikedByUserAndShow($_SESSION['email']);
 
 $allTopics = Topic::getAllTopics();
 
+$following = User::getFollowingsByUser($_SESSION['email']);
+$followers = User::getFollowersByUser($user['Mail']);
+
+
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -119,7 +125,7 @@ $allTopics = Topic::getAllTopics();
     <div id="profile_left">
 
         <div class="profile_user_info">
-            <img src="<?php echo Avatar::showAvatar(); ?>">
+            <a class="user_profile" href="profilepage_user.php"><img src="<?php echo Avatar::showAvatar(); ?>"></a>
             <h2><?php echo $_SESSION['username']; ?></h2>
         </div>
 
@@ -155,14 +161,14 @@ $allTopics = Topic::getAllTopics();
 
             <a href="#" id="btn_followers ">
             <div class="collection_followers">
-                <p class="amount">0</p>
+                <p class="amount"><?php echo count($followers);?></p>
                 <p class="info_name">Followers</p>
             </div>
             </a>
 
             <a href="#" id="btn_following">
             <div class="collection_following">
-                <p class="amount">0</p>
+                <p class="amount"><?php echo count($following);?></p>
                 <p class="info_name">Following</p>
             </div>
             </a>

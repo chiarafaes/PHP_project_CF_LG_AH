@@ -8,6 +8,11 @@ $user = User::getUser($_GET['profile']);
 $posts = Post::getPostsByUser($user['Mail']);
 $likes = Post::getPostsLikedByUser($_GET['profile']);
 
+$following = User::getFollowingsByUser($user['Mail']);
+$follower = User::getFollowersByUser($user['Mail']);
+
+
+
 $allTopics = Topic::getAllTopics();
 
 
@@ -101,7 +106,7 @@ if ($checkFollow == true) {
     <div id="profile_left">
 
         <div class="profile_user_info">
-            <img src="<?php echo $user['avatar'] ?>">
+            <a href="profilepage_follower.php?profile=<?php echo $user['Mail']?> "><img src="<?php echo $user['avatar'] ?>"></a>
             <h2><?php echo $user['Username'] ?></h2>
 
             <form action='' method='post'>
@@ -139,14 +144,14 @@ if ($checkFollow == true) {
 
             <a href="#">
                 <div class="collection_followers">
-                    <p class="amount">0</p>
+                    <p class="amount"><?php echo count($follower);?></p>
                     <p class="info_name">Followers</p>
                 </div>
             </a>
 
             <a href="#">
                 <div class="collection_following">
-                    <p class="amount">0</p>
+                    <p class="amount"><?php echo count($following);?></p>
                     <p class="info_name">Following</p>
                 </div>
             </a>

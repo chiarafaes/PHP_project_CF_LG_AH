@@ -206,7 +206,8 @@ class User
         return $statement->execute();
     }
 
-    public static function checkFollowing($p_sMail){
+    public static function checkFollowing($p_sMail)
+    {
         $conn = Db::getInstance();
 
         $statement = $conn->prepare("SELECT * FROM users_follower where userEmail = :userEmail and followEmail = :followEmail");
@@ -220,15 +221,28 @@ class User
         }
     }
 
-    public static function getFollowers(){
+    public static function getFollowingsByUser($p_sMail)
+    {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM users_follower where userEmail = :userEmail");
-        $statement->bindValue(':userEmail', $_SESSION['email']);
+        $statement = $conn->prepare("SELECT * FROM users_follower WHERE userEmail = :userEmail ");
+        $statement->bindValue(':userEmail', $p_sMail);
+        if ($statement->execute()) {
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
+            return false;
+        }
+    }
 
-        if ($statement->execute()){
-            return($statement->fetchAll(PDO::FETCH_ASSOC));
-        }else{
+    public static function getFollowersByUser($p_sMail)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM users_follower WHERE followEmail = :followEmail");
+        $statement->bindValue(':followEmail', $p_sMail);
+        if ($statement->execute()) {
+            return ($statement->fetchAll(PDO::FETCH_ASSOC));
+        } else {
             return false;
         }
     }

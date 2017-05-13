@@ -12,9 +12,6 @@ $posts = Post::getPostsByTopic($categorie['id']);
 $user = User::getUser($_SESSION['email']);
 
 
-
-
-
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -29,7 +26,7 @@ $user = User::getUser($_SESSION['email']);
     <link rel="stylesheet" href="css/profilesettings.css">
 
 
-    <title>Categorie</title>
+    <title>Categorie | <?php echo $categorie['name']?></title>
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -47,10 +44,10 @@ $user = User::getUser($_SESSION['email']);
 
     </div>
 
+
     <div class="search">
         <form method="post" name="searching" action="#" id="searching" >
-            <input type="text" name="search" id="search" results=5 value="Search" onblur="if(this.value == '')
-                    { this.value = 'Search'; }" onfocus="if(this.value == 'Search') { this.value = ''; }">
+            <input type="text" name="search" id="search" results=5 placeholder="Search title, description, place"; }">
             <button id="searchbutton" name="searchbutton" type="submit">Submit</button>
 
         </form>
@@ -94,7 +91,9 @@ $user = User::getUser($_SESSION['email']);
     </header>
 
 <main>
+
     <div id="left" class="main_container_likeable" >
+        <h1 class="topic_title"><?php echo $categorie['name']?></h1>
         <?php foreach ($posts as $post):?>
             <div class="pin" id="pinID-<?php echo $post['id']?>">
                 <div class="img_holder">

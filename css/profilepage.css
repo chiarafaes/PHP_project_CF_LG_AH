@@ -66,6 +66,10 @@ html {
     margin-top: -20px;
 }
 
+.profile_user_info a{
+    text-decoration: none;
+}
+
 .profile_user_info img {
     border-radius: 50%;
     width: 120px;
@@ -420,12 +424,13 @@ input:checked + .slider:before {
     }
 
     #main {
-        padding-top: 50px;
+        padding-top: 30px;
     }
 
     #profile_left {
         float: left;
         width: 20%;
+        margin-top: 30px;
     }
 
     #profile_right {
@@ -445,6 +450,7 @@ input:checked + .slider:before {
 
     #header_info{
         width: 100%;
+
     }
 
 
@@ -477,7 +483,7 @@ input:checked + .slider:before {
     .collection_collections, .collection_items, .collection_likes, .collection_followers, .collection_following {
         float: left;
         display: inline-block;
-        width: 17.2%;
+        width: 17.55%;
         cursor: pointer;
     }
 
@@ -510,24 +516,13 @@ input:checked + .slider:before {
     }
 
     .profile_user_info a {
-        background-color: #10a6ad;
-        color: white;
-        border-radius: 5px;
-        padding: 10px 50px 10px 50px;
         font-weight: 400;
         font-size: 12px;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
         text-decoration: none;
     }
 
-    .profile_user_info a:hover {
-        background-color: #0A6970;
-        color: white;
 
-    }
-
-    .profile_user_info h2 {
+    .profile_user_info .user_info h2 {
         font-size: 18px;
         color: rgb(60, 60, 60);
     }
@@ -843,6 +838,10 @@ input:checked + .slider:before {
     .likes_,
     .postdate_{
         margin-right: 10px;
+    }
+
+    .profile_user_info a{
+        background-color: transparent;
     }
 
 
