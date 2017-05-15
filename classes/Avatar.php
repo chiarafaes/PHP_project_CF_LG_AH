@@ -51,7 +51,7 @@
 
             if ($statement->execute()) {
                 $res = $statement->fetch(PDO::FETCH_ASSOC);
-                unlink($res['avatar']);
+                @unlink($res['avatar']);
             }
         }
 

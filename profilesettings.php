@@ -36,6 +36,7 @@
                 ];
                 $MinimumLength = 6;
 
+
                 // We zien of alle velden zijn ingevuld en vullen alles reeds correct in voor de update
                 if (empty($userNew->Fullname = $_POST["fullname"])) {
                     $feedback = "Field 'Fullname' can not be empty.";
@@ -43,8 +44,8 @@
                     $feedback = "Field 'Username' can not be empty.";
                 }
 
-                if (!empty($userNew->Password = $_POST['password'])) {
-                    if (strlen($userNew->Password) < $MinimumLength) {
+                if (!empty($_POST['password'])) {
+                    if (strlen($_POST['password']) < $MinimumLength) {
                         $feedback = "Your password has to be at least 6 characters long.";
                     }
                 }
@@ -52,8 +53,11 @@
                 // enkel indien er geen fouten waren met het formulier gaan we door
                 if (empty($feedback)) {
 
-                    // Wachtwoord encrypten
-                    $userNew->Password = password_hash($userNew->Password, PASSWORD_DEFAULT, $options);
+                    // Wachtwoord encrypten enkel indien er een nieuw wachtwoord werd ingegeven
+                    if (!empty($_POST['password'])){
+                        $userNew->Password = password_hash($_POST['password'], PASSWORD_DEFAULT, $options);
+                        $userNew->updatePassword();
+                    }
 
                     if ($userNew->updateUser()) {
                         // als de update gelukt is dan gaan we de originele user vars overschrijven met de nieuwe vars

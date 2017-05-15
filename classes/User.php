@@ -174,11 +174,20 @@ class User
     public function updateUser(){
         $conn= Db::getInstance();
 
-        $statement = $conn->prepare("UPDATE users SET Fullname=:fullname, Username=:username, Password=:password WHERE Mail=:user");
+        $statement = $conn->prepare("UPDATE users SET Fullname=:fullname, Username=:username WHERE Mail=:user");
         $statement->bindValue(':fullname', $this->Fullname);
         $statement->bindValue(':username', $this->Username);
-        $statement->bindValue(':password', $this->Password);
         $statement->bindValue(':user', $this->Mail);
+
+        return $statement->execute();
+    }
+
+    public function updatePassword(){
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('UPDATE users SET password = :password WHERE mail = :user');
+        $statement->bindValue(':password', $this->Password);
+        $statement->bindValue(':user', $this->m_sMail);
 
         return $statement->execute();
     }
