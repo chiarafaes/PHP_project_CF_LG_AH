@@ -53,7 +53,6 @@ if (!empty($_POST['search'])) {
 
 $allTopics = Topic::getAllTopics();
 
-
 ?><!doctype html>
 <html lang="en">
 <head>

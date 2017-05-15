@@ -258,7 +258,7 @@ class Post
            }
         }
 
-        $statement = $conn->prepare("SELECT posts.*, users.avatar FROM posts LEFT JOIN users on users.username = posts.username WHERE posts.topic IN (".$placeholders.") ORDER BY postdate  DESC LIMIT ? OFFSET ?");
+        $statement = $conn->prepare("SELECT posts.*, users.avatar, users.username FROM posts LEFT JOIN users on users.mail = posts.creator_mail WHERE posts.topic IN (".$placeholders.") ORDER BY postdate  DESC LIMIT ? OFFSET ?");
 
         foreach ($topics as $k => $id) {
             $statement->bindValue(($k + 1), $id);
