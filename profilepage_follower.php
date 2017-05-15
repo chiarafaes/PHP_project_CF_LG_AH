@@ -45,6 +45,7 @@ if ($checkFollow == true) {
             crossorigin="anonymous"></script>
 
     <script src="js/like.js"></script>
+    <script src="js/show-collections.js"></script>
 
     <title><?php echo $user['Username']; ?></title>
 </head>
@@ -121,7 +122,7 @@ if ($checkFollow == true) {
     <div id="profile_right">
 
         <div id="header_info">
-            <a href="#">
+            <a href="" id="btn_collections">
                 <div class="collection_collections">
                     <p class="amount">0</p>
                     <p class="info_name">collections</p>

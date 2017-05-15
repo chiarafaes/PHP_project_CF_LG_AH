@@ -11,9 +11,22 @@ $(document).ready(function () {
         return diffDays;
     }
 
+    var view = 'user';
+
+    if (window.location.href.indexOf('follower') != -1){
+        var path = window.location.href;
+        var user = path.substr(path.indexOf('=')+1);
+        view = 'follower'
+    } else {
+        var user = ''
+    }
+
+    console.log(user)
+
     var container = $('.main_container_profile')
 
-    $('#btn_collections').on('click', function () {
+    $('#btn_collections').on('click', function (e) {
+        e.preventDefault();
         var postsInCollections = [];
 
         $.ajax({
@@ -32,7 +45,8 @@ $(document).ready(function () {
             url: 'ajax/ajax.getboards.php',
             type: 'post',
             data:{
-                mode: 'collections'
+                mode: 'collections',
+                user : user
             },
             success: function (value) {
                 console.log('got collections');
@@ -45,7 +59,8 @@ $(document).ready(function () {
                     url: 'ajax/ajax.getboards.php',
                     type: 'post',
                     data:{
-                        mode: 'categories'
+                        mode: 'categories',
+                        user : user
                     },
                     success: function (value) {
                         console.log('got cats per collection');
@@ -73,30 +88,52 @@ $(document).ready(function () {
                             } else {
                                 check = ""
                             }
-                            var collection =    '<div class="collection-container" id="collection-'+collections[prop].id+'">'+
-                                                '<div class="collection-header">'+
-                                                '<div class="posts-container">'+
-                                                '<h1 class="collection-title">'+collections[prop].title+'</h1>'+
-                                                '</div>'+
-                                                '<div>'+
-                                                '<div class="toggleSwitch">'+
-                                                '<label>Private</label>'+
-                                                '<label class="switch">'+
-                                                '<input type="checkbox" name="checkbox" '+ check +' class="private-collection" value="on" onclick="if($(this).val() == &apos;off&apos;){$(this).val(&apos;on&apos;)} else {$(this).val(&apos;off&apos;)}" >'+
-                                                '<div class="slider"></div>'+
-                                                '</label>'+
-                                                '</div>'+
-                                                '<div class="collection-topics">'+
-                                                '<ul>'+
-                                                getCats(collections[prop].id) +
-                                                '</ul>'+
-                                                '</div>'+
-                                                '<button class="delete-collection">Delete collection</button>'+
-                                                '</div>'+
-                                                '</div>'+
-                                                '</div>'
 
-                            container.prepend(collection);
+                            if (view == 'follower'){
+                                if (collections[prop].private != 1){
+                                    var collection =    '<div class="collection-container" id="collection-'+collections[prop].id+'">'+
+                                        '<div class="collection-header">'+
+                                        '<div class="posts-container">'+
+                                        '<h1 class="collection-title">'+collections[prop].title+'</h1>'+
+                                        '</div>'+
+                                        '<div>'+
+                                        '<div class="collection-topics">'+
+                                        '<ul>'+
+                                        getCats(collections[prop].id) +
+                                        '</ul>'+
+                                        '</div>'+
+                                        '</div>'+
+                                        '</div>'+
+                                        '</div>'
+
+                                    container.prepend(collection);
+                                }
+                            } else {
+                                var collection =    '<div class="collection-container" id="collection-'+collections[prop].id+'">'+
+                                    '<div class="collection-header">'+
+                                    '<div class="posts-container">'+
+                                    '<h1 class="collection-title">'+collections[prop].title+'</h1>'+
+                                    '</div>'+
+                                    '<div>'+
+                                    '<div class="toggleSwitch">'+
+                                    '<label>Private</label>'+
+                                    '<label class="switch">'+
+                                    '<input type="checkbox" name="checkbox" '+ check +' class="private-collection" value="on" onclick="if($(this).val() == &apos;off&apos;){$(this).val(&apos;on&apos;)} else {$(this).val(&apos;off&apos;)}" >'+
+                                    '<div class="slider"></div>'+
+                                    '</label>'+
+                                    '</div>'+
+                                    '<div class="collection-topics">'+
+                                    '<ul>'+
+                                    getCats(collections[prop].id) +
+                                    '</ul>'+
+                                    '</div>'+
+                                    '<button class="delete-collection">Delete collection</button>'+
+                                    '</div>'+
+                                    '</div>'+
+                                    '</div>'
+
+                                container.prepend(collection);
+                            }
                         }
 
                         for (var prop in postsInCollections){

@@ -14,8 +14,13 @@
     });
 
     $mode = $_POST['mode'];
+    $user = $_POST['user'];
 
-    $tmp = Board::getBoards($_SESSION['email']);
+    if (empty($user)){
+        $user = $_SESSION['email'];
+    }
+
+    $tmp = Board::getBoards($user);
 
     $collections = [];
 
