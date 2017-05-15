@@ -15,6 +15,7 @@ $(document).ready(function () {
         .done(function( response ) {
 
             console.log(response);
+
             //code+message
             if (response.code == 200){
 
