@@ -23,7 +23,7 @@ $(document).ready(function () {
                 //iets plaatsen
                 var div = $('<div class="comment" style="display: none;"></div>');
 
-                div.html("<a href='http://localhost/PHP_project_cf_lg_ah/profilepage_follower.php?user=" + response.email + "' ><img id='avatar' src='" + response.avatar + "' /></a>" + "<div class='comment_zelf'>" + "<a href='http://localhost/PHP_project_cf_lg_ah/profilepage_follower.php?user=" + response.email + "'>" + response.user + "</a>: " + "<p>" + response.message + "</p></div>");
+                div.html("<a href='profilepage_follower.php?profile=" + response.email + "' ><img id='avatar' src='" + response.avatar + "' /></a>" + "<div class='comment_zelf'>" + "<a href='profilepage_follower.php?profile=" + response.email + "'>" + response.user + ":</a> " + "<p>" + response.message + "</p></div>");
 
                 var deleteDiv =
                     '<div class ="verwijdercomment">'+

@@ -40,28 +40,11 @@ class Comment {
        }
     }
 
-
-    public function GetRecentActivities()
-    {
-        if ($conn = DB::getInstance())
-        {
-
-            $statement = $conn->prepare("SELECT * FROM Comments ORDER BY commentID DESC LIMIT 5");
-            $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
-        }
-        else
-        {
-            // er kon geen connectie gelegd worden met de databank
-            throw new Exception('Ooh my, something terrible happened to the database connection');
-        }
-    }
-
     public function GetCommentsFromPost()
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM Comments WHERE id_post = :id_post");
+        $statement = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post");
         $statement->bindValue(":id_post", $_GET["post"]);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -71,7 +54,7 @@ class Comment {
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT Comments.commentId, comment, users.Username, users.avatar, Mail_user from Comments inner join users on users.mail = Comments.Mail_user where Comments.id_post = :items ORDER BY commentID DESC LIMIT 10");
+        $statement = $conn->prepare("SELECT comments.commentId, comment, users.Username, users.avatar, Mail_user from comments inner join users on users.mail = comments.Mail_user where comments.id_post = :items ORDER BY commentID DESC LIMIT 10");
         $statement->bindValue(":items", $_GET["post"]);
         $statement->execute();
         $comments = $statement->fetchAll(PDO::FETCH_ASSOC);

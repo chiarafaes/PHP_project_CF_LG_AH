@@ -24,8 +24,6 @@ if(!empty($_POST['comment']))
     }
 }
 
-//altijd alle laatste commentaren ophalen
-$recentActivities = $comment->GetRecentActivities();
 
 
 $dislikes = Post::CountReport($_GET["post"]);
@@ -92,7 +90,7 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
                     ?>
                     <hr class="line_detail">
                     <div class="user_info">
-                        <a href="profilepage_follower.php"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
+                        <a href="profilepage_follower.php?profile=<?php echo $post['creator_mail']; ?>"><img src="<?php echo $post['avatar']; ?>" alt="#"></a>
                             <p><?php echo $post['username']; ?></p>
                             <p class="categorie"><?php echo $topic['name']; ?></p>
                     </div>
@@ -141,13 +139,13 @@ $ReportedBy = Post::ReportedByUser($_GET["post"]);
 
                         <div class="comment">
 
-                            <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>">
+                            <a href="profilepage_user.php?profile=<?php  echo $c['mail']?>">
                                 <img  id='avatar' src=' <?php echo $c["avatar"] ?> ' />
                             </a>
 
 
                             <div class="comment_zelf">
-                                <a href="http://localhost/PHP_project_cf_lg_ah/profilepage_user.php?user=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
+                                <a href="profilepage_user.php?profile=<?php  echo $c['mail']?>"><?php echo $c['Username'].":"?></a>
                                 <p><?php echo $c['comment']?></p>
 
                             </div>
