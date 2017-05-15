@@ -23,7 +23,7 @@ if ($checkFollow == true) {
     $followOrUnfollow = "follow";
 }
 
-
+$collections = Board::getBoards($_GET['profile']);
 
 
 ?><!doctype html>
@@ -124,7 +124,7 @@ if ($checkFollow == true) {
         <div id="header_info">
             <a href="" id="btn_collections">
                 <div class="collection_collections">
-                    <p class="amount">0</p>
+                    <p class="amount"><?php if(!empty($collections)){echo count($collections);} else {echo '0';}?></p>
                     <p class="info_name">collections</p>
                 </div>
             </a>
