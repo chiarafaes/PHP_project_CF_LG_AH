@@ -10,6 +10,8 @@ $(document).ready(function()
         // GET USERNAME VALUE
         var username = $("#username").val();
         $(".usernameFeedback").show();
+        document.getElementById('update').disabled = true;
+        $('#update').removeClass().addClass('disabled');
 
         $.ajax({
             method: "POST",

@@ -205,7 +205,7 @@ $allTopics = Topic::getAllTopics();
                 </fieldset>
 
                 <fieldset>
-                    <button id="update" type="submit" disabled="disabled">Save changes</button>
+                    <button id="update" type="submit" >Save changes</button>
                 </fieldset>
             </form>
 
