@@ -23,6 +23,8 @@ $(document).ready(function()
                 $('#username').css('color', '#4BAE4F');
                 $('.usernameFeedback').css('color', '#4BAE4F');
                 $("input[type=submit]").removeAttr("disabled");
+                document.getElementById('update').disabled = false;
+                $('#update').removeClass().addClass('enabled');
                 console.log("succes");
 
 
@@ -30,11 +32,15 @@ $(document).ready(function()
                 $('#username').css('color', '#dd6b47');
                 $('.usernameFeedback').css('color', '#D22E2E');
                 console.log("error");
+                document.getElementById('update').disabled = true;
+                $('#update').removeClass().addClass('disabled');
 
             } else {
                 $('#username').css('color', '#000');
                 $('.usernameFeedback').hide();
                 $("input[type=submit]").attr("disabled", "disabled");
+                document.getElementById('update').disabled = true;
+                $('#update').removeClass().addClass('disabled');
             }
 
             $("input[type=submit]").removeAttr("disabled");

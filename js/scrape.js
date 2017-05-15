@@ -11,7 +11,7 @@ $(document).ready(function () {
                 // als de string geen echte url is
                 $('#error-post').text('This is not a valid URL').fadeIn('fast')
                 container.html('');
-                $(this).css('border', '1px solid firebrick')
+                $(this).css('border', '1.5px solid firebrick')
 
             } else {
                 $('#error-post').text('').fadeOut('fast')
@@ -66,6 +66,9 @@ $(document).ready(function () {
             }
 
         } else {
+            $('#error-post').text('').fadeOut('fast')
+            $(this).css('border', '1.5px solid #b3b3b3')
+            container.html('');
             return false;
         }
     })

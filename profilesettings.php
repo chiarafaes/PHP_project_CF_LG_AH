@@ -83,7 +83,9 @@ $allTopics = Topic::getAllTopics();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/profilesettings.css">
+    <script src="js/jquery.js"></script>
     <script src="js/pagename.js"></script>
+    <script src="js/check-username.js"></script>
     <title>IMD'terest - <?php echo $user->Username; ?> </title>
 
 </head>
@@ -184,6 +186,7 @@ $allTopics = Topic::getAllTopics();
 
                 <fieldset>
                     <label>Username</label>
+                    <span class="usernameFeedback"></span>
                     <input id="username" name="username" type="text" placeholder="Username" value="<?php echo $user->Username; ?>"/>
                 </fieldset>
 
@@ -198,7 +201,7 @@ $allTopics = Topic::getAllTopics();
                 </fieldset>
 
                 <fieldset>
-                    <button type="submit">Save changes</button>
+                    <button id="update" type="submit" disabled="disabled">Save changes</button>
                 </fieldset>
             </form>
 

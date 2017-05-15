@@ -46,17 +46,17 @@ $getTopics = Topic::getAllTopics();
         <input type="hidden" name="url" id="rendered-url" >
 
     <div class="create_title">
-        <label>Title</label>
+        <label>Title <span class="star">*</span></label>
         <input type="text" name="title" id="title" />
     </div>
 
     <div class="create_description">
-        <label>Description</label>
+        <label>Description <span class="star">*</span></label>
         <textarea rows="10" cols="19" name="Description" form="Posten" placeholder="Enter Description here..."></textarea>
     </div>
 
     <div class="box_topics">
-        <label class="boxTitle">Choose collection</label>
+        <label class="boxTitle">Choose collection <span class="star">*</span> </label>
         <form id="topics" action="" method="post">
             <ul>
                 <?php foreach ($getTopics as $topic): ?>
@@ -81,7 +81,7 @@ $getTopics = Topic::getAllTopics();
 </div>
 
 <div class="create_btnPost">
-    <input type="submit" name='submit' value="Post" />
+    <button id="upload-post" type="submit" name='submit' value="Post" disabled>UPLOAD</button>
 </div>
   </div>
 

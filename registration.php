@@ -83,7 +83,7 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/checkemail.js"></script>
-    <script type="text/javascript" src="js/checkUsername.js"></script>
+    <script type="text/javascript" src="js/check-username.js"></script>
 
     <style>
 

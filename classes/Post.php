@@ -219,8 +219,6 @@ class Post
     }
 
 
-
-
     //save naar DB
     public function Save()
     {
@@ -286,8 +284,6 @@ class Post
         $res = $statement->fetch();
         return($res);
     }
-
-
 
     public static function getPostsByID($p_iID)
     {
@@ -421,9 +417,6 @@ class Post
             return false;
         }
     }
-
-
-
 
     public static function deletePost($id)
     {

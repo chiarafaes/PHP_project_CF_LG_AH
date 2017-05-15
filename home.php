@@ -76,6 +76,7 @@ $allTopics = Topic::getAllTopics();
     <script src="js/like.js"></script>
     <script src="js/popup2.js"></script>
     <script src="js/add-to-collection.js"></script>
+    <script src="js/check-fields.js"></script>
 </head>
 <body>
 
