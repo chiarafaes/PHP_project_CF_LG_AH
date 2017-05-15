@@ -26,13 +26,13 @@ $getTopics = Topic::getAllTopics();
 
 
     <div class="collection_title">
-        <label>Name</label>
+        <label>Name <span class="star">*</span></label>
         <input type="text" name="title" id="board-name" placeholder="Give your collection a name"/>
     </div>
 
 
     <div class="toggleSwitch">
-        <label>Private</label>
+        <label>Private <span class="star">*</span> </label>
         <label class="switch">
             <input type="checkbox" name="checkbox" id="private" value="off" onclick="if($(this).val() == 'off'){$(this).val('on')} else {$(this).val('off')}" >
             <div class="slider"></div>
@@ -40,7 +40,7 @@ $getTopics = Topic::getAllTopics();
     </div>
 
     <div class="box_topics">
-
+        <label for="">Choose topics for your collection <span class="star">*</span></label>
         <form id="topics" action="" method="post">
             <ul>
                 <?php foreach ($getTopics as $topic): ?>
@@ -54,7 +54,7 @@ $getTopics = Topic::getAllTopics();
                 <?php endforeach; ?>
             </ul>
             <div class="btn_collection">
-                <input type="button" id="create-board" value="Create"/>
+                <button type="button" id="create-board" value="Create" disabled>CREATE</button>
             </div>
     </div>
 </form>

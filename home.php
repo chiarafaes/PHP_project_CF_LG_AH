@@ -153,12 +153,17 @@ $allTopics = Topic::getAllTopics();
 <a href="#x" class="overlay" id="save_to_collection"></a>
 <div class="popup_additem" id="save_to_collection_content">
     <p class="error"></p>
-    <h2>Save post to collection</h2>
-    <?php foreach ($collections as $collection): ?>
-        <label for="<?php echo $collection['title']?>"><?php echo $collection['title']?></label>
-        <input type="radio" id="<?php echo $collection['title']?>" name="id" value="<?php echo $collection['id']?>"><br>
-    <?php endforeach; ?>
-    <button type="button" id="save">Save</button>
+    <?php if (!empty($collections)):?>
+        <h2>Save post to collection</h2>
+        <?php foreach ($collections as $collection): ?>
+            <label for="<?php echo $collection['title']?>"><?php echo $collection['title']?></label>
+            <input type="radio" id="<?php echo $collection['title']?>" name="id" value="<?php echo $collection['id']?>"><br>
+        <?php endforeach; ?>
+        <button type="button" id="save">Save</button>
+    <?php endif; ?>
+    <?php if(empty($collections)):?>
+    <p>You haven't created any collections. <a href="profilepage_user.php">Click here</a> to create one. </p>
+    <?php endif;?>
 </div>
 
 <!-- Button add item - rechterkolom -->

@@ -4,6 +4,46 @@
 
 $(document).ready(function ()
 {
+    var btn = document.getElementById('create-board');
+    var title = false;
+    var topics = false;
+
+    function checkIfFilledIn() {
+        if (title && topics){
+            btn.disabled = false;
+        } else {
+            btn.disabled = true;
+        }
+    }
+
+    $('#board-name').on('blur', function () {
+        if ($(this).val() == ""){
+            $(this).css('border','1.5px solid firebrick');
+            title = false;
+            checkIfFilledIn();
+        } else {
+            $(this).css('border','1.5px solid #b3b3b3');
+            title = true;
+            checkIfFilledIn();
+        }
+    });
+
+    $('.box_topics').on('click', 'input', function () {
+        var atLeastOne = false;
+        $('.box_topics ul').children().each(function () {
+            if ($(this).children().children().val() == 'on'){
+                atLeastOne = true;
+            }
+        })
+        if (atLeastOne){
+            topics = true;
+        } else {
+            topics = false;
+        }
+        checkIfFilledIn()
+    })
+
+
     $('.overlay').on('click', function (e) {
         e.preventDefault();
         $('#add_form').fadeOut('fast');
